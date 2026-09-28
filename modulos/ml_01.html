@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -76,14 +79,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-aac7b21a7a7001349f02d73abc650e2d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-a1a51758ee5f03294493c27256f043f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-aac7b21a7a7001349f02d73abc650e2d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c1fb50ddeaf1d2259f700215d6c8968c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-4d8c1e2bde13e73229998c66347c1b20.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-c1fb50ddeaf1d2259f700215d6c8968c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -430,13 +433,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#temas" id="toc-temas" class="nav-link active" data-scroll-target="#temas"><span class="header-section-number">7</span> Temas</a>
+  <li><a href="#objetivos-de-aprendizaje" id="toc-objetivos-de-aprendizaje" class="nav-link active" data-scroll-target="#objetivos-de-aprendizaje"><span class="header-section-number">7</span> Objetivos de aprendizaje</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">8</span> Introducción</a></li>
+  <li><a href="#qué-es-el-aprendizaje-estadístico" id="toc-qué-es-el-aprendizaje-estadístico" class="nav-link" data-scroll-target="#qué-es-el-aprendizaje-estadístico"><span class="header-section-number">9</span> ¿Qué es el aprendizaje estadístico?</a>
   <ul class="collapse">
-  <li><a href="#aprendizaje-supervisado" id="toc-aprendizaje-supervisado" class="nav-link" data-scroll-target="#aprendizaje-supervisado"><span class="header-section-number">7.1</span> Aprendizaje supervisado</a></li>
-  <li><a href="#aprendizaje-no-supervisado" id="toc-aprendizaje-no-supervisado" class="nav-link" data-scroll-target="#aprendizaje-no-supervisado"><span class="header-section-number">7.2</span> Aprendizaje no supervisado</a></li>
-  <li><a href="#error-de-predicción" id="toc-error-de-predicción" class="nav-link" data-scroll-target="#error-de-predicción"><span class="header-section-number">7.3</span> Error de predicción</a></li>
-  <li><a href="#sobreajuste" id="toc-sobreajuste" class="nav-link" data-scroll-target="#sobreajuste"><span class="header-section-number">7.4</span> Sobreajuste</a></li>
+  <li><a href="#ejemplo" id="toc-ejemplo" class="nav-link" data-scroll-target="#ejemplo"><span class="header-section-number">9.1</span> Ejemplo</a></li>
   </ul></li>
+  <li><a href="#dos-grandes-objetivos" id="toc-dos-grandes-objetivos" class="nav-link" data-scroll-target="#dos-grandes-objetivos"><span class="header-section-number">10</span> Dos grandes objetivos</a>
+  <ul class="collapse">
+  <li><a href="#inferencia" id="toc-inferencia" class="nav-link" data-scroll-target="#inferencia"><span class="header-section-number">10.1</span> Inferencia</a></li>
+  <li><a href="#predicción" id="toc-predicción" class="nav-link" data-scroll-target="#predicción"><span class="header-section-number">10.2</span> Predicción</a></li>
+  </ul></li>
+  <li><a href="#aprendizaje-supervisado" id="toc-aprendizaje-supervisado" class="nav-link" data-scroll-target="#aprendizaje-supervisado"><span class="header-section-number">11</span> Aprendizaje supervisado</a>
+  <ul class="collapse">
+  <li><a href="#ejemplos-en-ciencia-animal" id="toc-ejemplos-en-ciencia-animal" class="nav-link" data-scroll-target="#ejemplos-en-ciencia-animal"><span class="header-section-number">11.1</span> Ejemplos en ciencia animal</a>
+  <ul class="collapse">
+  <li><a href="#regresión" id="toc-regresión" class="nav-link" data-scroll-target="#regresión"><span class="header-section-number">11.1.1</span> Regresión</a></li>
+  <li><a href="#clasificación" id="toc-clasificación" class="nav-link" data-scroll-target="#clasificación"><span class="header-section-number">11.1.2</span> Clasificación</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#aprendizaje-no-supervisado" id="toc-aprendizaje-no-supervisado" class="nav-link" data-scroll-target="#aprendizaje-no-supervisado"><span class="header-section-number">12</span> Aprendizaje no supervisado</a>
+  <ul class="collapse">
+  <li><a href="#ejemplos" id="toc-ejemplos" class="nav-link" data-scroll-target="#ejemplos"><span class="header-section-number">12.1</span> Ejemplos</a></li>
+  </ul></li>
+  <li><a href="#ejemplo-práctico" id="toc-ejemplo-práctico" class="nav-link" data-scroll-target="#ejemplo-práctico"><span class="header-section-number">13</span> Ejemplo práctico</a></li>
+  <li><a href="#visualización-de-los-datos" id="toc-visualización-de-los-datos" class="nav-link" data-scroll-target="#visualización-de-los-datos"><span class="header-section-number">14</span> Visualización de los datos</a>
+  <ul class="collapse">
+  <li><a href="#discusión" id="toc-discusión" class="nav-link" data-scroll-target="#discusión"><span class="header-section-number">14.1</span> Discusión</a></li>
+  </ul></li>
+  <li><a href="#error-de-predicción" id="toc-error-de-predicción" class="nav-link" data-scroll-target="#error-de-predicción"><span class="header-section-number">15</span> Error de predicción</a>
+  <ul class="collapse">
+  <li><a href="#pregunta" id="toc-pregunta" class="nav-link" data-scroll-target="#pregunta"><span class="header-section-number">15.1</span> Pregunta</a></li>
+  </ul></li>
+  <li><a href="#entrenamiento-y-prueba" id="toc-entrenamiento-y-prueba" class="nav-link" data-scroll-target="#entrenamiento-y-prueba"><span class="header-section-number">16</span> Entrenamiento y prueba</a></li>
+  <li><a href="#sobreajuste" id="toc-sobreajuste" class="nav-link" data-scroll-target="#sobreajuste"><span class="header-section-number">17</span> Sobreajuste</a>
+  <ul class="collapse">
+  <li><a href="#analogía" id="toc-analogía" class="nav-link" data-scroll-target="#analogía"><span class="header-section-number">17.1</span> Analogía</a></li>
+  </ul></li>
+  <li><a href="#complejidad-del-modelo" id="toc-complejidad-del-modelo" class="nav-link" data-scroll-target="#complejidad-del-modelo"><span class="header-section-number">18</span> Complejidad del modelo</a></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">19</span> Resumen</a></li>
+  <li><a href="#actividades-propuestas" id="toc-actividades-propuestas" class="nav-link" data-scroll-target="#actividades-propuestas"><span class="header-section-number">20</span> Actividades propuestas</a></li>
+  <li><a href="#lecturas-recomendadas" id="toc-lecturas-recomendadas" class="nav-link" data-scroll-target="#lecturas-recomendadas"><span class="header-section-number">21</span> Lecturas recomendadas</a></li>
   </ul>
 </nav>
     </div>
@@ -463,29 +500,299 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="temas" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Temas</h1>
-<section id="aprendizaje-supervisado" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="aprendizaje-supervisado"><span class="header-section-number">7.1</span> Aprendizaje supervisado</h2>
+<section id="objetivos-de-aprendizaje" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Objetivos de aprendizaje</h1>
+<p>Al finalizar esta sesión, el estudiante será capaz de:</p>
+<ul>
+<li>Comprender qué es el aprendizaje estadístico.</li>
+<li>Diferenciar problemas supervisados y no supervisados.</li>
+<li>Entender la diferencia entre explicación y predicción.</li>
+<li>Reconocer los conceptos de error de entrenamiento y error de generalización.</li>
+<li>Identificar situaciones de sobreajuste.</li>
+</ul>
 </section>
-<section id="aprendizaje-no-supervisado" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="aprendizaje-no-supervisado"><span class="header-section-number">7.2</span> Aprendizaje no supervisado</h2>
+<section id="introducción" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Introducción</h1>
+<p>Las ciencias de la salud y la producción animal generan actualmente grandes cantidades de información. En una explotación ganadera pueden registrarse diariamente variables relacionadas con alimentación, producción, reproducción, bienestar animal, sanidad y condiciones ambientales.</p>
+<p>El reto ya no consiste únicamente en almacenar datos, sino en transformarlos en conocimiento útil para la toma de decisiones.</p>
+<p>El aprendizaje estadístico proporciona un conjunto de herramientas que permiten:</p>
+<ul>
+<li>Comprender relaciones entre variables.</li>
+<li>Identificar factores de riesgo.</li>
+<li>Construir modelos predictivos.</li>
+<li>Detectar patrones complejos.</li>
+<li>Apoyar la toma de decisiones en sistemas productivos.</li>
+</ul>
 </section>
-<section id="error-de-predicción" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="error-de-predicción"><span class="header-section-number">7.3</span> Error de predicción</h2>
+<section id="qué-es-el-aprendizaje-estadístico" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> ¿Qué es el aprendizaje estadístico?</h1>
+<p>El aprendizaje estadístico es una disciplina que combina estadística, matemáticas y ciencias computacionales para construir modelos a partir de datos.</p>
+<p>La idea central consiste en utilizar información observada para aprender una relación entre variables y posteriormente utilizar esa información para describir, explicar o predecir fenómenos.</p>
+<section id="ejemplo" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="ejemplo"><span class="header-section-number">9.1</span> Ejemplo</h2>
+<p>Supongamos que disponemos de información sobre 500 vacas:</p>
+<ul>
+<li>Producción de leche.</li>
+<li>Consumo de alimento.</li>
+<li>Edad.</li>
+<li>Número de parto.</li>
+<li>Temperatura ambiental.</li>
+</ul>
+<p>Una pregunta posible sería:</p>
+<blockquote class="blockquote">
+<p>¿Podemos predecir la producción de leche de una vaca a partir de estas variables?</p>
+</blockquote>
+<p>Esa es una tarea típica de aprendizaje estadístico.</p>
 </section>
-<section id="sobreajuste" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="sobreajuste"><span class="header-section-number">7.4</span> Sobreajuste</h2>
+</section>
+<section id="dos-grandes-objetivos" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Dos grandes objetivos</h1>
+<p>Tradicionalmente existen dos objetivos fundamentales.</p>
+<section id="inferencia" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="inferencia"><span class="header-section-number">10.1</span> Inferencia</h2>
+<p>La inferencia busca responder preguntas científicas.</p>
+<p>Por ejemplo:</p>
+<ul>
+<li>¿Aumenta la producción de leche con un nuevo aditivo?</li>
+<li>¿Influye la temperatura en la incidencia de mastitis?</li>
+<li>¿Existe asociación entre una enfermedad y el sistema de manejo?</li>
+</ul>
+<p>El interés principal es comprender el fenómeno.</p>
+</section>
+<section id="predicción" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="predicción"><span class="header-section-number">10.2</span> Predicción</h2>
+<p>La predicción busca anticipar valores futuros o desconocidos.</p>
+<p>Por ejemplo:</p>
+<ul>
+<li>Predecir la ganancia diaria de peso.</li>
+<li>Predecir un brote de enfermedad.</li>
+<li>Predecir la probabilidad de descarte de una vaca.</li>
+</ul>
+<p>El interés principal es obtener predicciones precisas.</p>
+</section>
+</section>
+<section id="aprendizaje-supervisado" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Aprendizaje supervisado</h1>
+<p>En el aprendizaje supervisado conocemos la respuesta de interés.</p>
+<p>Disponemos de:</p>
+<ul>
+<li>Variables explicativas (X).</li>
+<li>Variable respuesta (Y).</li>
+</ul>
+<p>El objetivo consiste en aprender una función que relacione ambas.</p>
+<section id="ejemplos-en-ciencia-animal" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="ejemplos-en-ciencia-animal"><span class="header-section-number">11.1</span> Ejemplos en ciencia animal</h2>
+<section id="regresión" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="regresión"><span class="header-section-number">11.1.1</span> Regresión</h3>
+<p>Predecir:</p>
+<ul>
+<li>Producción de leche.</li>
+<li>Ganancia de peso.</li>
+<li>Consumo de alimento.</li>
+</ul>
+</section>
+<section id="clasificación" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="clasificación"><span class="header-section-number">11.1.2</span> Clasificación</h3>
+<p>Predecir:</p>
+<ul>
+<li>Enfermo o sano.</li>
+<li>Gestante o no gestante.</li>
+<li>Sobrevive o no sobrevive.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="aprendizaje-no-supervisado" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Aprendizaje no supervisado</h1>
+<p>En este caso no existe una variable respuesta conocida.</p>
+<p>El objetivo consiste en descubrir patrones ocultos en los datos.</p>
+<section id="ejemplos" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="ejemplos"><span class="header-section-number">12.1</span> Ejemplos</h2>
+<ul>
+<li>Identificar grupos de granjas similares.</li>
+<li>Detectar perfiles metabólicos.</li>
+<li>Clasificar animales según su comportamiento.</li>
+</ul>
+<p>Las técnicas más utilizadas incluyen:</p>
+<ul>
+<li>Clustering.</li>
+<li>Análisis de componentes principales.</li>
+<li>Métodos de reducción de dimensionalidad.</li>
+</ul>
+</section>
+</section>
+<section id="ejemplo-práctico" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Ejemplo práctico</h1>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"datos"</span>,<span class="st">"leche.csv"</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  animal granja tratamiento semana leche
+1      1      3     Control      1 33.38
+2      1      3     Control      2 33.00
+3      1      3     Control      3 34.71
+4      1      3     Control      4 30.06
+5      1      3     Control      5 35.04
+6      1      3     Control      6 24.95</code></pre>
 </div>
-
-
+</div>
 </section>
+<section id="visualización-de-los-datos" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Visualización de los datos</h1>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> semana,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> leche,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">group =</span> animal)) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Semana"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Producción de leche"</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ml_01_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="discusión" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="discusión"><span class="header-section-number">14.1</span> Discusión</h2>
+<p>Observamos que cada animal presenta una trayectoria distinta a lo largo del tiempo.</p>
+<p>Esto sugiere que existe variabilidad entre individuos y que probablemente necesitaremos modelos que tengan en cuenta la dependencia temporal y la heterogeneidad entre animales.</p>
+</section>
+</section>
+<section id="error-de-predicción" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Error de predicción</h1>
+<p>Un modelo nunca es perfecto.</p>
+<p>La diferencia entre el valor observado y el valor predicho recibe el nombre de error.</p>
+<section id="pregunta" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="pregunta"><span class="header-section-number">15.1</span> Pregunta</h2>
+<p>Si observamos:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Producción observada</th>
+<th>Producción predicha</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>32 kg</td>
+<td>30 kg</td>
+</tr>
+</tbody>
+</table>
+<p>el error es:</p>
+<pre class="text"><code>32 - 30 = 2 kg</code></pre>
+<p>Cuanto menores sean los errores, mejor será el modelo.</p>
+</section>
+</section>
+<section id="entrenamiento-y-prueba" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Entrenamiento y prueba</h1>
+<p>Para evaluar correctamente un modelo debemos utilizar datos que no hayan participado en el ajuste.</p>
+<p>La práctica habitual consiste en dividir los datos en:</p>
+<ul>
+<li>Conjunto de entrenamiento.</li>
+<li>Conjunto de prueba.</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(datos, <span class="at">prop =</span> <span class="fl">0.80</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> <span class="fu">training</span>(split)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>test  <span class="ot">&lt;-</span> <span class="fu">testing</span>(split)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(train)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8320</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(test)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2080</code></pre>
+</div>
+</div>
+</section>
+<section id="sobreajuste" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> Sobreajuste</h1>
+<p>Uno de los problemas más frecuentes en aprendizaje estadístico es el sobreajuste.</p>
+<p>Un modelo sobreajustado aprende demasiado bien los datos de entrenamiento.</p>
+<p>Como consecuencia:</p>
+<ul>
+<li>Presenta poco error en entrenamiento.</li>
+<li>Presenta mucho error en datos nuevos.</li>
+</ul>
+<section id="analogía" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="analogía"><span class="header-section-number">17.1</span> Analogía</h2>
+<p>Un estudiante memoriza las preguntas exactas de un examen.</p>
+<p>Obtendrá una nota excelente en ese examen específico.</p>
+<p>Sin embargo, si se le formula una pregunta diferente, posiblemente fracase.</p>
+<p>Eso es exactamente el sobreajuste.</p>
+</section>
+</section>
+<section id="complejidad-del-modelo" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> Complejidad del modelo</h1>
+<p>Existe un compromiso permanente entre:</p>
+<ul>
+<li>Simplicidad.</li>
+<li>Capacidad predictiva.</li>
+</ul>
+<p>Los modelos demasiado simples pueden ignorar información importante.</p>
+<p>Los modelos excesivamente complejos pueden sobreajustarse.</p>
+<p>El objetivo consiste en encontrar un equilibrio adecuado.</p>
+</section>
+<section id="resumen" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> Resumen</h1>
+<p>En esta sesión hemos introducido:</p>
+<ul>
+<li>El concepto de aprendizaje estadístico.</li>
+<li>Inferencia frente a predicción.</li>
+<li>Aprendizaje supervisado.</li>
+<li>Aprendizaje no supervisado.</li>
+<li>Error de predicción.</li>
+<li>División entrenamiento-prueba.</li>
+<li>Sobreajuste.</li>
+</ul>
+<p>Estos conceptos constituirán la base para los siguientes temas del curso: regresión, clasificación, árboles de decisión, random forest y redes neuronales.</p>
+</section>
+<section id="actividades-propuestas" class="level1" data-number="20">
+<h1 data-number="20"><span class="header-section-number">20</span> Actividades propuestas</h1>
+<ol type="1">
+<li>Identifique tres ejemplos de problemas supervisados en producción animal.</li>
+<li>Identifique tres ejemplos de problemas no supervisados en salud animal.</li>
+<li>Explique con sus palabras la diferencia entre inferencia y predicción.</li>
+<li>¿Por qué es necesario disponer de un conjunto de prueba?</li>
+<li>¿Qué consecuencias puede tener un modelo sobreajustado en un sistema de producción animal?</li>
+</ol>
+</section>
+<section id="lecturas-recomendadas" class="level1" data-number="21">
+<h1 data-number="21"><span class="header-section-number">21</span> Lecturas recomendadas</h1>
+<ul>
+<li>James, Witten, Hastie y Tibshirani. <em>An Introduction to Statistical Learning</em>.</li>
+<li>Hastie, Tibshirani y Friedman. <em>The Elements of Statistical Learning</em>.</li>
+<li>Kuhn y Johnson. <em>Applied Predictive Modeling</em>.</li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->
