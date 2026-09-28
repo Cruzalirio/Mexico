@@ -440,7 +440,7 @@
     "href": "modulos/ml_04.html#entrenamiento",
     "title": "9  Redes neuronales",
     "section": "10.3 Entrenamiento",
-    "text": "10.3 Entrenamiento\n\n\nCódigo\nlibrary(here)\ntrain &lt;- read.csv(here(\"datos\",\"mastitis.csv\"))\n\nlibrary(nnet)\nmodelo &lt;- nnet(caso~.,data=train,size=5)\n\n\n# weights:  26\ninitial  value 282.387796 \nfinal  value 164.000000 \nconverged",
+    "text": "10.3 Entrenamiento\n\n\nCódigo\nlibrary(here)\ntrain &lt;- read.csv(here(\"datos\",\"mastitis.csv\"))\n\nlibrary(nnet)\nmodelo &lt;- nnet(caso~.,data=train,size=5)\n\n\n# weights:  26\ninitial  value 563.390628 \nfinal  value 164.000000 \nconverged",
     "crumbs": [
       "Machine Learning",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Redes neuronales</span>"
