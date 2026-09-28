@@ -1,13 +1,19 @@
 ---
 title: "Modelos espaciales autorregresivos"
 ---
+# Temas
 
-# Objetivos
-
-- Detectar dependencia espacial.
-- Ajustar modelos SAR y CAR.
+## Dependencia espacial
+## Moran I
+## Vecindad
+## SAR y CAR
 
 ```{r}
 library(sf)
 library(spdep)
+```
+
+```{r}
+nb <- knn2nb(knearneigh(coords,k=4))
+lw <- nb2listw(nb)
 ```

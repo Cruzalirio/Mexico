@@ -1,7 +1,15 @@
 ---
-title: "Métodos de regresión y clasificación"
+title: "Regresión y clasificación"
 ---
+# Temas
 
-# Objetivos
+## Regresión lineal
+## Regresión logística
+## Validación cruzada
 
-- Regresión lineal y logística.
+```{r}
+library(here)
+
+datos <- read.csv(here("datos","leche.csv"))
+
+```

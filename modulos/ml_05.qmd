@@ -1,7 +1,19 @@
 ---
-title: "Clustering y reducción de dimensionalidad"
+title: "Clustering y PCA"
 ---
+# Temas
 
-# Objetivos
+## K-means
+## Clustering jerárquico
+## PCA
 
-- K-means, PCA y clustering jerárquico.
+```{r}
+library(here)
+
+datos <- read.csv(here("datos","mastitis.csv"))
+km <- kmeans(scale(datos),centers=3)
+```
+
+```{r}
+pr <- prcomp(scale(datos))
+```

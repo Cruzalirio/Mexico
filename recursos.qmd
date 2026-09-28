@@ -1,9 +1,9 @@
 ---
-title: "CrossCarry"
+  title: "Recursos"
 ---
-# Objetivos
-
-Presentar el flujo de trabajo del paquete CrossCarry.
+  # Objetivos
+  
+  Presentar el flujo de trabajo del paquete CrossCarry.
 
 # Temas
 

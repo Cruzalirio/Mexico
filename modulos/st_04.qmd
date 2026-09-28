@@ -1,11 +1,16 @@
 ---
 title: "Modelos espacio-temporales"
 ---
+# Temas
 
-# Objetivos
-
-- Modelar dependencia espacial y temporal conjunta.
+## Dependencia espacial y temporal conjunta
+## Modelos jerárquicos
+## Predicción
 
 ```{r}
 library(INLA)
+```
+
+```{r}
+# Ejemplo de fórmula espacio-temporal
 ```

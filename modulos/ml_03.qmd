@@ -1,7 +1,17 @@
 ---
-title: "Árboles de decisión y Random Forest"
+title: "Árboles y Random Forest"
 ---
+# Temas
 
-# Objetivos
+## CART
+## Bagging
+## Random Forest
+## Importancia de variables
 
-- Árboles y ensambles.
+```{r}
+library(here)
+
+datos <- read.csv(here("datos","mastitis.csv"))
+library(ranger)
+rf <- ranger(caso~.,data=datos,importance='impurity')
+```

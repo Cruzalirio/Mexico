@@ -1,0 +1,598 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal",
+    "section": "",
+    "text": "1 Bienvenido",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Curso FMVZ-UNAM</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#análisis-de-datos-espacio-temporales-aplicado-a-la-ciencia-animal",
+    "href": "index.html#análisis-de-datos-espacio-temporales-aplicado-a-la-ciencia-animal",
+    "title": "Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal",
+    "section": "1.1 Análisis de datos espacio-temporales aplicado a la ciencia animal",
+    "text": "1.1 Análisis de datos espacio-temporales aplicado a la ciencia animal\nFechas: Día 1 y 3\nHorario: 09:00–13:00\nEn este curso se presentan métodos modernos para el análisis de datos longitudinales, espaciales y espacio-temporales mediante R.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Curso FMVZ-UNAM</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#introducción-al-aprendizaje-estadístico-y-machine-learning",
+    "href": "index.html#introducción-al-aprendizaje-estadístico-y-machine-learning",
+    "title": "Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal",
+    "section": "1.2 Introducción al aprendizaje estadístico y machine learning",
+    "text": "1.2 Introducción al aprendizaje estadístico y machine learning\nFechas: Día 6 y 7\nHorario: 15:00–19:00\nSe abordarán técnicas de regresión, clasificación, árboles de decisión, random forest, boosting y clustering.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Curso FMVZ-UNAM</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#seminario",
+    "href": "index.html#seminario",
+    "title": "Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal",
+    "section": "1.3 Seminario",
+    "text": "1.3 Seminario\n\n1.3.1 CrossCarry: innovación estadística en R para diseños crossover\nFecha: Día 9\nHorario: 17:00\nPresentación del paquete CrossCarry y aplicaciones en salud y producción animal.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Curso FMVZ-UNAM</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_01.html",
+    "href": "modulos/st_01.html",
+    "title": "2  Datos longitudinales y medidas repetidas",
+    "section": "",
+    "text": "3 Objetivos",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Datos longitudinales y medidas repetidas</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_01.html#estructura-de-datos-longitudinales",
+    "href": "modulos/st_01.html#estructura-de-datos-longitudinales",
+    "title": "2  Datos longitudinales y medidas repetidas",
+    "section": "5.1 Estructura de datos longitudinales",
+    "text": "5.1 Estructura de datos longitudinales",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Datos longitudinales y medidas repetidas</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_01.html#dependencia-temporal",
+    "href": "modulos/st_01.html#dependencia-temporal",
+    "title": "2  Datos longitudinales y medidas repetidas",
+    "section": "5.2 Dependencia temporal",
+    "text": "5.2 Dependencia temporal",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Datos longitudinales y medidas repetidas</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_01.html#exploración-gráfica",
+    "href": "modulos/st_01.html#exploración-gráfica",
+    "title": "2  Datos longitudinales y medidas repetidas",
+    "section": "5.3 Exploración gráfica",
+    "text": "5.3 Exploración gráfica",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Datos longitudinales y medidas repetidas</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_01.html#correlación-serial",
+    "href": "modulos/st_01.html#correlación-serial",
+    "title": "2  Datos longitudinales y medidas repetidas",
+    "section": "5.4 Correlación serial",
+    "text": "5.4 Correlación serial",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Datos longitudinales y medidas repetidas</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_02.html",
+    "href": "modulos/st_02.html",
+    "title": "3  Modelos lineales generalizados mixtos",
+    "section": "",
+    "text": "4 Temas",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Modelos lineales generalizados mixtos</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_02.html#efectos-fijos",
+    "href": "modulos/st_02.html#efectos-fijos",
+    "title": "3  Modelos lineales generalizados mixtos",
+    "section": "4.1 Efectos fijos",
+    "text": "4.1 Efectos fijos",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Modelos lineales generalizados mixtos</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_02.html#efectos-aleatorios",
+    "href": "modulos/st_02.html#efectos-aleatorios",
+    "title": "3  Modelos lineales generalizados mixtos",
+    "section": "4.2 Efectos aleatorios",
+    "text": "4.2 Efectos aleatorios",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Modelos lineales generalizados mixtos</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_02.html#respuestas-binarias",
+    "href": "modulos/st_02.html#respuestas-binarias",
+    "title": "3  Modelos lineales generalizados mixtos",
+    "section": "4.3 Respuestas binarias",
+    "text": "4.3 Respuestas binarias",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Modelos lineales generalizados mixtos</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_02.html#respuestas-de-conteo",
+    "href": "modulos/st_02.html#respuestas-de-conteo",
+    "title": "3  Modelos lineales generalizados mixtos",
+    "section": "4.4 Respuestas de conteo",
+    "text": "4.4 Respuestas de conteo\n\n\nCódigo\nlibrary(lme4)\nlibrary(here)\n\ndatos &lt;- read.csv(here(\"datos\",\"mastitis.csv\"))\n\nmodelo &lt;- glmer(caso~mes+(1|granja),data=datos,family=binomial)\nsummary(modelo)\n\n\nGeneralized linear mixed model fit by maximum likelihood (Laplace\n  Approximation) [glmerMod]\n Family: binomial  ( logit )\nFormula: caso ~ mes + (1 | granja)\n   Data: datos\n\n      AIC       BIC    logLik -2*log(L)  df.resid \n   1104.1    1120.6    -549.0    1098.1      1797 \n\nScaled residuals: \n    Min      1Q  Median      3Q     Max \n-0.3280 -0.3217 -0.3155 -0.3094  3.2743 \n\nRandom effects:\n Groups Name        Variance Std.Dev.\n granja (Intercept) 0        0       \nNumber of obs: 1800, groups:  granja, 10\n\nFixed effects:\n            Estimate Std. Error z value Pr(&gt;|z|)    \n(Intercept) -2.21676    0.17207 -12.883   &lt;2e-16 ***\nmes         -0.01295    0.02374  -0.546    0.585    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nCorrelation of Fixed Effects:\n    (Intr)\nmes -0.879\noptimizer (Nelder_Mead) convergence code: 0 (OK)\nboundary (singular) fit: see help('isSingular')\n\n\n\n\nCódigo\nlibrary(DHARMa)\nplot(simulateResiduals(modelo))",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Modelos lineales generalizados mixtos</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_03.html",
+    "href": "modulos/st_03.html",
+    "title": "4  Modelos espaciales autorregresivos",
+    "section": "",
+    "text": "5 Temas",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Modelos espaciales autorregresivos</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_03.html#dependencia-espacial",
+    "href": "modulos/st_03.html#dependencia-espacial",
+    "title": "4  Modelos espaciales autorregresivos",
+    "section": "5.1 Dependencia espacial",
+    "text": "5.1 Dependencia espacial",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Modelos espaciales autorregresivos</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_03.html#moran-i",
+    "href": "modulos/st_03.html#moran-i",
+    "title": "4  Modelos espaciales autorregresivos",
+    "section": "5.2 Moran I",
+    "text": "5.2 Moran I",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Modelos espaciales autorregresivos</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_03.html#vecindad",
+    "href": "modulos/st_03.html#vecindad",
+    "title": "4  Modelos espaciales autorregresivos",
+    "section": "5.3 Vecindad",
+    "text": "5.3 Vecindad",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Modelos espaciales autorregresivos</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_03.html#sar-y-car",
+    "href": "modulos/st_03.html#sar-y-car",
+    "title": "4  Modelos espaciales autorregresivos",
+    "section": "5.4 SAR y CAR",
+    "text": "5.4 SAR y CAR\n\n\nCódigo\nlibrary(sf)\nlibrary(spdep)\n\n\n\n\nCódigo\nnb &lt;- knn2nb(knearneigh(coords,k=4))\nlw &lt;- nb2listw(nb)",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Modelos espaciales autorregresivos</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_04.html",
+    "href": "modulos/st_04.html",
+    "title": "5  Modelos espacio-temporales",
+    "section": "",
+    "text": "6 Temas",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Modelos espacio-temporales</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_04.html#dependencia-espacial-y-temporal-conjunta",
+    "href": "modulos/st_04.html#dependencia-espacial-y-temporal-conjunta",
+    "title": "5  Modelos espacio-temporales",
+    "section": "6.1 Dependencia espacial y temporal conjunta",
+    "text": "6.1 Dependencia espacial y temporal conjunta",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Modelos espacio-temporales</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_04.html#modelos-jerárquicos",
+    "href": "modulos/st_04.html#modelos-jerárquicos",
+    "title": "5  Modelos espacio-temporales",
+    "section": "6.2 Modelos jerárquicos",
+    "text": "6.2 Modelos jerárquicos",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Modelos espacio-temporales</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/st_04.html#predicción",
+    "href": "modulos/st_04.html#predicción",
+    "title": "5  Modelos espacio-temporales",
+    "section": "6.3 Predicción",
+    "text": "6.3 Predicción\n\n\nCódigo\nlibrary(INLA)\n\n\n\n\nCódigo\n# Ejemplo de fórmula espacio-temporal",
+    "crumbs": [
+      "Análisis Espacio-Temporal",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Modelos espacio-temporales</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_01.html",
+    "href": "modulos/ml_01.html",
+    "title": "6  Introducción al aprendizaje estadístico",
+    "section": "",
+    "text": "7 Temas",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_01.html#aprendizaje-supervisado",
+    "href": "modulos/ml_01.html#aprendizaje-supervisado",
+    "title": "6  Introducción al aprendizaje estadístico",
+    "section": "7.1 Aprendizaje supervisado",
+    "text": "7.1 Aprendizaje supervisado",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_01.html#aprendizaje-no-supervisado",
+    "href": "modulos/ml_01.html#aprendizaje-no-supervisado",
+    "title": "6  Introducción al aprendizaje estadístico",
+    "section": "7.2 Aprendizaje no supervisado",
+    "text": "7.2 Aprendizaje no supervisado",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_01.html#error-de-predicción",
+    "href": "modulos/ml_01.html#error-de-predicción",
+    "title": "6  Introducción al aprendizaje estadístico",
+    "section": "7.3 Error de predicción",
+    "text": "7.3 Error de predicción",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_01.html#sobreajuste",
+    "href": "modulos/ml_01.html#sobreajuste",
+    "title": "6  Introducción al aprendizaje estadístico",
+    "section": "7.4 Sobreajuste",
+    "text": "7.4 Sobreajuste\n\n\nCódigo\nlibrary(tidymodels)\nset.seed(123)",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_02.html",
+    "href": "modulos/ml_02.html",
+    "title": "7  Regresión y clasificación",
+    "section": "",
+    "text": "8 Temas",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Regresión y clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_02.html#regresión-lineal",
+    "href": "modulos/ml_02.html#regresión-lineal",
+    "title": "7  Regresión y clasificación",
+    "section": "8.1 Regresión lineal",
+    "text": "8.1 Regresión lineal",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Regresión y clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_02.html#regresión-logística",
+    "href": "modulos/ml_02.html#regresión-logística",
+    "title": "7  Regresión y clasificación",
+    "section": "8.2 Regresión logística",
+    "text": "8.2 Regresión logística",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Regresión y clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_02.html#validación-cruzada",
+    "href": "modulos/ml_02.html#validación-cruzada",
+    "title": "7  Regresión y clasificación",
+    "section": "8.3 Validación cruzada",
+    "text": "8.3 Validación cruzada\n\n\nCódigo\nlibrary(here)\n\ndatos &lt;- read.csv(here(\"datos\",\"leche.csv\"))",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Regresión y clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_03.html",
+    "href": "modulos/ml_03.html",
+    "title": "8  Árboles y Random Forest",
+    "section": "",
+    "text": "9 Temas",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Árboles y Random Forest</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_03.html#cart",
+    "href": "modulos/ml_03.html#cart",
+    "title": "8  Árboles y Random Forest",
+    "section": "9.1 CART",
+    "text": "9.1 CART",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Árboles y Random Forest</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_03.html#bagging",
+    "href": "modulos/ml_03.html#bagging",
+    "title": "8  Árboles y Random Forest",
+    "section": "9.2 Bagging",
+    "text": "9.2 Bagging",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Árboles y Random Forest</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_03.html#random-forest",
+    "href": "modulos/ml_03.html#random-forest",
+    "title": "8  Árboles y Random Forest",
+    "section": "9.3 Random Forest",
+    "text": "9.3 Random Forest",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Árboles y Random Forest</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_03.html#importancia-de-variables",
+    "href": "modulos/ml_03.html#importancia-de-variables",
+    "title": "8  Árboles y Random Forest",
+    "section": "9.4 Importancia de variables",
+    "text": "9.4 Importancia de variables\n\n\nCódigo\nlibrary(here)\n\ndatos &lt;- read.csv(here(\"datos\",\"mastitis.csv\"))\nlibrary(ranger)\nrf &lt;- ranger(caso~.,data=datos,importance='impurity')",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Árboles y Random Forest</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_04.html",
+    "href": "modulos/ml_04.html",
+    "title": "9  Redes neuronales",
+    "section": "",
+    "text": "10 Temas",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Redes neuronales</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_04.html#neurona-artificial",
+    "href": "modulos/ml_04.html#neurona-artificial",
+    "title": "9  Redes neuronales",
+    "section": "10.1 Neurona artificial",
+    "text": "10.1 Neurona artificial",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Redes neuronales</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_04.html#perceptrón-multicapa",
+    "href": "modulos/ml_04.html#perceptrón-multicapa",
+    "title": "9  Redes neuronales",
+    "section": "10.2 Perceptrón multicapa",
+    "text": "10.2 Perceptrón multicapa",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Redes neuronales</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_04.html#entrenamiento",
+    "href": "modulos/ml_04.html#entrenamiento",
+    "title": "9  Redes neuronales",
+    "section": "10.3 Entrenamiento",
+    "text": "10.3 Entrenamiento\n\n\nCódigo\nlibrary(here)\ntrain &lt;- read.csv(here(\"datos\",\"mastitis.csv\"))\n\nlibrary(nnet)\nmodelo &lt;- nnet(caso~.,data=train,size=5)\n\n\n# weights:  26\ninitial  value 282.387796 \nfinal  value 164.000000 \nconverged",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Redes neuronales</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_05.html",
+    "href": "modulos/ml_05.html",
+    "title": "10  Clustering y PCA",
+    "section": "",
+    "text": "11 Temas",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Clustering y PCA</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_05.html#k-means",
+    "href": "modulos/ml_05.html#k-means",
+    "title": "10  Clustering y PCA",
+    "section": "11.1 K-means",
+    "text": "11.1 K-means",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Clustering y PCA</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_05.html#clustering-jerárquico",
+    "href": "modulos/ml_05.html#clustering-jerárquico",
+    "title": "10  Clustering y PCA",
+    "section": "11.2 Clustering jerárquico",
+    "text": "11.2 Clustering jerárquico",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Clustering y PCA</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_05.html#pca",
+    "href": "modulos/ml_05.html#pca",
+    "title": "10  Clustering y PCA",
+    "section": "11.3 PCA",
+    "text": "11.3 PCA\n\n\nCódigo\nlibrary(here)\n\ndatos &lt;- read.csv(here(\"datos\",\"mastitis.csv\"))\nkm &lt;- kmeans(scale(datos),centers=3)\n\n\n\n\nCódigo\npr &lt;- prcomp(scale(datos))",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Clustering y PCA</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/crosscarry.html",
+    "href": "modulos/crosscarry.html",
+    "title": "11  CrossCarry",
+    "section": "",
+    "text": "12 Objetivos\nPresentar el flujo de trabajo del paquete CrossCarry.",
+    "crumbs": [
+      "CrossCarry",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>CrossCarry</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/crosscarry.html#diseños-crossover",
+    "href": "modulos/crosscarry.html#diseños-crossover",
+    "title": "11  CrossCarry",
+    "section": "13.1 Diseños crossover",
+    "text": "13.1 Diseños crossover",
+    "crumbs": [
+      "CrossCarry",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>CrossCarry</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/crosscarry.html#carryover",
+    "href": "modulos/crosscarry.html#carryover",
+    "title": "11  CrossCarry",
+    "section": "13.2 Carryover",
+    "text": "13.2 Carryover",
+    "crumbs": [
+      "CrossCarry",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>CrossCarry</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/crosscarry.html#efectos-de-período",
+    "href": "modulos/crosscarry.html#efectos-de-período",
+    "title": "11  CrossCarry",
+    "section": "13.3 Efectos de período",
+    "text": "13.3 Efectos de período",
+    "crumbs": [
+      "CrossCarry",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>CrossCarry</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/crosscarry.html#reportes-reproducibles",
+    "href": "modulos/crosscarry.html#reportes-reproducibles",
+    "title": "11  CrossCarry",
+    "section": "13.4 Reportes reproducibles",
+    "text": "13.4 Reportes reproducibles\n\n\nCódigo\nlibrary(CrossCarry)\n\n\n\n\nCódigo\n# crossover_analysis(...)",
+    "crumbs": [
+      "CrossCarry",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>CrossCarry</span>"
+    ]
+  },
+  {
+    "objectID": "recursos.html",
+    "href": "recursos.html",
+    "title": "12  Recursos",
+    "section": "",
+    "text": "13 Temas\n# Objetivos\nPresentar el flujo de trabajo del paquete CrossCarry.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Recursos</span>"
+    ]
+  },
+  {
+    "objectID": "recursos.html#diseños-crossover",
+    "href": "recursos.html#diseños-crossover",
+    "title": "12  Recursos",
+    "section": "13.1 Diseños crossover",
+    "text": "13.1 Diseños crossover",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Recursos</span>"
+    ]
+  },
+  {
+    "objectID": "recursos.html#carryover",
+    "href": "recursos.html#carryover",
+    "title": "12  Recursos",
+    "section": "13.2 Carryover",
+    "text": "13.2 Carryover",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Recursos</span>"
+    ]
+  },
+  {
+    "objectID": "recursos.html#efectos-de-período",
+    "href": "recursos.html#efectos-de-período",
+    "title": "12  Recursos",
+    "section": "13.3 Efectos de período",
+    "text": "13.3 Efectos de período",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Recursos</span>"
+    ]
+  },
+  {
+    "objectID": "recursos.html#reportes-reproducibles",
+    "href": "recursos.html#reportes-reproducibles",
+    "title": "12  Recursos",
+    "section": "13.4 Reportes reproducibles",
+    "text": "13.4 Reportes reproducibles\n\n\nCódigo\nlibrary(CrossCarry)\n\n\n\n\nCódigo\n# crossover_analysis(...)",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Recursos</span>"
+    ]
+  }
+]

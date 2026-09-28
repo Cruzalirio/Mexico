@@ -1,7 +1,17 @@
 ---
-title: "Introducción a redes neuronales"
+title: "Redes neuronales"
 ---
+# Temas
 
-# Objetivos
+## Neurona artificial
+## Perceptrón multicapa
+## Entrenamiento
 
-- Redes neuronales básicas.
+```{r}
+
+library(here)
+train <- read.csv(here("datos","mastitis.csv"))
+
+library(nnet)
+modelo <- nnet(caso~.,data=train,size=5)
+```

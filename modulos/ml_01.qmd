@@ -1,7 +1,14 @@
 ---
 title: "Introducción al aprendizaje estadístico"
 ---
+# Temas
 
-# Objetivos
+## Aprendizaje supervisado
+## Aprendizaje no supervisado
+## Error de predicción
+## Sobreajuste
 
-- Aprendizaje supervisado y no supervisado.
+```{r}
+library(tidymodels)
+set.seed(123)
+```

@@ -4,23 +4,37 @@ title: "Datos longitudinales y medidas repetidas"
 
 # Objetivos
 
-- Identificar datos longitudinales.
+- Reconocer datos longitudinales.
+- Organizar bases de datos para análisis repetidos.
 - Explorar dependencia temporal.
 
-# Motivación
+# Introducción
 
-¿Por qué la producción de leche medida semanalmente no puede analizarse como observaciones independientes?
+Los datos longitudinales surgen cuando una misma unidad experimental es observada varias veces en el tiempo.
 
-# Fundamentos teóricos
+# Temas
 
-## Datos longitudinales
-
-## Medidas repetidas
-
+## Estructura de datos longitudinales
 ## Dependencia temporal
+## Exploración gráfica
+## Correlación serial
 
-# Ejemplo práctico
+# Código
 
 ```{r}
 library(tidyverse)
+
+library(here)
+
+datos <- read.csv(here("datos","leche.csv"))
+glimpse(datos)
 ```
+
+```{r}
+ggplot(datos,aes(semana,leche,group=animal))+geom_line(alpha=.3)
+```
+
+# Ejercicios
+
+1. Identifique la unidad experimental.
+2. Calcule medias por semana.

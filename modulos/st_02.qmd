@@ -1,13 +1,24 @@
 ---
 title: "Modelos lineales generalizados mixtos"
 ---
+# Temas
 
-# Objetivos
-
-- Comprender efectos fijos y aleatorios.
-- Ajustar GLMM en R.
+## Efectos fijos
+## Efectos aleatorios
+## Respuestas binarias
+## Respuestas de conteo
 
 ```{r}
 library(lme4)
+library(here)
+
+datos <- read.csv(here("datos","mastitis.csv"))
+
+modelo <- glmer(caso~mes+(1|granja),data=datos,family=binomial)
+summary(modelo)
+```
+
+```{r}
 library(DHARMa)
+plot(simulateResiduals(modelo))
 ```

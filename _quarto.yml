@@ -1,0 +1,59 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal"
+  author: "Nelson Alirio Cruz Gutiérrez"
+
+  chapters:
+    - index.qmd
+
+    - part: "Análisis Espacio-Temporal"
+      chapters:
+        - modulos/st_01.qmd
+        - modulos/st_02.qmd
+        - modulos/st_03.qmd
+        - modulos/st_04.qmd
+
+    - part: "Machine Learning"
+      chapters:
+        - modulos/ml_01.qmd
+        - modulos/ml_02.qmd
+        - modulos/ml_03.qmd
+        - modulos/ml_04.qmd
+        - modulos/ml_05.qmd
+
+    - part: "CrossCarry"
+      chapters:
+        - modulos/crosscarry.qmd
+
+    - recursos.qmd
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+
+    toc: true
+    toc-depth: 3
+
+    code-copy: true
+    code-fold: true
+
+    smooth-scroll: true
+
+    grid:
+      sidebar-width: 180px
+      body-width: 900px
+      margin-width: 180px
+
+execute:
+  echo: true
+  warning: false
+  message: false
+
+lang: es
+
+editor: visual
