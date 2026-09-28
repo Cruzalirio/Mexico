@@ -1,0 +1,7 @@
+---
+title: "Introducción a redes neuronales"
+---
+
+# Objetivos
+
+- Redes neuronales básicas.

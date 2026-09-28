@@ -1,0 +1,13 @@
+---
+title: "Modelos lineales generalizados mixtos"
+---
+
+# Objetivos
+
+- Comprender efectos fijos y aleatorios.
+- Ajustar GLMM en R.
+
+```{r}
+library(lme4)
+library(DHARMa)
+```

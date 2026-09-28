@@ -1,0 +1,7 @@
+---
+title: "Introducción al aprendizaje estadístico"
+---
+
+# Objetivos
+
+- Aprendizaje supervisado y no supervisado.

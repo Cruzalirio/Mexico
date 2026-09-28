@@ -1,0 +1,31 @@
+---
+title: "Curso FMVZ-UNAM"
+---
+
+# Bienvenido
+
+## Análisis de datos espacio-temporales aplicado a la ciencia animal
+
+**Fechas:** Día 1 y 3
+
+**Horario:** 09:00–13:00
+
+En este curso se presentan métodos modernos para el análisis de datos longitudinales, espaciales y espacio-temporales mediante R.
+
+## Introducción al aprendizaje estadístico y machine learning
+
+**Fechas:** Día 6 y 7
+
+**Horario:** 15:00–19:00
+
+Se abordarán técnicas de regresión, clasificación, árboles de decisión, random forest, boosting y clustering.
+
+## Seminario
+
+### CrossCarry: innovación estadística en R para diseños crossover
+
+**Fecha:** Día 9
+
+**Horario:** 17:00
+
+Presentación del paquete CrossCarry y aplicaciones en salud y producción animal.

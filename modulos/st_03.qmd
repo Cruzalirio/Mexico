@@ -1,0 +1,13 @@
+---
+title: "Modelos espaciales autorregresivos"
+---
+
+# Objetivos
+
+- Detectar dependencia espacial.
+- Ajustar modelos SAR y CAR.
+
+```{r}
+library(sf)
+library(spdep)
+```

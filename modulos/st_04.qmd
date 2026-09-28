@@ -1,0 +1,11 @@
+---
+title: "Modelos espacio-temporales"
+---
+
+# Objetivos
+
+- Modelar dependencia espacial y temporal conjunta.
+
+```{r}
+library(INLA)
+```

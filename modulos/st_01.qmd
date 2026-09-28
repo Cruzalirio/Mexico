@@ -1,0 +1,26 @@
+---
+title: "Datos longitudinales y medidas repetidas"
+---
+
+# Objetivos
+
+- Identificar datos longitudinales.
+- Explorar dependencia temporal.
+
+# Motivación
+
+¿Por qué la producción de leche medida semanalmente no puede analizarse como observaciones independientes?
+
+# Fundamentos teóricos
+
+## Datos longitudinales
+
+## Medidas repetidas
+
+## Dependencia temporal
+
+# Ejemplo práctico
+
+```{r}
+library(tidyverse)
+```

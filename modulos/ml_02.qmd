@@ -1,0 +1,7 @@
+---
+title: "Métodos de regresión y clasificación"
+---
+
+# Objetivos
+
+- Regresión lineal y logística.

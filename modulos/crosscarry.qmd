@@ -1,0 +1,7 @@
+---
+title: "CrossCarry"
+---
+
+# Introducción
+
+Presentación del paquete CrossCarry.

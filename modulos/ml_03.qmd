@@ -1,0 +1,7 @@
+---
+title: "Árboles de decisión y Random Forest"
+---
+
+# Objetivos
+
+- Árboles y ensambles.

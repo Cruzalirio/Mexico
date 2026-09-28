@@ -1,0 +1,7 @@
+---
+title: "Clustering y reducción de dimensionalidad"
+---
+
+# Objetivos
+
+- K-means, PCA y clustering jerárquico.
