@@ -253,51 +253,95 @@
     "href": "modulos/ml_01.html",
     "title": "6  Introducción al aprendizaje estadístico",
     "section": "",
-    "text": "7 Temas",
+    "text": "7 Objetivos de aprendizaje\nAl finalizar esta sesión, el estudiante será capaz de:",
     "crumbs": [
       "Machine Learning",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_01.html#aprendizaje-supervisado",
-    "href": "modulos/ml_01.html#aprendizaje-supervisado",
+    "objectID": "modulos/ml_01.html#ejemplo",
+    "href": "modulos/ml_01.html#ejemplo",
     "title": "6  Introducción al aprendizaje estadístico",
-    "section": "7.1 Aprendizaje supervisado",
-    "text": "7.1 Aprendizaje supervisado",
+    "section": "9.1 Ejemplo",
+    "text": "9.1 Ejemplo\nSupongamos que disponemos de información sobre 500 vacas:\n\nProducción de leche.\nConsumo de alimento.\nEdad.\nNúmero de parto.\nTemperatura ambiental.\n\nUna pregunta posible sería:\n\n¿Podemos predecir la producción de leche de una vaca a partir de estas variables?\n\nEsa es una tarea típica de aprendizaje estadístico.",
     "crumbs": [
       "Machine Learning",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_01.html#aprendizaje-no-supervisado",
-    "href": "modulos/ml_01.html#aprendizaje-no-supervisado",
+    "objectID": "modulos/ml_01.html#inferencia",
+    "href": "modulos/ml_01.html#inferencia",
     "title": "6  Introducción al aprendizaje estadístico",
-    "section": "7.2 Aprendizaje no supervisado",
-    "text": "7.2 Aprendizaje no supervisado",
+    "section": "10.1 Inferencia",
+    "text": "10.1 Inferencia\nLa inferencia busca responder preguntas científicas.\nPor ejemplo:\n\n¿Aumenta la producción de leche con un nuevo aditivo?\n¿Influye la temperatura en la incidencia de mastitis?\n¿Existe asociación entre una enfermedad y el sistema de manejo?\n\nEl interés principal es comprender el fenómeno.",
     "crumbs": [
       "Machine Learning",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_01.html#error-de-predicción",
-    "href": "modulos/ml_01.html#error-de-predicción",
+    "objectID": "modulos/ml_01.html#predicción",
+    "href": "modulos/ml_01.html#predicción",
     "title": "6  Introducción al aprendizaje estadístico",
-    "section": "7.3 Error de predicción",
-    "text": "7.3 Error de predicción",
+    "section": "10.2 Predicción",
+    "text": "10.2 Predicción\nLa predicción busca anticipar valores futuros o desconocidos.\nPor ejemplo:\n\nPredecir la ganancia diaria de peso.\nPredecir un brote de enfermedad.\nPredecir la probabilidad de descarte de una vaca.\n\nEl interés principal es obtener predicciones precisas.",
     "crumbs": [
       "Machine Learning",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_01.html#sobreajuste",
-    "href": "modulos/ml_01.html#sobreajuste",
+    "objectID": "modulos/ml_01.html#ejemplos-en-ciencia-animal",
+    "href": "modulos/ml_01.html#ejemplos-en-ciencia-animal",
     "title": "6  Introducción al aprendizaje estadístico",
-    "section": "7.4 Sobreajuste",
-    "text": "7.4 Sobreajuste\n\n\nCódigo\nlibrary(tidymodels)\nset.seed(123)",
+    "section": "11.1 Ejemplos en ciencia animal",
+    "text": "11.1 Ejemplos en ciencia animal\n\n11.1.1 Regresión\nPredecir:\n\nProducción de leche.\nGanancia de peso.\nConsumo de alimento.\n\n\n\n11.1.2 Clasificación\nPredecir:\n\nEnfermo o sano.\nGestante o no gestante.\nSobrevive o no sobrevive.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_01.html#ejemplos",
+    "href": "modulos/ml_01.html#ejemplos",
+    "title": "6  Introducción al aprendizaje estadístico",
+    "section": "12.1 Ejemplos",
+    "text": "12.1 Ejemplos\n\nIdentificar grupos de granjas similares.\nDetectar perfiles metabólicos.\nClasificar animales según su comportamiento.\n\nLas técnicas más utilizadas incluyen:\n\nClustering.\nAnálisis de componentes principales.\nMétodos de reducción de dimensionalidad.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_01.html#discusión",
+    "href": "modulos/ml_01.html#discusión",
+    "title": "6  Introducción al aprendizaje estadístico",
+    "section": "14.1 Discusión",
+    "text": "14.1 Discusión\nObservamos que cada animal presenta una trayectoria distinta a lo largo del tiempo.\nEsto sugiere que existe variabilidad entre individuos y que probablemente necesitaremos modelos que tengan en cuenta la dependencia temporal y la heterogeneidad entre animales.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_01.html#pregunta",
+    "href": "modulos/ml_01.html#pregunta",
+    "title": "6  Introducción al aprendizaje estadístico",
+    "section": "15.1 Pregunta",
+    "text": "15.1 Pregunta\nSi observamos:\n\n\n\nProducción observada\nProducción predicha\n\n\n\n\n32 kg\n30 kg\n\n\n\nel error es:\n32 - 30 = 2 kg\nCuanto menores sean los errores, mejor será el modelo.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_01.html#analogía",
+    "href": "modulos/ml_01.html#analogía",
+    "title": "6  Introducción al aprendizaje estadístico",
+    "section": "17.1 Analogía",
+    "text": "17.1 Analogía\nUn estudiante memoriza las preguntas exactas de un examen.\nObtendrá una nota excelente en ese examen específico.\nSin embargo, si se le formula una pregunta diferente, posiblemente fracase.\nEso es exactamente el sobreajuste.",
     "crumbs": [
       "Machine Learning",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
@@ -440,7 +484,7 @@
     "href": "modulos/ml_04.html#entrenamiento",
     "title": "9  Redes neuronales",
     "section": "10.3 Entrenamiento",
-    "text": "10.3 Entrenamiento\n\n\nCódigo\nlibrary(here)\ntrain &lt;- read.csv(here(\"datos\",\"mastitis.csv\"))\n\nlibrary(nnet)\nmodelo &lt;- nnet(caso~.,data=train,size=5)\n\n\n# weights:  26\ninitial  value 563.390628 \nfinal  value 164.000000 \nconverged",
+    "text": "10.3 Entrenamiento\n\n\nCódigo\nlibrary(here)\ntrain &lt;- read.csv(here(\"datos\",\"mastitis.csv\"))\n\nlibrary(nnet)\nmodelo &lt;- nnet(caso~.,data=train,size=5)\n\n\n# weights:  26\ninitial  value 784.292391 \nfinal  value 164.000000 \nconverged",
     "crumbs": [
       "Machine Learning",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Redes neuronales</span>"

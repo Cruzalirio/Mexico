@@ -1,14 +1,261 @@
 ---
 title: "Introducción al aprendizaje estadístico"
 ---
-# Temas
 
-## Aprendizaje supervisado
-## Aprendizaje no supervisado
-## Error de predicción
-## Sobreajuste
+# Objetivos de aprendizaje
+
+Al finalizar esta sesión, el estudiante será capaz de:
+
+- Comprender qué es el aprendizaje estadístico.
+- Diferenciar problemas supervisados y no supervisados.
+- Entender la diferencia entre explicación y predicción.
+- Reconocer los conceptos de error de entrenamiento y error de generalización.
+- Identificar situaciones de sobreajuste.
+
+# Introducción
+
+Las ciencias de la salud y la producción animal generan actualmente grandes cantidades de información. En una explotación ganadera pueden registrarse diariamente variables relacionadas con alimentación, producción, reproducción, bienestar animal, sanidad y condiciones ambientales.
+
+El reto ya no consiste únicamente en almacenar datos, sino en transformarlos en conocimiento útil para la toma de decisiones.
+
+El aprendizaje estadístico proporciona un conjunto de herramientas que permiten:
+
+- Comprender relaciones entre variables.
+- Identificar factores de riesgo.
+- Construir modelos predictivos.
+- Detectar patrones complejos.
+- Apoyar la toma de decisiones en sistemas productivos.
+
+# ¿Qué es el aprendizaje estadístico?
+
+El aprendizaje estadístico es una disciplina que combina estadística, matemáticas y ciencias computacionales para construir modelos a partir de datos.
+
+La idea central consiste en utilizar información observada para aprender una relación entre variables y posteriormente utilizar esa información para describir, explicar o predecir fenómenos.
+
+## Ejemplo
+
+Supongamos que disponemos de información sobre 500 vacas:
+
+- Producción de leche.
+- Consumo de alimento.
+- Edad.
+- Número de parto.
+- Temperatura ambiental.
+
+Una pregunta posible sería:
+
+> ¿Podemos predecir la producción de leche de una vaca a partir de estas variables?
+
+Esa es una tarea típica de aprendizaje estadístico.
+
+# Dos grandes objetivos
+
+Tradicionalmente existen dos objetivos fundamentales.
+
+## Inferencia
+
+La inferencia busca responder preguntas científicas.
+
+Por ejemplo:
+
+- ¿Aumenta la producción de leche con un nuevo aditivo?
+- ¿Influye la temperatura en la incidencia de mastitis?
+- ¿Existe asociación entre una enfermedad y el sistema de manejo?
+
+El interés principal es comprender el fenómeno.
+
+## Predicción
+
+La predicción busca anticipar valores futuros o desconocidos.
+
+Por ejemplo:
+
+- Predecir la ganancia diaria de peso.
+- Predecir un brote de enfermedad.
+- Predecir la probabilidad de descarte de una vaca.
+
+El interés principal es obtener predicciones precisas.
+
+# Aprendizaje supervisado
+
+En el aprendizaje supervisado conocemos la respuesta de interés.
+
+Disponemos de:
+
+- Variables explicativas (X).
+- Variable respuesta (Y).
+
+El objetivo consiste en aprender una función que relacione ambas.
+
+## Ejemplos en ciencia animal
+
+### Regresión
+
+Predecir:
+
+- Producción de leche.
+- Ganancia de peso.
+- Consumo de alimento.
+
+### Clasificación
+
+Predecir:
+
+- Enfermo o sano.
+- Gestante o no gestante.
+- Sobrevive o no sobrevive.
+
+# Aprendizaje no supervisado
+
+En este caso no existe una variable respuesta conocida.
+
+El objetivo consiste en descubrir patrones ocultos en los datos.
+
+## Ejemplos
+
+- Identificar grupos de granjas similares.
+- Detectar perfiles metabólicos.
+- Clasificar animales según su comportamiento.
+
+Las técnicas más utilizadas incluyen:
+
+- Clustering.
+- Análisis de componentes principales.
+- Métodos de reducción de dimensionalidad.
+
+# Ejemplo práctico
 
 ```{r}
 library(tidymodels)
-set.seed(123)
+
+library(here)
+
+datos <- read.csv(here("datos","leche.csv"))
+
+head(datos)
 ```
+
+# Visualización de los datos
+
+```{r}
+library(ggplot2)
+
+ggplot(datos,
+       aes(x = semana,
+           y = leche,
+           group = animal)) +
+  geom_line(alpha = 0.1) +
+  labs(
+    x = "Semana",
+    y = "Producción de leche"
+  )
+```
+
+## Discusión
+
+Observamos que cada animal presenta una trayectoria distinta a lo largo del tiempo.
+
+Esto sugiere que existe variabilidad entre individuos y que probablemente necesitaremos modelos que tengan en cuenta la dependencia temporal y la heterogeneidad entre animales.
+
+# Error de predicción
+
+Un modelo nunca es perfecto.
+
+La diferencia entre el valor observado y el valor predicho recibe el nombre de error.
+
+## Pregunta
+
+Si observamos:
+
+| Producción observada | Producción predicha |
+|---|---|
+| 32 kg | 30 kg |
+
+el error es:
+
+```text
+32 - 30 = 2 kg
+```
+
+Cuanto menores sean los errores, mejor será el modelo.
+
+# Entrenamiento y prueba
+
+Para evaluar correctamente un modelo debemos utilizar datos que no hayan participado en el ajuste.
+
+La práctica habitual consiste en dividir los datos en:
+
+- Conjunto de entrenamiento.
+- Conjunto de prueba.
+
+```{r}
+split <- initial_split(datos, prop = 0.80)
+
+train <- training(split)
+test  <- testing(split)
+
+nrow(train)
+nrow(test)
+```
+
+# Sobreajuste
+
+Uno de los problemas más frecuentes en aprendizaje estadístico es el sobreajuste.
+
+Un modelo sobreajustado aprende demasiado bien los datos de entrenamiento.
+
+Como consecuencia:
+
+- Presenta poco error en entrenamiento.
+- Presenta mucho error en datos nuevos.
+
+## Analogía
+
+Un estudiante memoriza las preguntas exactas de un examen.
+
+Obtendrá una nota excelente en ese examen específico.
+
+Sin embargo, si se le formula una pregunta diferente, posiblemente fracase.
+
+Eso es exactamente el sobreajuste.
+
+# Complejidad del modelo
+
+Existe un compromiso permanente entre:
+
+- Simplicidad.
+- Capacidad predictiva.
+
+Los modelos demasiado simples pueden ignorar información importante.
+
+Los modelos excesivamente complejos pueden sobreajustarse.
+
+El objetivo consiste en encontrar un equilibrio adecuado.
+
+# Resumen
+
+En esta sesión hemos introducido:
+
+- El concepto de aprendizaje estadístico.
+- Inferencia frente a predicción.
+- Aprendizaje supervisado.
+- Aprendizaje no supervisado.
+- Error de predicción.
+- División entrenamiento-prueba.
+- Sobreajuste.
+
+Estos conceptos constituirán la base para los siguientes temas del curso: regresión, clasificación, árboles de decisión, random forest y redes neuronales.
+
+# Actividades propuestas
+
+1. Identifique tres ejemplos de problemas supervisados en producción animal.
+2. Identifique tres ejemplos de problemas no supervisados en salud animal.
+3. Explique con sus palabras la diferencia entre inferencia y predicción.
+4. ¿Por qué es necesario disponer de un conjunto de prueba?
+5. ¿Qué consecuencias puede tener un modelo sobreajustado en un sistema de producción animal?
+
+# Lecturas recomendadas
+
+- James, Witten, Hastie y Tibshirani. *An Introduction to Statistical Learning*.
+- Hastie, Tibshirani y Friedman. *The Elements of Statistical Learning*.
+- Kuhn y Johnson. *Applied Predictive Modeling*.
