@@ -413,29 +413,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">CrossCarry</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../modulos/crosscarry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">CrossCarry</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../recursos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Recursos</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -782,7 +759,7 @@ $ periodo                &lt;fct&gt; Semanas 1-20, Semanas 1-20, Semanas 1-20, S
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>modelo_rf_reg <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>(</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">mtry =</span> <span class="fu">tune</span>(),</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_n =</span> <span class="fu">tune</span>(),</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">trees =</span> <span class="dv">800</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">trees =</span> <span class="dv">100</span></span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ranger"</span>,</span>
@@ -824,13 +801,13 @@ $ periodo                &lt;fct&gt; Semanas 1-20, Semanas 1-20, Semanas 1-20, S
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 8
-   mtry min_n .metric .estimator  mean     n  std_err .config         
-  &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;    &lt;dbl&gt; &lt;chr&gt;           
-1    11    30 rmse    standard    2.07     3 0.00564  pre0_mod10_post0
-2     5     6 rmse    standard    2.12     3 0.00650  pre0_mod07_post0
-3     4     8 rmse    standard    2.27     3 0.0128   pre0_mod04_post0
-4     9    45 rmse    standard    2.29     3 0.000308 pre0_mod09_post0
-5     6    46 rmse    standard    2.45     3 0.0106   pre0_mod08_post0</code></pre>
+   mtry min_n .metric .estimator  mean     n std_err .config         
+  &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;           
+1    11    30 rmse    standard    2.09     3 0.0123  pre0_mod10_post0
+2     5     6 rmse    standard    2.13     3 0.00886 pre0_mod07_post0
+3     4     8 rmse    standard    2.30     3 0.00750 pre0_mod04_post0
+4     9    45 rmse    standard    2.31     3 0.00506 pre0_mod09_post0
+5     6    46 rmse    standard    2.47     3 0.00594 pre0_mod08_post0</code></pre>
 </div>
 </div>
 <p><br></p>
@@ -856,9 +833,9 @@ $ periodo                &lt;fct&gt; Semanas 1-20, Semanas 1-20, Semanas 1-20, S
 <pre><code># A tibble: 3 × 4
   .metric .estimator .estimate .config        
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;          
-1 rmse    standard       4.08  pre0_mod0_post0
-2 mae     standard       3.28  pre0_mod0_post0
-3 rsq     standard       0.766 pre0_mod0_post0</code></pre>
+1 rmse    standard       4.10  pre0_mod0_post0
+2 mae     standard       3.31  pre0_mod0_post0
+3 rsq     standard       0.764 pre0_mod0_post0</code></pre>
 </div>
 </div>
 <p><br></p>
@@ -1001,9 +978,9 @@ $ periodo                &lt;fct&gt; Semanas 1-20, Semanas 1-20, Semanas 1-20, S
 <pre><code># A tibble: 6 × 5
   .metric .estimator .estimate .config         modelo           
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;            
-1 rmse    standard       4.08  pre0_mod0_post0 Random Forest    
-2 mae     standard       3.28  pre0_mod0_post0 Random Forest    
-3 rsq     standard       0.766 pre0_mod0_post0 Random Forest    
+1 rmse    standard       4.10  pre0_mod0_post0 Random Forest    
+2 mae     standard       3.31  pre0_mod0_post0 Random Forest    
+3 rsq     standard       0.764 pre0_mod0_post0 Random Forest    
 4 rmse    standard       4.12  pre0_mod0_post0 Gradient Boosting
 5 mae     standard       3.24  pre0_mod0_post0 Gradient Boosting
 6 rsq     standard       0.811 pre0_mod0_post0 Gradient Boosting</code></pre>
@@ -1033,7 +1010,7 @@ $ periodo                &lt;fct&gt; Semanas 1-20, Semanas 1-20, Semanas 1-20, S
 <span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>modelo_rf_clas <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>(</span>
 <span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">mtry =</span> <span class="fu">tune</span>(),</span>
 <span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_n =</span> <span class="fu">tune</span>(),</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">trees =</span> <span class="dv">800</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">trees =</span> <span class="dv">100</span></span>
 <span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
 <span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(</span>
 <span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ranger"</span>,</span>
@@ -1077,9 +1054,9 @@ $ periodo                &lt;fct&gt; Semanas 1-20, Semanas 1-20, Semanas 1-20, S
 <pre><code># A tibble: 3 × 8
    mtry min_n .metric .estimator  mean     n std_err .config        
   &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;          
-1     7    15 roc_auc binary     0.754     2 0.00406 pre0_mod2_post0
-2    10    17 roc_auc binary     0.752     2 0.00436 pre0_mod3_post0
-3     2    19 roc_auc binary     0.751     2 0.00806 pre0_mod1_post0</code></pre>
+1     7    15 roc_auc binary     0.754     2 0.00775 pre0_mod2_post0
+2     2    19 roc_auc binary     0.749     2 0.00701 pre0_mod1_post0
+3    10    17 roc_auc binary     0.748     2 0.00444 pre0_mod3_post0</code></pre>
 </div>
 </div>
 <p><br></p>
