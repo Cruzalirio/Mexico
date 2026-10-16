@@ -1,49 +1,37 @@
-
-::: {.hero-section}
-
-::: {.hero-logos}
-
+::::: hero-section
+:::: hero-logos
 ![](images/escudo-unam.png){.institution-logo fig-alt="UNAM"}
 
-::: {.hero-title}
-
+::: hero-title
 # Curso FMVZ-UNAM
 
 ## Estadística aplicada y aprendizaje automático en ciencia animal
-
 :::
 
 ![](images/logo-uib.png){.institution-logo fig-alt="Universitat de les Illes Balears"}
-
-:::
+::::
 
 Formación e investigación en análisis de datos espacio-temporales, metodología estadística y *machine learning*, con aplicaciones en salud y producción animal.
 
 [Programa de actividades](#programa){.btn .btn-primary .btn-lg}
+:::::
 
-:::
-
-
-::: {.grid}
-
-::: {.g-col-12 .g-col-md-4}
-::: {.activity-card}
-
-<span class="activity-date">26 <small>OCT</small></span>
+::::::::: grid
+:::: {.g-col-12 .g-col-md-4}
+::: activity-card
+[26 <small>OCT</small>]{.activity-date}
 
 ### Análisis de datos espacio-temporales
 
 Curso-taller sobre métodos para el análisis de datos longitudinales, espaciales y espacio-temporales aplicados a la ciencia animal.
 
 **Horario:** 10:00–14:00 h
-
 :::
-:::
+::::
 
-::: {.g-col-12 .g-col-md-4}
-::: {.activity-card}
-
-<span class="activity-date">27 <small>OCT</small></span>
+:::: {.g-col-12 .g-col-md-4}
+::: activity-card
+[27 <small>OCT</small>]{.activity-date}
 
 ### CrossCarry
 
@@ -52,56 +40,44 @@ Curso-taller sobre métodos para el análisis de datos longitudinales, espaciale
 Innovación estadística en R para el análisis de diseños *crossover* en salud y producción animal.
 
 **Horario:** 13:00–15:00 h
-
 :::
-:::
+::::
 
-::: {.g-col-12 .g-col-md-4}
-::: {.activity-card}
-
-<span class="activity-date">03 <small>NOV</small></span>
+:::: {.g-col-12 .g-col-md-4}
+::: activity-card
+[03 <small>NOV</small>]{.activity-date}
 
 ### Aprendizaje estadístico y *machine learning*
 
 Curso-taller sobre regresión, clasificación, árboles de decisión, *random forest*, *boosting* y *clustering*.
 
 **Horario:** 10:00–14:00 h
-
 :::
-:::
-
-:::
+::::
+:::::::::
 
 ## Sobre el instructor
 
-::: {.profile-section}
-
-::: {.profile-photo}
+:::::: profile-section
+::: profile-photo
 ![Nelson Alirio Cruz](images/nelson-cruz.jpg){fig-alt="Nelson Alirio Cruz" width="100%"}
 :::
 
-::: {.profile-bio}
-
+:::: profile-bio
 ### Nelson Alirio Cruz
 
 Investigador en metodología estadística y análisis de datos, con interés en el desarrollo de métodos y herramientas computacionales reproducibles para las ciencias de la salud y la producción animal.
 
 Sus líneas de trabajo incluyen el análisis de datos longitudinales y espacio-temporales, los diseños experimentales y el aprendizaje estadístico mediante R.
 
-::: {.profile-links}
-[Web personal](https://www.uib.es/personal/ABjQ2NTQ2OA/){.btn .btn-outline-primary} 
-[ORCID](https://orcid.org/my-orcid?orcid=0000-0002-7370-5111){.btn .btn-outline-primary} 
-[Google Scholar](https://scholar.google.com/citations?user=jupqK8sAAAAJ&hl=es){.btn .btn-outline-primary} 
-[GitHub](https://github.com/Cruzalirio){.btn .btn-outline-primary}
+::: profile-links
+[Web personal](https://www.uib.es/personal/ABjQ2NTQ2OA/){.btn .btn-outline-primary} [ORCID](https://orcid.org/my-orcid?orcid=0000-0002-7370-5111){.btn .btn-outline-primary} [Google Scholar](https://scholar.google.com/citations?user=jupqK8sAAAAJ&hl=es){.btn .btn-outline-primary} [GitHub](https://github.com/Cruzalirio){.btn .btn-outline-primary}
 :::
+::::
+::::::
 
-:::
-:::
+------------------------------------------------------------------------
 
----
-
-::: {.organizer}
-
+::: organizer
 **Organiza:** Facultad de Medicina Veterinaria y Zootecnia · Universidad Nacional Autónoma de México (FMVZ-UNAM)
-
 :::
