@@ -1,0 +1,158 @@
+
+/* Cabecera */
+.hero-section {
+  padding: 3.5rem 2rem;
+  margin-bottom: 3rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #f1f5f9, #e5edf5);
+  color: #172b4d;
+}
+
+.hero-section h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+
+.hero-section h2 {
+  max-width: 760px;
+  font-size: 1.5rem;
+  font-weight: 450;
+  line-height: 1.5;
+}
+
+.hero-section p {
+  max-width: 720px;
+  line-height: 1.8;
+}
+
+/* Tarjetas de actividades */
+.activity-card {
+  height: 100%;
+  padding: 1.5rem;
+  border: 1px solid #dfe5ec;
+  border-radius: 0.9rem;
+  background: var(--bs-body-bg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.activity-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.5rem 1.5rem rgba(20, 40, 70, 0.08);
+}
+
+.activity-card h3 {
+  margin-top: 1.2rem;
+  font-size: 1.25rem;
+}
+
+.activity-date {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  color: #174a7e;
+  font-size: 2.2rem;
+  font-weight: 750;
+}
+
+.activity-date small {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+}
+
+/* Perfil */
+.profile-section {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+  margin: 1.5rem 0 3rem;
+}
+
+.profile-photo img {
+  border-radius: 1rem;
+  object-fit: cover;
+}
+
+.profile-bio {
+  line-height: 1.8;
+}
+
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+}
+
+.organizer {
+  padding-top: 1rem;
+  border-top: 1px solid #dfe5ec;
+  color: var(--bs-secondary-color);
+}
+
+/* Diseño móvil */
+@media (max-width: 600px) {
+  .hero-section {
+    padding: 2rem 1.25rem;
+  }
+
+  .profile-section {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-photo {
+    max-width: 220px;
+  }
+}
+
+
+
+
+.hero-logos {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr) 90px;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.institution-logo {
+  display: block;
+  width: 100%;
+  max-width: 90px;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+.hero-title {
+  text-align: center;
+}
+
+.hero-title h1 {
+  margin-top: 0;
+}
+
+.hero-title h2 {
+  margin-inline: auto;
+}
+
+@media (max-width: 600px) {
+  .hero-logos {
+    grid-template-columns: 55px minmax(0, 1fr) 55px;
+    gap: 0.6rem;
+  }
+
+  .institution-logo {
+    max-width: 55px;
+    max-height: 65px;
+  }
+
+  .hero-title h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-title h2 {
+    font-size: 1rem;
+  }
+}
