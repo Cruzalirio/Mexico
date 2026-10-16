@@ -42,7 +42,6 @@ Introducción a los diseños *crossover*, los períodos de lavado, los efectos *
 **Horario:** 13:00–15:00 h
 
 [Abrir presentación](presentation/CrossCarry.pdf)
-
 :::
 ::::
 
@@ -74,7 +73,7 @@ Investigador en metodología estadística y análisis de datos, con interés en 
 Sus líneas de trabajo incluyen el análisis de datos longitudinales y espacio-temporales, los diseños experimentales y el aprendizaje estadístico mediante R.
 
 ::: profile-links
-[Web personal](https://www.uib.es/personal/ABjQ2NTQ2OA/){.btn .btn-outline-primary} [ORCID](https://orcid.org/my-orcid?orcid=0000-0002-7370-5111){.btn .btn-outline-primary} [Google Scholar](https://scholar.google.com/citations?user=jupqK8sAAAAJ&hl=es){.btn .btn-outline-primary} [GitHub](https://github.com/Cruzalirio){.btn .btn-outline-primary}
+[Web personal](https://www.uib.es/personal/ABjQ2NTQ2OA/){.btn .btn-outline-primary target="_blank" rel="noopener noreferrer"} [ORCID](https://orcid.org/0000-0002-7370-5111){.btn .btn-outline-primary target="_blank" rel="noopener noreferrer"} [Google Scholar](https://scholar.google.com/citations?user=jupqK8sAAAAJ&hl=es){.btn .btn-outline-primary target="_blank" rel="noopener noreferrer"} [GitHub](https://github.com/Cruzalirio){.btn .btn-outline-primary target="_blank" rel="noopener noreferrer"}
 :::
 ::::
 ::::::

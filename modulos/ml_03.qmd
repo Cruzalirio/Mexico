@@ -1,4 +1,4 @@
-# Capítulo 3. Métodos basados en árboles
+# Métodos basados en árboles
 
 <br>
 
