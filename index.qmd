@@ -41,9 +41,8 @@ Introducción a los diseños *crossover*, los períodos de lavado, los efectos *
 
 **Horario:** 13:00–15:00 h
 
-presentation/CrossCarry.pdf{.btn .btn-primary target="_blank"}
+[Abrir presentación](presentation/CrossCarry.pdf)
 
-presentation/CrossCarry.qmd{.btn .btn-outline-secondary}
 :::
 ::::
 
