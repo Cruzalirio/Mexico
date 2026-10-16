@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Datos longitudinales y medidas repetidas – Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal</title>
+<title>2&nbsp; Conocer los datos y empezar en R – Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -290,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/st_01.html">Análisis Espacio-Temporal</a></li><li class="breadcrumb-item"><a href="../modulos/st_01.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Datos longitudinales y medidas repetidas</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/st_01.html">Análisis Espacio-Temporal</a></li><li class="breadcrumb-item"><a href="../modulos/st_01.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conocer los datos y empezar en R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -336,7 +336,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/st_01.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Datos longitudinales y medidas repetidas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conocer los datos y empezar en R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -433,17 +433,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos" id="toc-objetivos" class="nav-link active" data-scroll-target="#objetivos"><span class="header-section-number">3</span> Objetivos</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">4</span> Introducción</a></li>
-  <li><a href="#temas" id="toc-temas" class="nav-link" data-scroll-target="#temas"><span class="header-section-number">5</span> Temas</a>
-  <ul class="collapse">
-  <li><a href="#estructura-de-datos-longitudinales" id="toc-estructura-de-datos-longitudinales" class="nav-link" data-scroll-target="#estructura-de-datos-longitudinales"><span class="header-section-number">5.1</span> Estructura de datos longitudinales</a></li>
-  <li><a href="#dependencia-temporal" id="toc-dependencia-temporal" class="nav-link" data-scroll-target="#dependencia-temporal"><span class="header-section-number">5.2</span> Dependencia temporal</a></li>
-  <li><a href="#exploración-gráfica" id="toc-exploración-gráfica" class="nav-link" data-scroll-target="#exploración-gráfica"><span class="header-section-number">5.3</span> Exploración gráfica</a></li>
-  <li><a href="#correlación-serial" id="toc-correlación-serial" class="nav-link" data-scroll-target="#correlación-serial"><span class="header-section-number">5.4</span> Correlación serial</a></li>
-  </ul></li>
-  <li><a href="#código" id="toc-código" class="nav-link" data-scroll-target="#código"><span class="header-section-number">6</span> Código</a></li>
-  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="header-section-number">7</span> Ejercicios</a></li>
+  <li><a href="#importación-desde-excel-o-csv" id="toc-importación-desde-excel-o-csv" class="nav-link active" data-scroll-target="#importación-desde-excel-o-csv"><span class="header-section-number">2.1</span> Importación desde Excel o CSV</a></li>
+  <li><a href="#qué-es-una-fila-una-variable-y-una-observación" id="toc-qué-es-una-fila-una-variable-y-una-observación" class="nav-link" data-scroll-target="#qué-es-una-fila-una-variable-y-una-observación"><span class="header-section-number">2.2</span> ¿Qué es una fila, una variable y una observación?</a></li>
+  <li><a href="#tipos-de-variables-identificadores-y-estructura-longitudinal" id="toc-tipos-de-variables-identificadores-y-estructura-longitudinal" class="nav-link" data-scroll-target="#tipos-de-variables-identificadores-y-estructura-longitudinal"><span class="header-section-number">2.3</span> Tipos de variables, identificadores y estructura longitudinal</a></li>
+  <li><a href="#valores-ausentes-y-observaciones-duplicadas" id="toc-valores-ausentes-y-observaciones-duplicadas" class="nav-link" data-scroll-target="#valores-ausentes-y-observaciones-duplicadas"><span class="header-section-number">2.4</span> Valores ausentes y observaciones duplicadas</a></li>
+  <li><a href="#representación-espacial-de-las-granjas-en-un-mapa-de-méxico" id="toc-representación-espacial-de-las-granjas-en-un-mapa-de-méxico" class="nav-link" data-scroll-target="#representación-espacial-de-las-granjas-en-un-mapa-de-méxico"><span class="header-section-number">2.5</span> Representación espacial de las granjas en un mapa de México</a></li>
   </ul>
 </nav>
     </div>
@@ -451,9 +445,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/st_01.html">Análisis Espacio-Temporal</a></li><li class="breadcrumb-item"><a href="../modulos/st_01.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Datos longitudinales y medidas repetidas</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/st_01.html">Análisis Espacio-Temporal</a></li><li class="breadcrumb-item"><a href="../modulos/st_01.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conocer los datos y empezar en R</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Datos longitudinales y medidas repetidas</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conocer los datos y empezar en R</span></h1>
 </div>
 
 
@@ -470,75 +464,1287 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="objetivos" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Objetivos</h1>
-<ul>
-<li>Reconocer datos longitudinales.</li>
-<li>Organizar bases de datos para análisis repetidos.</li>
-<li>Explorar dependencia temporal.</li>
-</ul>
-</section>
-<section id="introducción" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Introducción</h1>
-<p>Los datos longitudinales surgen cuando una misma unidad experimental es observada varias veces en el tiempo.</p>
-</section>
-<section id="temas" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Temas</h1>
-<section id="estructura-de-datos-longitudinales" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="estructura-de-datos-longitudinales"><span class="header-section-number">5.1</span> Estructura de datos longitudinales</h2>
-</section>
-<section id="dependencia-temporal" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="dependencia-temporal"><span class="header-section-number">5.2</span> Dependencia temporal</h2>
-</section>
-<section id="exploración-gráfica" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="exploración-gráfica"><span class="header-section-number">5.3</span> Exploración gráfica</h2>
-</section>
-<section id="correlación-serial" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="correlación-serial"><span class="header-section-number">5.4</span> Correlación serial</h2>
-</section>
-</section>
-<section id="código" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Código</h1>
+<p>En este bloque vamos a aprender a reconocer la estructura de una base de datos y a realizar las primeras comprobaciones antes de aplicar métodos estadísticos. Utilizaremos una base de datos simulada de ovinos de Hidalgo, México, con información de animales pertenecientes a diferentes granjas y observados repetidamente a lo largo del tiempo.</p>
+<p>El objetivo es comenzar con una pregunta sencilla: ¿cómo cambia el peso de los animales durante el seguimiento y existen diferencias entre granjas? Para responderla, primero debemos comprender qué representa cada registro, cómo se importan los datos y qué problemas pueden aparecer durante su preparación.</p>
+<p>La base simulada representa animales, granjas, características individuales, condiciones ambientales y mediciones repetidas durante varias semanas. Los datos son ficticios y se utilizan exclusivamente con fines didácticos.</p>
+<section id="importación-desde-excel-o-csv" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="importación-desde-excel-o-csv"><span class="header-section-number">2.1</span> Importación desde Excel o CSV</h2>
+<p>Antes de analizar una base de datos, debemos importarla correctamente. El procedimiento depende del formato del archivo. Excel puede contener varias hojas, cada una con una tabla diferente, mientras que un archivo CSV suele contener una sola tabla delimitada por comas, punto y coma u otro separador.</p>
+<p>Para importar un archivo Excel utilizaremos el paquete <code>readxl</code>. La función <code>excel_sheets()</code> permite comprobar los nombres de las hojas y seleccionar la que contiene las mediciones longitudinales.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar los paquetes si es necesario.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("readxl", "readr", "dplyr", "ggplot2",</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                    "corrplot", "naniar"))</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"datos"</span>,<span class="st">"leche.csv"</span>))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(datos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Consultar la carpeta de trabajo.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 10,400
-Columns: 5
-$ animal      &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-$ granja      &lt;int&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3…
-$ tratamiento &lt;chr&gt; "Control", "Control", "Control", "Control", "Control", "Co…
-$ semana      &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,…
-$ leche       &lt;dbl&gt; 33.38, 33.00, 34.71, 30.06, 35.04, 24.95, 29.49, 27.27, 26…</code></pre>
+<pre><code>[1] "C:/Users/Usuario/OneDrive - Universitat de les Illes Balears/Documentos/2026/Mexico/Mexico/modulos"</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre del archivo Excel.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>archivo <span class="ot">&lt;-</span> <span class="st">"../datos/base_borregos_espaciotemporal_Hidalgo.xlsx"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Consultar las hojas disponibles.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(archivo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "datos_long"    "granja_tiempo" "animales"      "granjas"      
+[5] "W_vecindad"    "distancias_km" "diccionario"   "LEEME"        </code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importar la tabla longitudinal.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(archivo, <span class="at">sheet =</span> <span class="st">"datos_long"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Examinar el tamaño de la tabla.</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(datos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50000    28</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar las primeras filas.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 28
+  animal_id tiempo granja_id sexo  edad_inicio_meses raza   longitud latitud
+  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 A001           1 G01       Macho                18 Raza_B    -98.3    19.7
+2 A001           2 G01       Macho                18 Raza_B    -98.3    19.7
+3 A001           3 G01       Macho                18 Raza_B    -98.3    19.7
+4 A001           4 G01       Macho                18 Raza_B    -98.3    19.7
+5 A001           5 G01       Macho                18 Raza_B    -98.3    19.7
+6 A001           6 G01       Macho                18 Raza_B    -98.3    19.7
+# ℹ 20 more variables: zona &lt;chr&gt;, tamano_granja &lt;chr&gt;,
+#   sistema_produccion &lt;chr&gt;, efecto_granja &lt;dbl&gt;, efecto_animal &lt;dbl&gt;,
+#   peso_inicial &lt;dbl&gt;, fecha &lt;dttm&gt;, temperatura_C &lt;dbl&gt;, humedad_pct &lt;dbl&gt;,
+#   precipitacion_mm &lt;dbl&gt;, consumo_kg_dia &lt;dbl&gt;, consumo_agua_l_dia &lt;dbl&gt;,
+#   salud_score_0_4 &lt;dbl&gt;, salud_alta &lt;dbl&gt;, actividad_h_dia &lt;dbl&gt;,
+#   ganancia_semanal_kg &lt;dbl&gt;, peso_kg &lt;dbl&gt;, produccion_lana_kg &lt;dbl&gt;,
+#   n_visitas_veterinarias &lt;dbl&gt;, tratamiento &lt;chr&gt;</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Consultar los nombres de las variables.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(datos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "animal_id"              "tiempo"                 "granja_id"             
+ [4] "sexo"                   "edad_inicio_meses"      "raza"                  
+ [7] "longitud"               "latitud"                "zona"                  
+[10] "tamano_granja"          "sistema_produccion"     "efecto_granja"         
+[13] "efecto_animal"          "peso_inicial"           "fecha"                 
+[16] "temperatura_C"          "humedad_pct"            "precipitacion_mm"      
+[19] "consumo_kg_dia"         "consumo_agua_l_dia"     "salud_score_0_4"       
+[22] "salud_alta"             "actividad_h_dia"        "ganancia_semanal_kg"   
+[25] "peso_kg"                "produccion_lana_kg"     "n_visitas_veterinarias"
+[28] "tratamiento"           </code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examinar los tipos de datos.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [50,000 × 28] (S3: tbl_df/tbl/data.frame)
+ $ animal_id             : chr [1:50000] "A001" "A001" "A001" "A001" ...
+ $ tiempo                : num [1:50000] 1 2 3 4 5 6 7 8 9 10 ...
+ $ granja_id             : chr [1:50000] "G01" "G01" "G01" "G01" ...
+ $ sexo                  : chr [1:50000] "Macho" "Macho" "Macho" "Macho" ...
+ $ edad_inicio_meses     : num [1:50000] 18 18 18 18 18 18 18 18 18 18 ...
+ $ raza                  : chr [1:50000] "Raza_B" "Raza_B" "Raza_B" "Raza_B" ...
+ $ longitud              : num [1:50000] -98.3 -98.3 -98.3 -98.3 -98.3 ...
+ $ latitud               : num [1:50000] 19.7 19.7 19.7 19.7 19.7 ...
+ $ zona                  : chr [1:50000] "Sur" "Sur" "Sur" "Sur" ...
+ $ tamano_granja         : chr [1:50000] "Grande" "Grande" "Grande" "Grande" ...
+ $ sistema_produccion    : chr [1:50000] "Extensivo" "Extensivo" "Extensivo" "Extensivo" ...
+ $ efecto_granja         : num [1:50000] 0.654 0.654 0.654 0.654 0.654 ...
+ $ efecto_animal         : num [1:50000] 2.91 2.91 2.91 2.91 2.91 ...
+ $ peso_inicial          : num [1:50000] 36.7 36.7 36.7 36.7 36.7 ...
+ $ fecha                 : POSIXct[1:50000], format: "2026-01-05" "2026-01-12" ...
+ $ temperatura_C         : num [1:50000] 15.9 20.5 20.4 20.5 18.3 ...
+ $ humedad_pct           : num [1:50000] 60.3 65 64 54.2 64.4 ...
+ $ precipitacion_mm      : num [1:50000] 1.67 5.39 5.45 4.83 8.42 ...
+ $ consumo_kg_dia        : num [1:50000] 1.07 1.36 1.23 1.41 1.41 ...
+ $ consumo_agua_l_dia    : num [1:50000] 3.68 5.36 5.05 4.21 4.82 ...
+ $ salud_score_0_4       : num [1:50000] 0 2 1 2 2 2 1 0 2 3 ...
+ $ salud_alta            : num [1:50000] 0 0 0 0 0 0 0 0 0 1 ...
+ $ actividad_h_dia       : num [1:50000] 5.92 4.54 4.99 6.22 5.63 ...
+ $ ganancia_semanal_kg   : num [1:50000] 0.296 0.296 0.17 0.195 0.281 ...
+ $ peso_kg               : num [1:50000] 37.1 37.3 37.5 37.7 38 ...
+ $ produccion_lana_kg    : num [1:50000] 0.107 0.137 0.119 0.121 0.102 ...
+ $ n_visitas_veterinarias: num [1:50000] 0 2 0 0 0 0 0 0 0 1 ...
+ $ tratamiento           : chr [1:50000] "No" "No" "No" "No" ...</code></pre>
 </div>
 </div>
+<p>La ruta del archivo debe corresponder a su ubicación real. Si R no encuentra el archivo, podemos modificar la carpeta de trabajo o utilizar una ruta completa. Es recomendable organizar los archivos del proyecto en una misma carpeta para evitar problemas al ejecutar el código en otro ordenador.</p>
+<p>Si trabajamos con CSV, podemos utilizar <code>read_csv()</code> del paquete <code>readr</code>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos,<span class="fu">aes</span>(semana,leche,<span class="at">group=</span>animal))<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">alpha=</span>.<span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importar un CSV separado por comas.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>datos_csv <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../datos/mastitis.csv"</span>,<span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Si el archivo utiliza punto y coma:</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># datos_csv &lt;- read_delim(</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   "datos_long.csv",</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   delim = ";",</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   show_col_types = FALSE</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>La elección del separador es importante. Si el archivo utiliza punto y coma y lo importamos suponiendo que utiliza comas, podemos obtener una tabla mal estructurada. También debemos prestar atención al separador decimal, porque algunos programas utilizan comas en lugar de puntos.</p>
+<p>Después de importar los datos, conviene revisar siempre el número de filas y columnas, los primeros registros y los tipos de variables detectados. Una importación aparentemente correcta puede contener errores que afecten a los análisis posteriores.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Revisar los tipos de las variables.</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(datos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 50,000
+Columns: 28
+$ animal_id              &lt;chr&gt; "A001", "A001", "A001", "A001", "A001", "A001",…
+$ tiempo                 &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, …
+$ granja_id              &lt;chr&gt; "G01", "G01", "G01", "G01", "G01", "G01", "G01"…
+$ sexo                   &lt;chr&gt; "Macho", "Macho", "Macho", "Macho", "Macho", "M…
+$ edad_inicio_meses      &lt;dbl&gt; 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,…
+$ raza                   &lt;chr&gt; "Raza_B", "Raza_B", "Raza_B", "Raza_B", "Raza_B…
+$ longitud               &lt;dbl&gt; -98.33413, -98.33413, -98.33413, -98.33413, -98…
+$ latitud                &lt;dbl&gt; 19.65949, 19.65949, 19.65949, 19.65949, 19.6594…
+$ zona                   &lt;chr&gt; "Sur", "Sur", "Sur", "Sur", "Sur", "Sur", "Sur"…
+$ tamano_granja          &lt;chr&gt; "Grande", "Grande", "Grande", "Grande", "Grande…
+$ sistema_produccion     &lt;chr&gt; "Extensivo", "Extensivo", "Extensivo", "Extensi…
+$ efecto_granja          &lt;dbl&gt; 0.6536355, 0.6536355, 0.6536355, 0.6536355, 0.6…
+$ efecto_animal          &lt;dbl&gt; 2.914282, 2.914282, 2.914282, 2.914282, 2.91428…
+$ peso_inicial           &lt;dbl&gt; 36.74311, 36.74311, 36.74311, 36.74311, 36.7431…
+$ fecha                  &lt;dttm&gt; 2026-01-05, 2026-01-12, 2026-01-19, 2026-01-26…
+$ temperatura_C          &lt;dbl&gt; 15.88818, 20.48193, 20.39116, 20.47973, 18.3227…
+$ humedad_pct            &lt;dbl&gt; 60.32583, 64.99599, 63.95246, 54.16418, 64.4185…
+$ precipitacion_mm       &lt;dbl&gt; 1.6688677, 5.3912852, 5.4537042, 4.8266453, 8.4…
+$ consumo_kg_dia         &lt;dbl&gt; 1.072022, 1.357391, 1.225139, 1.411625, 1.41050…
+$ consumo_agua_l_dia     &lt;dbl&gt; 3.677850, 5.364670, 5.052596, 4.208338, 4.81631…
+$ salud_score_0_4        &lt;dbl&gt; 0, 2, 1, 2, 2, 2, 1, 0, 2, 3, 3, 1, 2, 1, 3, 1,…
+$ salud_alta             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0,…
+$ actividad_h_dia        &lt;dbl&gt; 5.923437, 4.537974, 4.990502, 6.221985, 5.62676…
+$ ganancia_semanal_kg    &lt;dbl&gt; 0.29565465, 0.29575272, 0.17001814, 0.19513973,…
+$ peso_kg                &lt;dbl&gt; 37.05724, 37.34766, 37.48476, 37.69459, 38.0102…
+$ produccion_lana_kg     &lt;dbl&gt; 0.10708573, 0.13682758, 0.11903028, 0.12099647,…
+$ n_visitas_veterinarias &lt;dbl&gt; 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 1, 0,…
+$ tratamiento            &lt;chr&gt; "No", "No", "No", "No", "No", "No", "No", "No",…</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examinar algunas columnas.</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(datos<span class="sc">$</span>animal_id)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(datos<span class="sc">$</span>fecha)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "POSIXct" "POSIXt" </code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(datos<span class="sc">$</span>peso_kg)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+</div>
+<p>Los identificadores pueden estar formados por números, pero eso no significa que deban tratarse como variables cuantitativas. Por ejemplo, el identificador 105 no representa una cantidad biológica superior al identificador 104. Su función es reconocer una entidad y permitir relacionar sus observaciones.</p>
+</section>
+<section id="qué-es-una-fila-una-variable-y-una-observación" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="qué-es-una-fila-una-variable-y-una-observación"><span class="header-section-number">2.2</span> ¿Qué es una fila, una variable y una observación?</h2>
+<p>Una base de datos suele organizarse en filas y columnas. Cada columna representa una variable, es decir, una característica que queremos registrar o estudiar. Algunos ejemplos son el peso del animal, la raza, el consumo de alimento, la temperatura ambiental y la fecha de medición.</p>
+<p>Las filas contienen registros de las unidades estudiadas. Sin embargo, es importante distinguir entre una fila y una unidad biológica. En una base transversal, cada fila podría representar un animal medido una sola vez. En una base longitudinal, como la que utilizaremos, cada fila representa una medición de un animal en un momento determinado.</p>
+<p>Por ejemplo, si observamos un animal durante 100 semanas, ese animal puede aparecer en 100 filas. Todas esas filas comparten el mismo identificador de animal, pero corresponden a momentos diferentes. Por tanto, 50.000 filas no significan necesariamente que tengamos 50.000 animales.</p>
+<p>Esta distinción es importante para el análisis estadístico. Las mediciones del mismo animal suelen estar relacionadas porque su peso actual depende, entre otras cosas, de su estado previo. De forma similar, los animales de una misma granja comparten alimentación, manejo y condiciones ambientales. No podemos asumir automáticamente que todas las filas son independientes.</p>
+<p>La función <code>dim()</code> muestra el número de filas y columnas. <code>head()</code> permite inspeccionar los primeros registros, mientras que <code>names()</code> y <code>str()</code> ayudan a reconocer las variables y sus tipos.</p>
+<p>Podemos resumir la estructura general de la base mediante el número de registros, animales, granjas y semanas.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">|&gt;</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_filas =</span> <span class="fu">n</span>(),</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_animales =</span> <span class="fu">n_distinct</span>(animal_id),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_granjas =</span> <span class="fu">n_distinct</span>(granja_id),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_semanas =</span> <span class="fu">n_distinct</span>(tiempo),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_fechas =</span> <span class="fu">n_distinct</span>(fecha)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+  n_filas n_animales n_granjas n_semanas n_fechas
+    &lt;int&gt;      &lt;int&gt;     &lt;int&gt;     &lt;int&gt;    &lt;int&gt;
+1   50000        500        50       100      100</code></pre>
+</div>
+</div>
+<p>Si hay 50 granjas, 10 animales por granja y 100 semanas de seguimiento, esperaríamos 500 animales y, si todas las mediciones estuvieran presentes, 50.000 registros. No obstante, siempre debemos comprobar los resultados reales de la importación en lugar de asumir que la base contiene exactamente esas cantidades.</p>
+<p>Una primera exploración consiste en calcular el peso medio por semana y representarlo gráficamente.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>peso_semanal <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tiempo) <span class="sc">|&gt;</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">peso_medio_kg =</span> <span class="fu">mean</span>(peso_kg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_mediciones =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(peso_kg)),</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(peso_semanal,</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> peso_medio_kg)) <span class="sc">+</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Evolución temporal del peso medio"</span>,</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Semana de seguimiento"</span>,</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Peso medio (kg)"</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="st_01_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="st_01_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>Este gráfico permite observar la tendencia general del peso durante el seguimiento. Sin embargo, la media puede ocultar diferencias entre animales y granjas. Además, una tendencia temporal no demuestra por sí sola que el tiempo sea la causa del cambio observado. Para comprender mejor los datos, tendremos que estudiar tanto la variabilidad individual como las diferencias entre granjas.</p>
 </section>
-<section id="ejercicios" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Ejercicios</h1>
+<section id="tipos-de-variables-identificadores-y-estructura-longitudinal" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="tipos-de-variables-identificadores-y-estructura-longitudinal"><span class="header-section-number">2.3</span> Tipos de variables, identificadores y estructura longitudinal</h2>
+<p>Las variables pueden clasificarse según la información que contienen. Las cuantitativas representan cantidades medibles, como el peso, el consumo de agua o la temperatura. Las categóricas describen grupos, como la raza o el sistema de producción. Las variables temporales indican cuándo se realizó una medición, mientras que las variables espaciales permiten localizar geográficamente una granja.</p>
+<p>También debemos distinguir entre variables de identificación y variables de análisis. Los identificadores, como <code>animal_id</code> y <code>granja_id</code>, permiten reconocer a los animales y las granjas. Las variables de respuesta, como <code>peso_kg</code>, representan los resultados que queremos estudiar. Las variables explicativas, como la edad, la temperatura o el consumo de alimento, pueden ayudarnos a comprender las diferencias observadas.</p>
+<p>La estructura longitudinal aparece cuando una misma unidad se mide repetidamente. En nuestro ejemplo, cada animal tiene varias observaciones a lo largo del tiempo. Esto permite estudiar su evolución, pero genera dependencia entre registros del mismo animal. Asimismo, los animales de una misma granja comparten características y condiciones de manejo.</p>
+<p>Estas dependencias son la razón por la que más adelante utilizaremos modelos mixtos y modelos espacio-temporales. Antes de aplicarlos, debemos identificar correctamente los animales, las granjas y los momentos de observación.</p>
+<p>La siguiente tabla resume las principales variables de la base que utilizaremos en el curso.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: left;">Unidad o categorías</th>
+<th style="text-align: left;">Utilidad en el análisis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>animal_id</code></td>
+<td style="text-align: left;">Identificador</td>
+<td style="text-align: left;">Código de animal</td>
+<td style="text-align: left;">Reconocer las mediciones del mismo animal.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>granja_id</code></td>
+<td style="text-align: left;">Identificador</td>
+<td style="text-align: left;">Código de granja</td>
+<td style="text-align: left;">Identificar la explotación de origen.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>tiempo</code></td>
+<td style="text-align: left;">Temporal discreta</td>
+<td style="text-align: left;">Semana</td>
+<td style="text-align: left;">Ordenar las mediciones longitudinales.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>fecha</code></td>
+<td style="text-align: left;">Temporal</td>
+<td style="text-align: left;">Fecha calendario</td>
+<td style="text-align: left;">Situar las observaciones en el calendario.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>latitud</code></td>
+<td style="text-align: left;">Espacial numérica</td>
+<td style="text-align: left;">Grados decimales</td>
+<td style="text-align: left;">Localización norte-sur de la granja.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>longitud</code></td>
+<td style="text-align: left;">Espacial numérica</td>
+<td style="text-align: left;">Grados decimales</td>
+<td style="text-align: left;">Localización este-oeste de la granja.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>raza</code></td>
+<td style="text-align: left;">Categórica</td>
+<td style="text-align: left;">Raza sintética</td>
+<td style="text-align: left;">Comparar grupos raciales.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sexo</code></td>
+<td style="text-align: left;">Categórica</td>
+<td style="text-align: left;">Categorías definidas en la simulación</td>
+<td style="text-align: left;">Describir características individuales.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>edad_inicio_meses</code></td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Meses</td>
+<td style="text-align: left;">Ajustar por la edad al inicio del seguimiento.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>zona</code></td>
+<td style="text-align: left;">Categórica</td>
+<td style="text-align: left;">Zona geográfica simulada</td>
+<td style="text-align: left;">Explorar diferencias entre zonas.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>tamano_granja</code></td>
+<td style="text-align: left;">Categórica u ordinal</td>
+<td style="text-align: left;">Categorías de tamaño</td>
+<td style="text-align: left;">Comparar explotaciones de distinta dimensión.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sistema_produccion</code></td>
+<td style="text-align: left;">Categórica</td>
+<td style="text-align: left;">Sistema de producción</td>
+<td style="text-align: left;">Estudiar diferencias de manejo.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>temperatura_C</code></td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Grados Celsius</td>
+<td style="text-align: left;">Evaluar condiciones ambientales.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>humedad_pct</code></td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Porcentaje</td>
+<td style="text-align: left;">Caracterizar la humedad ambiental.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>precipitacion_mm</code></td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Milímetros</td>
+<td style="text-align: left;">Caracterizar las precipitaciones.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>peso_kg</code></td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Kilogramos</td>
+<td style="text-align: left;">Variable de respuesta principal.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>ganancia_semanal_kg</code></td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Kilogramos por semana</td>
+<td style="text-align: left;">Estudiar el incremento de peso.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>consumo_kg_dia</code></td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Kilogramos por día</td>
+<td style="text-align: left;">Analizar el consumo de alimento.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>consumo_agua_l_dia</code></td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Litros por día</td>
+<td style="text-align: left;">Analizar el consumo de agua.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>actividad_h_dia</code></td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Horas por día</td>
+<td style="text-align: left;">Explorar la actividad diaria.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>salud_score_0_4</code></td>
+<td style="text-align: left;">Ordinal</td>
+<td style="text-align: left;">Escala de 0 a 4</td>
+<td style="text-align: left;">Representar una puntuación de salud.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>salud_alta</code></td>
+<td style="text-align: left;">Binaria</td>
+<td style="text-align: left;">0/1 o categorías equivalentes</td>
+<td style="text-align: left;">Analizar un resultado de salud binario.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>produccion_lana_kg</code></td>
+<td style="text-align: left;">Numérica</td>
+<td style="text-align: left;">Kilogramos</td>
+<td style="text-align: left;">Explorar la producción de lana.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>n_visitas_veterinarias</code></td>
+<td style="text-align: left;">Conteo</td>
+<td style="text-align: left;">Número de visitas</td>
+<td style="text-align: left;">Estudiar la frecuencia de visitas veterinarias.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>tratamiento</code></td>
+<td style="text-align: left;">Categórica o binaria</td>
+<td style="text-align: left;">Categorías de la simulación</td>
+<td style="text-align: left;">Comparar grupos de tratamiento.</td>
+</tr>
+</tbody>
+</table>
+<p>Los tipos indicados en la tabla deben confirmarse en la base importada. Por ejemplo, una puntuación de salud de 0 a 4 suele ser ordinal: sus valores tienen un orden, pero no necesariamente existe la misma distancia biológica entre todas las categorías. Del mismo modo, una variable binaria puede estar codificada como números, texto o factor, y debemos comprobar su significado antes de ajustar un modelo.</p>
+<p>Podemos revisar cuántos animales, granjas y categorías hay en los datos.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">|&gt;</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_animales =</span> <span class="fu">n_distinct</span>(animal_id),</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_granjas =</span> <span class="fu">n_distinct</span>(granja_id),</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_razas =</span> <span class="fu">n_distinct</span>(raza),</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_sistemas =</span> <span class="fu">n_distinct</span>(sistema_produccion)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+  n_animales n_granjas n_razas n_sistemas
+       &lt;int&gt;     &lt;int&gt;   &lt;int&gt;      &lt;int&gt;
+1        500        50       5          3</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(datos, raza)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  raza       n
+  &lt;chr&gt;  &lt;int&gt;
+1 Raza_A  9900
+2 Raza_B 10600
+3 Raza_C 11000
+4 Raza_D 10800
+5 Raza_E  7700</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(datos, sistema_produccion)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  sistema_produccion     n
+  &lt;chr&gt;              &lt;int&gt;
+1 Extensivo          19000
+2 Intensivo           7000
+3 Semi-intensivo     24000</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(datos, tratamiento)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  tratamiento     n
+  &lt;chr&gt;       &lt;int&gt;
+1 No          47758
+2 Si           2242</code></pre>
+</div>
+</div>
+<p>En una base longitudinal, cada animal se observa repetidamente a lo largo del tiempo, pero no necesariamente tiene que presentar el mismo número de observaciones que los demás. El número de mediciones depende del diseño del estudio, de la frecuencia de muestreo, de las incorporaciones o salidas de animales y de posibles pérdidas de seguimiento. Una estructura en la que todos los animales tienen el mismo número de mediciones se denomina equilibrada, mientras que una estructura con distinto número de mediciones se denomina desequilibrada. Ambas pueden ser apropiadas para el análisis estadístico. Lo importante es comprobar que la distribución temporal de las observaciones es coherente con el diseño del estudio e identificar posibles problemas de registro o seguimiento.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>mediciones_por_animal <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span> </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(animal_id, <span class="at">name =</span> <span class="st">"n_mediciones"</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mediciones_por_animal<span class="sc">$</span>n_mediciones)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    100     100     100     100     100     100 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mediciones_por_animal,</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> n_mediciones)) <span class="sc">+</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Número de mediciones por animal"</span>,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Número de mediciones"</span>,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Número de animales"</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="st_01_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>También podemos representar las series temporales de varios animales para observar si siguen trayectorias similares.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>animales_ejemplo <span class="ot">&lt;-</span> datos  <span class="sc">|&gt;</span> </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(animal_id) <span class="sc">|&gt;</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">8</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>datos_ejemplo <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(animales_ejemplo, <span class="at">by =</span> <span class="st">"animal_id"</span>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_ejemplo,</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> peso_kg,</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">group =</span> animal_id, <span class="at">color =</span> animal_id)) <span class="sc">+</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Trayectorias individuales del peso"</span>,</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Semana de seguimiento"</span>,</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Peso (kg)"</span>,</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Animal"</span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="st_01_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Para explorar diferencias entre granjas, calcularemos el peso medio de cada explotación. Como los animales se miden repetidamente, este resumen combina información de varios animales y semanas. Por ello, conviene recordar que se trata de una descripción general y no de una comparación ajustada por edad, raza o condiciones ambientales.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>peso_granja <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(granja_id) <span class="sc">|&gt;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">peso_medio_kg =</span> <span class="fu">mean</span>(peso_kg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_animales =</span> <span class="fu">n_distinct</span>(animal_id),</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_mediciones =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(peso_kg)),</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(peso_granja,</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(granja_id, peso_medio_kg),</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> peso_medio_kg)) <span class="sc">+</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Peso medio por granja"</span>,</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Granja"</span>,</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Peso medio (kg)"</span></span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="st_01_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Las diferencias entre las medias de las granjas pueden reflejar factores biológicos, ambientales o de manejo. Sin embargo, también pueden depender de la composición de los animales observados en cada explotación. Para separar estas posibilidades necesitaremos modelos que tengan en cuenta la estructura jerárquica de los datos.</p>
+<p>Otra herramienta exploratoria es la correlación entre variables cuantitativas. La correlación de Pearson mide la intensidad y dirección de una relación lineal entre dos variables. Sus valores se encuentran entre -1 y 1. Una correlación positiva indica que los valores altos de una variable tienden a acompañarse de valores altos de la otra; una correlación negativa indica una tendencia opuesta.</p>
+<p>La correlación no demuestra causalidad. Dos variables pueden estar correlacionadas porque una influye en la otra, porque ambas dependen de una tercera variable o porque comparten una tendencia temporal. En datos longitudinales, además, calcular correlaciones agrupando todas las filas puede dar una imagen engañosa debido a las mediciones repetidas.</p>
+<p>Para comenzar, calcularemos las correlaciones entre algunas variables numéricas de interés.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>variables_cor <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    peso_kg,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    ganancia_semanal_kg,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    consumo_kg_dia,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    consumo_agua_l_dia,</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    actividad_h_dia,</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    temperatura_C,</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    humedad_pct,</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    precipitacion_mm</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>matriz_cor <span class="ot">&lt;-</span> <span class="fu">cor</span>(</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>  variables_cor,</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">use =</span> <span class="st">"pairwise.complete.obs"</span>,</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"pearson"</span></span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(matriz_cor, <span class="dv">2</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    peso_kg ganancia_semanal_kg consumo_kg_dia
+peso_kg                1.00                0.15           0.27
+ganancia_semanal_kg    0.15                1.00           0.24
+consumo_kg_dia         0.27                0.24           1.00
+consumo_agua_l_dia    -0.08                0.08           0.65
+actividad_h_dia        0.20                0.06          -0.36
+temperatura_C         -0.26                0.00           0.50
+humedad_pct            0.10                0.00          -0.19
+precipitacion_mm      -0.04                0.00           0.03
+                    consumo_agua_l_dia actividad_h_dia temperatura_C
+peso_kg                          -0.08            0.20         -0.26
+ganancia_semanal_kg               0.08            0.06          0.00
+consumo_kg_dia                    0.65           -0.36          0.50
+consumo_agua_l_dia                1.00           -0.60          0.82
+actividad_h_dia                  -0.60            1.00         -0.74
+temperatura_C                     0.82           -0.74          1.00
+humedad_pct                      -0.30            0.27         -0.37
+precipitacion_mm                  0.04           -0.04          0.05
+                    humedad_pct precipitacion_mm
+peso_kg                    0.10            -0.04
+ganancia_semanal_kg        0.00             0.00
+consumo_kg_dia            -0.19             0.03
+consumo_agua_l_dia        -0.30             0.04
+actividad_h_dia            0.27            -0.04
+temperatura_C             -0.37             0.05
+humedad_pct                1.00            -0.01
+precipitacion_mm          -0.01             1.00</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  matriz_cor,</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"color"</span>,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"upper"</span>,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">addCoef.col =</span> <span class="st">"black"</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">tl.col =</span> <span class="st">"black"</span>,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">tl.srt =</span> <span class="dv">45</span>,</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">number.cex =</span> <span class="fl">0.65</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="st_01_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La matriz de correlación permite identificar relaciones que merecen una exploración posterior. Si dos variables explicativas presentan una correlación muy alta, podría existir colinealidad al incluir ambas en un modelo. Antes de sacar conclusiones, debemos comprobar que las variables tienen sentido biológico y que las correlaciones no están dominadas por tendencias temporales o diferencias entre granjas.</p>
+</section>
+<section id="valores-ausentes-y-observaciones-duplicadas" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="valores-ausentes-y-observaciones-duplicadas"><span class="header-section-number">2.4</span> Valores ausentes y observaciones duplicadas</h2>
+<p>Los valores ausentes son datos que no están disponibles y suelen representarse mediante <code>NA</code> en R. Pueden deberse a que una medición no se realizó, a un fallo del equipo, a una pérdida de seguimiento o a un problema de registro.</p>
+<p>Un valor ausente no equivale a cero. Si no conocemos el peso de un animal, no debemos asignarle un peso de cero kilogramos. La estrategia para tratar los datos ausentes depende de cuántos existan, de qué variables estén afectadas y de por qué faltan. Eliminar todas las filas con algún valor ausente puede reducir la muestra y producir sesgos.</p>
+<p>Primero calcularemos cuántos valores ausentes existen en cada variable de la base original.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>resumen_ausentes <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable =</span> <span class="fu">names</span>(datos),</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_ausentes =</span> <span class="fu">sapply</span>(datos, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x))),</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">porcentaje_ausente =</span> <span class="fu">sapply</span>(</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    datos,</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(x) <span class="fu">mean</span>(<span class="fu">is.na</span>(x)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(porcentaje_ausente))</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>resumen_ausentes</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 28 × 3
+   variable           n_ausentes porcentaje_ausente
+   &lt;chr&gt;                   &lt;int&gt;              &lt;dbl&gt;
+ 1 peso_kg                   812               1.62
+ 2 actividad_h_dia           768               1.54
+ 3 consumo_kg_dia            751               1.50
+ 4 consumo_agua_l_dia        726               1.45
+ 5 animal_id                   0               0   
+ 6 tiempo                      0               0   
+ 7 granja_id                   0               0   
+ 8 sexo                        0               0   
+ 9 edad_inicio_meses           0               0   
+10 raza                        0               0   
+# ℹ 18 more rows</code></pre>
+</div>
+</div>
+<p>Si la base original no contiene valores ausentes, podemos generar una copia didáctica con faltantes ficticios. No modificaremos la base original: crearemos el objeto <code>datos_na</code>, que se utilizará exclusivamente para aprender a detectar y representar los valores ausentes.</p>
+<p>En el siguiente ejemplo introduciremos aproximadamente un 5 % de valores ausentes en varias variables cuantitativas. El porcentaje real puede variar ligeramente por azar.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>datos_na <span class="ot">&lt;-</span> datos</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>variables_faltantes <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"peso_kg"</span>,</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"consumo_kg_dia"</span>,</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"consumo_agua_l_dia"</span>,</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"temperatura_C"</span>,</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"humedad_pct"</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (variable <span class="cf">in</span> variables_faltantes) {</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(datos_na)</span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>  filas_na <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">seq_len</span>(n),</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fu">floor</span>(<span class="fl">0.05</span> <span class="sc">*</span> n),</span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">FALSE</span></span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>  datos_na[[variable]][filas_na] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Este procedimiento sirve para practicar, pero no representa necesariamente un mecanismo realista de pérdida de información. Los faltantes se introducen al azar y de forma independiente para cada variable. En estudios reales, las mediciones podrían faltar con mayor frecuencia en animales enfermos, en determinadas granjas o durante ciertas épocas del año. Esas diferencias pueden ser importantes para la interpretación estadística.</p>
+<p>Ahora calcularemos de nuevo el número y el porcentaje de valores ausentes en la copia didáctica.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>resumen_na <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable =</span> <span class="fu">names</span>(datos_na),</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_ausentes =</span> <span class="fu">sapply</span>(datos_na, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x))),</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">porcentaje_ausente =</span> <span class="fu">sapply</span>(</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    datos_na,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(x) <span class="fu">mean</span>(<span class="fu">is.na</span>(x)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(porcentaje_ausente))</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>resumen_na</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 28 × 3
+   variable           n_ausentes porcentaje_ausente
+   &lt;chr&gt;                   &lt;int&gt;              &lt;dbl&gt;
+ 1 peso_kg                  3269               6.54
+ 2 consumo_kg_dia           3208               6.42
+ 3 consumo_agua_l_dia       3186               6.37
+ 4 temperatura_C            2500               5   
+ 5 humedad_pct              2500               5   
+ 6 actividad_h_dia           768               1.54
+ 7 animal_id                   0               0   
+ 8 tiempo                      0               0   
+ 9 granja_id                   0               0   
+10 sexo                        0               0   
+# ℹ 18 more rows</code></pre>
+</div>
+</div>
+<p>Podemos representar el porcentaje de valores ausentes mediante un gráfico de barras.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(resumen_na,</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(variable, porcentaje_ausente),</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> porcentaje_ausente)) <span class="sc">+</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Porcentaje de valores ausentes por variable"</span>,</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Variable"</span>,</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Valores ausentes (%)"</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="st_01_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Otra opción consiste en visualizar el patrón de datos ausentes en las filas y columnas. Esto permite comprobar si los faltantes se concentran en determinadas variables o si varias variables suelen faltar simultáneamente.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_miss</span>(</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  datos_na <span class="sc">|&gt;</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>      peso_kg,</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>      consumo_kg_dia,</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>      consumo_agua_l_dia,</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>      temperatura_C,</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>      humedad_pct</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="st_01_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La visualización puede mostrar una gran cantidad de filas cuando trabajamos con una base longitudinal extensa. Para facilitar la interpretación, podemos examinar una muestra de registros.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>muestra_na <span class="ot">&lt;-</span> datos_na <span class="sc">|&gt;</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="fu">min</span>(<span class="dv">200</span>, <span class="fu">nrow</span>(datos_na))) <span class="sc">|&gt;</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    animal_id,</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>    granja_id,</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>    tiempo,</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>    peso_kg,</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>    consumo_kg_dia,</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    consumo_agua_l_dia,</span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>    temperatura_C,</span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>    humedad_pct</span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_miss</span>(muestra_na)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="st_01_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Además de los valores ausentes, debemos buscar observaciones duplicadas. Una observación duplicada puede aparecer cuando se importa dos veces el mismo registro o cuando una unión entre tablas multiplica accidentalmente las filas. En una tabla donde cada fila representa un animal en una semana, la combinación <code>animal_id</code> y <code>tiempo</code> debería identificar de forma única una observación.</p>
+<p>Primero identificaremos las combinaciones repetidas.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>duplicados <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(animal_id, tiempo, <span class="at">name =</span> <span class="st">"n"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>duplicados</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 3
+# ℹ 3 variables: animal_id &lt;chr&gt;, tiempo &lt;dbl&gt;, n &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>Si no aparecen filas, no se han detectado combinaciones repetidas de animal y semana. Si aparecen, debemos inspeccionarlas antes de decidir qué hacer. Dos filas con el mismo animal y semana podrían ser duplicados accidentales, pero también podrían corresponder a mediciones diferentes que necesitan una identificación más detallada.</p>
+<p>Podemos examinar todas las filas asociadas a las combinaciones repetidas.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>filas_duplicadas <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    duplicados,</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"animal_id"</span>, <span class="st">"tiempo"</span>)</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(animal_id, tiempo)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>filas_duplicadas</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 28
+# ℹ 28 variables: animal_id &lt;chr&gt;, tiempo &lt;dbl&gt;, granja_id &lt;chr&gt;, sexo &lt;chr&gt;,
+#   edad_inicio_meses &lt;dbl&gt;, raza &lt;chr&gt;, longitud &lt;dbl&gt;, latitud &lt;dbl&gt;,
+#   zona &lt;chr&gt;, tamano_granja &lt;chr&gt;, sistema_produccion &lt;chr&gt;,
+#   efecto_granja &lt;dbl&gt;, efecto_animal &lt;dbl&gt;, peso_inicial &lt;dbl&gt;, fecha &lt;dttm&gt;,
+#   temperatura_C &lt;dbl&gt;, humedad_pct &lt;dbl&gt;, precipitacion_mm &lt;dbl&gt;,
+#   consumo_kg_dia &lt;dbl&gt;, consumo_agua_l_dia &lt;dbl&gt;, salud_score_0_4 &lt;dbl&gt;,
+#   salud_alta &lt;dbl&gt;, actividad_h_dia &lt;dbl&gt;, ganancia_semanal_kg &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<p>No es recomendable eliminar duplicados automáticamente sin investigar su origen. La eliminación indiscriminada puede descartar mediciones válidas. Primero hay que determinar si las filas son copias exactas, si difieren en alguna variable o si la estructura de la tabla requiere otra clave de identificación.</p>
+<p>Finalmente, comprobaremos que las coordenadas sean constantes dentro de cada granja. Si cada granja representa una ubicación fija, sus coordenadas deben mantenerse iguales a lo largo del seguimiento.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>coordenadas_granja <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(granja_id) <span class="sc">|&gt;</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_latitudes =</span> <span class="fu">n_distinct</span>(latitud, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_longitudes =</span> <span class="fu">n_distinct</span>(longitud, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>coordenadas_granja <span class="sc">|&gt;</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>    n_latitudes <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">|</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>    n_longitudes <span class="sc">&gt;</span> <span class="dv">1</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 3
+# ℹ 3 variables: granja_id &lt;chr&gt;, n_latitudes &lt;int&gt;, n_longitudes &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>Si la última tabla no contiene registros, las coordenadas son internamente consistentes dentro de cada granja. Sin embargo, esta comprobación no garantiza que las coordenadas correspondan a una ubicación geográfica real ni que estén dentro de los límites administrativos de Hidalgo. En una aplicación real, también sería necesario validar la geografía de los puntos.</p>
+<p>Al finalizar este bloque debemos saber reconocer la unidad de observación, importar una tabla, distinguir los tipos de variables y examinar la estructura longitudinal. También debemos poder generar gráficos exploratorios, estudiar correlaciones y detectar valores ausentes y duplicados.</p>
+<p>Estas tareas constituyen la base del análisis estadístico. Antes de aplicar regresiones, modelos mixtos o modelos espacio-temporales, debemos comprobar que la información está correctamente estructurada y comprender las limitaciones de los datos.</p>
+</section>
+<section id="representación-espacial-de-las-granjas-en-un-mapa-de-méxico" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="representación-espacial-de-las-granjas-en-un-mapa-de-méxico"><span class="header-section-number">2.5</span> Representación espacial de las granjas en un mapa de México</h2>
+<p>En este apartado representaremos geográficamente las granjas ovinas simuladas en Hidalgo y su entorno regional, México. Trabajaremos con cuatro estados: Hidalgo, Estado de México, Tlaxcala y Veracruz. El objetivo es visualizar la localización de las granjas y explorar su distribución espacial en relación con los límites administrativos.</p>
+<p>El análisis cartográfico constituye un primer paso para comprender la distribución territorial de los datos. Posteriormente, esta información podrá utilizarse para construir matrices de vecindad y desarrollar modelos estadísticos que incorporen dependencia espacial y temporal.</p>
+<p>Las coordenadas de las granjas son simuladas y no representan explotaciones ganaderas reales.</p>
 <ol type="1">
-<li>Identifique la unidad experimental.</li>
-<li>Calcule medias por semana.</li>
+<li>Utilizaremos <code>sf</code> para trabajar con objetos espaciales, <code>geodata</code> para obtener límites administrativos, <code>terra</code> para herramientas de análisis geográfico, <code>dplyr</code> para manipular tablas y <code>ggplot2</code> para elaborar los mapas.</li>
 </ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar los paquetes si todavía no están instalados.</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("sf", "geodata", "terra", "dplyr", "ggplot2"))</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geodata)</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>Revisión de las coordenadas de las granjas</li>
+</ol>
+<p>La tabla <code>granjas</code> contiene una fila por explotación. Las variables <code>longitud</code> y <code>latitud</code> indican su posición geográfica, mientras que <code>granja_id</code> permite identificar cada explotación.</p>
+<p>Antes de elaborar los mapas, comprobaremos que las coordenadas estén disponibles y tengan valores razonables.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>granjas <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(archivo, <span class="at">sheet =</span> <span class="st">"granjas"</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(granjas[, <span class="fu">c</span>(<span class="st">"granja_id"</span>, <span class="st">"longitud"</span>, <span class="st">"latitud"</span>)])</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  granja_id longitud latitud
+  &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;
+1 G01          -98.3    19.7
+2 G02          -99.1    20.4
+3 G03          -98.5    19.9
+4 G04          -99.0    20.1
+5 G05          -98.9    20.1
+6 G06          -98.8    20.1</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(granjas[, <span class="fu">c</span>(<span class="st">"longitud"</span>, <span class="st">"latitud"</span>)])</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    longitud         latitud     
+ Min.   :-99.19   Min.   :19.66  
+ 1st Qu.:-98.97   1st Qu.:20.02  
+ Median :-98.80   Median :20.17  
+ Mean   :-98.76   Mean   :20.17  
+ 3rd Qu.:-98.49   3rd Qu.:20.36  
+ Max.   :-98.30   Max.   :20.52  </code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(granjas<span class="sc">$</span>longitud))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(granjas<span class="sc">$</span>latitud))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<p>La longitud expresa la posición este-oeste y la latitud la posición norte-sur. En este ejemplo utilizamos grados decimales. Las coordenadas deben corresponder realmente a ese sistema antes de declararlas como coordenadas geográficas.</p>
+<ol start="3" type="1">
+<li>Conversión de las granjas en un objeto espacial</li>
+</ol>
+<p>Aunque la tabla contiene coordenadas, R todavía la trata como una tabla convencional. La función <code>st_as_sf()</code> permite transformarla en un objeto espacial que puede utilizarse directamente para dibujar puntos en un mapa.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>granjas_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  granjas,</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitud"</span>, <span class="st">"latitud"</span>),</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">crs =</span> <span class="dv">4326</span>,</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">remove =</span> <span class="cn">FALSE</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(granjas_sf)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "sf"         "tbl_df"     "tbl"        "data.frame"</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(granjas_sf)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 6 features and 7 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -99.06099 ymin: 19.65949 xmax: -98.33413 ymax: 20.39721
+Geodetic CRS:  WGS 84
+# A tibble: 6 × 8
+  granja_id longitud latitud tamano_granja sistema_produccion zona  
+  &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;              &lt;chr&gt; 
+1 G01          -98.3    19.7 Grande        Extensivo          Sur   
+2 G02          -99.1    20.4 Mediana       Semi-intensivo     Norte 
+3 G03          -98.5    19.9 Mediana       Extensivo          Sur   
+4 G04          -99.0    20.1 Mediana       Semi-intensivo     Centro
+5 G05          -98.9    20.1 Mediana       Semi-intensivo     Centro
+6 G06          -98.8    20.1 Mediana       Semi-intensivo     Centro
+# ℹ 2 more variables: efecto_granja &lt;dbl&gt;, geometry &lt;POINT [°]&gt;</code></pre>
+</div>
+</div>
+<p>El argumento <code>coords</code> identifica las columnas que contienen las coordenadas, primero la longitud y después la latitud. El código <code>crs = 4326</code> indica que se utiliza el sistema geográfico WGS 84, habitual para coordenadas expresadas en grados decimales.</p>
+<p>El argumento <code>remove = FALSE</code> conserva las columnas originales de longitud y latitud, además de crear la geometría espacial. Esto permite seguir consultando las coordenadas numéricas después de la transformación.</p>
+<p>Es importante recordar que declarar el sistema de referencia no transforma unas coordenadas incorrectas. Debemos comprobar que los valores originales están efectivamente expresados en WGS 84.</p>
+<ol start="4" type="1">
+<li>Descarga de los límites administrativos de México</li>
+</ol>
+<p>Para representar las granjas necesitamos un mapa de referencia. Utilizaremos los límites administrativos del conjunto de datos GADM, que pueden descargarse mediante el paquete <code>geodata</code>.</p>
+<p>Descargaremos los límites nacionales y los límites de los estados mexicanos. El nivel 0 representa el país completo y el nivel 1 representa sus divisiones administrativas de primer nivel.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Límites nacionales de México.</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>mexico <span class="ot">&lt;-</span> geodata<span class="sc">::</span><span class="fu">gadm</span>(</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="st">"MEX"</span>,</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">level =</span> <span class="dv">0</span>,</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"mapas"</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Límites de los estados mexicanos.</span></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>estados <span class="ot">&lt;-</span> geodata<span class="sc">::</span><span class="fu">gadm</span>(</span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="st">"MEX"</span>,</span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">level =</span> <span class="dv">1</span>,</span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"mapas"</span></span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>El argumento <code>country = "MEX"</code> identifica a México. El argumento <code>level</code> determina el nivel administrativo y <code>path = "mapas"</code> especifica la carpeta donde se guardarán los archivos descargados para su reutilización.</p>
+<p>Convertiremos los resultados en objetos <code>sf</code> para utilizarlos en los gráficos.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>mexico_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(mexico)</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>estados_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(estados)</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Consultar los nombres de los estados disponibles.</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(estados_sf<span class="sc">$</span>NAME_1))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Aguascalientes"      "Baja California"     "Baja California Sur"
+ [4] "Campeche"            "Chiapas"             "Chihuahua"          
+ [7] "Coahuila"            "Colima"              "Distrito Federal"   
+[10] "Durango"             "Guanajuato"          "Guerrero"           
+[13] "Hidalgo"             "Jalisco"             "México"             
+[16] "Michoacán"           "Morelos"             "Nayarit"            
+[19] "Nuevo León"          "Oaxaca"              "Puebla"             
+[22] "Querétaro"           "Quintana Roo"        "San Luis Potosí"    
+[25] "Sinaloa"             "Sonora"              "Tabasco"            
+[28] "Tamaulipas"          "Tlaxcala"            "Veracruz"           
+[31] "Yucatán"             "Zacatecas"          </code></pre>
+</div>
+</div>
+<p>La columna <code>NAME_1</code> contiene los nombres de los estados. Conviene inspeccionarlos porque los nombres utilizados en los filtros deben coincidir con los almacenados en la tabla.</p>
+<ol start="5" type="1">
+<li>Selección de los cuatro estados de interés</li>
+</ol>
+<p>El análisis territorial se centrará en Hidalgo, Estado de México, Tlaxcala y Veracruz. Seleccionaremos los cuatro polígonos y los guardaremos en un único objeto espacial llamado <code>estados_region_sf</code>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>estados_region_sf <span class="ot">&lt;-</span> estados_sf <span class="sc">%&gt;%</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>    NAME_1 <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Hidalgo"</span>,</span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"México"</span>,</span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Tlaxcala"</span>,</span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Veracruz"</span></span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar qué estados se han seleccionado.</span></span>
+<span id="cb71-12"><a href="#cb71-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(estados_region_sf<span class="sc">$</span>NAME_1))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Hidalgo"  "México"   "Tlaxcala" "Veracruz"</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar cuántos polígonos contiene el objeto.</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(estados_region_sf)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>En los datos GADM, el Estado de México aparece habitualmente como <code>"México"</code>. Por eso utilizamos ese nombre en el filtro. El objeto <code>estados_region_sf</code> contiene los cuatro estados que queremos representar y se reutilizará en ambos mapas.</p>
+<p>La selección debe devolver los cuatro estados. Si devuelve menos, revisaremos los nombres mostrados por <code>unique(estados_sf$NAME_1)</code> y ajustaremos el filtro a los valores presentes en la versión descargada.</p>
+<ol start="6" type="1">
+<li>Mapa general de los cuatro estados y las granjas</li>
+</ol>
+<p>En el primer mapa mostraremos México completo como fondo y destacaremos los cuatro estados seleccionados. Las granjas se representarán con puntos coloreados según el tamaño de la explotación.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> mexico_sf,</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"grey95"</span>,</span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey55"</span>,</span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.3</span></span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> estados_region_sf,</span>
+<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> NAME_1),</span>
+<span id="cb75-11"><a href="#cb75-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"steelblue4"</span>,</span>
+<span id="cb75-12"><a href="#cb75-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.6</span></span>
+<span id="cb75-13"><a href="#cb75-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb75-14"><a href="#cb75-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb75-15"><a href="#cb75-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> granjas_sf,</span>
+<span id="cb75-16"><a href="#cb75-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> tamano_granja),</span>
+<span id="cb75-17"><a href="#cb75-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">2.5</span>,</span>
+<span id="cb75-18"><a href="#cb75-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.9</span></span>
+<span id="cb75-19"><a href="#cb75-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb75-20"><a href="#cb75-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(</span>
+<span id="cb75-21"><a href="#cb75-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="st">"Pastel1"</span>,</span>
+<span id="cb75-22"><a href="#cb75-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Estado"</span></span>
+<span id="cb75-23"><a href="#cb75-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb75-24"><a href="#cb75-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(</span>
+<span id="cb75-25"><a href="#cb75-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="st">"Dark2"</span>,</span>
+<span id="cb75-26"><a href="#cb75-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Tamaño de granja"</span></span>
+<span id="cb75-27"><a href="#cb75-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb75-28"><a href="#cb75-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb75-29"><a href="#cb75-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Granjas ovinas simuladas en el centro-oriente de México"</span>,</span>
+<span id="cb75-30"><a href="#cb75-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Hidalgo, Estado de México, Tlaxcala y Veracruz"</span>,</span>
+<span id="cb75-31"><a href="#cb75-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Longitud"</span>,</span>
+<span id="cb75-32"><a href="#cb75-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Latitud"</span>,</span>
+<span id="cb75-33"><a href="#cb75-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Datos simulados; no representan granjas reales."</span></span>
+<span id="cb75-34"><a href="#cb75-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb75-35"><a href="#cb75-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="st_01_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La primera capa dibuja el contorno nacional de México. La segunda representa los cuatro estados y asigna un color de relleno a cada uno mediante <code>aes(fill = NAME_1)</code>. De este modo, cada estado se identifica visualmente y aparece en la leyenda.</p>
+<p>La tercera capa incorpora las granjas. El color de los puntos representa <code>tamano_granja</code>, lo que permite distinguir categorías de explotación. Las funciones <code>scale_fill_brewer()</code> y <code>scale_color_brewer()</code> controlan las paletas utilizadas para los estados y las granjas, respectivamente.</p>
+<p>Este mapa permite situar las explotaciones en el contexto nacional y regional. Sin embargo, no demuestra por sí mismo que exista dependencia espacial entre ellas. Para ello necesitaremos definir una estructura de vecindad y analizar las relaciones entre las observaciones.</p>
+<ol start="7" type="1">
+<li>Mapa ampliado de los cuatro estados</li>
+</ol>
+<p>El mapa nacional proporciona contexto, pero puede resultar demasiado general para examinar la distribución de las granjas. Por eso, elaboraremos un segundo mapa centrado en el territorio que abarcan las explotaciones, manteniendo los cuatro estados como fondo geográfico.</p>
+<p>Primero definiremos un margen para ampliar el rango de coordenadas de las granjas.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>delta <span class="ot">&lt;-</span> <span class="fl">0.4</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>El valor <code>delta</code> se expresa en grados porque estamos utilizando longitud y latitud. El margen mejora la presentación visual, pero no representa una distancia constante en kilómetros.</p>
+<p>Ahora construiremos el mapa ampliado.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> estados_region_sf,</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> NAME_1),</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey35"</span>,</span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.5</span></span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> granjas_sf,</span>
+<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> zona,</span>
+<span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">shape =</span> sistema_produccion</span>
+<span id="cb77-13"><a href="#cb77-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb77-14"><a href="#cb77-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb77-15"><a href="#cb77-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.9</span></span>
+<span id="cb77-16"><a href="#cb77-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb77-17"><a href="#cb77-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(</span>
+<span id="cb77-18"><a href="#cb77-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="st">"Pastel1"</span>,</span>
+<span id="cb77-19"><a href="#cb77-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Estado"</span></span>
+<span id="cb77-20"><a href="#cb77-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb77-21"><a href="#cb77-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb77-22"><a href="#cb77-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribución espacial de las granjas"</span>,</span>
+<span id="cb77-23"><a href="#cb77-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Cuatro estados: Hidalgo, Estado de México, Tlaxcala y Veracruz"</span>,</span>
+<span id="cb77-24"><a href="#cb77-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Zona"</span>,</span>
+<span id="cb77-25"><a href="#cb77-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Sistema productivo"</span>,</span>
+<span id="cb77-26"><a href="#cb77-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Longitud"</span>,</span>
+<span id="cb77-27"><a href="#cb77-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Latitud"</span></span>
+<span id="cb77-28"><a href="#cb77-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb77-29"><a href="#cb77-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(</span>
+<span id="cb77-30"><a href="#cb77-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">range</span>(granjas<span class="sc">$</span>longitud, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb77-31"><a href="#cb77-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="sc">-</span>delta, delta),</span>
+<span id="cb77-32"><a href="#cb77-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">range</span>(granjas<span class="sc">$</span>latitud, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb77-33"><a href="#cb77-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="sc">-</span>delta, delta),</span>
+<span id="cb77-34"><a href="#cb77-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="cn">FALSE</span></span>
+<span id="cb77-35"><a href="#cb77-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb77-36"><a href="#cb77-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="st_01_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>En este segundo mapa, los cuatro estados se dibujan con colores diferenciados. Los puntos representan las granjas y se distinguen por zona y sistema de producción. El color permite comparar las categorías de <code>zona</code>, mientras que la forma del símbolo representa <code>sistema_produccion</code>.</p>
+<p>La función <code>coord_sf()</code> limita la extensión visible del mapa. Los argumentos <code>xlim</code> e <code>ylim</code> definen los rangos de longitud y latitud, respectivamente. La función <code>range()</code> obtiene los valores mínimo y máximo de las coordenadas, y <code>delta</code> añade un margen en ambos extremos.</p>
+<p>Es importante señalar que el recorte de la vista no modifica la localización de las granjas ni garantiza que todos los puntos estén dentro de los cuatro estados. Si las coordenadas se generaron aleatoriamente dentro de un rectángulo geográfico, algunos puntos podrían encontrarse fuera de los polígonos administrativos. El mapa permite detectar este tipo de situaciones, pero no las corrige automáticamente.</p>
+<ol start="8" type="1">
+<li>Comprobación de la localización de las granjas</li>
+</ol>
+<p>Como verificación adicional, podemos determinar qué puntos están dentro de alguno de los cuatro estados seleccionados. Para ello, uniremos los polígonos en una sola geometría y comprobaremos la relación espacial entre los puntos y el territorio.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unir los cuatro polígonos en una geometría regional.</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>region_union <span class="ot">&lt;-</span> <span class="fu">st_union</span>(estados_region_sf)</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar si cada granja está dentro de la región seleccionada.</span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>dentro_region <span class="ot">&lt;-</span> <span class="fu">lengths</span>(</span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_intersects</span>(granjas_sf, region_union)</span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen de la comprobación.</span></span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dentro_region)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>dentro_region
+TRUE 
+  50 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar las granjas que quedan fuera de los cuatro estados.</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>granjas_fuera <span class="ot">&lt;-</span> granjas_sf[<span class="sc">!</span>dentro_region, ]</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>granjas_fuera[, <span class="fu">c</span>(<span class="st">"granja_id"</span>, <span class="st">"longitud"</span>, <span class="st">"latitud"</span>)]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 0 features and 3 fields
+Geometry type: POINT
+Bounding box:  xmin: NA ymin: NA xmax: NA ymax: NA
+Geodetic CRS:  WGS 84
+# A tibble: 0 × 4
+# ℹ 4 variables: granja_id &lt;chr&gt;, longitud &lt;dbl&gt;, latitud &lt;dbl&gt;,
+#   geometry &lt;POINT [°]&gt;</code></pre>
+</div>
+</div>
+<p>La función <code>st_union()</code> combina los polígonos seleccionados en una sola geometría regional. La función <code>st_intersects()</code> comprueba si cada punto intersecta esa geometría. En este contexto, los puntos interiores y los que se encuentran sobre la frontera se consideran incluidos.</p>
+<p>Si <code>granjas_fuera</code> contiene registros, significa que algunas coordenadas están fuera de los cuatro estados seleccionados. Esto puede deberse a la forma en que se simularon los puntos y no necesariamente a un problema de representación. Si el objetivo del estudio es simular exclusivamente granjas de estos estados, conviene generar las coordenadas dentro de los polígonos administrativos en lugar de utilizar únicamente rangos de latitud y longitud.</p>
+<ol start="9" type="1">
+<li>Discusión: de los mapas al análisis espacio-temporal</li>
+</ol>
+<p>Los mapas permiten comprender la distribución territorial de las granjas, identificar posibles errores de localización y explorar diferencias entre categorías. Sin embargo, la proximidad geográfica no implica necesariamente que dos explotaciones tengan comportamientos productivos similares.</p>
+<p>Para analizar la dependencia espacial, necesitaremos definir qué granjas son vecinas. Una posibilidad es construir una matriz de vecindad basada en los cuatro vecinos más cercanos. Esa matriz puede utilizarse posteriormente en modelos autorregresivos espaciales, como los modelos SAR.</p>
+<p>En un análisis espacio-temporal, la estructura espacial se combina con la dependencia temporal para estudiar cómo evolucionan las variables y cómo se relacionan las observaciones de granjas próximas a lo largo del seguimiento.</p>
+<p>Por tanto, antes de ajustar modelos estadísticos, debemos comprobar las coordenadas, el sistema de referencia, la pertenencia territorial de los puntos y la definición de vecindad. Estas comprobaciones permiten que la representación cartográfica y los análisis posteriores sean coherentes con el problema científico.</p>
 
 
 </section>
