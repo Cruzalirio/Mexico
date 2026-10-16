@@ -1,6 +1,7 @@
 ---
 title: "CrossCarry"
 ---
+
 # Objetivos
 
 Presentar el flujo de trabajo del paquete CrossCarry.
@@ -8,8 +9,11 @@ Presentar el flujo de trabajo del paquete CrossCarry.
 # Temas
 
 ## Diseños crossover
+
 ## Carryover
+
 ## Efectos de período
+
 ## Reportes reproducibles
 
 ```{r}

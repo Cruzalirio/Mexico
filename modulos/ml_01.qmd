@@ -168,12 +168,12 @@ La diferencia entre el valor observado y el valor predicho recibe el nombre de e
 Si observamos:
 
 | Producción observada | Producción predicha |
-|---|---|
-| 32 kg | 30 kg |
+|----------------------|---------------------|
+| 32 kg                | 30 kg               |
 
 el error es:
 
-```text
+``` text
 32 - 30 = 2 kg
 ```
 
@@ -248,11 +248,11 @@ Estos conceptos constituirán la base para los siguientes temas del curso: regre
 
 # Actividades propuestas
 
-1. Identifique tres ejemplos de problemas supervisados en producción animal.
-2. Identifique tres ejemplos de problemas no supervisados en salud animal.
-3. Explique con sus palabras la diferencia entre inferencia y predicción.
-4. ¿Por qué es necesario disponer de un conjunto de prueba?
-5. ¿Qué consecuencias puede tener un modelo sobreajustado en un sistema de producción animal?
+1.  Identifique tres ejemplos de problemas supervisados en producción animal.
+2.  Identifique tres ejemplos de problemas no supervisados en salud animal.
+3.  Explique con sus palabras la diferencia entre inferencia y predicción.
+4.  ¿Por qué es necesario disponer de un conjunto de prueba?
+5.  ¿Qué consecuencias puede tener un modelo sobreajustado en un sistema de producción animal?
 
 # Lecturas recomendadas
 
