@@ -413,29 +413,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">CrossCarry</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../modulos/crosscarry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">CrossCarry</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../recursos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Recursos</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -1120,7 +1097,7 @@ Scaled residuals:
 Random effects:
  Groups        Name        Variance Std.Dev.
  animal_granja (Intercept) 8.7821   2.9635  
- granja_id     (Intercept) 6.0540   2.4605  
+ granja_id     (Intercept) 6.0539   2.4605  
  Residual                  0.8748   0.9353  
 Number of obs: 48452, groups:  animal_granja, 500; granja_id, 50
 
@@ -1179,9 +1156,9 @@ tiempo_c     0.001  0.238 -0.003 -0.001 -0.001  0.001 -0.002 -0.001</code></pre>
 <pre><code># A tibble: 9 × 9
   effect term   estimate std.error statistic     df   p.value conf.low conf.high
   &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-1 fixed  (Inte…  38.8     0.482       80.4     128. 1.70e-111  37.8      39.7   
+1 fixed  (Inte…  38.8     0.482       80.4     128. 1.68e-111  37.8      39.7   
 2 fixed  consu…   0.0202  0.0284       0.710 47961. 4.78e-  1  -0.0355    0.0759
-3 fixed  edad_…   0.709   0.0245      29.0     452. 4.16e-105   0.661     0.757 
+3 fixed  edad_…   0.709   0.0245      29.0     452. 4.15e-105   0.661     0.757 
 4 fixed  sexoM…   1.54    0.278        5.53    455. 5.51e-  8   0.990     2.08  
 5 fixed  razaR…   2.58    0.441        5.86    460. 9.07e-  9   1.71      3.45  
 6 fixed  razaR…  -2.39    0.425       -5.63    453. 3.15e-  8  -3.23     -1.56  
@@ -1321,9 +1298,9 @@ tiempo_c     0.001  0.238 -0.003 -0.001 -0.001  0.001 -0.002 -0.001</code></pre>
  7 Regresión convencional razaR…   3.48    0.0540     3.38      3.59   0        
  8 Regresión convencional razaR…   1.28    0.0568     1.17      1.39   8.98e-112
  9 Regresión convencional tiemp…   0.232   0.000589   0.230     0.233  0        
-10 Modelo mixto           (Inte…  38.8     0.482     37.8      39.7    1.70e-111
+10 Modelo mixto           (Inte…  38.8     0.482     37.8      39.7    1.68e-111
 11 Modelo mixto           consu…   0.0202  0.0284    -0.0355    0.0759 4.78e-  1
-12 Modelo mixto           edad_…   0.709   0.0245     0.661     0.757  4.16e-105
+12 Modelo mixto           edad_…   0.709   0.0245     0.661     0.757  4.15e-105
 13 Modelo mixto           sexoM…   1.54    0.278      0.990     2.08   5.51e-  8
 14 Modelo mixto           razaR…   2.58    0.441      1.71      3.45   9.07e-  9
 15 Modelo mixto           razaR…  -2.39    0.425     -3.23     -1.56   3.15e-  8
@@ -1378,12 +1355,12 @@ tiempo_c     0.001  0.238 -0.003 -0.001 -0.001  0.001 -0.002 -0.001</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>    (Intercept)
-G01  -0.3760472
-G02   4.6400079
-G03  -2.8282484
-G04   2.8881511
-G05   2.2559747
-G06  -5.1733675</code></pre>
+G01  -0.3760469
+G02   4.6400045
+G03  -2.8282463
+G04   2.8881490
+G05   2.2559730
+G06  -5.1733636</code></pre>
 </div>
 <details class="code-fold">
 <summary>Código</summary>
@@ -1395,8 +1372,8 @@ G01.A001    5.353433
 G01.A002   -1.455256
 G01.A003   -1.662804
 G01.A004    3.764456
-G01.A005   -1.575936
-G01.A006   -2.257809</code></pre>
+G01.A005   -1.575937
+G01.A006   -2.257810</code></pre>
 </div>
 </div>
 <p><br></p>
@@ -2024,12 +2001,12 @@ Number of obs: 49249, groups:  animal_granja, 500; granja_id, 50
 Fixed effects:
                 Estimate Std. Error z value Pr(&gt;|z|)    
 (Intercept)   -1.8648261  0.0396831 -46.993  &lt; 2e-16 ***
-consumo_c      2.5028116  0.0885941  28.250  &lt; 2e-16 ***
+consumo_c      2.5028118  0.0885941  28.250  &lt; 2e-16 ***
 edad_inicio_c -0.0345143  0.0029069 -11.873  &lt; 2e-16 ***
 sexoMacho     -0.0566891  0.0308966  -1.835   0.0665 .  
-razaRaza_B    -0.2441314  0.0490739  -4.975 6.53e-07 ***
+razaRaza_B    -0.2441315  0.0490739  -4.975 6.53e-07 ***
 razaRaza_C     0.2319569  0.0472278   4.911 9.04e-07 ***
-razaRaza_D    -0.4827871  0.0506232  -9.537  &lt; 2e-16 ***
+razaRaza_D    -0.4827872  0.0506232  -9.537  &lt; 2e-16 ***
 razaRaza_E    -0.1171001  0.0523590  -2.236   0.0253 *  
 tiempo_c      -0.0065718  0.0004921 -13.355  &lt; 2e-16 ***
 ---

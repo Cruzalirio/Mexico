@@ -1,0 +1,1767 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  ignorenonframetext,
+  aspectratio=169,
+  spanish,
+]{beamer}
+\newif\ifbibliography
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% remove section numbering
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{section title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{subsection title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+\usepackage{caption}
+% Make caption package work with longtable
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+\ifLuaTeX
+\usepackage[bidi=basic,shorthands=off]{babel}
+\else
+\usepackage[bidi=default,shorthands=off]{babel}
+\fi
+\ifLuaTeX
+  \usepackage{selnolig} % disable illegal ligatures
+\fi
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{xcolor}
+\definecolor{crossblue}{RGB}{31,78,121}
+\definecolor{crossgreen}{RGB}{0,120,110}
+\setbeamercolor{structure}{fg=crossblue}
+\setbeamercolor{alerted text}{fg=crossgreen}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Listado de Figuras}
+\else
+  \newcommand\listfigurename{Listado de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Listado de Tablas}
+\else
+  \newcommand\listtablename{Listado de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Listado de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  pdftitle={¿Qué es CrossCarry?},
+  pdfauthor={Nelson Alirio Cruz},
+  pdflang={es},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{\texorpdfstring{¿Qué es CrossCarry?}{¿Qué es CrossCarry?}}
+\subtitle{\texorpdfstring{Innovación estadística en R para el análisis
+de diseños crossover en salud y producción
+animal}{Innovación estadística en R para el análisis de diseños crossover en salud y producción animal}}
+\author{Nelson Alirio Cruz}
+\date{Invalid Date}
+\institute{Facultad de Medicina Veterinaria y Zootecnia · UNAM}
+
+\begin{document}
+\frame{\titlepage}
+
+
+\section{¿Qué es CrossCarry?}\label{quuxe9-es-crosscarry}
+
+\begin{frame}{¿Qué es CrossCarry?}
+Una propuesta estadística y computacional para analizar diseños
+crossover con respuestas correlacionadas, medidas repetidas y efectos
+carry-over.
+
+\vfill
+
+\centering
+
+\textbf{Nelson Alirio Cruz}\\
+Facultad de Medicina Veterinaria y Zootecnia · UNAM\\
+27 de octubre de 2026
+\end{frame}
+
+\begin{frame}{1. ¿Por qué estudiar diseños crossover?}
+\protect\phantomsection\label{por-quuxe9-estudiar-diseuxf1os-crossover}
+Los diseños crossover permiten comparar tratamientos aplicados
+sucesivamente a las mismas unidades experimentales. Cada persona, animal
+o unidad recibe más de un tratamiento, por lo que su respuesta bajo una
+intervención puede compararse con su propia respuesta bajo otra.
+
+\begin{itemize}
+\tightlist
+\item
+  Reducen la variabilidad debida a diferencias permanentes entre
+  individuos.
+\item
+  Pueden alcanzar buena precisión con menos unidades que un diseño
+  paralelo.
+\item
+  Son útiles cuando la respuesta puede medirse repetidamente y el estado
+  de la unidad es relativamente estable.
+\item
+  Son frecuentes en ensayos clínicos, nutrición animal, fisiología,
+  comportamiento y estudios de ambientes de trabajo.
+\end{itemize}
+
+\alert{La ventaja principal es también la fuente del problema:} como una
+misma unidad recibe tratamientos sucesivos, las respuestas observadas en
+distintos períodos no son independientes.
+\end{frame}
+
+\begin{frame}{2. Anatomía de un diseño crossover}
+\protect\phantomsection\label{anatomuxeda-de-un-diseuxf1o-crossover}
+Un diseño crossover contiene cuatro elementos básicos:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Tratamientos:} intervenciones que se desean comparar.
+\item
+  \textbf{Períodos:} intervalos durante los cuales se aplica cada
+  tratamiento.
+\item
+  \textbf{Secuencias:} órdenes posibles de administración de los
+  tratamientos.
+\item
+  \textbf{Unidades experimentales:} individuos o elementos asignados a
+  una secuencia.
+\end{itemize}
+
+En el diseño AB/BA más sencillo:
+
+\[
+\begin{array}{c|cc}
+\text{Secuencia} & \text{Período 1} & \text{Período 2}\\ \hline
+AB & A & B\\
+BA & B & A
+\end{array}
+\]
+
+La comparación no es solamente entre \(A\) y \(B\). También deben
+considerarse el período, el orden de administración y la posible
+persistencia del tratamiento anterior.
+\end{frame}
+
+\begin{frame}{3. Diseño paralelo, longitudinal y crossover}
+\protect\phantomsection\label{diseuxf1o-paralelo-longitudinal-y-crossover}
+En un diseño \textbf{paralelo}, cada unidad recibe un único tratamiento.
+La comparación principal se realiza entre grupos diferentes.
+
+En un estudio \textbf{longitudinal}, cada unidad se observa varias
+veces, generalmente bajo el mismo tratamiento.
+
+En un diseño \textbf{crossover}, cada unidad:
+
+\begin{enumerate}
+\tightlist
+\item
+  recibe una secuencia de tratamientos;
+\item
+  aporta observaciones en varios períodos;
+\item
+  puede tener varias mediciones dentro de cada período;
+\item
+  puede conservar efectos de tratamientos previos.
+\end{enumerate}
+
+Por tanto, un crossover con medidas repetidas combina dos dependencias:
+
+\[
+\text{dependencia longitudinal}
++
+\text{dependencia por secuencia de tratamientos}.
+\]
+
+Esta doble estructura explica por qué un análisis convencional de medias
+o una regresión que suponga independencia puede resultar insuficiente.
+\end{frame}
+
+\begin{frame}{4. Ventajas y condiciones de aplicación}
+\protect\phantomsection\label{ventajas-y-condiciones-de-aplicaciuxf3n}
+Un crossover resulta especialmente atractivo cuando:
+
+\begin{itemize}
+\tightlist
+\item
+  el efecto del tratamiento es reversible o puede disminuir
+  suficientemente;
+\item
+  la enfermedad o condición se mantiene relativamente estable;
+\item
+  la unidad puede recibir todas las intervenciones sin riesgos
+  indebidos;
+\item
+  la duración total del estudio es aceptable;
+\item
+  existe interés en comparaciones dentro de la misma unidad.
+\end{itemize}
+
+No es ideal cuando:
+
+\begin{itemize}
+\tightlist
+\item
+  el tratamiento produce curación permanente o cambios irreversibles;
+\item
+  la condición evoluciona rápidamente;
+\item
+  existe mortalidad o abandono diferencial importante;
+\item
+  la exposición anterior modifica de manera permanente la respuesta
+  futura;
+\item
+  el tratamiento solo puede administrarse una vez.
+\end{itemize}
+
+\alert{El crossover no es solo una forma eficiente de recolectar datos. Es una estrategia de diseño que exige pensar desde el comienzo en período, secuencia, dependencia y carry-over.}
+\end{frame}
+
+\begin{frame}{5. ¿Qué es un período de lavado?}
+\protect\phantomsection\label{quuxe9-es-un-peruxedodo-de-lavado}
+El \textbf{período de lavado} o \emph{washout} es el intervalo entre dos
+tratamientos consecutivos durante el cual se espera que desaparezca el
+efecto de la intervención anterior.
+
+\[
+A
+\longrightarrow
+\underbrace{\text{lavado}}_{\text{sin tratamiento o condición neutra}}
+\longrightarrow
+B
+\]
+
+Su duración debe estar fundamentada científicamente. En farmacología
+puede relacionarse con la vida media y la eliminación del fármaco. En
+nutrición o producción animal puede depender de la adaptación
+metabólica, el tránsito digestivo o el tiempo necesario para estabilizar
+la producción.
+
+Un lavado adecuado busca que, al comenzar el nuevo período,
+
+\[
+\text{efecto residual del tratamiento previo}\approx 0.
+\]
+
+Sin embargo, la existencia formal de un lavado no garantiza que el
+carry-over haya desaparecido.
+\end{frame}
+
+\begin{frame}{6. ¿Cuándo el lavado es imposible o insuficiente?}
+\protect\phantomsection\label{cuuxe1ndo-el-lavado-es-imposible-o-insuficiente}
+En muchas aplicaciones no es posible suspender completamente la
+intervención:
+
+\begin{itemize}
+\tightlist
+\item
+  pacientes con hipertensión no pueden permanecer largos períodos sin
+  tratamiento;
+\item
+  animales deben continuar alimentándose todos los días;
+\item
+  dietas y rutinas de manejo generan adaptación progresiva;
+\item
+  un placebo no necesariamente elimina el efecto acumulado de una
+  intervención previa;
+\item
+  los ambientes de trabajo o alojamiento pueden producir adaptación
+  conductual;
+\item
+  por razones éticas, no siempre puede retirarse agua, alimento o
+  atención.
+\end{itemize}
+
+En estos casos, el análisis no debe utilizar el lavado como una
+justificación automática para eliminar el carry-over del modelo.
+
+\alert{CrossCarry no reemplaza un buen período de lavado.} Proporciona
+herramientas para evaluar y modelar efectos residuales cuando no pueden
+descartarse por diseño.
+\end{frame}
+
+\begin{frame}{7. ¿Qué es el efecto carry-over?}
+\protect\phantomsection\label{quuxe9-es-el-efecto-carry-over}
+El carry-over es la influencia persistente de un tratamiento
+administrado previamente sobre una respuesta observada bajo un
+tratamiento posterior.
+
+Si una unidad recibe \(A\) en el período 1 y \(B\) en el período 2, la
+respuesta del segundo período puede descomponerse conceptualmente como
+
+\[
+\text{respuesta bajo }B
+=
+\text{efecto directo de }B
++
+\text{residuo de }A
++
+\text{otros efectos}.
+\]
+
+Se habla de carry-over de primer orden cuando procede del período
+inmediatamente anterior. Un efecto de segundo orden procede de dos
+períodos atrás.
+
+El carry-over puede afectar:
+
+\begin{itemize}
+\tightlist
+\item
+  el nivel promedio de la respuesta;
+\item
+  la forma temporal de la respuesta;
+\item
+  la variabilidad;
+\item
+  la estimación del tratamiento actual;
+\item
+  los errores estándar y las pruebas de hipótesis.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{8. Carry-over simple y complejo}
+\protect\phantomsection\label{carry-over-simple-y-complejo}
+En el carry-over simple, el efecto residual depende únicamente del
+tratamiento previo:
+
+\[
+A\to B=A\to C=A\to D.
+\]
+
+En el carry-over complejo, depende de la transición completa:
+
+\[
+f_{A\to B}(t),\qquad
+f_{A\to C}(t),\qquad
+f_{A\to D}(t).
+\]
+
+Así, el residuo de \(A\) puede aumentar la respuesta bajo \(B\),
+disminuirla bajo \(C\) y ser despreciable bajo \(D\).
+
+Con \(G\) tratamientos pueden existir hasta
+
+\[
+C=G(G-1)
+\]
+
+transiciones ordenadas entre tratamientos distintos.
+
+\alert{El carry-over complejo representa una interacción entre el tratamiento previo, el tratamiento actual y, cuando hay medidas repetidas, el tiempo intraperíodo.}
+\end{frame}
+
+\begin{frame}{9. Ejemplo AB/BA con una observación por período}
+\protect\phantomsection\label{ejemplo-abba-con-una-observaciuxf3n-por-peruxedodo}
+En un diseño AB/BA se observan dos transiciones:
+
+\begin{itemize}
+\tightlist
+\item
+  \(A\to B\) en el segundo período de la secuencia AB;
+\item
+  \(B\to A\) en el segundo período de la secuencia BA.
+\end{itemize}
+
+Con una sola observación por período es posible representar un
+carry-over constante, pero no estimar de manera flexible una curva
+temporal.
+
+Si se desea ajustar
+
+\[
+f_{A\to B}(t)
+=
+\sum_{\ell=1}^{d}\theta_{A\to B,\ell}\phi_\ell(t),
+\]
+
+se requieren varios tiempos distintos. Una observación no puede
+identificar una base con \(d>1\) coeficientes.
+
+Este ejemplo separa dos ideas:
+
+\begin{itemize}
+\tightlist
+\item
+  la transición puede estar presente en el diseño;
+\item
+  la información puede ser insuficiente para estimar su evolución
+  temporal.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{10. Ejemplo AB/BA con medidas repetidas}
+\protect\phantomsection\label{ejemplo-abba-con-medidas-repetidas}
+Supongamos ahora que cada unidad aporta \(L=10\) observaciones dentro de
+cada período. Las transiciones \(A\to B\) y \(B\to A\) se observan a lo
+largo de diez tiempos intraperíodo.
+
+\[
+\mathbf Y_{ij}
+=
+(Y_{ij1},\ldots,Y_{ij10})^\top.
+\]
+
+Esto permite estudiar:
+
+\begin{itemize}
+\tightlist
+\item
+  la tendencia común dentro del período;
+\item
+  la evolución del efecto residual de \(A\) sobre \(B\);
+\item
+  la evolución del efecto residual de \(B\) sobre \(A\);
+\item
+  la correlación entre mediciones cercanas;
+\item
+  la dependencia entre los dos períodos.
+\end{itemize}
+
+La ganancia de información no procede solamente de aumentar el número
+total de filas, sino de observar la respuesta en diferentes momentos
+relevantes del proceso.
+\end{frame}
+
+\begin{frame}{11. Diseño de Williams con cuatro tratamientos}
+\protect\phantomsection\label{diseuxf1o-de-williams-con-cuatro-tratamientos}
+Un diseño de Williams distribuye los tratamientos de forma equilibrada
+entre períodos y secuencias. Un ejemplo de cuatro tratamientos es:
+
+\[
+\begin{array}{c|cccc}
+\text{Secuencia} & P_1 & P_2 & P_3 & P_4\\ \hline
+1 & B & A & D & C\\
+2 & C & D & A & B\\
+3 & D & B & C & A\\
+4 & A & C & B & D
+\end{array}
+\]
+
+En este arreglo aparecen las doce transiciones entre tratamientos
+distintos. Por ejemplo:
+
+\begin{itemize}
+\tightlist
+\item
+  \(B\to A\), \(A\to D\) y \(D\to C\) en la primera secuencia;
+\item
+  \(C\to D\), \(D\to A\) y \(A\to B\) en la segunda.
+\end{itemize}
+
+Con medidas repetidas dentro de cada período, este diseño puede
+proporcionar soporte para las doce funciones de carry-over complejo.
+\end{frame}
+
+\begin{frame}{12. Diseño incompleto y transiciones no observadas}
+\protect\phantomsection\label{diseuxf1o-incompleto-y-transiciones-no-observadas}
+Considérese un estudio con tres tratamientos y solo dos secuencias:
+
+\[
+A\to B\to C,
+\qquad
+B\to A\to C.
+\]
+
+Se observan las transiciones:
+
+\[
+A\to B,\quad B\to C,\quad B\to A,\quad A\to C.
+\]
+
+No aparecen \(C\to A\) ni \(C\to B\). Por tanto, sus efectos no pueden
+estimarse, aunque existan muchos sujetos o muchas mediciones dentro de
+los períodos observados.
+
+\alert{Aumentar el tamaño muestral no crea una transición ausente.}
+
+Antes del análisis debe construirse una tabla de transiciones y
+comprobar:
+
+\begin{itemize}
+\tightlist
+\item
+  cuáles aparecen;
+\item
+  en qué períodos aparecen;
+\item
+  cuántas unidades las aportan;
+\item
+  cuántos tiempos intraperíodo las respaldan.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{13. Notación para medidas repetidas}
+\protect\phantomsection\label{notaciuxf3n-para-medidas-repetidas}
+Sea \(Y_{ijk}\) la respuesta de la unidad \(i\), en el período \(j\),
+durante la medición intraperíodo \(k\).
+
+\[
+\mathbf Y_{ij}
+=(Y_{ij1},\ldots,Y_{ijL})^\top,
+\]
+
+\[
+\mathbf Y_i
+=(\mathbf Y_{i1}^\top,\ldots,\mathbf Y_{iP}^\top)^\top.
+\]
+
+El índice \(t_{ijk}\) representa el tiempo de medición dentro del
+período, no necesariamente el tiempo absoluto desde el inicio del
+estudio.
+
+En algunas aplicaciones farmacológicas es preferible redefinirlo como
+tiempo desde la exposición previa. La formulación estadística se
+conserva, pero cambia la interpretación científica de las funciones.
+
+Además de la respuesta, el conjunto de datos debe contener:
+
+\begin{itemize}
+\tightlist
+\item
+  identificador de unidad;
+\item
+  secuencia;
+\item
+  período;
+\item
+  tratamiento actual;
+\item
+  tratamiento anterior o transición;
+\item
+  tiempo intraperíodo;
+\item
+  covariables relevantes.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{14. Datos en formato largo}
+\protect\phantomsection\label{datos-en-formato-largo}
+CrossCarry trabaja naturalmente con una fila por observación. La
+estructura mínima puede inspeccionarse así:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Una fila por unidad, período y tiempo}
+\FunctionTok{head}\NormalTok{(datos[, }\FunctionTok{c}\NormalTok{(}
+  \StringTok{"id"}\NormalTok{, }\StringTok{"secuencia"}\NormalTok{, }\StringTok{"periodo"}\NormalTok{,}
+  \StringTok{"tratamiento"}\NormalTok{, }\StringTok{"tiempo"}\NormalTok{, }\StringTok{"respuesta"}
+\NormalTok{)])}
+\end{Highlighting}
+\end{Shaded}
+
+Es indispensable verificar el orden antes de construir las variables
+carry-over:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos }\OtherTok{\textless{}{-}}\NormalTok{ datos }\SpecialCharTok{|\textgreater{}}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{arrange}\NormalTok{(id, periodo, tiempo)}
+\end{Highlighting}
+\end{Shaded}
+
+Controles recomendados:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{with}\NormalTok{(datos, }\FunctionTok{table}\NormalTok{(secuencia, periodo, tratamiento))}
+\FunctionTok{with}\NormalTok{(datos, }\FunctionTok{table}\NormalTok{(id, periodo))}
+\FunctionTok{summary}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{tiempo)}
+\end{Highlighting}
+\end{Shaded}
+
+Un error de ordenamiento puede asignar como tratamiento previo una
+observación equivocada y alterar toda la interpretación del modelo.
+\end{frame}
+
+\begin{frame}{15. Condiciones básicas de estimabilidad}
+\protect\phantomsection\label{condiciones-buxe1sicas-de-estimabilidad}
+Para separar tratamiento, período y carry-over deben cumplirse
+condiciones estructurales:
+
+\begin{enumerate}
+\tightlist
+\item
+  cada tratamiento debe aparecer en más de una secuencia;
+\item
+  cada tratamiento debe aparecer en más de un período;
+\item
+  cada período debe contener más de un tratamiento;
+\item
+  cada transición incluida debe observarse en al menos una
+  unidad-período;
+\item
+  las columnas asociadas con tratamiento, período y carry-over no deben
+  ser linealmente dependientes.
+\end{enumerate}
+
+Estas condiciones se expresan mediante el rango de la matriz de diseño:
+
+\[
+\operatorname{rank}(\mathbf X)
+=
+\text{número de parámetros identificables}.
+\]
+
+La estimabilidad es una propiedad conjunta del diseño, la codificación
+de los efectos y las funciones de base elegidas.
+\end{frame}
+
+\begin{frame}{16. Estimabilidad de las funciones}
+\protect\phantomsection\label{estimabilidad-de-las-funciones}
+Si un efecto funcional se representa con una base de dimensión \(d\),
+
+\[
+f_c(t)
+=
+\sum_{\ell=1}^{d}\theta_{c\ell}\phi_\ell(t),
+\]
+
+la matriz de evaluación debe satisfacer
+
+\[
+\operatorname{rank}(\boldsymbol\Phi_c)=d,
+\qquad L\ge d.
+\]
+
+No basta con tener \(L\) observaciones si todas se concentran en pocos
+tiempos o si la base genera columnas dependientes.
+
+En la práctica:
+
+\begin{itemize}
+\tightlist
+\item
+  una base pequeña suele ser preferible con pocos tiempos;
+\item
+  la dimensión debe crecer de manera conservadora;
+\item
+  cada transición necesita replicación entre unidades, no solo muchos
+  registros del mismo individuo;
+\item
+  la penalización mejora estabilidad, pero no corrige falta total de
+  información.
+\end{itemize}
+
+\alert{Identificabilidad teórica y estimabilidad práctica no son sinónimos.}
+\end{frame}
+
+\begin{frame}{17. Primera etapa metodológica: respuestas de conteo}
+\protect\phantomsection\label{primera-etapa-metodoluxf3gica-respuestas-de-conteo}
+Uno de los desarrollos que fundamenta CrossCarry estudió respuestas
+Poisson en diseños crossover. Para una media \(\mu_{ij}\),
+
+\[
+Y_{ijk}\sim\operatorname{Poisson}(\mu_{ij}),
+\]
+
+\[
+\log(\mu_{ij})
+=
+\mu+\tau_{ij}+\pi_j+\theta_{ij}.
+\]
+
+El modelo separa:
+
+\begin{itemize}
+\tightlist
+\item
+  media global;
+\item
+  tratamiento;
+\item
+  período;
+\item
+  carry-over.
+\end{itemize}
+
+Para diseños pequeños, como AB/BA, algunos estimadores pueden expresarse
+mediante combinaciones de logaritmos de medias de celda. El método delta
+permite aproximar sus varianzas.
+
+Este desarrollo mostró que los modelos normales convencionales pueden
+producir estimaciones deficientes cuando la respuesta es un conteo y
+existe carry-over.
+\end{frame}
+
+\begin{frame}{18. Sobredispersión y subdispersión}
+\protect\phantomsection\label{sobredispersiuxf3n-y-subdispersiuxf3n}
+La distribución Poisson supone igualdad entre media y varianza:
+
+\[
+\operatorname{Var}(Y_{ijk})=E(Y_{ijk})=\mu_{ijk}.
+\]
+
+En datos reales puede aparecer dispersión adicional:
+
+\[
+\operatorname{Var}(Y_{ijk})
+=
+\phi\mu_{ijk}.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(\phi>1\): sobredispersión;
+\item
+  \(\phi<1\): subdispersión;
+\item
+  \(\phi=1\): comportamiento Poisson ideal.
+\end{itemize}
+
+Ignorar la dispersión afecta principalmente los errores estándar y las
+pruebas de hipótesis. Por ello, la metodología incorporó un parámetro de
+dispersión y posteriormente se extendió mediante GEE a diseños con más
+períodos, covariables y estructuras de correlación.
+
+\alert{La distribución de la respuesta y la dependencia entre observaciones son problemas diferentes y ambos deben modelarse.}
+\end{frame}
+
+\begin{frame}{19. Aplicación: hidratación y cognición en Mali}
+\protect\phantomsection\label{aplicaciuxf3n-hidrataciuxf3n-y-cogniciuxf3n-en-mali}
+En el estudio de hidratación escolar, 47 estudiantes recibieron primero
+control y después hidratación, mientras 60 recibieron el orden inverso.
+La respuesta fue el número de diferencias correctamente identificadas
+entre dos imágenes.
+
+Características del problema:
+
+\begin{itemize}
+\tightlist
+\item
+  respuesta de conteo;
+\item
+  diseño AB/BA;
+\item
+  ausencia de un lavado realista por razones éticas;
+\item
+  grado escolar como covariable;
+\item
+  observaciones correlacionadas dentro de cada estudiante.
+\end{itemize}
+
+El modelo GEE con grado escolar presentó mejor QIC que el análisis
+loglineal más sencillo. Los resultados indicaron:
+
+\begin{itemize}
+\tightlist
+\item
+  efecto de período;
+\item
+  efecto de grado;
+\item
+  carry-over significativo;
+\item
+  ausencia de un efecto directo significativo de hidratación en el
+  período de aplicación.
+\end{itemize}
+
+El ejemplo muestra que un tratamiento puede influir posteriormente
+aunque su efecto directo inmediato no resulte significativo.
+\end{frame}
+
+\begin{frame}{20. ¿Por qué usar GEE?}
+\protect\phantomsection\label{por-quuxe9-usar-gee}
+Las ecuaciones de estimación generalizadas modelan la media marginal y
+reconocen la correlación dentro de cada unidad.
+
+La ecuación básica es
+
+\[
+\mathbf U(\boldsymbol\beta)
+=
+\sum_{i=1}^{n}
+\mathbf D_i^\top
+\mathbf V_i^{-1}
+(\mathbf Y_i-\boldsymbol\mu_i)
+=
+\mathbf 0.
+\]
+
+Aquí:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\boldsymbol\mu_i\) contiene las medias marginales;
+\item
+  \(\mathbf D_i=\partial\boldsymbol\mu_i/\partial\boldsymbol\beta^\top\);
+\item
+  \(\mathbf V_i\) es una matriz de covarianza de trabajo.
+\end{itemize}
+
+Ventajas:
+
+\begin{itemize}
+\tightlist
+\item
+  permite distintas familias y enlaces;
+\item
+  produce efectos marginales interpretables;
+\item
+  usa varianza robusta tipo sándwich;
+\item
+  no exige especificar una distribución completa para efectos
+  aleatorios.
+\end{itemize}
+
+La robustez no elimina la necesidad de una estructura de media
+correctamente especificada.
+\end{frame}
+
+\begin{frame}{21. Modelo semiparamétrico de CrossCarry}
+\protect\phantomsection\label{modelo-semiparamuxe9trico-de-crosscarry}
+El modelo general utilizado para medidas repetidas es
+
+\[
+g(\mu_{ijk})
+=
+\mathbf x_{ijk}^{\top}\boldsymbol\beta
++f(t_{ijk})
++\sum_{c=1}^{C}I_{ijc}f_c(t_{ijk}).
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(\mathbf x_{ijk}^{\top}\boldsymbol\beta\): tratamiento, período,
+  secuencia, línea basal y covariables;
+\item
+  \(f(t)\): tendencia temporal común;
+\item
+  \(I_{ijc}\): indicador de la transición activa;
+\item
+  \(f_c(t)\): carry-over específico de la transición;
+\item
+  \(g(\cdot)\): enlace apropiado para la respuesta.
+\end{itemize}
+
+Este modelo evita imponer que el tiempo y el carry-over sigan líneas
+rectas o polinomios de bajo grado.
+
+\alert{El propósito no es hacer el modelo complejo por sí mismo, sino separar fuentes de variación que tienen interpretaciones científicas distintas.}
+\end{frame}
+
+\begin{frame}{22. Bases funcionales y splines}
+\protect\phantomsection\label{bases-funcionales-y-splines}
+Las funciones desconocidas se aproximan mediante bases:
+
+\[
+f(t)
+=
+\sum_{\ell=1}^{d}\theta_\ell\phi_\ell(t),
+\qquad
+f_c(t)
+=
+\sum_{\ell=1}^{d}\theta_{c\ell}\phi_\ell(t).
+\]
+
+Pueden emplearse:
+
+\begin{itemize}
+\tightlist
+\item
+  B-splines para curvas suaves y locales;
+\item
+  bases de Fourier para patrones periódicos;
+\item
+  otras bases con propiedades de aproximación adecuadas.
+\end{itemize}
+
+La base transforma la estimación funcional en la estimación de
+coeficientes. El número \(d\) controla la flexibilidad:
+
+\begin{itemize}
+\tightlist
+\item
+  \(d\) pequeño puede producir sesgo por falta de flexibilidad;
+\item
+  \(d\) grande puede generar sobreajuste e inestabilidad;
+\item
+  la penalización permite utilizar una base razonablemente rica sin
+  seguir todas las fluctuaciones de los datos.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{23. Dos escalas de correlación}
+\protect\phantomsection\label{dos-escalas-de-correlaciuxf3n}
+Con medidas repetidas existen al menos dos mecanismos de dependencia:
+
+\begin{enumerate}
+\tightlist
+\item
+  correlación entre tiempos dentro del mismo período;
+\item
+  correlación entre períodos de la misma unidad.
+\end{enumerate}
+
+Una estructura única AR(1) o intercambiable sobre las \(PL\)
+observaciones puede tratar ambas escalas como si fueran equivalentes.
+
+CrossCarry permite utilizar
+
+\[
+\mathbf R(\boldsymbol\alpha)
+=
+\boldsymbol\Psi\otimes
+\mathbf R_1(\boldsymbol\alpha_1),
+\]
+
+con:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\mathbf R_1\): dependencia intraperíodo;
+\item
+  \(\boldsymbol\Psi\): dependencia entre períodos.
+\end{itemize}
+
+La matriz resultante tiene dimensión \(PL\times PL\), pero se construye
+con un número moderado de parámetros y conserva una interpretación por
+bloques.
+\end{frame}
+
+\begin{frame}{24. Interpretación del producto de Kronecker}
+\protect\phantomsection\label{interpretaciuxf3n-del-producto-de-kronecker}
+Si
+
+\[
+\boldsymbol\Psi
+=
+\begin{pmatrix}
+1 & \psi_{12}\\
+\psi_{12} & 1
+\end{pmatrix},
+\]
+
+y \(\mathbf R_1\) describe la relación entre \(L\) tiempos, entonces
+
+\[
+\boldsymbol\Psi\otimes\mathbf R_1
+=
+\begin{pmatrix}
+\mathbf R_1 & \psi_{12}\mathbf R_1\\
+\psi_{12}\mathbf R_1 & \mathbf R_1
+\end{pmatrix}.
+\]
+
+Los bloques diagonales representan la correlación dentro de cada
+período. Los bloques fuera de la diagonal representan la relación entre
+períodos, escalada por \(\psi_{12}\).
+
+Esta forma es útil cuando el patrón temporal intraperíodo se repite
+aproximadamente en cada período, pero su intensidad entre períodos
+cambia.
+\end{frame}
+
+\begin{frame}{25. Aplicación: presión arterial}
+\protect\phantomsection\label{aplicaciuxf3n-presiuxf3n-arterial}
+El ejemplo de presión arterial contiene:
+
+\begin{itemize}
+\tightlist
+\item
+  tres tratamientos: dos dosis y placebo;
+\item
+  seis secuencias de tres períodos;
+\item
+  dos individuos por secuencia;
+\item
+  diez mediciones dentro de cada período;
+\item
+  tiempos antes y después de la administración.
+\end{itemize}
+
+La respuesta temporal presenta cambios que no se describen bien con una
+única línea recta. Además, no siempre es razonable asumir que un placebo
+elimina el residuo de un tratamiento antihipertensivo anterior.
+
+Los análisis mostraron:
+
+\begin{itemize}
+\tightlist
+\item
+  una tendencia temporal marcada;
+\item
+  diferencias entre algunas transiciones;
+\item
+  evidencia de que los carry-over no eran iguales entre tratamientos;
+\item
+  mejor ajuste de estructuras de correlación de Kronecker según QIC.
+\end{itemize}
+
+Este caso motivó tanto el componente funcional como la estructura de
+correlación especializada.
+\end{frame}
+
+\begin{frame}{26. Aplicación: glucemia en conejas}
+\protect\phantomsection\label{aplicaciuxf3n-glucemia-en-conejas}
+El estudio de glucemia incluyó:
+
+\begin{itemize}
+\tightlist
+\item
+  dos tratamientos para control de diabetes;
+\item
+  secuencias ABAB y BABA;
+\item
+  once conejas por secuencia;
+\item
+  cuatro períodos;
+\item
+  cinco mediciones dentro de cada período.
+\end{itemize}
+
+La distribución normal no describió adecuadamente los residuos. La
+comparación mediante QIC favoreció un modelo gamma con enlace
+logarítmico.
+
+El modelo permitió estimar:
+
+\begin{itemize}
+\tightlist
+\item
+  una disminución inicial de la glucemia seguida de recuperación;
+\item
+  funciones carry-over de \(A\to B\) y \(B\to A\);
+\item
+  ausencia de un efecto directo significativo entre tratamientos;
+\item
+  un efecto particular en el cuarto período.
+\end{itemize}
+
+El ejemplo ilustra que CrossCarry no se limita a respuestas gaussianas.
+\end{frame}
+
+\begin{frame}{27. Aplicación: dietas en vacas lecheras}
+\protect\phantomsection\label{aplicaciuxf3n-dietas-en-vacas-lecheras}
+En el estudio de producción animal, ocho vacas fueron asignadas a dos
+secuencias:
+
+\[
+AB\qquad\text{y}\qquad BA.
+\]
+
+El tratamiento \(A\) correspondía a pasto y \(B\) a una mezcla que
+incorporaba residuos de papel reciclado. Se realizaron mediciones
+repetidas de producción y condición durante dos períodos.
+
+El análisis con correlación de Kronecker encontró:
+
+\begin{itemize}
+\tightlist
+\item
+  dependencia intraperíodo importante;
+\item
+  una correlación positiva, aunque pequeña, entre períodos;
+\item
+  ausencia de un efecto directo significativo de dieta;
+\item
+  presencia de carry-over asociado con la dieta previa;
+\item
+  interacción temporal del efecto residual.
+\end{itemize}
+
+La conclusión práctica fue que el animal necesitaba tiempo para
+recuperarse después del cambio de alimentación.
+\end{frame}
+
+\begin{frame}{28. Aplicación: ocupación en oficinas}
+\protect\phantomsection\label{aplicaciuxf3n-ocupaciuxf3n-en-oficinas}
+El experimento de ambientes de trabajo comparó cuatro diseños de oficina
+mediante un diseño de Williams con 288 participantes.
+
+Tratamientos:
+
+\begin{itemize}
+\tightlist
+\item
+  Nest;
+\item
+  Control;
+\item
+  Menu;
+\item
+  Campus.
+\end{itemize}
+
+Cada período duró dos semanas y la ocupación fue registrada mediante
+sensores, generando 96 observaciones intraperíodo por participante.
+
+Este conjunto de datos es especialmente informativo porque:
+
+\begin{itemize}
+\tightlist
+\item
+  contiene observaciones densas;
+\item
+  representa las doce transiciones;
+\item
+  presenta una tendencia diaria no lineal;
+\item
+  permite estimar carry-over complejo;
+\item
+  ofrece suficiente información para aplicar penalización específica por
+  transición.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{29. Resultados del ejemplo de oficinas}
+\protect\phantomsection\label{resultados-del-ejemplo-de-oficinas}
+La comparación por QIC favoreció el modelo semiparamétrico penalizado
+con carry-over complejo y correlación de trabajo independiente dentro de
+las opciones evaluadas.
+
+La tendencia temporal mostró:
+
+\begin{itemize}
+\tightlist
+\item
+  actividad creciente durante la mañana;
+\item
+  un descenso alrededor del almuerzo;
+\item
+  una segunda elevación durante la tarde.
+\end{itemize}
+
+Las transiciones no tuvieron el mismo comportamiento. Por ejemplo, el
+residuo de Campus sobre Nest fue diferente del residuo de Campus sobre
+Control o Menu.
+
+Esto respalda la noción de carry-over complejo: no existe una única
+curva residual de Campus que describa adecuadamente todas las
+transiciones posteriores.
+
+\alert{La forma de la curva aporta información científica adicional que desaparecería al resumir cada período mediante una sola media.}
+\end{frame}
+
+\begin{frame}{30. ¿Por qué penalizar las curvas?}
+\protect\phantomsection\label{por-quuxe9-penalizar-las-curvas}
+Al aumentar el número de tratamientos crece rápidamente el número de
+funciones:
+
+\[
+(C+1)d
+\]
+
+coeficientes funcionales para una tendencia temporal y \(C\) carry-over,
+si cada función utiliza \(d\) elementos de base.
+
+La penalización introduce estabilidad:
+
+\[
+U_f^{\mathrm{pen}}
+=U_f-\lambda\mathbf P_f\boldsymbol\theta,
+\]
+
+\[
+U_c^{\mathrm{pen}}
+=U_c-\lambda_c\mathbf P_c\boldsymbol\theta_c.
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(\lambda\) pequeño permite mayor flexibilidad;
+\item
+  \(\lambda\) grande fuerza una curva más suave;
+\item
+  un valor muy grande aproxima el efecto a una función simple o casi
+  nula.
+\end{itemize}
+
+La penalización no sustituye replicación, pero evita que curvas
+débilmente informadas sigan el ruido de la muestra.
+\end{frame}
+
+\begin{frame}{31. Selección de penalización y modelo}
+\protect\phantomsection\label{selecciuxf3n-de-penalizaciuxf3n-y-modelo}
+Los parámetros de suavidad pueden elegirse mediante:
+
+\begin{itemize}
+\tightlist
+\item
+  QIC en una rejilla de valores;
+\item
+  validación cruzada dejando una unidad completa fuera;
+\item
+  aproximaciones de validación cruzada generalizada;
+\item
+  agrupación de transiciones con comportamiento semejante para compartir
+  penalización.
+\end{itemize}
+
+La comparación de modelos debe considerar conjuntamente:
+
+\begin{itemize}
+\tightlist
+\item
+  QIC, QICu o CIC;
+\item
+  convergencia;
+\item
+  estabilidad de estimaciones;
+\item
+  plausibilidad de las curvas;
+\item
+  condición de las matrices;
+\item
+  residuos;
+\item
+  incertidumbre de los efectos.
+\end{itemize}
+
+\alert{El menor QIC no convierte automáticamente un modelo en científicamente correcto.}
+Es un criterio de comparación, no una validación completa.
+\end{frame}
+
+\begin{frame}{32. Inferencia y varianza robusta}
+\protect\phantomsection\label{inferencia-y-varianza-robusta}
+Para los parámetros no penalizados, la varianza robusta conserva la
+forma sándwich:
+
+\[
+\widehat{\operatorname{Var}}(\widehat{\boldsymbol\beta})
+=
+\mathbf A^{-1}\mathbf B\mathbf A^{-1}.
+\]
+
+Para los componentes penalizados,
+
+\[
+\widehat{\operatorname{Var}}(\widehat{\boldsymbol\theta})
+=
+(\mathbf A+\lambda\mathbf P)^{-1}
+\mathbf B
+(\mathbf A+\lambda\mathbf P)^{-1}.
+\]
+
+La inferencia debe distinguir entre:
+
+\begin{itemize}
+\tightlist
+\item
+  efectos paramétricos, como tratamientos y períodos;
+\item
+  coeficientes de base;
+\item
+  funciones evaluadas sobre una rejilla temporal;
+\item
+  bandas puntuales o simultáneas;
+\item
+  evidencia estadística y relevancia científica.
+\end{itemize}
+
+Una curva cuyo intervalo incluye el valor nulo en casi todo el dominio
+puede considerarse débil, aunque presente pequeñas oscilaciones
+estimadas.
+\end{frame}
+
+\begin{frame}{33. Simulaciones: lecciones principales}
+\protect\phantomsection\label{simulaciones-lecciones-principales}
+Los estudios de simulación de los artículos evaluaron diseños AB/BA,
+diseños de Williams, respuestas normales y Poisson, distintas
+correlaciones, tamaños muestrales y números de mediciones.
+
+Patrones recurrentes:
+
+\begin{itemize}
+\tightlist
+\item
+  ignorar carry-over puede deteriorar la cobertura de los intervalos;
+\item
+  asumir carry-over simple cuando el verdadero efecto es complejo no
+  garantiza una mejora;
+\item
+  aumentar \(L\) mejora la reconstrucción de las funciones;
+\item
+  aumentar el número de unidades mejora la inferencia entre sujetos;
+\item
+  la correlación de Kronecker puede aumentar eficiencia cuando refleja
+  la estructura real;
+\item
+  la penalización mejora estabilidad frente a una base no penalizada;
+\item
+  con muy pocas mediciones por período, el modelo funcional complejo
+  puede no ser recomendable.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{34. Diagnóstico del modelo}
+\protect\phantomsection\label{diagnuxf3stico-del-modelo}
+El diagnóstico debe examinar más que la significación de los
+coeficientes.
+
+Aspectos esenciales:
+
+\begin{itemize}
+\tightlist
+\item
+  residuos ordinarios, Pearson o de desviación;
+\item
+  patrones residuales frente al tiempo;
+\item
+  observaciones influyentes;
+\item
+  convergencia del algoritmo;
+\item
+  valores extremos de correlación;
+\item
+  sensibilidad a la dimensión de la base;
+\item
+  sensibilidad a la penalización;
+\item
+  comparación de estructuras de trabajo.
+\end{itemize}
+
+Código conceptual:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Objetos y nombres exactos dependen de la función ajustada}
+\FunctionTok{summary}\NormalTok{(modelo)}
+\FunctionTok{plot}\NormalTok{(modelo)}
+\NormalTok{modelo}\SpecialCharTok{$}\NormalTok{QIC}
+\end{Highlighting}
+\end{Shaded}
+
+Los residuos no validan por sí solos el diseño ni demuestran ausencia de
+carry-over. Sirven para detectar incompatibilidades importantes entre
+datos y modelo.
+\end{frame}
+
+\begin{frame}[fragile]{35. Arquitectura del paquete CrossCarry}
+\protect\phantomsection\label{arquitectura-del-paquete-crosscarry}
+El paquete organiza el análisis en cuatro funciones principales:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{createCarry()}: codificación de carry-over de primer orden;
+\item
+  \texttt{CrossGEE()}: GEE con estructuras convencionales;
+\item
+  \texttt{CrossGEEKron()}: GEE con correlación por producto de
+  Kronecker;
+\item
+  \texttt{CrossGEESP()}: GEE semiparamétrica para tiempo y carry-over.
+\end{itemize}
+
+Flujo recomendado:
+
+\begin{enumerate}
+\tightlist
+\item
+  organizar y verificar los datos;
+\item
+  construir las variables carry-over;
+\item
+  ajustar modelos coherentes con el diseño;
+\item
+  comparar estructura de media y correlación;
+\item
+  revisar diagnóstico e incertidumbre;
+\item
+  interpretar en la escala del enlace.
+\end{enumerate}
+
+No todas las funciones admiten las mismas opciones. La versión instalada
+y la documentación del paquete deben revisarse antes de ejecutar un
+análisis reproducible.
+\end{frame}
+
+\begin{frame}[fragile]{36. Preparación del ejemplo Arterial}
+\protect\phantomsection\label{preparaciuxf3n-del-ejemplo-arterial}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(CrossCarry)}
+\FunctionTok{data}\NormalTok{(}\StringTok{"Arterial"}\NormalTok{)}
+
+\FunctionTok{str}\NormalTok{(Arterial)}
+\FunctionTok{head}\NormalTok{(Arterial)}
+\end{Highlighting}
+\end{Shaded}
+
+La base contiene las variables necesarias para el análisis:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Pressure}: presión arterial;
+\item
+  \texttt{Subject}: identificador individual;
+\item
+  \texttt{Treatment}: tratamiento del período;
+\item
+  \texttt{Period}: período del diseño;
+\item
+  \texttt{Time}: momento de medición dentro del período.
+\end{itemize}
+
+Antes de ajustar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{with}\NormalTok{(Arterial, }\FunctionTok{table}\NormalTok{(Treatment, Period))}
+\FunctionTok{with}\NormalTok{(Arterial, }\FunctionTok{table}\NormalTok{(Subject, Period))}
+\FunctionTok{summary}\NormalTok{(Arterial}\SpecialCharTok{$}\NormalTok{Time)}
+\end{Highlighting}
+\end{Shaded}
+
+Estas comprobaciones permiten detectar ausencias, duplicados y
+desequilibrios que podrían afectar la construcción del carry-over o la
+correlación.
+\end{frame}
+
+\begin{frame}[fragile]{37. Construcción de indicadores carry-over}
+\protect\phantomsection\label{construcciuxf3n-de-indicadores-carry-over}
+La interfaz documentada en el manuscrito del paquete utiliza:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{carrydata }\OtherTok{\textless{}{-}} \FunctionTok{createCarry}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ Arterial,}
+  \AttributeTok{treatment =} \StringTok{"Treatment"}\NormalTok{,}
+  \AttributeTok{period =} \StringTok{"Period"}\NormalTok{,}
+  \AttributeTok{id =} \StringTok{"Subject"}\NormalTok{,}
+  \AttributeTok{carrySimple =} \ConstantTok{TRUE}
+\NormalTok{)}
+
+\NormalTok{datos }\OtherTok{\textless{}{-}}\NormalTok{ carrydata}\SpecialCharTok{$}\NormalTok{data}
+\NormalTok{carry }\OtherTok{\textless{}{-}}\NormalTok{ carrydata}\SpecialCharTok{$}\NormalTok{carryover}
+
+\FunctionTok{head}\NormalTok{(datos)}
+\FunctionTok{head}\NormalTok{(carry)}
+\end{Highlighting}
+\end{Shaded}
+
+Con carry-over simple, una columna como \texttt{Carry\_B} vale 1 cuando
+el tratamiento inmediatamente anterior fue \(B\) y 0 en otro caso.
+
+Para carry-over complejo, la codificación debe representar transiciones
+como \(A\to B\) o \(C\to A\). Antes de modelarlas debe comprobarse que
+cada columna contenga observaciones activas suficientes.
+\end{frame}
+
+\begin{frame}[fragile]{38. Ajuste con correlación de Kronecker}
+\protect\phantomsection\label{ajuste-con-correlaciuxf3n-de-kronecker}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modelo\_kron }\OtherTok{\textless{}{-}} \FunctionTok{CrossGEEKron}\NormalTok{(}
+  \AttributeTok{response =} \StringTok{"Pressure"}\NormalTok{,}
+  \AttributeTok{treatment =} \StringTok{"Treatment"}\NormalTok{,}
+  \AttributeTok{period =} \StringTok{"Period"}\NormalTok{,}
+  \AttributeTok{id =} \StringTok{"Subject"}\NormalTok{,}
+  \AttributeTok{time =} \StringTok{"Time"}\NormalTok{,}
+  \AttributeTok{carry =}\NormalTok{ carry,}
+  \AttributeTok{data =}\NormalTok{ datos,}
+  \AttributeTok{correlation =} \StringTok{"AR{-}M"}\NormalTok{,}
+  \AttributeTok{Mv =} \DecValTok{1}
+\NormalTok{)}
+
+\FunctionTok{summary}\NormalTok{(modelo\_kron}\SpecialCharTok{$}\NormalTok{model)}
+\NormalTok{modelo\_kron}\SpecialCharTok{$}\NormalTok{QIC}
+\end{Highlighting}
+\end{Shaded}
+
+El resumen debe interpretarse mediante los errores estándar robustos.
+Los coeficientes de tratamiento comparan cada nivel con la categoría de
+referencia, condicionados por período, tiempo y carry-over incluidos en
+el predictor.
+
+La matriz de Kronecker permite recuperar:
+
+\begin{itemize}
+\tightlist
+\item
+  el patrón dentro del período;
+\item
+  la relación entre períodos;
+\item
+  la matriz completa de trabajo.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{39. Selección, interpretación y reporte}
+\protect\phantomsection\label{selecciuxf3n-interpretaciuxf3n-y-reporte}
+Una comparación reproducible puede organizarse así:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{comparacion }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{modelo =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Independencia"}\NormalTok{, }\StringTok{"AR(1)"}\NormalTok{,}
+    \StringTok{"Kronecker"}\NormalTok{, }\StringTok{"Semiparamétrico"}
+\NormalTok{  ),}
+  \AttributeTok{QIC =} \FunctionTok{c}\NormalTok{(qic\_ind, qic\_ar1, qic\_kron, qic\_sp)}
+\NormalTok{)}
+
+\NormalTok{comparacion[}\FunctionTok{order}\NormalTok{(comparacion}\SpecialCharTok{$}\NormalTok{QIC), ]}
+\end{Highlighting}
+\end{Shaded}
+
+El informe final debe incluir:
+
+\begin{itemize}
+\tightlist
+\item
+  diseño y secuencias;
+\item
+  duración de períodos y lavado;
+\item
+  número de unidades y pérdidas;
+\item
+  tiempos de medición;
+\item
+  familia y enlace;
+\item
+  codificación del carry-over;
+\item
+  estructura de correlación;
+\item
+  dimensión de base y penalización;
+\item
+  estimaciones robustas y bandas;
+\item
+  diagnóstico y análisis de sensibilidad.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{40. Conclusiones y preguntas}
+\protect\phantomsection\label{conclusiones-y-preguntas}
+CrossCarry integra una trayectoria metodológica para diseños crossover
+que incluye:
+
+\begin{itemize}
+\tightlist
+\item
+  respuestas gaussianas y no gaussianas;
+\item
+  una o múltiples mediciones por período;
+\item
+  carry-over simple y complejo;
+\item
+  tendencias temporales no lineales;
+\item
+  correlación dentro y entre períodos;
+\item
+  estimación semiparamétrica y penalizada;
+\item
+  criterios de comparación y herramientas de interpretación.
+\end{itemize}
+
+Recomendaciones finales:
+
+\begin{enumerate}
+\tightlist
+\item
+  diseñar pensando en las transiciones que se desean estimar;
+\item
+  justificar científicamente el período de lavado;
+\item
+  no confundir muchos registros con suficiente replicación;
+\item
+  comenzar por modelos interpretables y aumentar complejidad solo cuando
+  los datos la sostengan;
+\item
+  interpretar efectos en su escala científica, no solo mediante valores
+  \(p\).
+\end{enumerate}
+
+\vfill
+
+\centering
+
+\Large\textbf{CrossCarry convierte la memoria del tratamiento en una parte explícita, estimable e interpretable del análisis.}
+
+\vspace{0.4cm}
+
+\textbf{Gracias por su atención. ¿Preguntas?}
+\end{frame}
+
+
+
+
+\end{document}

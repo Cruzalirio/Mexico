@@ -239,7 +239,7 @@ receta_forest_peso <- receta_arbol_peso |>
 modelo_rf_reg <- rand_forest(
   mtry = tune(),
   min_n = tune(),
-  trees = 800
+  trees = 100
 ) |>
   set_engine(
     "ranger",
@@ -438,7 +438,7 @@ receta_clas_arbol <- recipe(
 modelo_rf_clas <- rand_forest(
   mtry = tune(),
   min_n = tune(),
-  trees = 800
+  trees = 100
 ) |>
   set_engine(
     "ranger",

@@ -37,9 +37,13 @@ Curso-taller sobre métodos para el análisis de datos longitudinales, espaciale
 
 **Conferencia**
 
-Innovación estadística en R para el análisis de diseños *crossover* en salud y producción animal.
+Introducción a los diseños *crossover*, los períodos de lavado, los efectos *carry-over* y las herramientas del paquete `CrossCarry` para el análisis de datos en salud y producción animal.
 
 **Horario:** 13:00–15:00 h
+
+presentation/CrossCarry.pdf{.btn .btn-primary target="_blank"}
+
+presentation/CrossCarry.qmd{.btn .btn-outline-secondary}
 :::
 ::::
 

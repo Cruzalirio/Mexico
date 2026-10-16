@@ -1,6 +1,8 @@
 project:
   type: book
   output-dir: docs
+  resources:
+    - presentation/CrossCarry.pdf
 
 book:
   title: "Aprendizaje Estadístico en Ciencia Animal"
@@ -26,11 +28,6 @@ book:
         - modulos/ml_04.qmd
         - modulos/ml_05.qmd
 
-    - part: "CrossCarry"
-      chapters:
-        - modulos/crosscarry.qmd
-
-    - recursos.qmd
 
 format:
   html:
