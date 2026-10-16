@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Capítulo 5. Segmentación y reducción de dimensionalidad – Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal</title>
+<title>12&nbsp; Segmentación y reducción de dimensionalidad – Aprendizaje Estadístico en Ciencia Animal</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -290,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_05.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 5. Segmentación y reducción de dimensionalidad</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_05.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Segmentación y reducción de dimensionalidad</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -305,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal</a> 
+      <a href="../">Aprendizaje Estadístico en Ciencia Animal</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
 </div>
@@ -341,20 +341,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../modulos/st_02.html" class="sidebar-item-text sidebar-link">
+  <a href="../modulos/st_02A.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bloque 2. Estadística descriptiva y visualización</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../modulos/st_03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bloque 4. Dependencia temporal y modelos mixtos</span></span></a>
+  <a href="../modulos/st_02B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">De la regresión lineal simple a la múltiple</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modulos/st_03A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dependencia temporal y modelos mixtos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modulos/st_03B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">GLMM y respuestas no continuas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/st_04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Bloques 6 y 7. Dependencia espacial y modelos SAR espacio-temporales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dependencia espacial y modelos SAR espacio-temporales</span></span></a>
   </div>
 </li>
       </ul>
@@ -371,31 +383,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje supervisado y no supervisado</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Capítulo 2. Métodos de regresión y clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Métodos de regresión y clasificación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Capítulo 3. Métodos basados en árboles</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 3. Métodos basados en árboles</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Capítulo 4. Introducción a las redes neuronales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introducción a las redes neuronales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_05.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 5. Segmentación y reducción de dimensionalidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Segmentación y reducción de dimensionalidad</span></span></a>
   </div>
 </li>
       </ul>
@@ -412,7 +424,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/crosscarry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">CrossCarry</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">CrossCarry</span></span></a>
   </div>
 </li>
       </ul>
@@ -420,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../recursos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Recursos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Recursos</span></span></a>
   </div>
 </li>
     </ul>
@@ -433,17 +445,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#construcción-de-perfiles-de-granja" id="toc-construcción-de-perfiles-de-granja" class="nav-link active" data-scroll-target="#construcción-de-perfiles-de-granja"><span class="header-section-number">10.1</span> Construcción de perfiles de granja</a></li>
-  <li><a href="#selección-y-estandarización-de-variables" id="toc-selección-y-estandarización-de-variables" class="nav-link" data-scroll-target="#selección-y-estandarización-de-variables"><span class="header-section-number">10.2</span> Selección y estandarización de variables</a></li>
-  <li><a href="#número-de-conglomerados" id="toc-número-de-conglomerados" class="nav-link" data-scroll-target="#número-de-conglomerados"><span class="header-section-number">10.3</span> Número de conglomerados</a></li>
-  <li><a href="#k-means" id="toc-k-means" class="nav-link" data-scroll-target="#k-means"><span class="header-section-number">10.4</span> K-means</a></li>
-  <li><a href="#caracterización-de-los-grupos" id="toc-caracterización-de-los-grupos" class="nav-link" data-scroll-target="#caracterización-de-los-grupos"><span class="header-section-number">10.5</span> Caracterización de los grupos</a></li>
-  <li><a href="#análisis-de-componentes-principales" id="toc-análisis-de-componentes-principales" class="nav-link" data-scroll-target="#análisis-de-componentes-principales"><span class="header-section-number">10.6</span> Análisis de componentes principales</a></li>
-  <li><a href="#variables-asociadas-con-los-componentes" id="toc-variables-asociadas-con-los-componentes" class="nav-link" data-scroll-target="#variables-asociadas-con-los-componentes"><span class="header-section-number">10.7</span> Variables asociadas con los componentes</a></li>
-  <li><a href="#clustering-jerárquico" id="toc-clustering-jerárquico" class="nav-link" data-scroll-target="#clustering-jerárquico"><span class="header-section-number">10.8</span> Clustering jerárquico</a></li>
-  <li><a href="#calidad-mediante-siluetas" id="toc-calidad-mediante-siluetas" class="nav-link" data-scroll-target="#calidad-mediante-siluetas"><span class="header-section-number">10.9</span> Calidad mediante siluetas</a></li>
-  <li><a href="#distribución-geográfica-de-los-conglomerados" id="toc-distribución-geográfica-de-los-conglomerados" class="nav-link" data-scroll-target="#distribución-geográfica-de-los-conglomerados"><span class="header-section-number">10.10</span> Distribución geográfica de los conglomerados</a></li>
-  <li><a href="#actividad-de-interpretación" id="toc-actividad-de-interpretación" class="nav-link" data-scroll-target="#actividad-de-interpretación"><span class="header-section-number">10.11</span> Actividad de interpretación</a></li>
+  <li><a href="#construcción-de-perfiles-de-granja" id="toc-construcción-de-perfiles-de-granja" class="nav-link active" data-scroll-target="#construcción-de-perfiles-de-granja"><span class="header-section-number">12.1</span> Construcción de perfiles de granja</a></li>
+  <li><a href="#selección-y-estandarización-de-variables" id="toc-selección-y-estandarización-de-variables" class="nav-link" data-scroll-target="#selección-y-estandarización-de-variables"><span class="header-section-number">12.2</span> Selección y estandarización de variables</a></li>
+  <li><a href="#número-de-conglomerados" id="toc-número-de-conglomerados" class="nav-link" data-scroll-target="#número-de-conglomerados"><span class="header-section-number">12.3</span> Número de conglomerados</a></li>
+  <li><a href="#k-means" id="toc-k-means" class="nav-link" data-scroll-target="#k-means"><span class="header-section-number">12.4</span> K-means</a></li>
+  <li><a href="#caracterización-de-los-grupos" id="toc-caracterización-de-los-grupos" class="nav-link" data-scroll-target="#caracterización-de-los-grupos"><span class="header-section-number">12.5</span> Caracterización de los grupos</a></li>
+  <li><a href="#análisis-de-componentes-principales" id="toc-análisis-de-componentes-principales" class="nav-link" data-scroll-target="#análisis-de-componentes-principales"><span class="header-section-number">12.6</span> Análisis de componentes principales</a></li>
+  <li><a href="#variables-asociadas-con-los-componentes" id="toc-variables-asociadas-con-los-componentes" class="nav-link" data-scroll-target="#variables-asociadas-con-los-componentes"><span class="header-section-number">12.7</span> Variables asociadas con los componentes</a></li>
+  <li><a href="#clustering-jerárquico" id="toc-clustering-jerárquico" class="nav-link" data-scroll-target="#clustering-jerárquico"><span class="header-section-number">12.8</span> Clustering jerárquico</a></li>
+  <li><a href="#calidad-mediante-siluetas" id="toc-calidad-mediante-siluetas" class="nav-link" data-scroll-target="#calidad-mediante-siluetas"><span class="header-section-number">12.9</span> Calidad mediante siluetas</a></li>
+  <li><a href="#distribución-geográfica-de-los-conglomerados" id="toc-distribución-geográfica-de-los-conglomerados" class="nav-link" data-scroll-target="#distribución-geográfica-de-los-conglomerados"><span class="header-section-number">12.10</span> Distribución geográfica de los conglomerados</a></li>
+  <li><a href="#actividad-de-interpretación" id="toc-actividad-de-interpretación" class="nav-link" data-scroll-target="#actividad-de-interpretación"><span class="header-section-number">12.11</span> Actividad de interpretación</a></li>
   </ul>
 </nav>
     </div>
@@ -451,9 +463,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_05.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 5. Segmentación y reducción de dimensionalidad</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_05.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Segmentación y reducción de dimensionalidad</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 5. Segmentación y reducción de dimensionalidad</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Segmentación y reducción de dimensionalidad</span></h1>
 </div>
 
 
@@ -607,8 +619,8 @@ $ periodo                &lt;fct&gt; Semanas 1-20, Semanas 1-20, Semanas 1-20, S
 </div>
 </div>
 <p><br></p>
-<section id="construcción-de-perfiles-de-granja" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="construcción-de-perfiles-de-granja"><span class="header-section-number">10.1</span> Construcción de perfiles de granja</h2>
+<section id="construcción-de-perfiles-de-granja" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="construcción-de-perfiles-de-granja"><span class="header-section-number">12.1</span> Construcción de perfiles de granja</h2>
 <p><br></p>
 <div class="cell">
 <details class="code-fold">
@@ -675,8 +687,8 @@ $ n_animales          &lt;int&gt; 1, 1, 2, 2, 3, 1, 1, 1, 5, 2, 1, 2, 1, 1, 1, 4
 </div>
 <p><br></p>
 </section>
-<section id="selección-y-estandarización-de-variables" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="selección-y-estandarización-de-variables"><span class="header-section-number">10.2</span> Selección y estandarización de variables</h2>
+<section id="selección-y-estandarización-de-variables" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="selección-y-estandarización-de-variables"><span class="header-section-number">12.2</span> Selección y estandarización de variables</h2>
 <p><br></p>
 <p>K-means utiliza distancias euclidianas. Si no estandarizamos, las variables con escalas numéricas grandes dominarán la formación de los grupos.</p>
 <p><br></p>
@@ -728,8 +740,8 @@ $ n_animales          &lt;int&gt; 1, 1, 2, 2, 3, 1, 1, 1, 5, 2, 1, 2, 1, 1, 1, 4
 </div>
 <p><br></p>
 </section>
-<section id="número-de-conglomerados" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="número-de-conglomerados"><span class="header-section-number">10.3</span> Número de conglomerados</h2>
+<section id="número-de-conglomerados" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="número-de-conglomerados"><span class="header-section-number">12.3</span> Número de conglomerados</h2>
 <p><br></p>
 <p>No existe un único criterio universal. Compararemos la suma de cuadrados interna y la silueta media.</p>
 <p><br></p>
@@ -780,8 +792,8 @@ $ n_animales          &lt;int&gt; 1, 1, 2, 2, 3, 1, 1, 1, 5, 2, 1, 2, 1, 1, 1, 4
 <p>El método del codo busca un punto a partir del cual añadir grupos reduce poco la variabilidad interna. La silueta combina cohesión dentro del grupo y separación frente a los demás grupos.</p>
 <p><br></p>
 </section>
-<section id="k-means" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="k-means"><span class="header-section-number">10.4</span> K-means</h2>
+<section id="k-means" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="k-means"><span class="header-section-number">12.4</span> K-means</h2>
 <p><br></p>
 <div class="cell">
 <details class="code-fold">
@@ -852,8 +864,8 @@ Available components:
 </div>
 <p><br></p>
 </section>
-<section id="caracterización-de-los-grupos" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="caracterización-de-los-grupos"><span class="header-section-number">10.5</span> Caracterización de los grupos</h2>
+<section id="caracterización-de-los-grupos" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="caracterización-de-los-grupos"><span class="header-section-number">12.5</span> Caracterización de los grupos</h2>
 <p><br></p>
 <div class="cell">
 <details class="code-fold">
@@ -921,8 +933,8 @@ Available components:
 </div>
 <p><br></p>
 </section>
-<section id="análisis-de-componentes-principales" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="análisis-de-componentes-principales"><span class="header-section-number">10.6</span> Análisis de componentes principales</h2>
+<section id="análisis-de-componentes-principales" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="análisis-de-componentes-principales"><span class="header-section-number">12.6</span> Análisis de componentes principales</h2>
 <p><br></p>
 <p>El PCA construye combinaciones lineales de las variables estandarizadas. Los primeros componentes concentran la mayor parte posible de la variabilidad y permiten representar las granjas en dos dimensiones.</p>
 <p><br></p>
@@ -1049,8 +1061,8 @@ Cumulative Proportion  0.9959 0.99859 0.99984 1.00000</code></pre>
 </div>
 <p><br></p>
 </section>
-<section id="variables-asociadas-con-los-componentes" class="level2" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="variables-asociadas-con-los-componentes"><span class="header-section-number">10.7</span> Variables asociadas con los componentes</h2>
+<section id="variables-asociadas-con-los-componentes" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="variables-asociadas-con-los-componentes"><span class="header-section-number">12.7</span> Variables asociadas con los componentes</h2>
 <p><br></p>
 <div class="cell">
 <details class="code-fold">
@@ -1084,8 +1096,8 @@ Cumulative Proportion  0.9959 0.99859 0.99984 1.00000</code></pre>
 <p>Las cargas indican qué variables contribuyen a cada componente. El signo puede invertirse sin cambiar el significado del PCA; lo importante es la estructura relativa de las variables y las observaciones.</p>
 <p><br></p>
 </section>
-<section id="clustering-jerárquico" class="level2" data-number="10.8">
-<h2 data-number="10.8" class="anchored" data-anchor-id="clustering-jerárquico"><span class="header-section-number">10.8</span> Clustering jerárquico</h2>
+<section id="clustering-jerárquico" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="clustering-jerárquico"><span class="header-section-number">12.8</span> Clustering jerárquico</h2>
 <p><br></p>
 <p>El clustering jerárquico comienza con cada granja como un grupo separado y fusiona progresivamente los grupos según una regla de enlace.</p>
 <p><br></p>
@@ -1155,8 +1167,8 @@ Kmeans  1  2  3
 <p>Los números de los grupos son etiquetas arbitrarias. El grupo 1 de K-means no tiene por qué corresponder al grupo 1 del método jerárquico.</p>
 <p><br></p>
 </section>
-<section id="calidad-mediante-siluetas" class="level2" data-number="10.9">
-<h2 data-number="10.9" class="anchored" data-anchor-id="calidad-mediante-siluetas"><span class="header-section-number">10.9</span> Calidad mediante siluetas</h2>
+<section id="calidad-mediante-siluetas" class="level2" data-number="12.9">
+<h2 data-number="12.9" class="anchored" data-anchor-id="calidad-mediante-siluetas"><span class="header-section-number">12.9</span> Calidad mediante siluetas</h2>
 <p><br></p>
 <div class="cell">
 <details class="code-fold">
@@ -1202,8 +1214,8 @@ Individual silhouette widths:
 <p>Una silueta próxima a 1 indica buena asignación. Valores cercanos a 0 indican posiciones fronterizas. Valores negativos sugieren que la granja podría estar más próxima a otro grupo.</p>
 <p><br></p>
 </section>
-<section id="distribución-geográfica-de-los-conglomerados" class="level2" data-number="10.10">
-<h2 data-number="10.10" class="anchored" data-anchor-id="distribución-geográfica-de-los-conglomerados"><span class="header-section-number">10.10</span> Distribución geográfica de los conglomerados</h2>
+<section id="distribución-geográfica-de-los-conglomerados" class="level2" data-number="12.10">
+<h2 data-number="12.10" class="anchored" data-anchor-id="distribución-geográfica-de-los-conglomerados"><span class="header-section-number">12.10</span> Distribución geográfica de los conglomerados</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -1314,8 +1326,8 @@ Individual silhouette widths:
 <p>Si los grupos se concentran geográficamente, la segmentación puede estar reflejando gradientes ambientales o regionales. Esto no significa que K-means haya incorporado dependencia espacial, porque las coordenadas no se utilizaron como variables de agrupación.</p>
 <p><br></p>
 </section>
-<section id="actividad-de-interpretación" class="level2" data-number="10.11">
-<h2 data-number="10.11" class="anchored" data-anchor-id="actividad-de-interpretación"><span class="header-section-number">10.11</span> Actividad de interpretación</h2>
+<section id="actividad-de-interpretación" class="level2" data-number="12.11">
+<h2 data-number="12.11" class="anchored" data-anchor-id="actividad-de-interpretación"><span class="header-section-number">12.11</span> Actividad de interpretación</h2>
 <p><br></p>
 <ol type="1">
 <li>¿Por qué utilizamos una fila por granja?</li>
@@ -1751,13 +1763,13 @@ Individual silhouette widths:
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../modulos/ml_04.html" class="pagination-link" aria-label="Capítulo 4. Introducción a las redes neuronales">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Capítulo 4. Introducción a las redes neuronales</span></span>
+      <a href="../modulos/ml_04.html" class="pagination-link" aria-label="Introducción a las redes neuronales">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introducción a las redes neuronales</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../modulos/crosscarry.html" class="pagination-link" aria-label="CrossCarry">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">CrossCarry</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">CrossCarry</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

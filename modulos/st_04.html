@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Bloques 6 y 7. Dependencia espacial y modelos SAR espacio-temporales – Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal</title>
+<title>7&nbsp; Dependencia espacial y modelos SAR espacio-temporales – Aprendizaje Estadístico en Ciencia Animal</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../modulos/ml_01.html" rel="next">
-<link href="../modulos/st_03.html" rel="prev">
+<link href="../modulos/st_03B.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -290,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/st_01.html">Análisis Espacio-Temporal</a></li><li class="breadcrumb-item"><a href="../modulos/st_04.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Bloques 6 y 7. Dependencia espacial y modelos SAR espacio-temporales</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/st_01.html">Análisis Espacio-Temporal</a></li><li class="breadcrumb-item"><a href="../modulos/st_04.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dependencia espacial y modelos SAR espacio-temporales</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -305,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal</a> 
+      <a href="../">Aprendizaje Estadístico en Ciencia Animal</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
 </div>
@@ -341,20 +341,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../modulos/st_02.html" class="sidebar-item-text sidebar-link">
+  <a href="../modulos/st_02A.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bloque 2. Estadística descriptiva y visualización</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../modulos/st_03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bloque 4. Dependencia temporal y modelos mixtos</span></span></a>
+  <a href="../modulos/st_02B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">De la regresión lineal simple a la múltiple</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modulos/st_03A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dependencia temporal y modelos mixtos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modulos/st_03B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">GLMM y respuestas no continuas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/st_04.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Bloques 6 y 7. Dependencia espacial y modelos SAR espacio-temporales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dependencia espacial y modelos SAR espacio-temporales</span></span></a>
   </div>
 </li>
       </ul>
@@ -371,31 +383,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje supervisado y no supervisado</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Capítulo 2. Métodos de regresión y clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Métodos de regresión y clasificación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Capítulo 3. Métodos basados en árboles</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 3. Métodos basados en árboles</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Capítulo 4. Introducción a las redes neuronales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introducción a las redes neuronales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 5. Segmentación y reducción de dimensionalidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Segmentación y reducción de dimensionalidad</span></span></a>
   </div>
 </li>
       </ul>
@@ -412,7 +424,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/crosscarry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">CrossCarry</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">CrossCarry</span></span></a>
   </div>
 </li>
       </ul>
@@ -420,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../recursos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Recursos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Recursos</span></span></a>
   </div>
 </li>
     </ul>
@@ -433,41 +445,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#bloque-6.-dependencia-espacial-y-matriz-de-vecindad" id="toc-bloque-6.-dependencia-espacial-y-matriz-de-vecindad" class="nav-link active" data-scroll-target="#bloque-6.-dependencia-espacial-y-matriz-de-vecindad"><span class="header-section-number">5.1</span> Bloque 6. Dependencia espacial y matriz de vecindad</a></li>
-  <li><a href="#coordenadas-de-las-granjas" id="toc-coordenadas-de-las-granjas" class="nav-link" data-scroll-target="#coordenadas-de-las-granjas"><span class="header-section-number">5.2</span> Coordenadas de las granjas</a></li>
-  <li><a href="#conversión-a-un-objeto-espacial" id="toc-conversión-a-un-objeto-espacial" class="nav-link" data-scroll-target="#conversión-a-un-objeto-espacial"><span class="header-section-number">5.3</span> Conversión a un objeto espacial</a></li>
-  <li><a href="#distancias-entre-granjas" id="toc-distancias-entre-granjas" class="nav-link" data-scroll-target="#distancias-entre-granjas"><span class="header-section-number">5.4</span> Distancias entre granjas</a></li>
-  <li><a href="#definición-de-vecinos-por-proximidad" id="toc-definición-de-vecinos-por-proximidad" class="nav-link" data-scroll-target="#definición-de-vecinos-por-proximidad"><span class="header-section-number">5.5</span> Definición de vecinos por proximidad</a></li>
-  <li><a href="#comprobación-de-coordenadas-duplicadas" id="toc-comprobación-de-coordenadas-duplicadas" class="nav-link" data-scroll-target="#comprobación-de-coordenadas-duplicadas"><span class="header-section-number">5.6</span> Comprobación de coordenadas duplicadas</a></li>
-  <li><a href="#visualización-de-la-red-de-vecindad" id="toc-visualización-de-la-red-de-vecindad" class="nav-link" data-scroll-target="#visualización-de-la-red-de-vecindad"><span class="header-section-number">5.7</span> Visualización de la red de vecindad</a></li>
-  <li><a href="#construcción-de-la-matriz-binaria-de-vecindad" id="toc-construcción-de-la-matriz-binaria-de-vecindad" class="nav-link" data-scroll-target="#construcción-de-la-matriz-binaria-de-vecindad"><span class="header-section-number">5.8</span> Construcción de la matriz binaria de vecindad</a></li>
-  <li><a href="#matriz-w-y-estandarización-por-filas" id="toc-matriz-w-y-estandarización-por-filas" class="nav-link" data-scroll-target="#matriz-w-y-estandarización-por-filas"><span class="header-section-number">5.9</span> Matriz W y estandarización por filas</a></li>
-  <li><a href="#objeto-listw-para-los-modelos-espaciales" id="toc-objeto-listw-para-los-modelos-espaciales" class="nav-link" data-scroll-target="#objeto-listw-para-los-modelos-espaciales"><span class="header-section-number">5.10</span> Objeto listw para los modelos espaciales</a></li>
-  <li><a href="#ejemplo-de-rezago-espacial" id="toc-ejemplo-de-rezago-espacial" class="nav-link" data-scroll-target="#ejemplo-de-rezago-espacial"><span class="header-section-number">5.11</span> Ejemplo de rezago espacial</a></li>
-  <li><a href="#efecto-aleatorio-de-granja-y-dependencia-espacial-explícita" id="toc-efecto-aleatorio-de-granja-y-dependencia-espacial-explícita" class="nav-link" data-scroll-target="#efecto-aleatorio-de-granja-y-dependencia-espacial-explícita"><span class="header-section-number">5.12</span> Efecto aleatorio de granja y dependencia espacial explícita</a></li>
-  <li><a href="#actividad-de-interpretación-del-bloque-6" id="toc-actividad-de-interpretación-del-bloque-6" class="nav-link" data-scroll-target="#actividad-de-interpretación-del-bloque-6"><span class="header-section-number">5.13</span> Actividad de interpretación del Bloque 6</a></li>
-  <li><a href="#bloque-7.-introducción-al-sar-espacio-temporal" id="toc-bloque-7.-introducción-al-sar-espacio-temporal" class="nav-link" data-scroll-target="#bloque-7.-introducción-al-sar-espacio-temporal"><span class="header-section-number">5.14</span> Bloque 7. Introducción al SAR espacio-temporal</a></li>
-  <li><a href="#agregación-de-los-datos-por-granja-y-semana" id="toc-agregación-de-los-datos-por-granja-y-semana" class="nav-link" data-scroll-target="#agregación-de-los-datos-por-granja-y-semana"><span class="header-section-number">5.15</span> Agregación de los datos por granja y semana</a></li>
-  <li><a href="#selección-de-una-semana-para-el-modelo-sar" id="toc-selección-de-una-semana-para-el-modelo-sar" class="nav-link" data-scroll-target="#selección-de-una-semana-para-el-modelo-sar"><span class="header-section-number">5.16</span> Selección de una semana para el modelo SAR</a></li>
-  <li><a href="#comprobación-de-datos-completos-en-la-semana" id="toc-comprobación-de-datos-completos-en-la-semana" class="nav-link" data-scroll-target="#comprobación-de-datos-completos-en-la-semana"><span class="header-section-number">5.17</span> Comprobación de datos completos en la semana</a></li>
-  <li><a href="#mapa-del-peso-medio-en-la-semana-seleccionada" id="toc-mapa-del-peso-medio-en-la-semana-seleccionada" class="nav-link" data-scroll-target="#mapa-del-peso-medio-en-la-semana-seleccionada"><span class="header-section-number">5.18</span> Mapa del peso medio en la semana seleccionada</a></li>
-  <li><a href="#modelo-lineal-no-espacial-para-la-semana" id="toc-modelo-lineal-no-espacial-para-la-semana" class="nav-link" data-scroll-target="#modelo-lineal-no-espacial-para-la-semana"><span class="header-section-number">5.19</span> Modelo lineal no espacial para la semana</a></li>
-  <li><a href="#diagrama-de-moran-de-los-residuos" id="toc-diagrama-de-moran-de-los-residuos" class="nav-link" data-scroll-target="#diagrama-de-moran-de-los-residuos"><span class="header-section-number">5.20</span> Diagrama de Moran de los residuos</a></li>
-  <li><a href="#modelo-sar-espacial-en-una-semana" id="toc-modelo-sar-espacial-en-una-semana" class="nav-link" data-scroll-target="#modelo-sar-espacial-en-una-semana"><span class="header-section-number">5.21</span> Modelo SAR espacial en una semana</a></li>
-  <li><a href="#extracción-de-los-resultados-del-sar" id="toc-extracción-de-los-resultados-del-sar" class="nav-link" data-scroll-target="#extracción-de-los-resultados-del-sar"><span class="header-section-number">5.22</span> Extracción de los resultados del SAR</a></li>
-  <li><a href="#interpretación-de-los-coeficientes-en-un-modelo-sar" id="toc-interpretación-de-los-coeficientes-en-un-modelo-sar" class="nav-link" data-scroll-target="#interpretación-de-los-coeficientes-en-un-modelo-sar"><span class="header-section-number">5.23</span> Interpretación de los coeficientes en un modelo SAR</a></li>
-  <li><a href="#residuos-del-modelo-sar" id="toc-residuos-del-modelo-sar" class="nav-link" data-scroll-target="#residuos-del-modelo-sar"><span class="header-section-number">5.24</span> Residuos del modelo SAR</a></li>
-  <li><a href="#comparación-entre-valores-observados-y-ajustados" id="toc-comparación-entre-valores-observados-y-ajustados" class="nav-link" data-scroll-target="#comparación-entre-valores-observados-y-ajustados"><span class="header-section-number">5.25</span> Comparación entre valores observados y ajustados</a></li>
-  <li><a href="#sensibilidad-a-la-definición-de-vecinos" id="toc-sensibilidad-a-la-definición-de-vecinos" class="nav-link" data-scroll-target="#sensibilidad-a-la-definición-de-vecinos"><span class="header-section-number">5.26</span> Sensibilidad a la definición de vecinos</a></li>
-  <li><a href="#del-análisis-de-una-semana-al-panel-espacio-temporal" id="toc-del-análisis-de-una-semana-al-panel-espacio-temporal" class="nav-link" data-scroll-target="#del-análisis-de-una-semana-al-panel-espacio-temporal"><span class="header-section-number">5.27</span> Del análisis de una semana al panel espacio-temporal</a></li>
-  <li><a href="#preparación-del-panel-ordenado" id="toc-preparación-del-panel-ordenado" class="nav-link" data-scroll-target="#preparación-del-panel-ordenado"><span class="header-section-number">5.28</span> Preparación del panel ordenado</a></li>
-  <li><a href="#cálculo-descriptivo-del-rezago-espacial-por-semana" id="toc-cálculo-descriptivo-del-rezago-espacial-por-semana" class="nav-link" data-scroll-target="#cálculo-descriptivo-del-rezago-espacial-por-semana"><span class="header-section-number">5.29</span> Cálculo descriptivo del rezago espacial por semana</a></li>
-  <li><a href="#visualización-espacio-temporal-descriptiva" id="toc-visualización-espacio-temporal-descriptiva" class="nav-link" data-scroll-target="#visualización-espacio-temporal-descriptiva"><span class="header-section-number">5.30</span> Visualización espacio-temporal descriptiva</a></li>
-  <li><a href="#estrategias-para-extender-el-sar-a-un-panel" id="toc-estrategias-para-extender-el-sar-a-un-panel" class="nav-link" data-scroll-target="#estrategias-para-extender-el-sar-a-un-panel"><span class="header-section-number">5.31</span> Estrategias para extender el SAR a un panel</a></li>
-  <li><a href="#ejemplo-orientativo-con-un-paquete-de-panel-espacial" id="toc-ejemplo-orientativo-con-un-paquete-de-panel-espacial" class="nav-link" data-scroll-target="#ejemplo-orientativo-con-un-paquete-de-panel-espacial"><span class="header-section-number">5.32</span> Ejemplo orientativo con un paquete de panel espacial</a></li>
-  <li><a href="#diferencia-entre-dependencia-espacial-y-temporal" id="toc-diferencia-entre-dependencia-espacial-y-temporal" class="nav-link" data-scroll-target="#diferencia-entre-dependencia-espacial-y-temporal"><span class="header-section-number">5.33</span> Diferencia entre dependencia espacial y temporal</a></li>
-  <li><a href="#limitaciones-del-ejemplo-sar" id="toc-limitaciones-del-ejemplo-sar" class="nav-link" data-scroll-target="#limitaciones-del-ejemplo-sar"><span class="header-section-number">5.34</span> Limitaciones del ejemplo SAR</a></li>
-  <li><a href="#actividad-de-interpretación-del-bloque-7" id="toc-actividad-de-interpretación-del-bloque-7" class="nav-link" data-scroll-target="#actividad-de-interpretación-del-bloque-7"><span class="header-section-number">5.35</span> Actividad de interpretación del Bloque 7</a></li>
+  <li><a href="#bloque-6.-dependencia-espacial-y-matriz-de-vecindad" id="toc-bloque-6.-dependencia-espacial-y-matriz-de-vecindad" class="nav-link active" data-scroll-target="#bloque-6.-dependencia-espacial-y-matriz-de-vecindad"><span class="header-section-number">7.1</span> Bloque 6. Dependencia espacial y matriz de vecindad</a></li>
+  <li><a href="#coordenadas-de-las-granjas" id="toc-coordenadas-de-las-granjas" class="nav-link" data-scroll-target="#coordenadas-de-las-granjas"><span class="header-section-number">7.2</span> Coordenadas de las granjas</a></li>
+  <li><a href="#conversión-a-un-objeto-espacial" id="toc-conversión-a-un-objeto-espacial" class="nav-link" data-scroll-target="#conversión-a-un-objeto-espacial"><span class="header-section-number">7.3</span> Conversión a un objeto espacial</a></li>
+  <li><a href="#distancias-entre-granjas" id="toc-distancias-entre-granjas" class="nav-link" data-scroll-target="#distancias-entre-granjas"><span class="header-section-number">7.4</span> Distancias entre granjas</a></li>
+  <li><a href="#definición-de-vecinos-por-proximidad" id="toc-definición-de-vecinos-por-proximidad" class="nav-link" data-scroll-target="#definición-de-vecinos-por-proximidad"><span class="header-section-number">7.5</span> Definición de vecinos por proximidad</a></li>
+  <li><a href="#comprobación-de-coordenadas-duplicadas" id="toc-comprobación-de-coordenadas-duplicadas" class="nav-link" data-scroll-target="#comprobación-de-coordenadas-duplicadas"><span class="header-section-number">7.6</span> Comprobación de coordenadas duplicadas</a></li>
+  <li><a href="#visualización-de-la-red-de-vecindad" id="toc-visualización-de-la-red-de-vecindad" class="nav-link" data-scroll-target="#visualización-de-la-red-de-vecindad"><span class="header-section-number">7.7</span> Visualización de la red de vecindad</a></li>
+  <li><a href="#construcción-de-la-matriz-binaria-de-vecindad" id="toc-construcción-de-la-matriz-binaria-de-vecindad" class="nav-link" data-scroll-target="#construcción-de-la-matriz-binaria-de-vecindad"><span class="header-section-number">7.8</span> Construcción de la matriz binaria de vecindad</a></li>
+  <li><a href="#matriz-w-y-estandarización-por-filas" id="toc-matriz-w-y-estandarización-por-filas" class="nav-link" data-scroll-target="#matriz-w-y-estandarización-por-filas"><span class="header-section-number">7.9</span> Matriz W y estandarización por filas</a></li>
+  <li><a href="#objeto-listw-para-los-modelos-espaciales" id="toc-objeto-listw-para-los-modelos-espaciales" class="nav-link" data-scroll-target="#objeto-listw-para-los-modelos-espaciales"><span class="header-section-number">7.10</span> Objeto listw para los modelos espaciales</a></li>
+  <li><a href="#ejemplo-de-rezago-espacial" id="toc-ejemplo-de-rezago-espacial" class="nav-link" data-scroll-target="#ejemplo-de-rezago-espacial"><span class="header-section-number">7.11</span> Ejemplo de rezago espacial</a></li>
+  <li><a href="#efecto-aleatorio-de-granja-y-dependencia-espacial-explícita" id="toc-efecto-aleatorio-de-granja-y-dependencia-espacial-explícita" class="nav-link" data-scroll-target="#efecto-aleatorio-de-granja-y-dependencia-espacial-explícita"><span class="header-section-number">7.12</span> Efecto aleatorio de granja y dependencia espacial explícita</a></li>
+  <li><a href="#actividad-de-interpretación-del-bloque-6" id="toc-actividad-de-interpretación-del-bloque-6" class="nav-link" data-scroll-target="#actividad-de-interpretación-del-bloque-6"><span class="header-section-number">7.13</span> Actividad de interpretación del Bloque 6</a></li>
+  <li><a href="#bloque-7.-introducción-al-sar-espacio-temporal" id="toc-bloque-7.-introducción-al-sar-espacio-temporal" class="nav-link" data-scroll-target="#bloque-7.-introducción-al-sar-espacio-temporal"><span class="header-section-number">7.14</span> Bloque 7. Introducción al SAR espacio-temporal</a></li>
+  <li><a href="#agregación-de-los-datos-por-granja-y-semana" id="toc-agregación-de-los-datos-por-granja-y-semana" class="nav-link" data-scroll-target="#agregación-de-los-datos-por-granja-y-semana"><span class="header-section-number">7.15</span> Agregación de los datos por granja y semana</a></li>
+  <li><a href="#selección-de-una-semana-para-el-modelo-sar" id="toc-selección-de-una-semana-para-el-modelo-sar" class="nav-link" data-scroll-target="#selección-de-una-semana-para-el-modelo-sar"><span class="header-section-number">7.16</span> Selección de una semana para el modelo SAR</a></li>
+  <li><a href="#comprobación-de-datos-completos-en-la-semana" id="toc-comprobación-de-datos-completos-en-la-semana" class="nav-link" data-scroll-target="#comprobación-de-datos-completos-en-la-semana"><span class="header-section-number">7.17</span> Comprobación de datos completos en la semana</a></li>
+  <li><a href="#mapa-del-peso-medio-en-la-semana-seleccionada" id="toc-mapa-del-peso-medio-en-la-semana-seleccionada" class="nav-link" data-scroll-target="#mapa-del-peso-medio-en-la-semana-seleccionada"><span class="header-section-number">7.18</span> Mapa del peso medio en la semana seleccionada</a></li>
+  <li><a href="#modelo-lineal-no-espacial-para-la-semana" id="toc-modelo-lineal-no-espacial-para-la-semana" class="nav-link" data-scroll-target="#modelo-lineal-no-espacial-para-la-semana"><span class="header-section-number">7.19</span> Modelo lineal no espacial para la semana</a></li>
+  <li><a href="#diagrama-de-moran-de-los-residuos" id="toc-diagrama-de-moran-de-los-residuos" class="nav-link" data-scroll-target="#diagrama-de-moran-de-los-residuos"><span class="header-section-number">7.20</span> Diagrama de Moran de los residuos</a></li>
+  <li><a href="#modelo-sar-espacial-en-una-semana" id="toc-modelo-sar-espacial-en-una-semana" class="nav-link" data-scroll-target="#modelo-sar-espacial-en-una-semana"><span class="header-section-number">7.21</span> Modelo SAR espacial en una semana</a></li>
+  <li><a href="#extracción-de-los-resultados-del-sar" id="toc-extracción-de-los-resultados-del-sar" class="nav-link" data-scroll-target="#extracción-de-los-resultados-del-sar"><span class="header-section-number">7.22</span> Extracción de los resultados del SAR</a></li>
+  <li><a href="#interpretación-de-los-coeficientes-en-un-modelo-sar" id="toc-interpretación-de-los-coeficientes-en-un-modelo-sar" class="nav-link" data-scroll-target="#interpretación-de-los-coeficientes-en-un-modelo-sar"><span class="header-section-number">7.23</span> Interpretación de los coeficientes en un modelo SAR</a></li>
+  <li><a href="#residuos-del-modelo-sar" id="toc-residuos-del-modelo-sar" class="nav-link" data-scroll-target="#residuos-del-modelo-sar"><span class="header-section-number">7.24</span> Residuos del modelo SAR</a></li>
+  <li><a href="#comparación-entre-valores-observados-y-ajustados" id="toc-comparación-entre-valores-observados-y-ajustados" class="nav-link" data-scroll-target="#comparación-entre-valores-observados-y-ajustados"><span class="header-section-number">7.25</span> Comparación entre valores observados y ajustados</a></li>
+  <li><a href="#sensibilidad-a-la-definición-de-vecinos" id="toc-sensibilidad-a-la-definición-de-vecinos" class="nav-link" data-scroll-target="#sensibilidad-a-la-definición-de-vecinos"><span class="header-section-number">7.26</span> Sensibilidad a la definición de vecinos</a></li>
+  <li><a href="#del-análisis-de-una-semana-al-panel-espacio-temporal" id="toc-del-análisis-de-una-semana-al-panel-espacio-temporal" class="nav-link" data-scroll-target="#del-análisis-de-una-semana-al-panel-espacio-temporal"><span class="header-section-number">7.27</span> Del análisis de una semana al panel espacio-temporal</a></li>
+  <li><a href="#preparación-del-panel-ordenado" id="toc-preparación-del-panel-ordenado" class="nav-link" data-scroll-target="#preparación-del-panel-ordenado"><span class="header-section-number">7.28</span> Preparación del panel ordenado</a></li>
+  <li><a href="#cálculo-descriptivo-del-rezago-espacial-por-semana" id="toc-cálculo-descriptivo-del-rezago-espacial-por-semana" class="nav-link" data-scroll-target="#cálculo-descriptivo-del-rezago-espacial-por-semana"><span class="header-section-number">7.29</span> Cálculo descriptivo del rezago espacial por semana</a></li>
+  <li><a href="#visualización-espacio-temporal-descriptiva" id="toc-visualización-espacio-temporal-descriptiva" class="nav-link" data-scroll-target="#visualización-espacio-temporal-descriptiva"><span class="header-section-number">7.30</span> Visualización espacio-temporal descriptiva</a></li>
+  <li><a href="#estrategias-para-extender-el-sar-a-un-panel" id="toc-estrategias-para-extender-el-sar-a-un-panel" class="nav-link" data-scroll-target="#estrategias-para-extender-el-sar-a-un-panel"><span class="header-section-number">7.31</span> Estrategias para extender el SAR a un panel</a></li>
+  <li><a href="#ejemplo-orientativo-con-un-paquete-de-panel-espacial" id="toc-ejemplo-orientativo-con-un-paquete-de-panel-espacial" class="nav-link" data-scroll-target="#ejemplo-orientativo-con-un-paquete-de-panel-espacial"><span class="header-section-number">7.32</span> Ejemplo orientativo con un paquete de panel espacial</a></li>
+  <li><a href="#diferencia-entre-dependencia-espacial-y-temporal" id="toc-diferencia-entre-dependencia-espacial-y-temporal" class="nav-link" data-scroll-target="#diferencia-entre-dependencia-espacial-y-temporal"><span class="header-section-number">7.33</span> Diferencia entre dependencia espacial y temporal</a></li>
+  <li><a href="#limitaciones-del-ejemplo-sar" id="toc-limitaciones-del-ejemplo-sar" class="nav-link" data-scroll-target="#limitaciones-del-ejemplo-sar"><span class="header-section-number">7.34</span> Limitaciones del ejemplo SAR</a></li>
+  <li><a href="#actividad-de-interpretación-del-bloque-7" id="toc-actividad-de-interpretación-del-bloque-7" class="nav-link" data-scroll-target="#actividad-de-interpretación-del-bloque-7"><span class="header-section-number">7.35</span> Actividad de interpretación del Bloque 7</a></li>
   </ul>
 </nav>
     </div>
@@ -475,9 +487,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/st_01.html">Análisis Espacio-Temporal</a></li><li class="breadcrumb-item"><a href="../modulos/st_04.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Bloques 6 y 7. Dependencia espacial y modelos SAR espacio-temporales</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/st_01.html">Análisis Espacio-Temporal</a></li><li class="breadcrumb-item"><a href="../modulos/st_04.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dependencia espacial y modelos SAR espacio-temporales</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Bloques 6 y 7. Dependencia espacial y modelos SAR espacio-temporales</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dependencia espacial y modelos SAR espacio-temporales</span></h1>
 </div>
 
 
@@ -607,12 +619,12 @@ $ periodo                &lt;fct&gt; Semanas 1-20, Semanas 1-20, Semanas 1-20, S
 </div>
 </div>
 <p><br></p>
-<section id="bloque-6.-dependencia-espacial-y-matriz-de-vecindad" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="bloque-6.-dependencia-espacial-y-matriz-de-vecindad"><span class="header-section-number">5.1</span> Bloque 6. Dependencia espacial y matriz de vecindad</h2>
+<section id="bloque-6.-dependencia-espacial-y-matriz-de-vecindad" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="bloque-6.-dependencia-espacial-y-matriz-de-vecindad"><span class="header-section-number">7.1</span> Bloque 6. Dependencia espacial y matriz de vecindad</h2>
 <p><br></p>
 </section>
-<section id="coordenadas-de-las-granjas" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="coordenadas-de-las-granjas"><span class="header-section-number">5.2</span> Coordenadas de las granjas</h2>
+<section id="coordenadas-de-las-granjas" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="coordenadas-de-las-granjas"><span class="header-section-number">7.2</span> Coordenadas de las granjas</h2>
 <p><br></p>
 <p>Cada granja debe estar representada por una sola ubicación. Si el objeto <code>granjas</code> fue importado en el bloque cartográfico anterior, podemos reutilizarlo. Para que este bloque también pueda ejecutarse de forma independiente, construiremos una tabla con una fila por granja a partir de <code>datos_b2</code>.</p>
 <p><br></p>
@@ -709,8 +721,8 @@ $ periodo                &lt;fct&gt; Semanas 1-20, Semanas 1-20, Semanas 1-20, S
 </div>
 <p><br></p>
 </section>
-<section id="conversión-a-un-objeto-espacial" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="conversión-a-un-objeto-espacial"><span class="header-section-number">5.3</span> Conversión a un objeto espacial</h2>
+<section id="conversión-a-un-objeto-espacial" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="conversión-a-un-objeto-espacial"><span class="header-section-number">7.3</span> Conversión a un objeto espacial</h2>
 <p><br></p>
 <p>Las coordenadas están expresadas en longitud y latitud. Las convertiremos en un objeto <code>sf</code> con el sistema geográfico WGS 84, identificado mediante EPSG 4326.</p>
 <p><br></p>
@@ -819,8 +831,8 @@ PROJCRS["WGS 84 / UTM zone 14N",
 </div>
 <p><br></p>
 </section>
-<section id="distancias-entre-granjas" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="distancias-entre-granjas"><span class="header-section-number">5.4</span> Distancias entre granjas</h2>
+<section id="distancias-entre-granjas" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="distancias-entre-granjas"><span class="header-section-number">7.4</span> Distancias entre granjas</h2>
 <p><br></p>
 <p>La función <code>st_distance()</code> calcula una matriz con las distancias entre todas las parejas de granjas. Como el objeto está proyectado, las distancias se expresan en metros.</p>
 <p><br></p>
@@ -904,8 +916,8 @@ PROJCRS["WGS 84 / UTM zone 14N",
 <p>Esta distribución ayuda a seleccionar una regla de vecindad razonable. Una distancia umbral demasiado pequeña puede dejar granjas sin vecinos. Un umbral demasiado grande puede conectar explotaciones muy alejadas y producir una red excesivamente densa.</p>
 <p><br></p>
 </section>
-<section id="definición-de-vecinos-por-proximidad" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="definición-de-vecinos-por-proximidad"><span class="header-section-number">5.5</span> Definición de vecinos por proximidad</h2>
+<section id="definición-de-vecinos-por-proximidad" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="definición-de-vecinos-por-proximidad"><span class="header-section-number">7.5</span> Definición de vecinos por proximidad</h2>
 <p><br></p>
 <p>Existen diferentes formas de definir qué granjas son vecinas:</p>
 <ol type="1">
@@ -987,8 +999,8 @@ Non-symmetric neighbours list</code></pre>
 </div>
 <p><br></p>
 </section>
-<section id="comprobación-de-coordenadas-duplicadas" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="comprobación-de-coordenadas-duplicadas"><span class="header-section-number">5.6</span> Comprobación de coordenadas duplicadas</h2>
+<section id="comprobación-de-coordenadas-duplicadas" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="comprobación-de-coordenadas-duplicadas"><span class="header-section-number">7.6</span> Comprobación de coordenadas duplicadas</h2>
 <p><br></p>
 <p>Dos granjas con exactamente las mismas coordenadas tienen distancia cero, aunque representen unidades distintas. Esta situación puede ser real, pero también puede indicar un error o que las coordenadas se registraron con poca precisión.</p>
 <p><br></p>
@@ -1010,8 +1022,8 @@ Non-symmetric neighbours list</code></pre>
 <p>Si aparecen coordenadas duplicadas, debemos revisar las granjas afectadas antes de interpretar las relaciones espaciales. Los algoritmos de vecinos más cercanos pueden producir advertencias cuando existen puntos idénticos.</p>
 <p><br></p>
 </section>
-<section id="visualización-de-la-red-de-vecindad" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="visualización-de-la-red-de-vecindad"><span class="header-section-number">5.7</span> Visualización de la red de vecindad</h2>
+<section id="visualización-de-la-red-de-vecindad" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="visualización-de-la-red-de-vecindad"><span class="header-section-number">7.7</span> Visualización de la red de vecindad</h2>
 <p><br></p>
 <p>Representaremos las granjas y las conexiones definidas por la lista de vecinos. La función <code>plot.nb()</code> utiliza las coordenadas en el mismo orden con el que se construyó la lista.</p>
 <p><br></p>
@@ -1093,8 +1105,8 @@ Non-symmetric neighbours list</code></pre>
 <p>La red representa la definición matemática de proximidad que utilizaremos en el análisis. No demuestra que existan intercambios, contagios o relaciones productivas reales entre dos explotaciones.</p>
 <p><br></p>
 </section>
-<section id="construcción-de-la-matriz-binaria-de-vecindad" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="construcción-de-la-matriz-binaria-de-vecindad"><span class="header-section-number">5.8</span> Construcción de la matriz binaria de vecindad</h2>
+<section id="construcción-de-la-matriz-binaria-de-vecindad" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="construcción-de-la-matriz-binaria-de-vecindad"><span class="header-section-number">7.8</span> Construcción de la matriz binaria de vecindad</h2>
 <p><br></p>
 <p>Una matriz de vecindad binaria (B) contiene un 1 cuando dos granjas se consideran vecinas y un 0 cuando no lo son. La diagonal se mantiene en cero porque una granja no se considera vecina de sí misma.</p>
 <p><br></p>
@@ -1147,11 +1159,11 @@ G08   0   0   0   0   0   0   0   0</code></pre>
 <p>Como hemos simetrizado la lista, la matriz binaria debe ser simétrica. Si <code>B[i, j] = 1</code>, también debe cumplirse <code>B[j, i] = 1</code>.</p>
 <p><br></p>
 </section>
-<section id="matriz-w-y-estandarización-por-filas" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="matriz-w-y-estandarización-por-filas"><span class="header-section-number">5.9</span> Matriz W y estandarización por filas</h2>
+<section id="matriz-w-y-estandarización-por-filas" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="matriz-w-y-estandarización-por-filas"><span class="header-section-number">7.9</span> Matriz W y estandarización por filas</h2>
 <p><br></p>
 <p>La matriz espacial (W) se obtiene estandarizando por filas la matriz binaria. Cada elemento se define como:</p>
-<p>[ w_{ij} = {<em>j b</em>{ij}} ]</p>
+<p>[ w_{ij} = {j b*{ij}} ]</p>
 <p><br></p>
 <p>Cada vecino recibe un peso igual a la inversa del número de vecinos de la granja. Por tanto, la suma de cada fila es igual a 1, salvo en unidades aisladas.</p>
 <p><br></p>
@@ -1214,8 +1226,8 @@ G08 0.000 0.000 0.00 0.000 0.000 0.000 0.000   0</code></pre>
 </div>
 <p><br></p>
 </section>
-<section id="objeto-listw-para-los-modelos-espaciales" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="objeto-listw-para-los-modelos-espaciales"><span class="header-section-number">5.10</span> Objeto listw para los modelos espaciales</h2>
+<section id="objeto-listw-para-los-modelos-espaciales" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="objeto-listw-para-los-modelos-espaciales"><span class="header-section-number">7.10</span> Objeto listw para los modelos espaciales</h2>
 <p><br></p>
 <p>Las funciones de <code>spdep</code> y <code>spatialreg</code> suelen utilizar un objeto <code>listw</code>, que almacena la lista de vecinos y sus pesos.</p>
 <p><br></p>
@@ -1261,8 +1273,8 @@ W 50 2500 50 20.64512 203.1656</code></pre>
 </div>
 <p><br></p>
 </section>
-<section id="ejemplo-de-rezago-espacial" class="level2" data-number="5.11">
-<h2 data-number="5.11" class="anchored" data-anchor-id="ejemplo-de-rezago-espacial"><span class="header-section-number">5.11</span> Ejemplo de rezago espacial</h2>
+<section id="ejemplo-de-rezago-espacial" class="level2" data-number="7.11">
+<h2 data-number="7.11" class="anchored" data-anchor-id="ejemplo-de-rezago-espacial"><span class="header-section-number">7.11</span> Ejemplo de rezago espacial</h2>
 <p><br></p>
 <p>El rezago espacial de una variable es el promedio ponderado de sus valores en las granjas vecinas. Para ilustrarlo, calcularemos el peso medio general de cada granja y su rezago espacial.</p>
 <p><br></p>
@@ -1365,8 +1377,8 @@ W 50 2500 50 20.64512 203.1656</code></pre>
 <p>Este gráfico es exploratorio. Una asociación positiva puede reflejar dependencia espacial, variables ambientales compartidas o una distribución espacial de características como la raza, el sistema productivo y la edad de los animales.</p>
 <p><br></p>
 </section>
-<section id="efecto-aleatorio-de-granja-y-dependencia-espacial-explícita" class="level2" data-number="5.12">
-<h2 data-number="5.12" class="anchored" data-anchor-id="efecto-aleatorio-de-granja-y-dependencia-espacial-explícita"><span class="header-section-number">5.12</span> Efecto aleatorio de granja y dependencia espacial explícita</h2>
+<section id="efecto-aleatorio-de-granja-y-dependencia-espacial-explícita" class="level2" data-number="7.12">
+<h2 data-number="7.12" class="anchored" data-anchor-id="efecto-aleatorio-de-granja-y-dependencia-espacial-explícita"><span class="header-section-number">7.12</span> Efecto aleatorio de granja y dependencia espacial explícita</h2>
 <p><br></p>
 <p>Un efecto aleatorio de granja y una estructura espacial no representan lo mismo.</p>
 <p><br></p>
@@ -1389,8 +1401,8 @@ W 50 2500 50 20.64512 203.1656</code></pre>
 <p>Ambas estructuras pueden estar presentes simultáneamente. Una granja puede tener características propias persistentes y, además, encontrarse relacionada con explotaciones cercanas. Sin embargo, combinar efectos aleatorios, dependencia espacial y dependencia temporal requiere modelos más avanzados y una identificación cuidadosa de cada fuente de variabilidad.</p>
 <p><br></p>
 </section>
-<section id="actividad-de-interpretación-del-bloque-6" class="level2" data-number="5.13">
-<h2 data-number="5.13" class="anchored" data-anchor-id="actividad-de-interpretación-del-bloque-6"><span class="header-section-number">5.13</span> Actividad de interpretación del Bloque 6</h2>
+<section id="actividad-de-interpretación-del-bloque-6" class="level2" data-number="7.13">
+<h2 data-number="7.13" class="anchored" data-anchor-id="actividad-de-interpretación-del-bloque-6"><span class="header-section-number">7.13</span> Actividad de interpretación del Bloque 6</h2>
 <p><br></p>
 <ol type="1">
 <li>¿Las coordenadas son constantes dentro de cada granja?</li>
@@ -1408,12 +1420,12 @@ W 50 2500 50 20.64512 203.1656</code></pre>
 </ol>
 <p><br></p>
 </section>
-<section id="bloque-7.-introducción-al-sar-espacio-temporal" class="level2" data-number="5.14">
-<h2 data-number="5.14" class="anchored" data-anchor-id="bloque-7.-introducción-al-sar-espacio-temporal"><span class="header-section-number">5.14</span> Bloque 7. Introducción al SAR espacio-temporal</h2>
+<section id="bloque-7.-introducción-al-sar-espacio-temporal" class="level2" data-number="7.14">
+<h2 data-number="7.14" class="anchored" data-anchor-id="bloque-7.-introducción-al-sar-espacio-temporal"><span class="header-section-number">7.14</span> Bloque 7. Introducción al SAR espacio-temporal</h2>
 <p><br></p>
 </section>
-<section id="agregación-de-los-datos-por-granja-y-semana" class="level2" data-number="5.15">
-<h2 data-number="5.15" class="anchored" data-anchor-id="agregación-de-los-datos-por-granja-y-semana"><span class="header-section-number">5.15</span> Agregación de los datos por granja y semana</h2>
+<section id="agregación-de-los-datos-por-granja-y-semana" class="level2" data-number="7.15">
+<h2 data-number="7.15" class="anchored" data-anchor-id="agregación-de-los-datos-por-granja-y-semana"><span class="header-section-number">7.15</span> Agregación de los datos por granja y semana</h2>
 <p><br></p>
 <p>Los datos originales contienen varias observaciones por granja y semana porque se mide a distintos animales. Un modelo SAR transversal requiere una observación por unidad espacial. Para ajustar un modelo en una semana concreta, agregaremos primero las mediciones por granja y semana.</p>
 <p><br></p>
@@ -1525,8 +1537,8 @@ W 50 2500 50 20.64512 203.1656</code></pre>
 </div>
 <p><br></p>
 </section>
-<section id="selección-de-una-semana-para-el-modelo-sar" class="level2" data-number="5.16">
-<h2 data-number="5.16" class="anchored" data-anchor-id="selección-de-una-semana-para-el-modelo-sar"><span class="header-section-number">5.16</span> Selección de una semana para el modelo SAR</h2>
+<section id="selección-de-una-semana-para-el-modelo-sar" class="level2" data-number="7.16">
+<h2 data-number="7.16" class="anchored" data-anchor-id="selección-de-una-semana-para-el-modelo-sar"><span class="header-section-number">7.16</span> Selección de una semana para el modelo SAR</h2>
 <p><br></p>
 <p>Seleccionaremos una semana con el mayor número de granjas disponibles. Si varias semanas tienen el mismo número, utilizaremos la primera.</p>
 <p><br></p>
@@ -1594,8 +1606,8 @@ W 50 2500 50 20.64512 203.1656</code></pre>
 </div>
 <p><br></p>
 </section>
-<section id="comprobación-de-datos-completos-en-la-semana" class="level2" data-number="5.17">
-<h2 data-number="5.17" class="anchored" data-anchor-id="comprobación-de-datos-completos-en-la-semana"><span class="header-section-number">5.17</span> Comprobación de datos completos en la semana</h2>
+<section id="comprobación-de-datos-completos-en-la-semana" class="level2" data-number="7.17">
+<h2 data-number="7.17" class="anchored" data-anchor-id="comprobación-de-datos-completos-en-la-semana"><span class="header-section-number">7.17</span> Comprobación de datos completos en la semana</h2>
 <p><br></p>
 <p>Un modelo SAR y su matriz de pesos deben referirse exactamente al mismo conjunto de granjas. Si faltan valores, no basta con eliminarlos de la tabla: también debemos crear una lista de vecinos correspondiente al subconjunto utilizado.</p>
 <p><br></p>
@@ -1680,8 +1692,8 @@ FALSE
 </div>
 <p><br></p>
 </section>
-<section id="mapa-del-peso-medio-en-la-semana-seleccionada" class="level2" data-number="5.18">
-<h2 data-number="5.18" class="anchored" data-anchor-id="mapa-del-peso-medio-en-la-semana-seleccionada"><span class="header-section-number">5.18</span> Mapa del peso medio en la semana seleccionada</h2>
+<section id="mapa-del-peso-medio-en-la-semana-seleccionada" class="level2" data-number="7.18">
+<h2 data-number="7.18" class="anchored" data-anchor-id="mapa-del-peso-medio-en-la-semana-seleccionada"><span class="header-section-number">7.18</span> Mapa del peso medio en la semana seleccionada</h2>
 <p><br></p>
 <div class="cell">
 <details class="code-fold">
@@ -1715,8 +1727,8 @@ FALSE
 <p>La presencia de áreas con colores similares puede sugerir agrupamiento espacial, pero el mapa por sí solo no permite separar la dependencia espacial de los efectos de consumo, edad, temperatura u otras características regionales.</p>
 <p><br></p>
 </section>
-<section id="modelo-lineal-no-espacial-para-la-semana" class="level2" data-number="5.19">
-<h2 data-number="5.19" class="anchored" data-anchor-id="modelo-lineal-no-espacial-para-la-semana"><span class="header-section-number">5.19</span> Modelo lineal no espacial para la semana</h2>
+<section id="modelo-lineal-no-espacial-para-la-semana" class="level2" data-number="7.19">
+<h2 data-number="7.19" class="anchored" data-anchor-id="modelo-lineal-no-espacial-para-la-semana"><span class="header-section-number">7.19</span> Modelo lineal no espacial para la semana</h2>
 <p><br></p>
 <p>Antes del SAR ajustaremos una regresión lineal transversal como modelo de referencia.</p>
 <p><br></p>
@@ -1791,8 +1803,8 @@ Moran I statistic       Expectation          Variance
 <p>Un valor positivo de Moran indica que los residuos similares tienden a localizarse en granjas vecinas. Un valor negativo indica que las granjas vecinas tienden a presentar residuos diferentes. La interpretación del valor p depende de la validez de los supuestos del contraste y de que la matriz espacial se haya definido antes de observar los resultados.</p>
 <p><br></p>
 </section>
-<section id="diagrama-de-moran-de-los-residuos" class="level2" data-number="5.20">
-<h2 data-number="5.20" class="anchored" data-anchor-id="diagrama-de-moran-de-los-residuos"><span class="header-section-number">5.20</span> Diagrama de Moran de los residuos</h2>
+<section id="diagrama-de-moran-de-los-residuos" class="level2" data-number="7.20">
+<h2 data-number="7.20" class="anchored" data-anchor-id="diagrama-de-moran-de-los-residuos"><span class="header-section-number">7.20</span> Diagrama de Moran de los residuos</h2>
 <p><br></p>
 <div class="cell">
 <details class="code-fold">
@@ -1821,8 +1833,8 @@ Moran I statistic       Expectation          Variance
 <p>El diagrama compara el residuo de cada granja con el promedio ponderado de los residuos de sus vecinas. Los cuadrantes alto-alto y bajo-bajo representan asociaciones espaciales positivas, mientras que alto-bajo y bajo-alto representan contrastes locales.</p>
 <p><br></p>
 </section>
-<section id="modelo-sar-espacial-en-una-semana" class="level2" data-number="5.21">
-<h2 data-number="5.21" class="anchored" data-anchor-id="modelo-sar-espacial-en-una-semana"><span class="header-section-number">5.21</span> Modelo SAR espacial en una semana</h2>
+<section id="modelo-sar-espacial-en-una-semana" class="level2" data-number="7.21">
+<h2 data-number="7.21" class="anchored" data-anchor-id="modelo-sar-espacial-en-una-semana"><span class="header-section-number">7.21</span> Modelo SAR espacial en una semana</h2>
 <p><br></p>
 <p>El modelo autorregresivo espacial de rezago, conocido como SAR o spatial lag model, incorpora el resultado de las unidades vecinas como parte del modelo:</p>
 <p>[ y = Wy + X+ ]</p>
@@ -1886,8 +1898,8 @@ test value: 2.5246, p-value: 0.11208</code></pre>
 <p>Un valor próximo a cero indica poca evidencia de dependencia espacial de rezago bajo la matriz (W) y la especificación utilizadas. La interpretación siempre es condicional a la definición de vecinos.</p>
 <p><br></p>
 </section>
-<section id="extracción-de-los-resultados-del-sar" class="level2" data-number="5.22">
-<h2 data-number="5.22" class="anchored" data-anchor-id="extracción-de-los-resultados-del-sar"><span class="header-section-number">5.22</span> Extracción de los resultados del SAR</h2>
+<section id="extracción-de-los-resultados-del-sar" class="level2" data-number="7.22">
+<h2 data-number="7.22" class="anchored" data-anchor-id="extracción-de-los-resultados-del-sar"><span class="header-section-number">7.22</span> Extracción de los resultados del SAR</h2>
 <p><br></p>
 <div class="cell">
 <details class="code-fold">
@@ -1952,8 +1964,8 @@ modelo_sar_semana  6 201.5251</code></pre>
 <p>El AIC puede utilizarse para comparar modelos ajustados sobre exactamente las mismas observaciones y con la misma variable de respuesta. Un AIC menor indica mejor equilibrio relativo entre ajuste y complejidad, pero no demuestra que la estructura espacial elegida sea correcta.</p>
 <p><br></p>
 </section>
-<section id="interpretación-de-los-coeficientes-en-un-modelo-sar" class="level2" data-number="5.23">
-<h2 data-number="5.23" class="anchored" data-anchor-id="interpretación-de-los-coeficientes-en-un-modelo-sar"><span class="header-section-number">5.23</span> Interpretación de los coeficientes en un modelo SAR</h2>
+<section id="interpretación-de-los-coeficientes-en-un-modelo-sar" class="level2" data-number="7.23">
+<h2 data-number="7.23" class="anchored" data-anchor-id="interpretación-de-los-coeficientes-en-un-modelo-sar"><span class="header-section-number">7.23</span> Interpretación de los coeficientes en un modelo SAR</h2>
 <p><br></p>
 <p>En una regresión lineal convencional, un coeficiente describe un cambio local manteniendo constantes las otras variables. En un modelo SAR, un cambio en una granja puede propagarse a través de la red porque el resultado aparece también en (Wy).</p>
 <p><br></p>
@@ -1990,21 +2002,21 @@ Simulation results ( variance matrix):
 ========================================================
 Simulated standard errors
                               Direct   Indirect     Total
-consumo_medio_kg_dia dy/dx 4.3120339 4.15370758 5.4480024
-edad_media_meses dy/dx     0.1655376 0.08592074 0.1550146
-temperatura_media_C dy/dx  0.2393026 0.12006174 0.2448824
+consumo_medio_kg_dia dy/dx 4.0237666 4.21184919 5.6664645
+edad_media_meses dy/dx     0.1674223 0.08555936 0.1580459
+temperatura_media_C dy/dx  0.2277036 0.12151564 0.2399962
 
 Simulated z-values:
                               Direct   Indirect     Total
-consumo_medio_kg_dia dy/dx  6.531578 -0.9493742  4.445843
-edad_media_meses dy/dx      3.190472 -0.8840749  2.917033
-temperatura_media_C dy/dx  -3.201728  0.8686678 -2.702882
+consumo_medio_kg_dia dy/dx  6.958988 -0.8771490  4.289610
+edad_media_meses dy/dx      3.181594 -0.8594965  2.905053
+temperatura_media_C dy/dx  -3.355920  0.8044086 -2.776739
 
 Simulated p-values:
-                           Direct    Indirect Total     
-consumo_medio_kg_dia dy/dx 6.508e-11 0.34243  8.7548e-06
-edad_media_meses dy/dx     0.0014204 0.37666  0.0035338 
-temperatura_media_C dy/dx  0.0013661 0.38503  0.0068741 </code></pre>
+                           Direct     Indirect Total     
+consumo_medio_kg_dia dy/dx 3.4273e-12 0.38041  1.7899e-05
+edad_media_meses dy/dx     0.00146467 0.39007  0.0036719 
+temperatura_media_C dy/dx  0.00079101 0.42116  0.0054907 </code></pre>
 </div>
 </div>
 <p><br></p>
@@ -2013,8 +2025,8 @@ temperatura_media_C dy/dx  0.0013661 0.38503  0.0068741 </code></pre>
 <p>El efecto indirecto no demuestra necesariamente una transmisión biológica entre granjas. Puede representar interacción, difusión, imitación, condiciones compartidas o variables espaciales omitidas. La interpretación debe apoyarse en el mecanismo científico y en la forma de construcción de (W).</p>
 <p><br></p>
 </section>
-<section id="residuos-del-modelo-sar" class="level2" data-number="5.24">
-<h2 data-number="5.24" class="anchored" data-anchor-id="residuos-del-modelo-sar"><span class="header-section-number">5.24</span> Residuos del modelo SAR</h2>
+<section id="residuos-del-modelo-sar" class="level2" data-number="7.24">
+<h2 data-number="7.24" class="anchored" data-anchor-id="residuos-del-modelo-sar"><span class="header-section-number">7.24</span> Residuos del modelo SAR</h2>
 <p><br></p>
 <p>Después de ajustar el SAR, revisaremos si permanece autocorrelación espacial en los residuos.</p>
 <p><br></p>
@@ -2087,8 +2099,8 @@ Moran I statistic       Expectation          Variance
 </div>
 <p><br></p>
 </section>
-<section id="comparación-entre-valores-observados-y-ajustados" class="level2" data-number="5.25">
-<h2 data-number="5.25" class="anchored" data-anchor-id="comparación-entre-valores-observados-y-ajustados"><span class="header-section-number">5.25</span> Comparación entre valores observados y ajustados</h2>
+<section id="comparación-entre-valores-observados-y-ajustados" class="level2" data-number="7.25">
+<h2 data-number="7.25" class="anchored" data-anchor-id="comparación-entre-valores-observados-y-ajustados"><span class="header-section-number">7.25</span> Comparación entre valores observados y ajustados</h2>
 <p><br></p>
 <div class="cell">
 <details class="code-fold">
@@ -2129,8 +2141,8 @@ Moran I statistic       Expectation          Variance
 </div>
 <p><br></p>
 </section>
-<section id="sensibilidad-a-la-definición-de-vecinos" class="level2" data-number="5.26">
-<h2 data-number="5.26" class="anchored" data-anchor-id="sensibilidad-a-la-definición-de-vecinos"><span class="header-section-number">5.26</span> Sensibilidad a la definición de vecinos</h2>
+<section id="sensibilidad-a-la-definición-de-vecinos" class="level2" data-number="7.26">
+<h2 data-number="7.26" class="anchored" data-anchor-id="sensibilidad-a-la-definición-de-vecinos"><span class="header-section-number">7.26</span> Sensibilidad a la definición de vecinos</h2>
 <p><br></p>
 <p>Los resultados espaciales dependen de (W). Como ejercicio de sensibilidad, podemos construir una matriz con seis vecinos y comparar la estimación de ().</p>
 <p><br></p>
@@ -2182,8 +2194,8 @@ Moran I statistic       Expectation          Variance
 <p>Si los resultados cambian de forma importante, las conclusiones dependen de la definición de vecindad. Esta sensibilidad debe comunicarse y utilizarse para revisar si la matriz representa adecuadamente el mecanismo espacial de interés.</p>
 <p><br></p>
 </section>
-<section id="del-análisis-de-una-semana-al-panel-espacio-temporal" class="level2" data-number="5.27">
-<h2 data-number="5.27" class="anchored" data-anchor-id="del-análisis-de-una-semana-al-panel-espacio-temporal"><span class="header-section-number">5.27</span> Del análisis de una semana al panel espacio-temporal</h2>
+<section id="del-análisis-de-una-semana-al-panel-espacio-temporal" class="level2" data-number="7.27">
+<h2 data-number="7.27" class="anchored" data-anchor-id="del-análisis-de-una-semana-al-panel-espacio-temporal"><span class="header-section-number">7.27</span> Del análisis de una semana al panel espacio-temporal</h2>
 <p><br></p>
 <p>El modelo anterior utiliza una sola semana. Sin embargo, el estudio contiene múltiples semanas para cada granja. Un panel espacio-temporal debe representar simultáneamente:</p>
 <ol type="1">
@@ -2208,8 +2220,8 @@ Moran I statistic       Expectation          Variance
 </ul>
 <p><br></p>
 </section>
-<section id="preparación-del-panel-ordenado" class="level2" data-number="5.28">
-<h2 data-number="5.28" class="anchored" data-anchor-id="preparación-del-panel-ordenado"><span class="header-section-number">5.28</span> Preparación del panel ordenado</h2>
+<section id="preparación-del-panel-ordenado" class="level2" data-number="7.28">
+<h2 data-number="7.28" class="anchored" data-anchor-id="preparación-del-panel-ordenado"><span class="header-section-number">7.28</span> Preparación del panel ordenado</h2>
 <p><br></p>
 <p>Antes de aplicar un modelo de panel debemos ordenar los datos de forma coherente. Aquí utilizaremos primero granja y después semana para operaciones longitudinales. Algunos paquetes requieren el orden contrario, por lo que siempre debemos revisar su documentación.</p>
 <p><br></p>
@@ -2285,8 +2297,8 @@ Moran I statistic       Expectation          Variance
 </div>
 <p><br></p>
 </section>
-<section id="cálculo-descriptivo-del-rezago-espacial-por-semana" class="level2" data-number="5.29">
-<h2 data-number="5.29" class="anchored" data-anchor-id="cálculo-descriptivo-del-rezago-espacial-por-semana"><span class="header-section-number">5.29</span> Cálculo descriptivo del rezago espacial por semana</h2>
+<section id="cálculo-descriptivo-del-rezago-espacial-por-semana" class="level2" data-number="7.29">
+<h2 data-number="7.29" class="anchored" data-anchor-id="cálculo-descriptivo-del-rezago-espacial-por-semana"><span class="header-section-number">7.29</span> Cálculo descriptivo del rezago espacial por semana</h2>
 <p><br></p>
 <p>Podemos calcular (Wy_t) para cada semana siempre que todas las granjas estén presentes y se mantenga exactamente el orden de (W). El siguiente procedimiento es descriptivo y ayuda a preparar el panel.</p>
 <p><br></p>
@@ -2346,8 +2358,8 @@ Moran I statistic       Expectation          Variance
 <p>No debemos introducir <code>rezago_espacial_peso</code> como un predictor común en una regresión OLS y asumir que hemos estimado correctamente un SAR. El término (Wy) contiene el resultado de las granjas vecinas y es endógeno. Los estimadores SAR se diseñan específicamente para resolver esta simultaneidad.</p>
 <p><br></p>
 </section>
-<section id="visualización-espacio-temporal-descriptiva" class="level2" data-number="5.30">
-<h2 data-number="5.30" class="anchored" data-anchor-id="visualización-espacio-temporal-descriptiva"><span class="header-section-number">5.30</span> Visualización espacio-temporal descriptiva</h2>
+<section id="visualización-espacio-temporal-descriptiva" class="level2" data-number="7.30">
+<h2 data-number="7.30" class="anchored" data-anchor-id="visualización-espacio-temporal-descriptiva"><span class="header-section-number">7.30</span> Visualización espacio-temporal descriptiva</h2>
 <p><br></p>
 <p>Seleccionaremos algunas semanas para observar cómo cambia el peso medio entre granjas y a lo largo del tiempo.</p>
 <p><br></p>
@@ -2433,8 +2445,8 @@ First 5 geometries:</code></pre>
 <p>Los mapas permiten reconocer si los valores altos y bajos se mantienen en las mismas zonas o si cambian con el tiempo. Esta inspección no sustituye a un modelo, pero ayuda a identificar patrones que la formulación estadística debería representar.</p>
 <p><br></p>
 </section>
-<section id="estrategias-para-extender-el-sar-a-un-panel" class="level2" data-number="5.31">
-<h2 data-number="5.31" class="anchored" data-anchor-id="estrategias-para-extender-el-sar-a-un-panel"><span class="header-section-number">5.31</span> Estrategias para extender el SAR a un panel</h2>
+<section id="estrategias-para-extender-el-sar-a-un-panel" class="level2" data-number="7.31">
+<h2 data-number="7.31" class="anchored" data-anchor-id="estrategias-para-extender-el-sar-a-un-panel"><span class="header-section-number">7.31</span> Estrategias para extender el SAR a un panel</h2>
 <p><br></p>
 <p>Existen varias estrategias posibles:</p>
 <ol type="1">
@@ -2445,13 +2457,13 @@ First 5 geometries:</code></pre>
 </ol>
 <p><br></p>
 <p>Una formulación de panel espacial puede incluir:</p>
-<p>[ y_{it} = <em>j w</em>{ij}y_{jt} + X_{it} + _i + <em>t + </em>{it} ]</p>
+<p>[ y_{it} = j w<em>{ij}y_{jt} + X_{it}+ _i + t +</em> ]</p>
 <p><br></p>
-<p>Aquí, (_i) representa un efecto persistente de granja y (<em>t) representa un efecto común de la semana. Si añadimos (y</em>{i,t-1}), el modelo se convierte en un panel espacial dinámico.</p>
+<p>Aquí, (_i) representa un efecto persistente de granja y (t) representa un efecto común de la semana. Si añadimos (y*{i,t-1}), el modelo se convierte en un panel espacial dinámico.</p>
 <p><br></p>
 </section>
-<section id="ejemplo-orientativo-con-un-paquete-de-panel-espacial" class="level2" data-number="5.32">
-<h2 data-number="5.32" class="anchored" data-anchor-id="ejemplo-orientativo-con-un-paquete-de-panel-espacial"><span class="header-section-number">5.32</span> Ejemplo orientativo con un paquete de panel espacial</h2>
+<section id="ejemplo-orientativo-con-un-paquete-de-panel-espacial" class="level2" data-number="7.32">
+<h2 data-number="7.32" class="anchored" data-anchor-id="ejemplo-orientativo-con-un-paquete-de-panel-espacial"><span class="header-section-number">7.32</span> Ejemplo orientativo con un paquete de panel espacial</h2>
 <p><br></p>
 <p>El siguiente código muestra la estructura general de un modelo espacial de panel mediante el paquete <code>splm</code>. Se deja con <code>eval: false</code> porque requiere instalar el paquete y comprobar cuidadosamente que el panel esté equilibrado y ordenado conforme a sus especificaciones.</p>
 <p><br></p>
@@ -2501,8 +2513,8 @@ First 5 geometries:</code></pre>
 </ul>
 <p><br></p>
 </section>
-<section id="diferencia-entre-dependencia-espacial-y-temporal" class="level2" data-number="5.33">
-<h2 data-number="5.33" class="anchored" data-anchor-id="diferencia-entre-dependencia-espacial-y-temporal"><span class="header-section-number">5.33</span> Diferencia entre dependencia espacial y temporal</h2>
+<section id="diferencia-entre-dependencia-espacial-y-temporal" class="level2" data-number="7.33">
+<h2 data-number="7.33" class="anchored" data-anchor-id="diferencia-entre-dependencia-espacial-y-temporal"><span class="header-section-number">7.33</span> Diferencia entre dependencia espacial y temporal</h2>
 <p><br></p>
 <p>La dependencia espacial y la temporal responden a relaciones diferentes:</p>
 <ul>
@@ -2514,8 +2526,8 @@ First 5 geometries:</code></pre>
 <p>Una matriz (W) constante supone que las relaciones de vecindad permanecen estables durante todo el seguimiento. Esto puede ser razonable para proximidad geográfica, pero no necesariamente para redes de movimiento, comercio o contacto, que pueden cambiar cada semana.</p>
 <p><br></p>
 </section>
-<section id="limitaciones-del-ejemplo-sar" class="level2" data-number="5.34">
-<h2 data-number="5.34" class="anchored" data-anchor-id="limitaciones-del-ejemplo-sar"><span class="header-section-number">5.34</span> Limitaciones del ejemplo SAR</h2>
+<section id="limitaciones-del-ejemplo-sar" class="level2" data-number="7.34">
+<h2 data-number="7.34" class="anchored" data-anchor-id="limitaciones-del-ejemplo-sar"><span class="header-section-number">7.34</span> Limitaciones del ejemplo SAR</h2>
 <p><br></p>
 <p>El modelo de una semana utiliza un número de observaciones igual al número de granjas disponibles. Aunque la base longitudinal contenga miles de filas, el tamaño efectivo del análisis transversal es mucho menor después de agregar por explotación.</p>
 <p><br></p>
@@ -2533,8 +2545,8 @@ First 5 geometries:</code></pre>
 <p>La dependencia espacial estimada no demuestra contagio ni influencia directa. Puede reflejar variables ambientales omitidas, similitud de manejo, composición racial, climatología regional o procesos de selección de las granjas.</p>
 <p><br></p>
 </section>
-<section id="actividad-de-interpretación-del-bloque-7" class="level2" data-number="5.35">
-<h2 data-number="5.35" class="anchored" data-anchor-id="actividad-de-interpretación-del-bloque-7"><span class="header-section-number">5.35</span> Actividad de interpretación del Bloque 7</h2>
+<section id="actividad-de-interpretación-del-bloque-7" class="level2" data-number="7.35">
+<h2 data-number="7.35" class="anchored" data-anchor-id="actividad-de-interpretación-del-bloque-7"><span class="header-section-number">7.35</span> Actividad de interpretación del Bloque 7</h2>
 <p><br></p>
 <ol type="1">
 <li>¿Qué representa cada fila del panel agregado?</li>
@@ -2977,13 +2989,13 @@ First 5 geometries:</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../modulos/st_03.html" class="pagination-link" aria-label="Bloque 4. Dependencia temporal y modelos mixtos">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bloque 4. Dependencia temporal y modelos mixtos</span></span>
+      <a href="../modulos/st_03B.html" class="pagination-link" aria-label="GLMM y respuestas no continuas">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">GLMM y respuestas no continuas</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../modulos/ml_01.html" class="pagination-link" aria-label="Capítulo 1. Introducción al aprendizaje supervisado y no supervisado">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../modulos/ml_01.html" class="pagination-link" aria-label="Introducción al aprendizaje supervisado y no supervisado">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje supervisado y no supervisado</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
