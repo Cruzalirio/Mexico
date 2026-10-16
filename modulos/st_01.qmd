@@ -6,13 +6,11 @@ El objetivo es comenzar con una pregunta sencilla: ¿cómo cambia el peso de los
 
 La base simulada representa animales, granjas, características individuales, condiciones ambientales y mediciones repetidas durante varias semanas. Los datos son ficticios y se utilizan exclusivamente con fines didácticos.
 
-
 ## Importación desde Excel o CSV
 
 Antes de analizar una base de datos, debemos importarla correctamente. El procedimiento depende del formato del archivo. Excel puede contener varias hojas, cada una con una tabla diferente, mientras que un archivo CSV suele contener una sola tabla delimitada por comas, punto y coma u otro separador.
 
 Para importar un archivo Excel utilizaremos el paquete `readxl`. La función `excel_sheets()` permite comprobar los nombres de las hojas y seleccionar la que contiene las mediciones longitudinales.
-
 
 ```{r}
 # Instalar los paquetes si es necesario.
@@ -48,6 +46,7 @@ names(datos)
 # Examinar los tipos de datos.
 str(datos)
 ```
+
 La ruta del archivo debe corresponder a su ubicación real. Si R no encuentra el archivo, podemos modificar la carpeta de trabajo o utilizar una ruta completa. Es recomendable organizar los archivos del proyecto en una misma carpeta para evitar problemas al ejecutar el código en otro ordenador.
 
 Si trabajamos con CSV, podemos utilizar `read_csv()` del paquete `readr`.
@@ -126,8 +125,7 @@ ggplot(peso_semanal,
     title = "Evolución temporal del peso medio",
     x = "Semana de seguimiento",
     y = "Peso medio (kg)"
-  ) +
-  theme_minimal()
+  )
 ```
 
 Este gráfico permite observar la tendencia general del peso durante el seguimiento. Sin embargo, la media puede ocultar diferencias entre animales y granjas. Además, una tendencia temporal no demuestra por sí sola que el tiempo sea la causa del cambio observado. Para comprender mejor los datos, tendremos que estudiar tanto la variabilidad individual como las diferencias entre granjas.
@@ -145,7 +143,7 @@ Estas dependencias son la razón por la que más adelante utilizaremos modelos m
 La siguiente tabla resume las principales variables de la base que utilizaremos en el curso.
 
 | Variable | Tipo | Unidad o categorías | Utilidad en el análisis |
-|:--|:--|:--|:--|
+|:-----------------|:-----------------|:-----------------|:-----------------|
 | `animal_id` | Identificador | Código de animal | Reconocer las mediciones del mismo animal. |
 | `granja_id` | Identificador | Código de granja | Identificar la explotación de origen. |
 | `tiempo` | Temporal discreta | Semana | Ordenar las mediciones longitudinales. |
@@ -470,8 +468,6 @@ Al finalizar este bloque debemos saber reconocer la unidad de observación, impo
 
 Estas tareas constituyen la base del análisis estadístico. Antes de aplicar regresiones, modelos mixtos o modelos espacio-temporales, debemos comprobar que la información está correctamente estructurada y comprender las limitaciones de los datos.
 
-
-
 ## Representación espacial de las granjas en un mapa de México
 
 En este apartado representaremos geográficamente las granjas ovinas simuladas en Hidalgo y su entorno regional, México. Trabajaremos con cuatro estados: Hidalgo, Estado de México, Tlaxcala y Veracruz. El objetivo es visualizar la localización de las granjas y explorar su distribución espacial en relación con los límites administrativos.
@@ -480,8 +476,7 @@ El análisis cartográfico constituye un primer paso para comprender la distribu
 
 Las coordenadas de las granjas son simuladas y no representan explotaciones ganaderas reales.
 
-
-1. Utilizaremos `sf` para trabajar con objetos espaciales, `geodata` para obtener límites administrativos, `terra` para herramientas de análisis geográfico, `dplyr` para manipular tablas y `ggplot2` para elaborar los mapas.
+1.  Utilizaremos `sf` para trabajar con objetos espaciales, `geodata` para obtener límites administrativos, `terra` para herramientas de análisis geográfico, `dplyr` para manipular tablas y `ggplot2` para elaborar los mapas.
 
 ```{r}
 # Instalar los paquetes si todavía no están instalados.
@@ -492,7 +487,7 @@ library(geodata)
 library(terra)
 ```
 
-2. Revisión de las coordenadas de las granjas
+2.  Revisión de las coordenadas de las granjas
 
 La tabla `granjas` contiene una fila por explotación. Las variables `longitud` y `latitud` indican su posición geográfica, mientras que `granja_id` permite identificar cada explotación.
 
@@ -534,7 +529,7 @@ El argumento `remove = FALSE` conserva las columnas originales de longitud y lat
 
 Es importante recordar que declarar el sistema de referencia no transforma unas coordenadas incorrectas. Debemos comprobar que los valores originales están efectivamente expresados en WGS 84.
 
-4. Descarga de los límites administrativos de México
+4.  Descarga de los límites administrativos de México
 
 Para representar las granjas necesitamos un mapa de referencia. Utilizaremos los límites administrativos del conjunto de datos GADM, que pueden descargarse mediante el paquete `geodata`.
 
@@ -570,7 +565,7 @@ sort(unique(estados_sf$NAME_1))
 
 La columna `NAME_1` contiene los nombres de los estados. Conviene inspeccionarlos porque los nombres utilizados en los filtros deben coincidir con los almacenados en la tabla.
 
-5. Selección de los cuatro estados de interés
+5.  Selección de los cuatro estados de interés
 
 El análisis territorial se centrará en Hidalgo, Estado de México, Tlaxcala y Veracruz. Seleccionaremos los cuatro polígonos y los guardaremos en un único objeto espacial llamado `estados_region_sf`.
 
@@ -596,7 +591,7 @@ En los datos GADM, el Estado de México aparece habitualmente como `"México"`. 
 
 La selección debe devolver los cuatro estados. Si devuelve menos, revisaremos los nombres mostrados por `unique(estados_sf$NAME_1)` y ajustaremos el filtro a los valores presentes en la versión descargada.
 
-6. Mapa general de los cuatro estados y las granjas
+6.  Mapa general de los cuatro estados y las granjas
 
 En el primer mapa mostraremos México completo como fondo y destacaremos los cuatro estados seleccionados. Las granjas se representarán con puntos coloreados según el tamaño de la explotación.
 
@@ -644,7 +639,7 @@ La tercera capa incorpora las granjas. El color de los puntos representa `tamano
 
 Este mapa permite situar las explotaciones en el contexto nacional y regional. Sin embargo, no demuestra por sí mismo que exista dependencia espacial entre ellas. Para ello necesitaremos definir una estructura de vecindad y analizar las relaciones entre las observaciones.
 
-7. Mapa ampliado de los cuatro estados
+7.  Mapa ampliado de los cuatro estados
 
 El mapa nacional proporciona contexto, pero puede resultar demasiado general para examinar la distribución de las granjas. Por eso, elaboraremos un segundo mapa centrado en el territorio que abarcan las explotaciones, manteniendo los cuatro estados como fondo geográfico.
 
@@ -703,7 +698,7 @@ La función `coord_sf()` limita la extensión visible del mapa. Los argumentos `
 
 Es importante señalar que el recorte de la vista no modifica la localización de las granjas ni garantiza que todos los puntos estén dentro de los cuatro estados. Si las coordenadas se generaron aleatoriamente dentro de un rectángulo geográfico, algunos puntos podrían encontrarse fuera de los polígonos administrativos. El mapa permite detectar este tipo de situaciones, pero no las corrige automáticamente.
 
-8. Comprobación de la localización de las granjas
+8.  Comprobación de la localización de las granjas
 
 Como verificación adicional, podemos determinar qué puntos están dentro de alguno de los cuatro estados seleccionados. Para ello, uniremos los polígonos en una sola geometría y comprobaremos la relación espacial entre los puntos y el territorio.
 
@@ -729,7 +724,7 @@ La función `st_union()` combina los polígonos seleccionados en una sola geomet
 
 Si `granjas_fuera` contiene registros, significa que algunas coordenadas están fuera de los cuatro estados seleccionados. Esto puede deberse a la forma en que se simularon los puntos y no necesariamente a un problema de representación. Si el objetivo del estudio es simular exclusivamente granjas de estos estados, conviene generar las coordenadas dentro de los polígonos administrativos en lugar de utilizar únicamente rangos de latitud y longitud.
 
-9. Discusión: de los mapas al análisis espacio-temporal
+9.  Discusión: de los mapas al análisis espacio-temporal
 
 Los mapas permiten comprender la distribución territorial de las granjas, identificar posibles errores de localización y explorar diferencias entre categorías. Sin embargo, la proximidad geográfica no implica necesariamente que dos explotaciones tengan comportamientos productivos similares.
 

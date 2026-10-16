@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  title: "Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal"
+  title: "Aprendizaje Estadístico en Ciencia Animal"
   author: "Nelson Alirio Cruz Gutiérrez"
 
   chapters:
@@ -12,8 +12,10 @@ book:
     - part: "Análisis Espacio-Temporal"
       chapters:
         - modulos/st_01.qmd
-        - modulos/st_02.qmd
-        - modulos/st_03.qmd
+        - modulos/st_02A.qmd
+        - modulos/st_02B.qmd
+        - modulos/st_03A.qmd
+        - modulos/st_03B.qmd
         - modulos/st_04.qmd
 
     - part: "Machine Learning"
@@ -32,6 +34,7 @@ book:
 
 format:
   html:
+    css: styles.css
     theme:
       light: cosmo
       dark: darkly

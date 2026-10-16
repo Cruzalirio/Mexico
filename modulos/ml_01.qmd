@@ -1,261 +1,439 @@
----
-title: "Introducción al aprendizaje estadístico"
----
+# Introducción al aprendizaje supervisado y no supervisado
 
-# Objetivos de aprendizaje
+<br>
 
-Al finalizar esta sesión, el estudiante será capaz de:
+En este capítulo introduciremos los fundamentos del aprendizaje automático mediante ejemplos relacionados con animales, granjas y estados. Utilizaremos la base longitudinal preparada en los bloques anteriores, pero cambiaremos el objetivo del análisis: en lugar de concentrarnos únicamente en la estimación de asociaciones, estudiaremos cómo construir modelos capaces de predecir resultados en observaciones nuevas y cómo descubrir estructuras sin una respuesta previamente definida.
 
-- Comprender qué es el aprendizaje estadístico.
-- Diferenciar problemas supervisados y no supervisados.
-- Entender la diferencia entre explicación y predicción.
-- Reconocer los conceptos de error de entrenamiento y error de generalización.
-- Identificar situaciones de sobreajuste.
+<br>
 
-# Introducción
+El aprendizaje automático no sustituye el razonamiento científico. Una predicción precisa no demuestra causalidad y una agrupación obtenida algorítmicamente no representa necesariamente categorías biológicas reales. La definición de la unidad de análisis, la separación entre entrenamiento y prueba y la prevención de fugas de información son esenciales, especialmente cuando existen mediciones repetidas del mismo animal.
 
-Las ciencias de la salud y la producción animal generan actualmente grandes cantidades de información. En una explotación ganadera pueden registrarse diariamente variables relacionadas con alimentación, producción, reproducción, bienestar animal, sanidad y condiciones ambientales.
-
-El reto ya no consiste únicamente en almacenar datos, sino en transformarlos en conocimiento útil para la toma de decisiones.
-
-El aprendizaje estadístico proporciona un conjunto de herramientas que permiten:
-
-- Comprender relaciones entre variables.
-- Identificar factores de riesgo.
-- Construir modelos predictivos.
-- Detectar patrones complejos.
-- Apoyar la toma de decisiones en sistemas productivos.
-
-# ¿Qué es el aprendizaje estadístico?
-
-El aprendizaje estadístico es una disciplina que combina estadística, matemáticas y ciencias computacionales para construir modelos a partir de datos.
-
-La idea central consiste en utilizar información observada para aprender una relación entre variables y posteriormente utilizar esa información para describir, explicar o predecir fenómenos.
-
-## Ejemplo
-
-Supongamos que disponemos de información sobre 500 vacas:
-
-- Producción de leche.
-- Consumo de alimento.
-- Edad.
-- Número de parto.
-- Temperatura ambiental.
-
-Una pregunta posible sería:
-
-> ¿Podemos predecir la producción de leche de una vaca a partir de estas variables?
-
-Esa es una tarea típica de aprendizaje estadístico.
-
-# Dos grandes objetivos
-
-Tradicionalmente existen dos objetivos fundamentales.
-
-## Inferencia
-
-La inferencia busca responder preguntas científicas.
-
-Por ejemplo:
-
-- ¿Aumenta la producción de leche con un nuevo aditivo?
-- ¿Influye la temperatura en la incidencia de mastitis?
-- ¿Existe asociación entre una enfermedad y el sistema de manejo?
-
-El interés principal es comprender el fenómeno.
-
-## Predicción
-
-La predicción busca anticipar valores futuros o desconocidos.
-
-Por ejemplo:
-
-- Predecir la ganancia diaria de peso.
-- Predecir un brote de enfermedad.
-- Predecir la probabilidad de descarte de una vaca.
-
-El interés principal es obtener predicciones precisas.
-
-# Aprendizaje supervisado
-
-En el aprendizaje supervisado conocemos la respuesta de interés.
-
-Disponemos de:
-
-- Variables explicativas (X).
-- Variable respuesta (Y).
-
-El objetivo consiste en aprender una función que relacione ambas.
-
-## Ejemplos en ciencia animal
-
-### Regresión
-
-Predecir:
-
-- Producción de leche.
-- Ganancia de peso.
-- Consumo de alimento.
-
-### Clasificación
-
-Predecir:
-
-- Enfermo o sano.
-- Gestante o no gestante.
-- Sobrevive o no sobrevive.
-
-# Aprendizaje no supervisado
-
-En este caso no existe una variable respuesta conocida.
-
-El objetivo consiste en descubrir patrones ocultos en los datos.
-
-## Ejemplos
-
-- Identificar grupos de granjas similares.
-- Detectar perfiles metabólicos.
-- Clasificar animales según su comportamiento.
-
-Las técnicas más utilizadas incluyen:
-
-- Clustering.
-- Análisis de componentes principales.
-- Métodos de reducción de dimensionalidad.
-
-# Ejemplo práctico
+<br>
 
 ```{r}
-library(tidymodels)
+# Instalar los paquetes si es necesario.
+# install.packages(c(
+#   "sf", "spdep", "spatialreg", "tidyverse",
+#   "readxl", "Matrix"
+# ))
 
-library(here)
+library(tidyverse)
+library(readxl)
+library(sf)
+library(spdep)
+library(spatialreg)
+library(Matrix)
 
-datos <- read.csv(here("datos","leche.csv"))
 
-head(datos)
+# Nombre del archivo Excel.
+archivo <- "../datos/base_borregos_espaciotemporal_Hidalgo.xlsx"
+
+# Consultar las hojas disponibles.
+excel_sheets(archivo)
+
+# Importar la tabla longitudinal.
+datos <- read_excel(archivo, sheet = "datos_long")
+
+datos_b2 <- datos |>
+  mutate(
+    animal_id = as.factor(animal_id),
+    granja_id = as.factor(granja_id),
+    sexo = as.factor(sexo),
+    raza = as.factor(raza),
+    tratamiento = as.factor(tratamiento),
+    sistema_produccion = as.factor(sistema_produccion),
+    salud_score_0_4 = factor(
+      salud_score_0_4,
+      levels = 0:4,
+      ordered = TRUE
+    ),
+    salud_alta = as.factor(salud_alta),
+    periodo = cut(
+      tiempo,
+      breaks = c(-Inf, 20, 40, 60, 80, Inf),
+      labels = c(
+        "Semanas 1-20",
+        "Semanas 21-40",
+        "Semanas 41-60",
+        "Semanas 61-80",
+        "Semanas 81-100"
+      )
+    )
+  )
+
+
+
+# Comprobar que los objetos de los bloques anteriores están disponibles.
+dim(datos_b2)
+glimpse(datos_b2)
 ```
 
-# Visualización de los datos
+```{r}
+# Instalar los paquetes si es necesario.
+# install.packages(c("tidyverse", "tidymodels", "rsample", "sf"))
+
+library(tidyverse)
+library(tidymodels)
+library(sf)
+
+# Comprobar los datos disponibles.
+dim(datos_b2)
+glimpse(datos_b2)
+```
+
+<br>
+
+## ¿Qué es el aprendizaje automático?
+
+<br>
+
+El aprendizaje automático reúne métodos que utilizan datos para construir reglas de predicción, clasificación o agrupación. El algoritmo aprende patrones a partir de ejemplos observados y después aplica esos patrones a casos nuevos.
+
+<br>
+
+En producción animal podemos plantear, entre otras, las siguientes tareas:
+
+- Predecir el peso de un animal a partir de consumo, edad, raza, sexo, semana y condiciones ambientales.
+- Clasificar una medición como salud alta o no alta.
+- Predecir qué animales podrían requerir una visita veterinaria.
+- Identificar perfiles de granjas con características productivas semejantes.
+- Detectar observaciones atípicas o combinaciones poco frecuentes de condiciones ambientales.
+
+<br>
+
+## Aprendizaje supervisado
+
+<br>
+
+En el aprendizaje supervisado existe una variable de respuesta conocida durante el entrenamiento. El modelo aprende la relación entre los predictores y esa respuesta.
+
+<br>
+
+Si la respuesta es cuantitativa, hablamos de regresión. Si representa categorías, hablamos de clasificación.
+
+<br>
 
 ```{r}
-library(ggplot2)
+# Ejemplo de variables para regresión.
+datos_regresion_ml <- datos_b2 |>
+  select(
+    animal_id, granja_id, tiempo, estado = zona,
+    peso_kg, consumo_kg_dia, edad_inicio_meses,
+    sexo, raza, temperatura_C, humedad_pct
+  ) |>
+  drop_na()
 
-ggplot(datos,
-       aes(x = semana,
-           y = leche,
-           group = animal)) +
-  geom_line(alpha = 0.1) +
-  labs(
-    x = "Semana",
-    y = "Producción de leche"
+# La respuesta es continua.
+summary(datos_regresion_ml$peso_kg)
+```
+
+<br>
+
+```{r}
+# Ejemplo de respuesta para clasificación.
+datos_clasificacion_ml <- datos_b2 |>
+  mutate(
+    salud_alta_ml = factor(
+      if_else(
+        as.numeric(as.character(salud_score_0_4)) >= 3,
+        "Sí",
+        "No"
+      ),
+      levels = c("No", "Sí")
+    )
+  ) |>
+  select(
+    animal_id, granja_id, tiempo,
+    salud_alta_ml, consumo_kg_dia,
+    edad_inicio_meses, sexo, raza,
+    temperatura_C, humedad_pct
+  ) |>
+  drop_na()
+
+count(datos_clasificacion_ml, salud_alta_ml)
+```
+
+<br>
+
+## Aprendizaje no supervisado
+
+<br>
+
+En el aprendizaje no supervisado no existe una respuesta que el algoritmo deba predecir. El objetivo consiste en descubrir estructuras, semejanzas o representaciones simplificadas de los datos.
+
+<br>
+
+```{r}
+# Una fila por granja para evitar que las granjas con más registros
+# dominen el análisis no supervisado.
+perfiles_granja <- datos_b2 |>
+  group_by(granja_id, zona, sistema_produccion) |>
+  summarise(
+    peso_medio = mean(peso_kg, na.rm = TRUE),
+    consumo_medio = mean(consumo_kg_dia, na.rm = TRUE),
+    agua_media = mean(consumo_agua_l_dia, na.rm = TRUE),
+    temperatura_media = mean(temperatura_C, na.rm = TRUE),
+    humedad_media = mean(humedad_pct, na.rm = TRUE),
+    visitas_medias = mean(n_visitas_veterinarias, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+glimpse(perfiles_granja)
+```
+
+<br>
+
+## Unidad de análisis
+
+<br>
+
+La unidad de análisis determina qué representa cada fila utilizada por el algoritmo. En esta base podemos trabajar con mediciones, animales o granjas. La elección modifica la pregunta, el tamaño de la muestra y la manera correcta de dividir los datos.
+
+<br>
+
+```{r}
+resumen_unidades <- datos_b2 |>
+  summarise(
+    mediciones = n(),
+    animales = n_distinct(animal_id),
+    granjas = n_distinct(granja_id),
+    semanas = n_distinct(tiempo)
+  )
+
+resumen_unidades
+```
+
+<br>
+
+Si usamos filas individuales, el mismo animal aparecerá muchas veces. Una división aleatoria de filas puede colocar observaciones del mismo animal tanto en entrenamiento como en prueba. El modelo reconocerá características persistentes del animal y obtendremos una evaluación excesivamente optimista.
+
+<br>
+
+## Conjunto de entrenamiento y conjunto de prueba
+
+<br>
+
+El conjunto de entrenamiento se utiliza para estimar el modelo. El conjunto de prueba se reserva para evaluar su comportamiento en casos que no participaron en el ajuste.
+
+<br>
+
+Para evaluar la generalización a animales nuevos, dividiremos por `animal_id` y no por filas.
+
+<br>
+
+```{r}
+set.seed(2026)
+
+particion_animales <- group_initial_split(
+  datos_regresion_ml,
+  group = animal_id,
+  prop = 0.80
+)
+
+entrenamiento <- training(particion_animales)
+prueba <- testing(particion_animales)
+
+entrenamiento |>
+  summarise(
+    filas = n(),
+    animales = n_distinct(animal_id),
+    granjas = n_distinct(granja_id)
+  )
+
+prueba |>
+  summarise(
+    filas = n(),
+    animales = n_distinct(animal_id),
+    granjas = n_distinct(granja_id)
   )
 ```
 
-## Discusión
-
-Observamos que cada animal presenta una trayectoria distinta a lo largo del tiempo.
-
-Esto sugiere que existe variabilidad entre individuos y que probablemente necesitaremos modelos que tengan en cuenta la dependencia temporal y la heterogeneidad entre animales.
-
-# Error de predicción
-
-Un modelo nunca es perfecto.
-
-La diferencia entre el valor observado y el valor predicho recibe el nombre de error.
-
-## Pregunta
-
-Si observamos:
-
-| Producción observada | Producción predicha |
-|----------------------|---------------------|
-| 32 kg                | 30 kg               |
-
-el error es:
-
-``` text
-32 - 30 = 2 kg
-```
-
-Cuanto menores sean los errores, mejor será el modelo.
-
-# Entrenamiento y prueba
-
-Para evaluar correctamente un modelo debemos utilizar datos que no hayan participado en el ajuste.
-
-La práctica habitual consiste en dividir los datos en:
-
-- Conjunto de entrenamiento.
-- Conjunto de prueba.
+<br>
 
 ```{r}
-split <- initial_split(datos, prop = 0.80)
-
-train <- training(split)
-test  <- testing(split)
-
-nrow(train)
-nrow(test)
+# Verificar que ningún animal aparezca en ambos conjuntos.
+intersect(
+  unique(entrenamiento$animal_id),
+  unique(prueba$animal_id)
+)
 ```
 
-# Sobreajuste
+<br>
 
-Uno de los problemas más frecuentes en aprendizaje estadístico es el sobreajuste.
+Si el objetivo fuera predecir una granja nueva, tendríamos que dividir por `granja_id`. Si quisiéramos predecir semanas futuras, utilizaríamos una partición temporal y evitaríamos entrenar con información posterior a la fecha evaluada.
 
-Un modelo sobreajustado aprende demasiado bien los datos de entrenamiento.
+<br>
 
-Como consecuencia:
+## Predictores, respuesta y fuga de información
 
-- Presenta poco error en entrenamiento.
-- Presenta mucho error en datos nuevos.
+<br>
 
-## Analogía
+La fuga de información aparece cuando el modelo recibe datos que no estarían disponibles en el momento real de la predicción o variables construidas a partir de la propia respuesta.
 
-Un estudiante memoriza las preguntas exactas de un examen.
+<br>
 
-Obtendrá una nota excelente en ese examen específico.
+Ejemplos de fuga serían utilizar el peso final para predecir el peso de semanas anteriores, calcular la media de un animal empleando también las observaciones del conjunto de prueba o imputar valores antes de realizar la partición.
 
-Sin embargo, si se le formula una pregunta diferente, posiblemente fracase.
+<br>
 
-Eso es exactamente el sobreajuste.
+```{r}
+# Variables disponibles para una predicción didáctica del peso.
+predictores_candidatos <- entrenamiento |>
+  select(
+    consumo_kg_dia,
+    edad_inicio_meses,
+    sexo,
+    raza,
+    tiempo,
+    temperatura_C,
+    humedad_pct
+  )
 
-# Complejidad del modelo
+glimpse(predictores_candidatos)
+```
 
-Existe un compromiso permanente entre:
+<br>
 
-- Simplicidad.
-- Capacidad predictiva.
+## Preprocesamiento mediante recetas
 
-Los modelos demasiado simples pueden ignorar información importante.
+<br>
 
-Los modelos excesivamente complejos pueden sobreajustarse.
+Las recetas de `tidymodels` permiten definir transformaciones que se estiman exclusivamente con el conjunto de entrenamiento. Las variables categóricas se convierten en indicadores y los predictores numéricos pueden estandarizarse.
 
-El objetivo consiste en encontrar un equilibrio adecuado.
+<br>
 
-# Resumen
+```{r}
+receta_intro <- recipe(
+  peso_kg ~
+    consumo_kg_dia + edad_inicio_meses +
+    sexo + raza + tiempo +
+    temperatura_C + humedad_pct,
+  data = entrenamiento
+) |>
+  step_unknown(all_nominal_predictors()) |>
+  step_novel(all_nominal_predictors()) |>
+  step_dummy(all_nominal_predictors()) |>
+  step_zv(all_predictors()) |>
+  step_normalize(all_numeric_predictors())
 
-En esta sesión hemos introducido:
+receta_intro
+```
 
-- El concepto de aprendizaje estadístico.
-- Inferencia frente a predicción.
-- Aprendizaje supervisado.
-- Aprendizaje no supervisado.
-- Error de predicción.
-- División entrenamiento-prueba.
-- Sobreajuste.
+<br>
 
-Estos conceptos constituirán la base para los siguientes temas del curso: regresión, clasificación, árboles de decisión, random forest y redes neuronales.
+```{r}
+# Estimar las transformaciones solamente con entrenamiento.
+receta_preparada <- prep(receta_intro)
 
-# Actividades propuestas
+# Aplicarlas a entrenamiento y prueba.
+entrenamiento_procesado <- bake(
+  receta_preparada,
+  new_data = NULL
+)
 
-1.  Identifique tres ejemplos de problemas supervisados en producción animal.
-2.  Identifique tres ejemplos de problemas no supervisados en salud animal.
-3.  Explique con sus palabras la diferencia entre inferencia y predicción.
-4.  ¿Por qué es necesario disponer de un conjunto de prueba?
-5.  ¿Qué consecuencias puede tener un modelo sobreajustado en un sistema de producción animal?
+prueba_procesada <- bake(
+  receta_preparada,
+  new_data = prueba
+)
 
-# Lecturas recomendadas
+glimpse(entrenamiento_procesado)
+```
 
-- James, Witten, Hastie y Tibshirani. *An Introduction to Statistical Learning*.
-- Hastie, Tibshirani y Friedman. *The Elements of Statistical Learning*.
-- Kuhn y Johnson. *Applied Predictive Modeling*.
+<br>
+
+## Validación cruzada agrupada
+
+<br>
+
+Una única división entrenamiento-prueba ofrece una sola estimación del desempeño. La validación cruzada repite el entrenamiento y la evaluación en diferentes subconjuntos. En datos longitudinales debemos mantener juntas las mediciones del mismo animal.
+
+<br>
+
+```{r}
+set.seed(2026)
+
+folds_animales <- group_vfold_cv(
+  entrenamiento,
+  group = animal_id,
+  v = 5
+)
+
+folds_animales
+```
+
+<br>
+
+La validación agrupada permite seleccionar métodos o parámetros sin utilizar el conjunto de prueba. La prueba se consulta una sola vez al finalizar el proceso.
+
+<br>
+
+## Aplicaciones según la escala de predicción
+
+<br>
+
+```{r}
+preguntas_ml <- tribble(
+  ~pregunta, ~respuesta, ~unidad, ~tipo,
+  "Predecir peso semanal", "peso_kg", "medición", "Regresión",
+  "Predecir salud alta", "salud_alta_ml", "medición", "Clasificación",
+  "Predecir producción de lana", "produccion_lana_kg", "animal", "Regresión",
+  "Predecir muchas visitas", "visitas_altas", "animal", "Clasificación",
+  "Agrupar granjas productivas", "Sin respuesta", "granja", "Clustering"
+)
+
+preguntas_ml
+```
+
+<br>
+
+## Línea base predictiva
+
+<br>
+
+Todo modelo debe compararse con una referencia sencilla. Para regresión, una línea base consiste en predecir siempre la media del conjunto de entrenamiento.
+
+<br>
+
+```{r}
+media_entrenamiento <- mean(
+  entrenamiento$peso_kg,
+  na.rm = TRUE
+)
+
+prediccion_base <- prueba |>
+  transmute(
+    peso_kg,
+    .pred = media_entrenamiento
+  )
+
+metric_set(rmse, mae, rsq)(
+  prediccion_base,
+  truth = peso_kg,
+  estimate = .pred
+)
+```
+
+<br>
+
+Un modelo complejo solo resulta útil si mejora de forma relevante esta referencia y si esa mejora se mantiene en datos nuevos.
+
+<br>
+
+## Actividad de interpretación
+
+<br>
+
+1.  ¿Cuál es la respuesta en el ejemplo de regresión?
+2.  ¿Cuál es el evento positivo en el ejemplo de clasificación?
+3.  ¿Qué representa una fila de `datos_regresion_ml`?
+4.  ¿Por qué no conviene dividir aleatoriamente las filas?
+5.  ¿Cómo cambiaría la partición para predecir granjas nuevas?
+6.  ¿Qué información no estaría disponible al predecir una semana futura?
+7.  ¿Qué transformaciones se incluyeron en la receta?
+8.  ¿Por qué la receta debe estimarse con entrenamiento?
+9.  ¿Qué función cumple la validación cruzada?
+10. ¿Qué representa la línea base de regresión?
+
+<br>
+
+Al finalizar este capítulo debemos diferenciar aprendizaje supervisado y no supervisado, reconocer problemas de regresión y clasificación, definir correctamente la unidad de análisis y dividir los datos sin mezclar información entre entrenamiento y evaluación. Estas decisiones son más importantes que la elección inicial de un algoritmo complejo.

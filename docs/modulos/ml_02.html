@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Regresión y clasificación – Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal</title>
+<title>9&nbsp; Métodos de regresión y clasificación – Aprendizaje Estadístico en Ciencia Animal</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -117,6 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -290,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_02.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regresión y clasificación</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_02.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Métodos de regresión y clasificación</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -305,7 +306,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal</a> 
+      <a href="../">Aprendizaje Estadístico en Ciencia Animal</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
 </div>
@@ -341,20 +342,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../modulos/st_02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Modelos lineales generalizados mixtos</span></span></a>
+  <a href="../modulos/st_02A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estadística descriptiva y visualización</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../modulos/st_03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Modelos espaciales autorregresivos</span></span></a>
+  <a href="../modulos/st_02B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">De la regresión lineal simple a la múltiple</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modulos/st_03A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dependencia temporal y modelos mixtos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modulos/st_03B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">GLMM y respuestas no continuas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/st_04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modelos espacio-temporales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dependencia espacial y modelos SAR espacio-temporales</span></span></a>
   </div>
 </li>
       </ul>
@@ -371,31 +384,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje estadístico</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje supervisado y no supervisado</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_02.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regresión y clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Métodos de regresión y clasificación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Árboles y Random Forest</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 3. Métodos basados en árboles</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Redes neuronales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introducción a las redes neuronales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clustering y PCA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Segmentación y reducción de dimensionalidad</span></span></a>
   </div>
 </li>
       </ul>
@@ -412,7 +425,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/crosscarry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">CrossCarry</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">CrossCarry</span></span></a>
   </div>
 </li>
       </ul>
@@ -420,7 +433,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../recursos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Recursos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Recursos</span></span></a>
   </div>
 </li>
     </ul>
@@ -433,12 +446,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#temas" id="toc-temas" class="nav-link active" data-scroll-target="#temas"><span class="header-section-number">8</span> Temas</a>
-  <ul class="collapse">
-  <li><a href="#regresión-lineal" id="toc-regresión-lineal" class="nav-link" data-scroll-target="#regresión-lineal"><span class="header-section-number">8.1</span> Regresión lineal</a></li>
-  <li><a href="#regresión-logística" id="toc-regresión-logística" class="nav-link" data-scroll-target="#regresión-logística"><span class="header-section-number">8.2</span> Regresión logística</a></li>
-  <li><a href="#validación-cruzada" id="toc-validación-cruzada" class="nav-link" data-scroll-target="#validación-cruzada"><span class="header-section-number">8.3</span> Validación cruzada</a></li>
-  </ul></li>
+  <li><a href="#preparación-de-los-datos" id="toc-preparación-de-los-datos" class="nav-link active" data-scroll-target="#preparación-de-los-datos"><span class="header-section-number">9.1</span> Preparación de los datos</a></li>
+  <li><a href="#división-agrupada-por-animal" id="toc-división-agrupada-por-animal" class="nav-link" data-scroll-target="#división-agrupada-por-animal"><span class="header-section-number">9.2</span> División agrupada por animal</a></li>
+  <li><a href="#regresión-lineal-para-predecir-peso" id="toc-regresión-lineal-para-predecir-peso" class="nav-link" data-scroll-target="#regresión-lineal-para-predecir-peso"><span class="header-section-number">9.3</span> Regresión lineal para predecir peso</a></li>
+  <li><a href="#regularización-mediante-elastic-net" id="toc-regularización-mediante-elastic-net" class="nav-link" data-scroll-target="#regularización-mediante-elastic-net"><span class="header-section-number">9.4</span> Regularización mediante elastic net</a></li>
+  <li><a href="#regresión-logística-para-salud-alta" id="toc-regresión-logística-para-salud-alta" class="nav-link" data-scroll-target="#regresión-logística-para-salud-alta"><span class="header-section-number">9.5</span> Regresión logística para salud alta</a></li>
+  <li><a href="#métricas-de-clasificación" id="toc-métricas-de-clasificación" class="nav-link" data-scroll-target="#métricas-de-clasificación"><span class="header-section-number">9.6</span> Métricas de clasificación</a></li>
+  <li><a href="#selección-del-umbral" id="toc-selección-del-umbral" class="nav-link" data-scroll-target="#selección-del-umbral"><span class="header-section-number">9.7</span> Selección del umbral</a></li>
+  <li><a href="#regularización-logística" id="toc-regularización-logística" class="nav-link" data-scroll-target="#regularización-logística"><span class="header-section-number">9.8</span> Regularización logística</a></li>
+  <li><a href="#actividad-de-interpretación" id="toc-actividad-de-interpretación" class="nav-link" data-scroll-target="#actividad-de-interpretación"><span class="header-section-number">9.9</span> Actividad de interpretación</a></li>
   </ul>
 </nav>
     </div>
@@ -446,9 +462,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_02.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regresión y clasificación</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_02.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Métodos de regresión y clasificación</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regresión y clasificación</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Métodos de regresión y clasificación</span></h1>
 </div>
 
 
@@ -465,27 +481,667 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="temas" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Temas</h1>
-<section id="regresión-lineal" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="regresión-lineal"><span class="header-section-number">8.1</span> Regresión lineal</h2>
-</section>
-<section id="regresión-logística" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="regresión-logística"><span class="header-section-number">8.2</span> Regresión logística</h2>
-</section>
-<section id="validación-cruzada" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="validación-cruzada"><span class="header-section-number">8.3</span> Validación cruzada</h2>
+<p><br></p>
+<p>En este capítulo construiremos modelos predictivos de regresión y clasificación con los datos de animales y granjas. Utilizaremos regresión lineal para predecir el peso y regresión logística para predecir una respuesta binaria de salud. Después introduciremos la regularización y evaluaremos el desempeño mediante métricas calculadas en animales no utilizados durante el entrenamiento.</p>
+<p><br></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"datos"</span>,<span class="st">"leche.csv"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar los paquetes si es necesario.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c(</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   "sf", "spdep", "spatialreg", "tidyverse",</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   "readxl", "Matrix"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ))</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatialreg)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre del archivo Excel.</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>archivo <span class="ot">&lt;-</span> <span class="st">"../datos/base_borregos_espaciotemporal_Hidalgo.xlsx"</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Consultar las hojas disponibles.</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(archivo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "datos_long"    "granja_tiempo" "animales"      "granjas"      
+[5] "W_vecindad"    "distancias_km" "diccionario"   "LEEME"        </code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importar la tabla longitudinal.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(archivo, <span class="at">sheet =</span> <span class="st">"datos_long"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>datos_b2 <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">animal_id =</span> <span class="fu">as.factor</span>(animal_id),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">granja_id =</span> <span class="fu">as.factor</span>(granja_id),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sexo =</span> <span class="fu">as.factor</span>(sexo),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">raza =</span> <span class="fu">as.factor</span>(raza),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">tratamiento =</span> <span class="fu">as.factor</span>(tratamiento),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">sistema_produccion =</span> <span class="fu">as.factor</span>(sistema_produccion),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_score_0_4 =</span> <span class="fu">factor</span>(</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>      salud_score_0_4,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_alta =</span> <span class="fu">as.factor</span>(salud_alta),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">periodo =</span> <span class="fu">cut</span>(</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>      tiempo,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="cn">Inf</span>),</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 1-20"</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 21-40"</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 41-60"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 61-80"</span>,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 81-100"</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar que los objetos de los bloques anteriores están disponibles.</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(datos_b2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50000    29</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(datos_b2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 50,000
+Columns: 29
+$ animal_id              &lt;fct&gt; A001, A001, A001, A001, A001, A001, A001, A001,…
+$ tiempo                 &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, …
+$ granja_id              &lt;fct&gt; G01, G01, G01, G01, G01, G01, G01, G01, G01, G0…
+$ sexo                   &lt;fct&gt; Macho, Macho, Macho, Macho, Macho, Macho, Macho…
+$ edad_inicio_meses      &lt;dbl&gt; 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,…
+$ raza                   &lt;fct&gt; Raza_B, Raza_B, Raza_B, Raza_B, Raza_B, Raza_B,…
+$ longitud               &lt;dbl&gt; -98.33413, -98.33413, -98.33413, -98.33413, -98…
+$ latitud                &lt;dbl&gt; 19.65949, 19.65949, 19.65949, 19.65949, 19.6594…
+$ zona                   &lt;chr&gt; "Sur", "Sur", "Sur", "Sur", "Sur", "Sur", "Sur"…
+$ tamano_granja          &lt;chr&gt; "Grande", "Grande", "Grande", "Grande", "Grande…
+$ sistema_produccion     &lt;fct&gt; Extensivo, Extensivo, Extensivo, Extensivo, Ext…
+$ efecto_granja          &lt;dbl&gt; 0.6536355, 0.6536355, 0.6536355, 0.6536355, 0.6…
+$ efecto_animal          &lt;dbl&gt; 2.914282, 2.914282, 2.914282, 2.914282, 2.91428…
+$ peso_inicial           &lt;dbl&gt; 36.74311, 36.74311, 36.74311, 36.74311, 36.7431…
+$ fecha                  &lt;dttm&gt; 2026-01-05, 2026-01-12, 2026-01-19, 2026-01-26…
+$ temperatura_C          &lt;dbl&gt; 15.88818, 20.48193, 20.39116, 20.47973, 18.3227…
+$ humedad_pct            &lt;dbl&gt; 60.32583, 64.99599, 63.95246, 54.16418, 64.4185…
+$ precipitacion_mm       &lt;dbl&gt; 1.6688677, 5.3912852, 5.4537042, 4.8266453, 8.4…
+$ consumo_kg_dia         &lt;dbl&gt; 1.072022, 1.357391, 1.225139, 1.411625, 1.41050…
+$ consumo_agua_l_dia     &lt;dbl&gt; 3.677850, 5.364670, 5.052596, 4.208338, 4.81631…
+$ salud_score_0_4        &lt;ord&gt; 0, 2, 1, 2, 2, 2, 1, 0, 2, 3, 3, 1, 2, 1, 3, 1,…
+$ salud_alta             &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0,…
+$ actividad_h_dia        &lt;dbl&gt; 5.923437, 4.537974, 4.990502, 6.221985, 5.62676…
+$ ganancia_semanal_kg    &lt;dbl&gt; 0.29565465, 0.29575272, 0.17001814, 0.19513973,…
+$ peso_kg                &lt;dbl&gt; 37.05724, 37.34766, 37.48476, 37.69459, 38.0102…
+$ produccion_lana_kg     &lt;dbl&gt; 0.10708573, 0.13682758, 0.11903028, 0.12099647,…
+$ n_visitas_veterinarias &lt;dbl&gt; 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 1, 0,…
+$ tratamiento            &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, Si, No,…
+$ periodo                &lt;fct&gt; Semanas 1-20, Semanas 1-20, Semanas 1-20, Seman…</code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("tidyverse", "tidymodels", "glmnet", "vip"))</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#pak::pak("bgreenwell/vip@main")  </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vip)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-
-
+<p><br></p>
+<section id="preparación-de-los-datos" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="preparación-de-los-datos"><span class="header-section-number">9.1</span> Preparación de los datos</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>datos_ml2 <span class="ot">&lt;-</span> datos_b2 <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_num =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(salud_score_0_4)),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_alta_ml =</span> <span class="fu">factor</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">if_else</span>(salud_num <span class="sc">&gt;=</span> <span class="dv">3</span>, <span class="st">"Sí"</span>, <span class="st">"No"</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Sí"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    animal_id, granja_id, tiempo,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    peso_kg, salud_alta_ml,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    consumo_kg_dia, consumo_agua_l_dia,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    edad_inicio_meses, sexo, raza,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    temperatura_C, humedad_pct,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    precipitacion_mm, actividad_h_dia,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    sistema_produccion, zona</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(datos_ml2, salud_alta_ml)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  salud_alta_ml     n
+  &lt;fct&gt;         &lt;int&gt;
+1 No            41058
+2 Sí             5958</code></pre>
+</div>
+</div>
+<p><br></p>
 </section>
+<section id="división-agrupada-por-animal" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="división-agrupada-por-animal"><span class="header-section-number">9.2</span> División agrupada por animal</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>particion_ml2 <span class="ot">&lt;-</span> <span class="fu">group_initial_split</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  datos_ml2,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> animal_id,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">prop =</span> <span class="fl">0.80</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>train_ml2 <span class="ot">&lt;-</span> <span class="fu">training</span>(particion_ml2)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>test_ml2 <span class="ot">&lt;-</span> <span class="fu">testing</span>(particion_ml2)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>folds_ml2 <span class="ot">&lt;-</span> <span class="fu">group_vfold_cv</span>(</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  train_ml2,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> animal_id,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">v =</span> <span class="dv">5</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><br></p>
+</section>
+<section id="regresión-lineal-para-predecir-peso" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="regresión-lineal-para-predecir-peso"><span class="header-section-number">9.3</span> Regresión lineal para predecir peso</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>receta_peso <span class="ot">&lt;-</span> <span class="fu">recipe</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  peso_kg <span class="sc">~</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    consumo_kg_dia <span class="sc">+</span> consumo_agua_l_dia <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    edad_inicio_meses <span class="sc">+</span> sexo <span class="sc">+</span> raza <span class="sc">+</span> tiempo <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    temperatura_C <span class="sc">+</span> humedad_pct <span class="sc">+</span> precipitacion_mm <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    actividad_h_dia <span class="sc">+</span> sistema_produccion <span class="sc">+</span> zona,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> train_ml2</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_unknown</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_novel</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>modelo_lm_ml <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>flujo_lm <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receta_peso) <span class="sc">|&gt;</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(modelo_lm_ml)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>ajuste_lm <span class="ot">&lt;-</span> <span class="fu">fit</span>(</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  flujo_lm,</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> train_ml2</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>ajuste_lm</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>══ Workflow [trained] ══════════════════════════════════════════════════════════
+Preprocessor: Recipe
+Model: linear_reg()
+
+── Preprocessor ────────────────────────────────────────────────────────────────
+5 Recipe Steps
+
+• step_unknown()
+• step_novel()
+• step_dummy()
+• step_zv()
+• step_normalize()
+
+── Model ───────────────────────────────────────────────────────────────────────
+
+Call:
+stats::lm(formula = ..y ~ ., data = data)
+
+Coefficients:
+                      (Intercept)                     consumo_kg_dia  
+                        41.048642                           2.401394  
+               consumo_agua_l_dia                  edad_inicio_meses  
+                         0.062575                           3.256538  
+                           tiempo                      temperatura_C  
+                         6.392882                          -1.245451  
+                      humedad_pct                   precipitacion_mm  
+                        -0.007571                          -0.012876  
+                  actividad_h_dia                         sexo_Macho  
+                         0.030994                           0.490955  
+                      raza_Raza_B                        raza_Raza_C  
+                         0.438409                          -0.631904  
+                      raza_Raza_D                        raza_Raza_E  
+                         1.189205                           0.304300  
+     sistema_produccion_Intensivo  sistema_produccion_Semi.intensivo  
+                        -0.070327                           0.302244  
+                       zona_Norte                           zona_Sur  
+                         0.091138                          -0.301635  </code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pred_lm <span class="ot">&lt;-</span> <span class="fu">predict</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  ajuste_lm,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">new_data =</span> test_ml2</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    test_ml2 <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(peso_kg, animal_id, granja_id)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">metric_set</span>(rmse, mae, rsq)(</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  pred_lm,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">truth =</span> peso_kg,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimate =</span> .pred</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard       3.61 
+2 mae     standard       2.88 
+3 rsq     standard       0.835</code></pre>
+</div>
+</div>
+<p><br></p>
+<p>El RMSE penaliza especialmente los errores grandes. El MAE representa el error absoluto medio en kilogramos. El (R^2) predictivo describe cuánto se aproximan las predicciones a los valores observados en el conjunto de prueba.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  pred_lm,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> .pred, <span class="at">y =</span> peso_kg)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.20</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">intercept =</span> <span class="dv">0</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">slope =</span> <span class="dv">1</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"firebrick"</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Peso observado y predicho"</span>,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Peso predicho (kg)"</span>,</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Peso observado (kg)"</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ml_02_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="regularización-mediante-elastic-net" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="regularización-mediante-elastic-net"><span class="header-section-number">9.4</span> Regularización mediante elastic net</h2>
+<p><br></p>
+<p>La regularización reduce la magnitud de los coeficientes para controlar la complejidad. La penalización <code>mixture = 0</code> corresponde a ridge, <code>mixture = 1</code> a lasso y los valores intermedios a elastic net.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>modelo_glmnet <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">penalty =</span> <span class="fu">tune</span>(),</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mixture =</span> <span class="fu">tune</span>()</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"glmnet"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>flujo_glmnet <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receta_peso) <span class="sc">|&gt;</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(modelo_glmnet)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>rejilla_glmnet <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">penalty</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">0</span>)),</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mixture</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)),</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">5</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>resultados_glmnet <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  flujo_glmnet,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> folds_ml2,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> rejilla_glmnet,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(rmse, mae, rsq),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">control_grid</span>(<span class="at">save_pred =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="fu">show_best</span>(</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  resultados_glmnet,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="st">"rmse"</span>,</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">10</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 8
+     penalty mixture .metric .estimator  mean     n std_err .config          
+       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;            
+ 1 0.00001      0.75 rmse    standard    3.55     5  0.0799 pre0_mod004_post0
+ 2 0.0000183    0.75 rmse    standard    3.55     5  0.0799 pre0_mod009_post0
+ 3 0.0000336    0.75 rmse    standard    3.55     5  0.0799 pre0_mod014_post0
+ 4 0.0000616    0.75 rmse    standard    3.55     5  0.0799 pre0_mod019_post0
+ 5 0.000113     0.75 rmse    standard    3.55     5  0.0799 pre0_mod024_post0
+ 6 0.000207     0.75 rmse    standard    3.55     5  0.0799 pre0_mod029_post0
+ 7 0.000379     0.75 rmse    standard    3.55     5  0.0799 pre0_mod034_post0
+ 8 0.000695     0.75 rmse    standard    3.55     5  0.0799 pre0_mod039_post0
+ 9 0.00127      0.75 rmse    standard    3.55     5  0.0799 pre0_mod044_post0
+10 0.00234      0.75 rmse    standard    3.55     5  0.0799 pre0_mod049_post0</code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mejores_parametros <span class="ot">&lt;-</span> <span class="fu">select_best</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  resultados_glmnet,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="st">"rmse"</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>flujo_glmnet_final <span class="ot">&lt;-</span> <span class="fu">finalize_workflow</span>(</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  flujo_glmnet,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  mejores_parametros</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>ajuste_glmnet_final <span class="ot">&lt;-</span> <span class="fu">last_fit</span>(</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  flujo_glmnet_final,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">split =</span> particion_ml2,</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(rmse, mae, rsq)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(ajuste_glmnet_final)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  .metric .estimator .estimate .config        
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;          
+1 rmse    standard       3.62  pre0_mod0_post0
+2 mae     standard       2.89  pre0_mod0_post0
+3 rsq     standard       0.834 pre0_mod0_post0</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="regresión-logística-para-salud-alta" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="regresión-logística-para-salud-alta"><span class="header-section-number">9.5</span> Regresión logística para salud alta</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>receta_salud <span class="ot">&lt;-</span> <span class="fu">recipe</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  salud_alta_ml <span class="sc">~</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    consumo_kg_dia <span class="sc">+</span> consumo_agua_l_dia <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    edad_inicio_meses <span class="sc">+</span> sexo <span class="sc">+</span> raza <span class="sc">+</span> tiempo <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    temperatura_C <span class="sc">+</span> humedad_pct <span class="sc">+</span> precipitacion_mm <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    actividad_h_dia <span class="sc">+</span> sistema_produccion <span class="sc">+</span> zona,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> train_ml2</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_unknown</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_novel</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>modelo_logistico_ml <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"glm"</span>)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>flujo_logistico <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receta_salud) <span class="sc">|&gt;</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(modelo_logistico_ml)</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>ajuste_logistico <span class="ot">&lt;-</span> <span class="fu">fit</span>(</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>  flujo_logistico,</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> train_ml2</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pred_prob_logistica <span class="ot">&lt;-</span> <span class="fu">predict</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  ajuste_logistico,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">new_data =</span> test_ml2,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"prob"</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>pred_clase_logistica <span class="ot">&lt;-</span> <span class="fu">predict</span>(</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  ajuste_logistico,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">new_data =</span> test_ml2,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"class"</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>pred_logistica <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  test_ml2 <span class="sc">|&gt;</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(salud_alta_ml, animal_id, granja_id),</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  pred_prob_logistica,</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  pred_clase_logistica</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><br></p>
+</section>
+<section id="métricas-de-clasificación" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="métricas-de-clasificación"><span class="header-section-number">9.6</span> Métricas de clasificación</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metric_set</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  accuracy,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  sens,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  spec,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  bal_accuracy,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  roc_auc,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  pr_auc,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  mn_log_loss</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>)(</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  pred_logistica,</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">truth =</span> salud_alta_ml,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimate =</span> .pred_class,</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  .pred_Sí,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">event_level =</span> <span class="st">"second"</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 3
+  .metric      .estimator .estimate
+  &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy     binary        0.875 
+2 sens         binary        0.0818
+3 spec         binary        0.990 
+4 bal_accuracy binary        0.536 
+5 roc_auc      binary        0.799 
+6 pr_auc       binary        0.373 
+7 mn_log_loss  binary        0.313 </code></pre>
+</div>
+</div>
+<p><br></p>
+<p>La exactitud puede ser engañosa cuando las clases están desequilibradas. La sensibilidad representa la proporción de mediciones con salud alta identificadas correctamente. La especificidad representa la proporción de mediciones sin salud alta clasificadas correctamente. El AUC ROC evalúa el ordenamiento de las probabilidades a través de todos los umbrales.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  pred_logistica,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">truth =</span> salud_alta_ml,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimate =</span> .pred_class</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Truth
+Prediction   No   Sí
+        No 8151 1100
+        Sí   83   98</code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>roc_obj <span class="ot">&lt;-</span> <span class="fu">roc_curve</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  pred_logistica,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">truth =</span> salud_alta_ml,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  .pred_Sí,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">event_level =</span> <span class="st">"second"</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(roc_obj) <span class="sc">+</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Curva ROC para salud alta"</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ml_02_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="selección-del-umbral" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="selección-del-umbral"><span class="header-section-number">9.7</span> Selección del umbral</h2>
+<p><br></p>
+<p>El valor 0,5 no es obligatorio. Puede elegirse otro umbral según el costo de falsos negativos y falsos positivos.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>umbral <span class="ot">&lt;-</span> <span class="fl">0.35</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>pred_logistica_umbral <span class="ot">&lt;-</span> pred_logistica <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">clase_umbral =</span> <span class="fu">factor</span>(</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">if_else</span>(.pred_Sí <span class="sc">&gt;=</span> umbral, <span class="st">"Sí"</span>, <span class="st">"No"</span>),</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">levels</span>(salud_alta_ml)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="fu">metric_set</span>(sens, spec, accuracy)(</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  pred_logistica_umbral,</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">truth =</span> salud_alta_ml,</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimate =</span> clase_umbral,</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">event_level =</span> <span class="st">"second"</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 sens     binary         0.265
+2 spec     binary         0.957
+3 accuracy binary         0.869</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="regularización-logística" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="regularización-logística"><span class="header-section-number">9.8</span> Regularización logística</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>modelo_logit_penalizado <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">penalty =</span> <span class="fu">tune</span>(),</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mixture =</span> <span class="fu">tune</span>()</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"glmnet"</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>flujo_logit_penalizado <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receta_salud) <span class="sc">|&gt;</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(modelo_logit_penalizado)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>resultados_logit_penalizado <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  flujo_logit_penalizado,</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> folds_ml2,</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> rejilla_glmnet,</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(roc_auc, pr_auc, mn_log_loss),</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">control_grid</span>(<span class="at">save_pred =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">event_level =</span> <span class="st">"second"</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="fu">show_best</span>(</span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>  resultados_logit_penalizado,</span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="st">"roc_auc"</span>,</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">10</span></span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 8
+     penalty mixture .metric .estimator  mean     n std_err .config          
+       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;            
+ 1 0.00127      1    roc_auc binary     0.791     5 0.00559 pre0_mod045_post0
+ 2 0.00127      0.75 roc_auc binary     0.791     5 0.00559 pre0_mod044_post0
+ 3 0.000695     1    roc_auc binary     0.791     5 0.00561 pre0_mod040_post0
+ 4 0.00234      0.75 roc_auc binary     0.791     5 0.00557 pre0_mod049_post0
+ 5 0.00234      0.5  roc_auc binary     0.791     5 0.00558 pre0_mod048_post0
+ 6 0.00234      1    roc_auc binary     0.791     5 0.00556 pre0_mod050_post0
+ 7 0.000695     0.75 roc_auc binary     0.791     5 0.00561 pre0_mod039_post0
+ 8 0.00001      1    roc_auc binary     0.791     5 0.00562 pre0_mod005_post0
+ 9 0.0000183    1    roc_auc binary     0.791     5 0.00562 pre0_mod010_post0
+10 0.0000336    1    roc_auc binary     0.791     5 0.00562 pre0_mod015_post0</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="actividad-de-interpretación" class="level2" data-number="9.9">
+<h2 data-number="9.9" class="anchored" data-anchor-id="actividad-de-interpretación"><span class="header-section-number">9.9</span> Actividad de interpretación</h2>
+<p><br></p>
+<ol type="1">
+<li>¿Qué variables utiliza el modelo de peso?</li>
+<li>¿Qué representan RMSE y MAE?</li>
+<li>¿Por qué el (R^2) debe calcularse en prueba?</li>
+<li>¿Qué diferencia existe entre ridge y lasso?</li>
+<li>¿Qué parámetros se seleccionan mediante validación cruzada?</li>
+<li>¿Cuál es el evento positivo de la clasificación?</li>
+<li>¿Qué representan sensibilidad y especificidad?</li>
+<li>¿Por qué la exactitud puede ser insuficiente?</li>
+<li>¿Cómo cambia la clasificación al reducir el umbral?</li>
+<li>¿Qué modelo utilizaría para priorizar la detección de animales con salud baja?</li>
+</ol>
+<p><br></p>
+<p>Al finalizar este capítulo debemos ser capaces de construir modelos de regresión y clasificación, aplicar regularización, seleccionar parámetros sin consultar la prueba y evaluar el desempeño mediante métricas adecuadas para el tipo de respuesta.</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -904,13 +1560,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../modulos/ml_01.html" class="pagination-link" aria-label="Introducción al aprendizaje estadístico">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje estadístico</span></span>
+      <a href="../modulos/ml_01.html" class="pagination-link" aria-label="Introducción al aprendizaje supervisado y no supervisado">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje supervisado y no supervisado</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../modulos/ml_03.html" class="pagination-link" aria-label="Árboles y Random Forest">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Árboles y Random Forest</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../modulos/ml_03.html" class="pagination-link" aria-label="Capítulo 3. Métodos basados en árboles">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 3. Métodos basados en árboles</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

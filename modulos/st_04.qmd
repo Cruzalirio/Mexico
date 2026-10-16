@@ -1,16 +1,1619 @@
----
-title: "Modelos espacio-temporales"
----
-# Temas
+# Dependencia espacial y modelos SAR espacio-temporales
 
-## Dependencia espacial y temporal conjunta
-## Modelos jerárquicos
-## Predicción
+<br>
+
+En estos dos bloques incorporaremos la dimensión espacial al análisis de las granjas. Primero utilizaremos sus coordenadas para calcular distancias, definir relaciones de vecindad y construir una matriz espacial estandarizada por filas. Después agregaremos las mediciones por granja y semana y ajustaremos un modelo autorregresivo espacial, SAR, para una semana concreta.
+
+<br>
+
+El propósito es distinguir dos fuentes diferentes de dependencia. Un efecto aleatorio de granja representa heterogeneidad no observada entre explotaciones, mientras que un modelo espacial explícito representa la posibilidad de que el resultado de una granja esté relacionado con los resultados de explotaciones próximas.
+
+<br>
+
+Las coordenadas y los datos son simulados. Los resultados tienen fines didácticos y no deben interpretarse como evidencia sobre granjas reales de México.
+
+<br>
 
 ```{r}
-library(INLA)
+# Instalar los paquetes si es necesario.
+# install.packages(c(
+#   "sf", "spdep", "spatialreg", "tidyverse",
+#   "readxl", "Matrix"
+# ))
+
+library(tidyverse)
+library(readxl)
+library(sf)
+library(spdep)
+library(spatialreg)
+library(Matrix)
+
+
+# Nombre del archivo Excel.
+archivo <- "../datos/base_borregos_espaciotemporal_Hidalgo.xlsx"
+
+# Consultar las hojas disponibles.
+excel_sheets(archivo)
+
+# Importar la tabla longitudinal.
+datos <- read_excel(archivo, sheet = "datos_long")
+
+datos_b2 <- datos |>
+  mutate(
+    animal_id = as.factor(animal_id),
+    granja_id = as.factor(granja_id),
+    sexo = as.factor(sexo),
+    raza = as.factor(raza),
+    tratamiento = as.factor(tratamiento),
+    sistema_produccion = as.factor(sistema_produccion),
+    salud_score_0_4 = factor(
+      salud_score_0_4,
+      levels = 0:4,
+      ordered = TRUE
+    ),
+    salud_alta = as.factor(salud_alta),
+    periodo = cut(
+      tiempo,
+      breaks = c(-Inf, 20, 40, 60, 80, Inf),
+      labels = c(
+        "Semanas 1-20",
+        "Semanas 21-40",
+        "Semanas 41-60",
+        "Semanas 61-80",
+        "Semanas 81-100"
+      )
+    )
+  )
+
+
+
+# Comprobar que los objetos de los bloques anteriores están disponibles.
+dim(datos_b2)
+glimpse(datos_b2)
 ```
 
+<br>
+
+## Bloque 6. Dependencia espacial y matriz de vecindad
+
+<br>
+
+## Coordenadas de las granjas
+
+<br>
+
+Cada granja debe estar representada por una sola ubicación. Si el objeto `granjas` fue importado en el bloque cartográfico anterior, podemos reutilizarlo. Para que este bloque también pueda ejecutarse de forma independiente, construiremos una tabla con una fila por granja a partir de `datos_b2`.
+
+<br>
+
 ```{r}
-# Ejemplo de fórmula espacio-temporal
+granjas_b6 <- datos_b2 |>
+  select(
+    granja_id,
+    longitud,
+    latitud,
+    zona,
+    tamano_granja,
+    sistema_produccion
+  ) |>
+  distinct() |>
+  mutate(
+    granja_id = as.factor(granja_id)
+  )
+
+# Número de filas y granjas únicas.
+granjas_b6 |>
+  summarise(
+    n_filas = n(),
+    n_granjas = n_distinct(granja_id)
+  )
 ```
+
+<br>
+
+Si el número de filas es mayor que el número de granjas, alguna explotación presenta más de una combinación de coordenadas o características. Antes de continuar debemos revisar esas inconsistencias.
+
+<br>
+
+```{r}
+coordenadas_por_granja <- datos_b2 |>
+  group_by(granja_id) |>
+  summarise(
+    n_longitudes = n_distinct(longitud, na.rm = TRUE),
+    n_latitudes = n_distinct(latitud, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+coordenadas_por_granja |>
+  filter(
+    n_longitudes != 1 |
+    n_latitudes != 1
+  )
+```
+
+<br>
+
+También comprobaremos la presencia de coordenadas ausentes y sus rangos.
+
+<br>
+
+```{r}
+granjas_b6 |>
+  summarise(
+    n_longitud_ausente = sum(is.na(longitud)),
+    n_latitud_ausente = sum(is.na(latitud)),
+    longitud_minima = min(longitud, na.rm = TRUE),
+    longitud_maxima = max(longitud, na.rm = TRUE),
+    latitud_minima = min(latitud, na.rm = TRUE),
+    latitud_maxima = max(latitud, na.rm = TRUE)
+  )
+```
+
+<br>
+
+El siguiente análisis requiere coordenadas completas. Eliminaremos provisionalmente las granjas sin localización, pero en un estudio real tendríamos que investigar por qué faltan y valorar las consecuencias de excluirlas.
+
+<br>
+
+```{r}
+granjas_b6 <- granjas_b6 |>
+  drop_na(longitud, latitud) |>
+  arrange(granja_id)
+```
+
+<br>
+
+## Conversión a un objeto espacial
+
+<br>
+
+Las coordenadas están expresadas en longitud y latitud. Las convertiremos en un objeto `sf` con el sistema geográfico WGS 84, identificado mediante EPSG 4326.
+
+<br>
+
+```{r}
+granjas_sf_b6 <- st_as_sf(
+  granjas_b6,
+  coords = c("longitud", "latitud"),
+  crs = 4326,
+  remove = FALSE
+)
+
+granjas_sf_b6
+```
+
+<br>
+
+La longitud y la latitud se expresan en grados. Aunque podemos representar los puntos directamente, los grados no constituyen una unidad de distancia constante. Para calcular distancias en metros, transformaremos las coordenadas a un sistema proyectado.
+
+<br>
+
+En este ejemplo utilizaremos WGS 84 / UTM zona 14N, EPSG 32614, apropiado para una parte importante del centro-oriente de México. En una aplicación real debe comprobarse que la proyección elegida sea adecuada para toda la extensión del estudio.
+
+<br>
+
+```{r}
+granjas_utm_b6 <- st_transform(
+  granjas_sf_b6,
+  crs = 32614
+)
+
+st_crs(granjas_utm_b6)
+```
+
+<br>
+
+## Distancias entre granjas
+
+<br>
+
+La función `st_distance()` calcula una matriz con las distancias entre todas las parejas de granjas. Como el objeto está proyectado, las distancias se expresan en metros.
+
+<br>
+
+```{r}
+distancias_m <- st_distance(granjas_utm_b6)
+
+# Convertir las unidades espaciales a una matriz numérica en kilómetros.
+distancias_km <- units::drop_units(distancias_m) / 1000
+
+# Mostrar una parte de la matriz.
+round(distancias_km[1:min(6, nrow(distancias_km)),
+                    1:min(6, ncol(distancias_km))], 2)
+```
+
+<br>
+
+La diagonal de la matriz contiene ceros porque representa la distancia de cada granja respecto a sí misma. La matriz es simétrica: la distancia de la granja A a la granja B es igual a la distancia de B a A.
+
+<br>
+
+Podemos resumir la distancia mínima de cada explotación a otra granja.
+
+<br>
+
+```{r}
+distancia_vecino_mas_cercano <- apply(
+  distancias_km,
+  1,
+  function(x) min(x[x > 0], na.rm = TRUE)
+)
+
+resumen_distancias <- tibble(
+  granja_id = granjas_utm_b6$granja_id,
+  distancia_minima_km = distancia_vecino_mas_cercano
+)
+
+summary(resumen_distancias$distancia_minima_km)
+```
+
+<br>
+
+```{r}
+ggplot(
+  resumen_distancias,
+  aes(x = distancia_minima_km)
+) +
+  geom_histogram(
+    bins = 15,
+    fill = "steelblue",
+    color = "white"
+  ) +
+  labs(
+    title = "Distancia al vecino más cercano",
+    x = "Distancia mínima (km)",
+    y = "Número de granjas"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+Esta distribución ayuda a seleccionar una regla de vecindad razonable. Una distancia umbral demasiado pequeña puede dejar granjas sin vecinos. Un umbral demasiado grande puede conectar explotaciones muy alejadas y producir una red excesivamente densa.
+
+<br>
+
+## Definición de vecinos por proximidad
+
+<br>
+
+Existen diferentes formas de definir qué granjas son vecinas:
+
+1.  Una distancia máxima: dos granjas son vecinas si se encuentran a menos de un umbral.
+2.  Los vecinos más cercanos: cada granja se conecta con las `k` explotaciones más próximas.
+3.  Una estructura administrativa o productiva definida mediante conocimiento del sistema.
+4.  Una red basada en movimientos, rutas, comercio o contacto epidemiológico.
+
+<br>
+
+Como las granjas son puntos y no polígonos contiguos, utilizaremos los cuatro vecinos más cercanos. Esta regla garantiza que cada granja tenga inicialmente el mismo número de conexiones salientes.
+
+<br>
+
+```{r}
+# Extraer las coordenadas proyectadas.
+coords_utm <- st_coordinates(granjas_utm_b6)
+
+# Definir cuatro vecinos más cercanos.
+k_vecinos <- min(4, nrow(granjas_utm_b6) - 1)
+
+vecinos_knn <- knearneigh(
+  coords_utm,
+  k = k_vecinos
+)
+
+lista_vecinos_dirigida <- knn2nb(vecinos_knn)
+
+lista_vecinos_dirigida
+```
+
+<br>
+
+La relación de vecinos más cercanos puede ser dirigida. La granja A puede seleccionar a B entre sus cuatro vecinos más próximos, aunque B no seleccione a A. Para construir una relación simétrica, aplicaremos `make.sym.nb()`.
+
+<br>
+
+```{r}
+lista_vecinos <- make.sym.nb(
+  lista_vecinos_dirigida
+)
+
+# Número de vecinos de cada granja.
+numero_vecinos <- card(lista_vecinos)
+
+summary(numero_vecinos)
+```
+
+<br>
+
+Después de la simetrización, algunas granjas pueden tener más de cuatro vecinos porque reciben conexiones adicionales. Ninguna debería quedar aislada si existe un número suficiente de puntos y las coordenadas no están duplicadas.
+
+<br>
+
+```{r}
+table(numero_vecinos)
+
+which(numero_vecinos == 0)
+```
+
+<br>
+
+## Comprobación de coordenadas duplicadas
+
+<br>
+
+Dos granjas con exactamente las mismas coordenadas tienen distancia cero, aunque representen unidades distintas. Esta situación puede ser real, pero también puede indicar un error o que las coordenadas se registraron con poca precisión.
+
+<br>
+
+```{r}
+coordenadas_duplicadas <- granjas_b6 |>
+  count(longitud, latitud, name = "n_granjas") |>
+  filter(n_granjas > 1)
+
+coordenadas_duplicadas
+```
+
+<br>
+
+Si aparecen coordenadas duplicadas, debemos revisar las granjas afectadas antes de interpretar las relaciones espaciales. Los algoritmos de vecinos más cercanos pueden producir advertencias cuando existen puntos idénticos.
+
+<br>
+
+## Visualización de la red de vecindad
+
+<br>
+
+Representaremos las granjas y las conexiones definidas por la lista de vecinos. La función `plot.nb()` utiliza las coordenadas en el mismo orden con el que se construyó la lista.
+
+<br>
+
+```{r}
+plot(
+  st_geometry(granjas_utm_b6),
+  pch = 19,
+  col = "steelblue4",
+  main = "Red de vecindad entre granjas"
+)
+
+plot(
+  lista_vecinos,
+  coords_utm,
+  add = TRUE,
+  col = "grey45",
+  lwd = 1
+)
+```
+
+<br>
+
+También podemos construir un objeto de segmentos para representar la red mediante `ggplot2`.
+
+<br>
+
+```{r}
+segmentos_vecindad <- map_dfr(
+  seq_along(lista_vecinos),
+  function(i) {
+    tibble(
+      origen = i,
+      destino = lista_vecinos[[i]],
+      x = coords_utm[i, 1],
+      y = coords_utm[i, 2],
+      xend = coords_utm[lista_vecinos[[i]], 1],
+      yend = coords_utm[lista_vecinos[[i]], 2]
+    )
+  }
+) |>
+  filter(origen < destino)
+
+ggplot() +
+  geom_segment(
+    data = segmentos_vecindad,
+    aes(x = x, y = y, xend = xend, yend = yend),
+    color = "grey65",
+    linewidth = 0.5
+  ) +
+  geom_sf(
+    data = granjas_utm_b6,
+    aes(color = zona),
+    size = 2.5
+  ) +
+  labs(
+    title = "Granjas y conexiones de vecindad",
+    color = "Zona"
+  ) +
+  coord_sf() +
+  theme_minimal()
+```
+
+<br>
+
+La red representa la definición matemática de proximidad que utilizaremos en el análisis. No demuestra que existan intercambios, contagios o relaciones productivas reales entre dos explotaciones.
+
+<br>
+
+## Construcción de la matriz binaria de vecindad
+
+<br>
+
+Una matriz de vecindad binaria (B) contiene un 1 cuando dos granjas se consideran vecinas y un 0 cuando no lo son. La diagonal se mantiene en cero porque una granja no se considera vecina de sí misma.
+
+<br>
+
+```{r}
+B <- nb2mat(
+  lista_vecinos,
+  style = "B",
+  zero.policy = TRUE
+)
+
+rownames(B) <- as.character(granjas_utm_b6$granja_id)
+colnames(B) <- as.character(granjas_utm_b6$granja_id)
+
+# Mostrar una parte de la matriz binaria.
+B[1:min(8, nrow(B)), 1:min(8, ncol(B))]
+```
+
+<br>
+
+```{r}
+# Comprobar la diagonal y la simetría.
+all(diag(B) == 0)
+all(B == t(B))
+```
+
+<br>
+
+Como hemos simetrizado la lista, la matriz binaria debe ser simétrica. Si `B[i, j] = 1`, también debe cumplirse `B[j, i] = 1`.
+
+<br>
+
+## Matriz W y estandarización por filas
+
+<br>
+
+La matriz espacial (W) se obtiene estandarizando por filas la matriz binaria. Cada elemento se define como:
+
+\[ w\_{ij} = \frac{b_{ij}} {\sum*j b*{ij}} \]
+
+<br>
+
+Cada vecino recibe un peso igual a la inversa del número de vecinos de la granja. Por tanto, la suma de cada fila es igual a 1, salvo en unidades aisladas.
+
+<br>
+
+```{r}
+W <- nb2mat(
+  lista_vecinos,
+  style = "W",
+  zero.policy = TRUE
+)
+
+rownames(W) <- as.character(granjas_utm_b6$granja_id)
+colnames(W) <- as.character(granjas_utm_b6$granja_id)
+
+# Mostrar una parte de la matriz estandarizada.
+round(
+  W[1:min(8, nrow(W)), 1:min(8, ncol(W))],
+  3
+)
+```
+
+<br>
+
+```{r}
+sumas_filas_W <- rowSums(W)
+
+summary(sumas_filas_W)
+```
+
+<br>
+
+En ausencia de granjas aisladas, las sumas deberían ser iguales o muy próximas a 1. La estandarización por filas facilita interpretar el producto (Wy) como un promedio ponderado de los valores observados en las granjas vecinas.
+
+<br>
+
+La estandarización modifica la simetría numérica de la matriz cuando las granjas tienen diferente número de vecinos. La relación de vecindad continúa siendo simétrica, pero los pesos pueden diferir en las dos direcciones.
+
+<br>
+
+```{r}
+all.equal(W, t(W))
+```
+
+<br>
+
+## Objeto listw para los modelos espaciales
+
+<br>
+
+Las funciones de `spdep` y `spatialreg` suelen utilizar un objeto `listw`, que almacena la lista de vecinos y sus pesos.
+
+<br>
+
+```{r}
+listw_W <- nb2listw(
+  lista_vecinos,
+  style = "W",
+  zero.policy = TRUE
+)
+
+listw_W
+```
+
+<br>
+
+Es fundamental conservar el mismo orden de las granjas en la tabla, la geometría y el objeto de pesos. Una matriz espacial correctamente calculada pero aplicada a un orden diferente produce asociaciones erróneas.
+
+<br>
+
+```{r}
+identical(
+  as.character(granjas_utm_b6$granja_id),
+  rownames(W)
+)
+```
+
+<br>
+
+## Ejemplo de rezago espacial
+
+<br>
+
+El rezago espacial de una variable es el promedio ponderado de sus valores en las granjas vecinas. Para ilustrarlo, calcularemos el peso medio general de cada granja y su rezago espacial.
+
+<br>
+
+```{r}
+peso_medio_granja_b6 <- datos_b2 |>
+  group_by(granja_id) |>
+  summarise(
+    peso_medio_kg = mean(peso_kg, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  mutate(
+    granja_id = as.factor(granja_id)
+  )
+
+peso_espacial_b6 <- granjas_utm_b6 |>
+  left_join(
+    peso_medio_granja_b6,
+    by = "granja_id"
+  )
+
+# Confirmar que no falta el resultado en ninguna granja.
+sum(is.na(peso_espacial_b6$peso_medio_kg))
+```
+
+<br>
+
+```{r}
+peso_espacial_b6 <- peso_espacial_b6 |>
+  mutate(
+    rezago_peso = lag.listw(
+      listw_W,
+      peso_medio_kg,
+      zero.policy = TRUE
+    )
+  )
+
+st_drop_geometry(peso_espacial_b6) |>
+  select(
+    granja_id,
+    peso_medio_kg,
+    rezago_peso
+  ) |>
+  head(10)
+```
+
+<br>
+
+El rezago no es el peso de una granja concreta. Es un resumen del peso medio de sus vecinos según los pesos definidos en (W). Un valor alto indica que la explotación está rodeada por granjas que, en promedio, presentan valores altos.
+
+<br>
+
+```{r}
+ggplot(
+  st_drop_geometry(peso_espacial_b6),
+  aes(x = rezago_peso, y = peso_medio_kg)
+) +
+  geom_point(size = 2, alpha = 0.8) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x,
+    se = TRUE,
+    color = "steelblue4"
+  ) +
+  labs(
+    title = "Peso de la granja y promedio de sus vecinas",
+    x = "Rezago espacial del peso (kg)",
+    y = "Peso medio de la granja (kg)"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+Este gráfico es exploratorio. Una asociación positiva puede reflejar dependencia espacial, variables ambientales compartidas o una distribución espacial de características como la raza, el sistema productivo y la edad de los animales.
+
+<br>
+
+## Efecto aleatorio de granja y dependencia espacial explícita
+
+<br>
+
+Un efecto aleatorio de granja y una estructura espacial no representan lo mismo.
+
+<br>
+
+Un intercepto aleatorio de granja:
+
+- Permite que cada explotación tenga un nivel promedio diferente.
+- Supone que las desviaciones de las granjas proceden de una distribución común.
+- No utiliza las coordenadas.
+- No establece que dos granjas cercanas deban parecerse más que dos granjas alejadas.
+
+<br>
+
+Una dependencia espacial explícita:
+
+- Utiliza una matriz de vecindad o de pesos.
+- Relaciona el resultado de una granja con los resultados o errores de sus vecinas.
+- Permite cuantificar la intensidad de la asociación espacial.
+- Depende de cómo se haya definido la proximidad geográfica o funcional.
+
+<br>
+
+Ambas estructuras pueden estar presentes simultáneamente. Una granja puede tener características propias persistentes y, además, encontrarse relacionada con explotaciones cercanas. Sin embargo, combinar efectos aleatorios, dependencia espacial y dependencia temporal requiere modelos más avanzados y una identificación cuidadosa de cada fuente de variabilidad.
+
+<br>
+
+## Actividad de interpretación del Bloque 6
+
+<br>
+
+1.  ¿Las coordenadas son constantes dentro de cada granja?
+2.  ¿Por qué transformamos las coordenadas antes de calcular distancias?
+3.  ¿Cuál es la distancia mediana al vecino más cercano?
+4.  ¿Qué criterio se utilizó para definir vecinos?
+5.  ¿La relación de vecinos más cercanos era inicialmente simétrica?
+6.  ¿Cuántos vecinos tiene cada granja después de simetrizar la red?
+7.  ¿Existen granjas sin vecinos o coordenadas duplicadas?
+8.  ¿Qué representan los ceros y unos de la matriz binaria?
+9.  ¿Por qué la suma de cada fila de (W) es igual a 1?
+10. ¿Qué representa el rezago espacial del peso?
+11. ¿Por qué debe mantenerse el mismo orden en los datos y en (W)?
+12. ¿En qué se diferencia un efecto aleatorio de granja de una dependencia espacial explícita?
+
+<br>
+
+## Bloque 7. Introducción al SAR espacio-temporal
+
+<br>
+
+## Agregación de los datos por granja y semana
+
+<br>
+
+Los datos originales contienen varias observaciones por granja y semana porque se mide a distintos animales. Un modelo SAR transversal requiere una observación por unidad espacial. Para ajustar un modelo en una semana concreta, agregaremos primero las mediciones por granja y semana.
+
+<br>
+
+Calcularemos el peso medio, el consumo medio y algunas características de composición. El resultado será un panel en el que cada fila representa una combinación de granja y semana.
+
+<br>
+
+```{r}
+panel_granja_semana <- datos_b2 |>
+  group_by(granja_id, tiempo) |>
+  summarise(
+    peso_medio_kg = mean(peso_kg, na.rm = TRUE),
+    consumo_medio_kg_dia = mean(
+      consumo_kg_dia,
+      na.rm = TRUE
+    ),
+    edad_media_meses = mean(
+      edad_inicio_meses,
+      na.rm = TRUE
+    ),
+    temperatura_media_C = mean(
+      temperatura_C,
+      na.rm = TRUE
+    ),
+    humedad_media_pct = mean(
+      humedad_pct,
+      na.rm = TRUE
+    ),
+    n_animales = n_distinct(animal_id),
+    n_mediciones = sum(!is.na(peso_kg)),
+    .groups = "drop"
+  ) |>
+  mutate(
+    granja_id = as.factor(granja_id)
+  )
+
+head(panel_granja_semana)
+```
+
+<br>
+
+Cuando todos los valores de una variable son ausentes dentro de un grupo, `mean(..., na.rm = TRUE)` puede devolver `NaN`. Los convertiremos en `NA` antes del análisis.
+
+<br>
+
+```{r}
+panel_granja_semana <- panel_granja_semana |>
+  mutate(
+    across(
+      where(is.numeric),
+      ~ ifelse(is.nan(.x), NA_real_, .x)
+    )
+  )
+```
+
+<br>
+
+Comprobaremos si el panel contiene todas las combinaciones posibles de granja y semana.
+
+<br>
+
+```{r}
+resumen_panel <- panel_granja_semana |>
+  summarise(
+    n_filas = n(),
+    n_granjas = n_distinct(granja_id),
+    n_semanas = n_distinct(tiempo),
+    combinaciones_posibles =
+      n_distinct(granja_id) * n_distinct(tiempo),
+    proporcion_observada =
+      n_filas / combinaciones_posibles
+  )
+
+resumen_panel
+```
+
+<br>
+
+Un panel equilibrado contiene todas las granjas en todas las semanas. Un panel desequilibrado presenta combinaciones ausentes. Los modelos espaciales y espacio-temporales difieren en su capacidad para trabajar con paneles incompletos, por lo que esta revisión debe realizarse antes de seleccionar el método.
+
+<br>
+
+```{r}
+mediciones_panel <- panel_granja_semana |>
+  count(granja_id, name = "n_semanas")
+
+summary(mediciones_panel$n_semanas)
+```
+
+<br>
+
+## Selección de una semana para el modelo SAR
+
+<br>
+
+Seleccionaremos una semana con el mayor número de granjas disponibles. Si varias semanas tienen el mismo número, utilizaremos la primera.
+
+<br>
+
+```{r}
+semana_sar <- panel_granja_semana |>
+  filter(
+    !is.na(peso_medio_kg),
+    !is.na(consumo_medio_kg_dia),
+    !is.na(edad_media_meses)
+  ) |>
+  count(tiempo, name = "n_granjas") |>
+  arrange(desc(n_granjas), tiempo) |>
+  slice_head(n = 1) |>
+  pull(tiempo)
+
+semana_sar
+```
+
+<br>
+
+Construiremos una tabla para esa semana y la ordenaremos exactamente como el objeto espacial utilizado para crear (W).
+
+<br>
+
+```{r}
+datos_semana_sar <- granjas_utm_b6 |>
+  select(granja_id) |>
+  left_join(
+    panel_granja_semana |>
+      filter(tiempo == semana_sar),
+    by = "granja_id"
+  )
+
+st_drop_geometry(datos_semana_sar) |>
+  select(
+    granja_id,
+    tiempo,
+    peso_medio_kg,
+    consumo_medio_kg_dia,
+    edad_media_meses,
+    n_animales
+  ) |>
+  head(10)
+```
+
+<br>
+
+## Comprobación de datos completos en la semana
+
+<br>
+
+Un modelo SAR y su matriz de pesos deben referirse exactamente al mismo conjunto de granjas. Si faltan valores, no basta con eliminarlos de la tabla: también debemos crear una lista de vecinos correspondiente al subconjunto utilizado.
+
+<br>
+
+```{r}
+variables_sar <- c(
+  "peso_medio_kg",
+  "consumo_medio_kg_dia",
+  "edad_media_meses",
+  "temperatura_media_C"
+)
+
+completos_sar <- complete.cases(
+  st_drop_geometry(datos_semana_sar)[, variables_sar]
+)
+
+table(completos_sar)
+```
+
+<br>
+
+Crearemos el subconjunto espacial y una lista de vecinos adaptada. `subset()` conserva únicamente las granjas utilizadas por el modelo.
+
+<br>
+
+```{r}
+datos_semana_completos <- datos_semana_sar[
+  completos_sar,
+]
+
+lista_vecinos_semana <- subset(
+  lista_vecinos,
+  subset = completos_sar
+)
+
+listw_semana <- nb2listw(
+  lista_vecinos_semana,
+  style = "W",
+  zero.policy = TRUE
+)
+
+# Comprobar el número de observaciones y unidades espaciales.
+nrow(datos_semana_completos)
+length(listw_semana$neighbours)
+```
+
+<br>
+
+Si la eliminación de granjas genera unidades aisladas, `zero.policy = TRUE` permite mantenerlas asignando un rezago espacial igual a cero. Sin embargo, una gran cantidad de unidades aisladas indicaría que la regla de vecindad o la selección de datos deben revisarse.
+
+<br>
+
+```{r}
+card(lista_vecinos_semana)
+table(card(lista_vecinos_semana) == 0)
+```
+
+<br>
+
+## Mapa del peso medio en la semana seleccionada
+
+<br>
+
+```{r}
+ggplot(datos_semana_completos) +
+  geom_sf(
+    aes(color = peso_medio_kg),
+    size = 3
+  ) +
+  scale_color_viridis_c(
+    option = "C",
+    name = "Peso medio\n(kg)"
+  ) +
+  labs(
+    title = paste(
+      "Peso medio por granja en la semana",
+      semana_sar
+    )
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+La presencia de áreas con colores similares puede sugerir agrupamiento espacial, pero el mapa por sí solo no permite separar la dependencia espacial de los efectos de consumo, edad, temperatura u otras características regionales.
+
+<br>
+
+## Modelo lineal no espacial para la semana
+
+<br>
+
+Antes del SAR ajustaremos una regresión lineal transversal como modelo de referencia.
+
+<br>
+
+```{r}
+modelo_semana_lm <- lm(
+  peso_medio_kg ~
+    consumo_medio_kg_dia +
+    edad_media_meses +
+    temperatura_media_C,
+  data = st_drop_geometry(datos_semana_completos)
+)
+
+summary(modelo_semana_lm)
+```
+
+<br>
+
+Este modelo supone que, después de considerar los predictores, las granjas son independientes. Examinaremos la autocorrelación espacial de sus residuos mediante el estadístico de Moran.
+
+<br>
+
+```{r}
+residuos_lm_semana <- residuals(modelo_semana_lm)
+
+moran_residuos <- moran.test(
+  residuos_lm_semana,
+  listw = listw_semana,
+  zero.policy = TRUE
+)
+
+moran_residuos
+```
+
+<br>
+
+Un valor positivo de Moran indica que los residuos similares tienden a localizarse en granjas vecinas. Un valor negativo indica que las granjas vecinas tienden a presentar residuos diferentes. La interpretación del valor p depende de la validez de los supuestos del contraste y de que la matriz espacial se haya definido antes de observar los resultados.
+
+<br>
+
+## Diagrama de Moran de los residuos
+
+<br>
+
+```{r}
+moran.plot(
+  residuos_lm_semana,
+  listw = listw_semana,
+  zero.policy = TRUE,
+  labels = as.character(
+    datos_semana_completos$granja_id
+  ),
+  xlab = "Residuo estandarizado",
+  ylab = "Rezago espacial del residuo",
+  main = "Diagrama de Moran de los residuos"
+)
+```
+
+<br>
+
+El diagrama compara el residuo de cada granja con el promedio ponderado de los residuos de sus vecinas. Los cuadrantes alto-alto y bajo-bajo representan asociaciones espaciales positivas, mientras que alto-bajo y bajo-alto representan contrastes locales.
+
+<br>
+
+## Modelo SAR espacial en una semana
+
+<br>
+
+El modelo autorregresivo espacial de rezago, conocido como SAR o spatial lag model, incorpora el resultado de las unidades vecinas como parte del modelo:
+
+\[ y = \rho Wy + X\beta + \varepsilon \]
+
+<br>
+
+Aquí, (y) es el peso medio de las granjas, (Wy) es su rezago espacial, (\rho) es el parámetro de dependencia espacial, (X\beta) representa las variables explicativas y (\varepsilon) es el término de error.
+
+<br>
+
+Ajustaremos el modelo mediante `lagsarlm()`.
+
+<br>
+
+```{r}
+modelo_sar_semana <- lagsarlm(
+  peso_medio_kg ~
+    consumo_medio_kg_dia +
+    edad_media_meses +
+    temperatura_media_C,
+  data = st_drop_geometry(datos_semana_completos),
+  listw = listw_semana,
+  zero.policy = TRUE,
+  method = "eigen"
+)
+
+summary(modelo_sar_semana)
+```
+
+<br>
+
+El parámetro (\rho) describe la intensidad y dirección de la dependencia espacial condicional. Un valor positivo indica que, después de considerar los predictores, los pesos medios de granjas vecinas tienden a parecerse. Un valor negativo indica una relación espacial de contraste.
+
+<br>
+
+Un valor próximo a cero indica poca evidencia de dependencia espacial de rezago bajo la matriz (W) y la especificación utilizadas. La interpretación siempre es condicional a la definición de vecinos.
+
+<br>
+
+## Extracción de los resultados del SAR
+
+<br>
+
+```{r}
+coeficientes_sar <- broom::tidy(
+  modelo_sar_semana,
+  conf.int = TRUE
+)
+
+coeficientes_sar
+```
+
+<br>
+
+```{r}
+resumen_sar <- broom::glance(
+  modelo_sar_semana
+)
+
+resumen_sar
+```
+
+<br>
+
+Si la versión instalada de `broom` no dispone de métodos para `sarlm`, los coeficientes y criterios de ajuste pueden consultarse directamente mediante `summary(modelo_sar_semana)`, `AIC(modelo_sar_semana)` y `logLik(modelo_sar_semana)`.
+
+<br>
+
+```{r}
+AIC(modelo_semana_lm, modelo_sar_semana)
+
+logLik(modelo_sar_semana)
+```
+
+<br>
+
+El AIC puede utilizarse para comparar modelos ajustados sobre exactamente las mismas observaciones y con la misma variable de respuesta. Un AIC menor indica mejor equilibrio relativo entre ajuste y complejidad, pero no demuestra que la estructura espacial elegida sea correcta.
+
+<br>
+
+## Interpretación de los coeficientes en un modelo SAR
+
+<br>
+
+En una regresión lineal convencional, un coeficiente describe un cambio local manteniendo constantes las otras variables. En un modelo SAR, un cambio en una granja puede propagarse a través de la red porque el resultado aparece también en (Wy).
+
+<br>
+
+Por esta razón, los coeficientes (\beta) no deben interpretarse únicamente como efectos marginales directos. Es conveniente descomponerlos en:
+
+- Efecto directo: cambio promedio en la propia granja.
+- Efecto indirecto: cambio transmitido a otras granjas mediante la estructura espacial.
+- Efecto total: suma de los efectos directo e indirecto.
+
+<br>
+
+```{r}
+impactos_sar <- impacts(
+  modelo_sar_semana,
+  listw = listw_semana,
+  R = 500
+)
+
+summary(
+  impactos_sar,
+  zstats = TRUE,
+  short = TRUE
+)
+```
+
+<br>
+
+El argumento `R = 500` utiliza simulaciones para obtener medidas de incertidumbre de los impactos. En un análisis definitivo podría aumentarse el número de simulaciones, asumiendo un mayor tiempo de cálculo.
+
+<br>
+
+El efecto indirecto no demuestra necesariamente una transmisión biológica entre granjas. Puede representar interacción, difusión, imitación, condiciones compartidas o variables espaciales omitidas. La interpretación debe apoyarse en el mecanismo científico y en la forma de construcción de (W).
+
+<br>
+
+## Residuos del modelo SAR
+
+<br>
+
+Después de ajustar el SAR, revisaremos si permanece autocorrelación espacial en los residuos.
+
+<br>
+
+```{r}
+residuos_sar <- residuals(modelo_sar_semana)
+
+moran.test(
+  residuos_sar,
+  listw = listw_semana,
+  zero.policy = TRUE
+)
+```
+
+<br>
+
+Si el estadístico de Moran residual se aproxima a la ausencia de autocorrelación, el modelo ha recogido parte de la estructura espacial. Si permanece una asociación importante, podrían faltar variables, existir una estructura de error espacial diferente o ser inadecuada la matriz de vecindad.
+
+<br>
+
+```{r}
+diagnostico_sar <- tibble(
+  ajustado = fitted(modelo_sar_semana),
+  residuo = residuos_sar
+)
+
+ggplot(
+  diagnostico_sar,
+  aes(x = ajustado, y = residuo)
+) +
+  geom_point(size = 2, alpha = 0.8) +
+  geom_hline(
+    yintercept = 0,
+    linetype = "dashed",
+    color = "firebrick"
+  ) +
+  geom_smooth(
+    method = "loess",
+    formula = y ~ x,
+    se = FALSE,
+    color = "steelblue4"
+  ) +
+  labs(
+    title = "Residuos del modelo SAR",
+    x = "Peso medio ajustado (kg)",
+    y = "Residuo (kg)"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+## Comparación entre valores observados y ajustados
+
+<br>
+
+```{r}
+datos_semana_completos <- datos_semana_completos |>
+  mutate(
+    peso_ajustado_sar = as.numeric(
+      fitted(modelo_sar_semana)
+    ),
+    residuo_sar = as.numeric(residuos_sar)
+  )
+
+ggplot(
+  st_drop_geometry(datos_semana_completos),
+  aes(x = peso_ajustado_sar, y = peso_medio_kg)
+) +
+  geom_point(size = 2, alpha = 0.8) +
+  geom_abline(
+    intercept = 0,
+    slope = 1,
+    linetype = "dashed",
+    color = "firebrick"
+  ) +
+  labs(
+    title = "Peso observado y ajustado por el modelo SAR",
+    x = "Peso medio ajustado (kg)",
+    y = "Peso medio observado (kg)"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+## Sensibilidad a la definición de vecinos
+
+<br>
+
+Los resultados espaciales dependen de (W). Como ejercicio de sensibilidad, podemos construir una matriz con seis vecinos y comparar la estimación de (\rho).
+
+<br>
+
+```{r}
+k_vecinos_6 <- min(6, nrow(granjas_utm_b6) - 1)
+
+vecinos_6 <- knearneigh(
+  coords_utm,
+  k = k_vecinos_6
+) |>
+  knn2nb() |>
+  make.sym.nb()
+
+vecinos_6_semana <- subset(
+  vecinos_6,
+  subset = completos_sar
+)
+
+listw_6_semana <- nb2listw(
+  vecinos_6_semana,
+  style = "W",
+  zero.policy = TRUE
+)
+
+modelo_sar_6 <- lagsarlm(
+  peso_medio_kg ~
+    consumo_medio_kg_dia +
+    edad_media_meses +
+    temperatura_media_C,
+  data = st_drop_geometry(datos_semana_completos),
+  listw = listw_6_semana,
+  zero.policy = TRUE,
+  method = "eigen"
+)
+
+c(
+  rho_4_vecinos = modelo_sar_semana$rho,
+  rho_6_vecinos = modelo_sar_6$rho
+)
+```
+
+<br>
+
+Si los resultados cambian de forma importante, las conclusiones dependen de la definición de vecindad. Esta sensibilidad debe comunicarse y utilizarse para revisar si la matriz representa adecuadamente el mecanismo espacial de interés.
+
+<br>
+
+## Del análisis de una semana al panel espacio-temporal
+
+<br>
+
+El modelo anterior utiliza una sola semana. Sin embargo, el estudio contiene múltiples semanas para cada granja. Un panel espacio-temporal debe representar simultáneamente:
+
+1.  La dependencia espacial entre granjas vecinas dentro de una semana.
+2.  La dependencia temporal de una granja respecto a sus observaciones previas.
+3.  Las diferencias persistentes entre granjas.
+4.  Los cambios generales a lo largo del tiempo.
+5.  Las variables productivas, ambientales y de composición.
+
+<br>
+
+Una formulación conceptual de un SAR espacio-temporal es:
+
+\[ y_t = \rho W y_t + \phi y\_{t-1} + X_t\beta + \alpha + \varepsilon\_t \]
+
+<br>
+
+En esta expresión:
+
+- (y_t) es el vector de resultados de todas las granjas en la semana (t).
+- (Wy_t) representa la dependencia espacial contemporánea.
+- (y\_{t-1}) representa la dependencia temporal respecto a la semana anterior.
+- (\rho) cuantifica la dependencia espacial.
+- (\phi) cuantifica la persistencia temporal.
+- (\alpha) puede representar heterogeneidad persistente entre granjas.
+
+<br>
+
+## Preparación del panel ordenado
+
+<br>
+
+Antes de aplicar un modelo de panel debemos ordenar los datos de forma coherente. Aquí utilizaremos primero granja y después semana para operaciones longitudinales. Algunos paquetes requieren el orden contrario, por lo que siempre debemos revisar su documentación.
+
+<br>
+
+```{r}
+panel_ordenado <- panel_granja_semana |>
+  arrange(granja_id, tiempo) |>
+  group_by(granja_id) |>
+  mutate(
+    peso_anterior_kg = lag(peso_medio_kg),
+    cambio_peso_kg = peso_medio_kg -
+      peso_anterior_kg
+  ) |>
+  ungroup()
+
+panel_ordenado |>
+  select(
+    granja_id,
+    tiempo,
+    peso_medio_kg,
+    peso_anterior_kg,
+    cambio_peso_kg
+  ) |>
+  head(12)
+```
+
+<br>
+
+La variable `peso_anterior_kg` representa el resultado de la misma granja en la semana previa disponible. Si existen semanas ausentes, `lag()` no garantiza que la observación corresponda exactamente a (t-1). Debemos comprobar la separación temporal.
+
+<br>
+
+```{r}
+panel_ordenado <- panel_ordenado |>
+  group_by(granja_id) |>
+  mutate(
+    tiempo_anterior = lag(tiempo),
+    diferencia_semanas = tiempo - tiempo_anterior,
+    peso_t_1 = if_else(
+      diferencia_semanas == 1,
+      peso_anterior_kg,
+      NA_real_
+    )
+  ) |>
+  ungroup()
+
+count(panel_ordenado, diferencia_semanas)
+```
+
+<br>
+
+## Cálculo descriptivo del rezago espacial por semana
+
+<br>
+
+Podemos calcular (Wy_t) para cada semana siempre que todas las granjas estén presentes y se mantenga exactamente el orden de (W). El siguiente procedimiento es descriptivo y ayuda a preparar el panel.
+
+<br>
+
+```{r}
+granjas_orden_W <- as.character(
+  granjas_utm_b6$granja_id
+)
+
+calcular_rezago_semana <- function(tabla_semana) {
+  tabla_completa <- tibble(
+    granja_id = factor(
+      granjas_orden_W,
+      levels = levels(granjas_utm_b6$granja_id)
+    )
+  ) |>
+    left_join(
+      tabla_semana,
+      by = "granja_id"
+    )
+
+  if (anyNA(tabla_completa$peso_medio_kg)) {
+    tabla_completa$rezago_espacial_peso <- NA_real_
+  } else {
+    tabla_completa$rezago_espacial_peso <- lag.listw(
+      listw_W,
+      tabla_completa$peso_medio_kg,
+      zero.policy = TRUE
+    )
+  }
+
+  tabla_completa
+}
+
+panel_con_rezago_espacial <- panel_granja_semana |>
+  group_split(tiempo) |>
+  map_dfr(calcular_rezago_semana)
+
+head(panel_con_rezago_espacial)
+```
+
+<br>
+
+No debemos introducir `rezago_espacial_peso` como un predictor común en una regresión OLS y asumir que hemos estimado correctamente un SAR. El término (Wy) contiene el resultado de las granjas vecinas y es endógeno. Los estimadores SAR se diseñan específicamente para resolver esta simultaneidad.
+
+<br>
+
+## Visualización espacio-temporal descriptiva
+
+<br>
+
+Seleccionaremos algunas semanas para observar cómo cambia el peso medio entre granjas y a lo largo del tiempo.
+
+<br>
+
+```{r}
+semanas_mostrar <- sort(
+  unique(panel_granja_semana$tiempo)
+)
+
+semanas_mostrar <- semanas_mostrar[
+  unique(round(seq(
+    1,
+    length(semanas_mostrar),
+    length.out = min(6, length(semanas_mostrar))
+  )))
+]
+
+mapas_panel <- granjas_utm_b6 |>
+  select(granja_id) |>
+  crossing(
+    tiempo = semanas_mostrar
+  ) |>
+  left_join(
+    panel_granja_semana,
+    by = c("granja_id", "tiempo")
+  )
+
+# Convertir mapas_panel en un objeto sf
+mapas_panel_sf <- st_as_sf(
+  mapas_panel,
+  sf_column_name = "geometry",
+  crs = 32614
+)
+
+# Comprobar la estructura
+class(mapas_panel_sf)
+st_geometry(mapas_panel_sf)
+
+# Crear el mapa espacio-temporal
+ggplot(mapas_panel_sf) +
+  geom_sf(
+    aes(color = peso_medio_kg),
+    size = 2.3
+  ) +
+  facet_wrap(~ tiempo) +
+  scale_color_viridis_c(
+    option = "C",
+    na.value = "grey80",
+    name = "Peso medio\n(kg)"
+  ) +
+  labs(
+    title = "Evolución espacio-temporal del peso medio",
+    subtitle = "Selección de semanas del seguimiento"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+Los mapas permiten reconocer si los valores altos y bajos se mantienen en las mismas zonas o si cambian con el tiempo. Esta inspección no sustituye a un modelo, pero ayuda a identificar patrones que la formulación estadística debería representar.
+
+<br>
+
+## Estrategias para extender el SAR a un panel
+
+<br>
+
+Existen varias estrategias posibles:
+
+1.  Ajustar un SAR separado para cada semana y estudiar cómo cambia (\rho). Esta opción es sencilla, pero no aprovecha toda la información conjunta y puede producir estimaciones inestables.
+2.  Utilizar un modelo de panel espacial con efectos de granja y tiempo. Esta opción combina la dependencia espacial con heterogeneidad persistente y efectos temporales.
+3.  Incorporar un rezago temporal del resultado para construir un modelo espacial dinámico.
+4.  Utilizar un modelo jerárquico bayesiano espacio-temporal que represente conjuntamente efectos estructurados y no estructurados.
+
+<br>
+
+Una formulación de panel espacial puede incluir:
+
+\[ y\_{it} = \rho\sum*j w*{ij}y\_{jt} + X\_{it}\beta + \alpha\_i + \gamma*t +* \varepsilon{it} \]
+
+<br>
+
+Aquí, (\alpha\_i) representa un efecto persistente de granja y (\gamma*t) representa un efecto común de la semana. Si añadimos (y*{i,t-1}), el modelo se convierte en un panel espacial dinámico.
+
+<br>
+
+## Ejemplo orientativo con un paquete de panel espacial
+
+<br>
+
+El siguiente código muestra la estructura general de un modelo espacial de panel mediante el paquete `splm`. Se deja con `eval: false` porque requiere instalar el paquete y comprobar cuidadosamente que el panel esté equilibrado y ordenado conforme a sus especificaciones.
+
+<br>
+
+```{r}
+#| eval: false
+
+# install.packages("splm")
+library(splm)
+
+panel_splm <- panel_granja_semana |>
+  drop_na(
+    peso_medio_kg,
+    consumo_medio_kg_dia,
+    edad_media_meses,
+    temperatura_media_C
+  ) |>
+  arrange(granja_id, tiempo)
+
+modelo_panel_sar <- spml(
+  peso_medio_kg ~
+    consumo_medio_kg_dia +
+    edad_media_meses +
+    temperatura_media_C,
+  data = panel_splm,
+  index = c("granja_id", "tiempo"),
+  listw = listw_W,
+  model = "within",
+  effect = "twoways",
+  lag = TRUE,
+  spatial.error = "none"
+)
+
+summary(modelo_panel_sar)
+```
+
+<br>
+
+En este planteamiento, `lag = TRUE` incorpora el rezago espacial de la respuesta. `model = "within"` representa los efectos persistentes mediante una transformación de efectos fijos, y `effect = "twoways"` considera tanto efectos de granja como de tiempo.
+
+<br>
+
+Este código es únicamente una guía inicial. Antes de utilizarlo debemos verificar:
+
+- Que todas las granjas de (W) estén presentes en el panel.
+- Que el orden espacial sea idéntico en cada periodo.
+- Que el panel sea compatible con el estimador seleccionado.
+- Que no existan identificadores duplicados de granja y semana.
+- Que la matriz espacial esté justificada científicamente.
+- Que el número de granjas y semanas permita estimar el modelo.
+
+<br>
+
+## Diferencia entre dependencia espacial y temporal
+
+<br>
+
+La dependencia espacial y la temporal responden a relaciones diferentes:
+
+- La dependencia espacial compara granjas distintas dentro de la misma semana.
+- La dependencia temporal compara la misma granja en semanas diferentes.
+- La interacción espacio-temporal estudia si el patrón espacial cambia a lo largo del tiempo.
+
+<br>
+
+Una matriz (W) constante supone que las relaciones de vecindad permanecen estables durante todo el seguimiento. Esto puede ser razonable para proximidad geográfica, pero no necesariamente para redes de movimiento, comercio o contacto, que pueden cambiar cada semana.
+
+<br>
+
+## Limitaciones del ejemplo SAR
+
+<br>
+
+El modelo de una semana utiliza un número de observaciones igual al número de granjas disponibles. Aunque la base longitudinal contenga miles de filas, el tamaño efectivo del análisis transversal es mucho menor después de agregar por explotación.
+
+<br>
+
+Además, el modelo depende de decisiones que deben justificarse:
+
+- La selección de la semana.
+- La agregación mediante medias.
+- El número de vecinos.
+- La estandarización por filas.
+- Las variables explicativas incluidas.
+- La proyección cartográfica.
+- El tratamiento de granjas sin datos o sin vecinos.
+
+<br>
+
+La dependencia espacial estimada no demuestra contagio ni influencia directa. Puede reflejar variables ambientales omitidas, similitud de manejo, composición racial, climatología regional o procesos de selección de las granjas.
+
+<br>
+
+## Actividad de interpretación del Bloque 7
+
+<br>
+
+1.  ¿Qué representa cada fila del panel agregado?
+2.  ¿El panel está equilibrado o existen combinaciones ausentes?
+3.  ¿Por qué se seleccionó una semana con muchas granjas disponibles?
+4.  ¿Por qué deben coincidir exactamente la tabla y la matriz (W)?
+5.  ¿Existe autocorrelación espacial en los residuos del modelo lineal?
+6.  ¿Qué representa el parámetro (\rho) del SAR?
+7.  ¿Cómo se interpreta un valor positivo de (\rho)?
+8.  ¿Qué diferencia existe entre efectos directos, indirectos y totales?
+9.  ¿Permanece autocorrelación espacial en los residuos del SAR?
+10. ¿Cambian los resultados al utilizar seis vecinos?
+11. ¿Qué representa el término (y\_{t-1}) en un modelo espacio-temporal?
+12. ¿Por qué no debemos estimar un SAR añadiendo simplemente (Wy) a una regresión convencional?
+13. ¿Qué efecto representa (\alpha\_i) en un panel espacial?
+14. ¿Qué efecto representa (\gamma\_t)?
+15. ¿Qué limitaciones produce la agregación por granja y semana?
+
+<br>
+
+Al finalizar estos bloques debemos ser capaces de transformar coordenadas, calcular distancias, definir vecinos y construir una matriz de pesos espaciales estandarizada por filas. También debemos distinguir entre heterogeneidad de granja y dependencia espacial explícita.
+
+<br>
+
+El modelo SAR de una semana permite introducir el concepto de interacción espacial mediante (\rho Wy). Su extensión a un panel requiere representar conjuntamente la dependencia entre granjas, la persistencia temporal y las diferencias estructurales entre explotaciones. La matriz (W), el orden de las unidades y la escala de agregación forman parte del modelo y deben justificarse con el mismo cuidado que las variables explicativas.

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Redes neuronales – Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal</title>
+<title>11&nbsp; Introducción a las redes neuronales – Aprendizaje Estadístico en Ciencia Animal</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -117,6 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -290,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_04.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Redes neuronales</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_04.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introducción a las redes neuronales</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -305,7 +306,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal</a> 
+      <a href="../">Aprendizaje Estadístico en Ciencia Animal</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
 </div>
@@ -341,20 +342,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../modulos/st_02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Modelos lineales generalizados mixtos</span></span></a>
+  <a href="../modulos/st_02A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estadística descriptiva y visualización</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../modulos/st_03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Modelos espaciales autorregresivos</span></span></a>
+  <a href="../modulos/st_02B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">De la regresión lineal simple a la múltiple</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modulos/st_03A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dependencia temporal y modelos mixtos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modulos/st_03B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">GLMM y respuestas no continuas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/st_04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modelos espacio-temporales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dependencia espacial y modelos SAR espacio-temporales</span></span></a>
   </div>
 </li>
       </ul>
@@ -371,31 +384,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje estadístico</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje supervisado y no supervisado</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regresión y clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Métodos de regresión y clasificación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Árboles y Random Forest</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 3. Métodos basados en árboles</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_04.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Redes neuronales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introducción a las redes neuronales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clustering y PCA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Segmentación y reducción de dimensionalidad</span></span></a>
   </div>
 </li>
       </ul>
@@ -412,7 +425,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/crosscarry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">CrossCarry</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">CrossCarry</span></span></a>
   </div>
 </li>
       </ul>
@@ -420,7 +433,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../recursos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Recursos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Recursos</span></span></a>
   </div>
 </li>
     </ul>
@@ -433,12 +446,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#temas" id="toc-temas" class="nav-link active" data-scroll-target="#temas"><span class="header-section-number">10</span> Temas</a>
-  <ul class="collapse">
-  <li><a href="#neurona-artificial" id="toc-neurona-artificial" class="nav-link" data-scroll-target="#neurona-artificial"><span class="header-section-number">10.1</span> Neurona artificial</a></li>
-  <li><a href="#perceptrón-multicapa" id="toc-perceptrón-multicapa" class="nav-link" data-scroll-target="#perceptrón-multicapa"><span class="header-section-number">10.2</span> Perceptrón multicapa</a></li>
-  <li><a href="#entrenamiento" id="toc-entrenamiento" class="nav-link" data-scroll-target="#entrenamiento"><span class="header-section-number">10.3</span> Entrenamiento</a></li>
-  </ul></li>
+  <li><a href="#preparación-de-los-datos" id="toc-preparación-de-los-datos" class="nav-link active" data-scroll-target="#preparación-de-los-datos"><span class="header-section-number">11.1</span> Preparación de los datos</a></li>
+  <li><a href="#de-la-regresión-lineal-a-una-red-neuronal" id="toc-de-la-regresión-lineal-a-una-red-neuronal" class="nav-link" data-scroll-target="#de-la-regresión-lineal-a-una-red-neuronal"><span class="header-section-number">11.2</span> De la regresión lineal a una red neuronal</a></li>
+  <li><a href="#preprocesamiento" id="toc-preprocesamiento" class="nav-link" data-scroll-target="#preprocesamiento"><span class="header-section-number">11.3</span> Preprocesamiento</a></li>
+  <li><a href="#perceptrón-multicapa" id="toc-perceptrón-multicapa" class="nav-link" data-scroll-target="#perceptrón-multicapa"><span class="header-section-number">11.4</span> Perceptrón multicapa</a></li>
+  <li><a href="#selección-de-la-arquitectura" id="toc-selección-de-la-arquitectura" class="nav-link" data-scroll-target="#selección-de-la-arquitectura"><span class="header-section-number">11.5</span> Selección de la arquitectura</a></li>
+  <li><a href="#modelo-final-y-evaluación" id="toc-modelo-final-y-evaluación" class="nav-link" data-scroll-target="#modelo-final-y-evaluación"><span class="header-section-number">11.6</span> Modelo final y evaluación</a></li>
+  <li><a href="#comparación-con-una-regresión-lineal" id="toc-comparación-con-una-regresión-lineal" class="nav-link" data-scroll-target="#comparación-con-una-regresión-lineal"><span class="header-section-number">11.7</span> Comparación con una regresión lineal</a></li>
+  <li><a href="#error-según-la-semana" id="toc-error-según-la-semana" class="nav-link" data-scroll-target="#error-según-la-semana"><span class="header-section-number">11.8</span> Error según la semana</a></li>
+  <li><a href="#visión-general-del-aprendizaje-profundo" id="toc-visión-general-del-aprendizaje-profundo" class="nav-link" data-scroll-target="#visión-general-del-aprendizaje-profundo"><span class="header-section-number">11.9</span> Visión general del aprendizaje profundo</a></li>
+  <li><a href="#límites-e-interpretación" id="toc-límites-e-interpretación" class="nav-link" data-scroll-target="#límites-e-interpretación"><span class="header-section-number">11.10</span> Límites e interpretación</a></li>
+  <li><a href="#actividad-de-interpretación" id="toc-actividad-de-interpretación" class="nav-link" data-scroll-target="#actividad-de-interpretación"><span class="header-section-number">11.11</span> Actividad de interpretación</a></li>
   </ul>
 </nav>
     </div>
@@ -446,9 +464,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_04.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Redes neuronales</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_04.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introducción a las redes neuronales</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Redes neuronales</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introducción a las redes neuronales</span></h1>
 </div>
 
 
@@ -465,43 +483,482 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="temas" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Temas</h1>
-<section id="neurona-artificial" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="neurona-artificial"><span class="header-section-number">10.1</span> Neurona artificial</h2>
-</section>
-<section id="perceptrón-multicapa" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="perceptrón-multicapa"><span class="header-section-number">10.2</span> Perceptrón multicapa</h2>
-</section>
-<section id="entrenamiento" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="entrenamiento"><span class="header-section-number">10.3</span> Entrenamiento</h2>
+<p><br></p>
+<p>En este capítulo introduciremos las redes neuronales mediante un perceptrón multicapa para predecir el peso de los animales. El objetivo no es construir una arquitectura profunda, sino comprender las neuronas, las capas ocultas, las funciones de activación, el entrenamiento y el riesgo de sobreajuste.</p>
+<p><br></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"datos"</span>,<span class="st">"mastitis.csv"</span>))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nnet)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">nnet</span>(caso<span class="sc">~</span>.,<span class="at">data=</span>train,<span class="at">size=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar los paquetes si es necesario.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c(</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   "sf", "spdep", "spatialreg", "tidyverse",</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   "readxl", "Matrix"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ))</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatialreg)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre del archivo Excel.</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>archivo <span class="ot">&lt;-</span> <span class="st">"../datos/base_borregos_espaciotemporal_Hidalgo.xlsx"</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Consultar las hojas disponibles.</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(archivo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># weights:  26
-initial  value 154.355765 
-iter  10 value 148.733420
-iter  20 value 148.213787
-iter  30 value 147.984927
-iter  40 value 147.731651
-iter  50 value 147.527231
-iter  60 value 147.505676
-iter  70 value 147.502118
-iter  80 value 147.500688
-final  value 147.500250 
-converged</code></pre>
+<pre><code>[1] "datos_long"    "granja_tiempo" "animales"      "granjas"      
+[5] "W_vecindad"    "distancias_km" "diccionario"   "LEEME"        </code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importar la tabla longitudinal.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(archivo, <span class="at">sheet =</span> <span class="st">"datos_long"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>animales_muestra <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(animal_id) <span class="sc">|&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">prop =</span> <span class="fl">0.2</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>datos_b2 <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(animales_muestra, <span class="at">by =</span> <span class="st">"animal_id"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>datos_b2 <span class="ot">&lt;-</span> datos_b2 <span class="sc">|&gt;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">animal_id =</span> <span class="fu">as.factor</span>(animal_id),</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">granja_id =</span> <span class="fu">as.factor</span>(granja_id),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">sexo =</span> <span class="fu">as.factor</span>(sexo),</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">raza =</span> <span class="fu">as.factor</span>(raza),</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">tratamiento =</span> <span class="fu">as.factor</span>(tratamiento),</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">sistema_produccion =</span> <span class="fu">as.factor</span>(sistema_produccion),</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_score_0_4 =</span> <span class="fu">factor</span>(</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>      salud_score_0_4,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_alta =</span> <span class="fu">as.factor</span>(salud_alta),</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">periodo =</span> <span class="fu">cut</span>(</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>      tiempo,</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="cn">Inf</span>),</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 1-20"</span>,</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 21-40"</span>,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 41-60"</span>,</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 61-80"</span>,</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 81-100"</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar que los objetos de los bloques anteriores están disponibles.</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(datos_b2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10000    29</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(datos_b2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 10,000
+Columns: 29
+$ animal_id              &lt;fct&gt; A004, A004, A004, A004, A004, A004, A004, A004,…
+$ tiempo                 &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, …
+$ granja_id              &lt;fct&gt; G01, G01, G01, G01, G01, G01, G01, G01, G01, G0…
+$ sexo                   &lt;fct&gt; Macho, Macho, Macho, Macho, Macho, Macho, Macho…
+$ edad_inicio_meses      &lt;dbl&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,…
+$ raza                   &lt;fct&gt; Raza_B, Raza_B, Raza_B, Raza_B, Raza_B, Raza_B,…
+$ longitud               &lt;dbl&gt; -98.33413, -98.33413, -98.33413, -98.33413, -98…
+$ latitud                &lt;dbl&gt; 19.65949, 19.65949, 19.65949, 19.65949, 19.6594…
+$ zona                   &lt;chr&gt; "Sur", "Sur", "Sur", "Sur", "Sur", "Sur", "Sur"…
+$ tamano_granja          &lt;chr&gt; "Grande", "Grande", "Grande", "Grande", "Grande…
+$ sistema_produccion     &lt;fct&gt; Extensivo, Extensivo, Extensivo, Extensivo, Ext…
+$ efecto_granja          &lt;dbl&gt; 0.6536355, 0.6536355, 0.6536355, 0.6536355, 0.6…
+$ efecto_animal          &lt;dbl&gt; 2.413296, 2.413296, 2.413296, 2.413296, 2.41329…
+$ peso_inicial           &lt;dbl&gt; 37.42929, 37.42929, 37.42929, 37.42929, 37.4292…
+$ fecha                  &lt;dttm&gt; 2026-01-05, 2026-01-12, 2026-01-19, 2026-01-26…
+$ temperatura_C          &lt;dbl&gt; 15.88818, 20.48193, 20.39116, 20.47973, 18.3227…
+$ humedad_pct            &lt;dbl&gt; 60.32583, 64.99599, 63.95246, 54.16418, 64.4185…
+$ precipitacion_mm       &lt;dbl&gt; 1.6688677, 5.3912852, 5.4537042, 4.8266453, 8.4…
+$ consumo_kg_dia         &lt;dbl&gt; 1.339560, 1.561999, 1.480853, 1.654302, 1.50944…
+$ consumo_agua_l_dia     &lt;dbl&gt; 3.809575, 4.526432, 4.647925, 5.197635, 4.78052…
+$ salud_score_0_4        &lt;ord&gt; 1, 1, 1, 1, 0, 2, 3, 2, 2, 1, 1, 3, 3, 0, 2, 2,…
+$ salud_alta             &lt;fct&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0,…
+$ actividad_h_dia        &lt;dbl&gt; 7.805707, 4.988635, 5.757200, 4.963114, 5.55975…
+$ ganancia_semanal_kg    &lt;dbl&gt; 0.34846627, 0.17276523, 0.35894263, 0.28918360,…
+$ peso_kg                &lt;dbl&gt; 37.75597, 37.95950, 38.33896, 38.58755, 38.8099…
+$ produccion_lana_kg     &lt;dbl&gt; 0.12568442, 0.10190917, 0.09494479, 0.09752781,…
+$ n_visitas_veterinarias &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,…
+$ tratamiento            &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, Si,…
+$ periodo                &lt;fct&gt; Semanas 1-20, Semanas 1-20, Semanas 1-20, Seman…</code></pre>
 </div>
 </div>
-
-
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("tidyverse", "tidymodels", "nnet", "vip"))</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nnet)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vip)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><br></p>
+<section id="preparación-de-los-datos" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="preparación-de-los-datos"><span class="header-section-number">11.1</span> Preparación de los datos</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>datos_nn <span class="ot">&lt;-</span> datos_b2 <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    animal_id, granja_id, tiempo,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    peso_kg, consumo_kg_dia,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    consumo_agua_l_dia, edad_inicio_meses,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    sexo, raza, temperatura_C,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    humedad_pct, precipitacion_mm,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    actividad_h_dia, sistema_produccion, zona</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>split_nn <span class="ot">&lt;-</span> <span class="fu">group_initial_split</span>(</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  datos_nn,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> animal_id,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">prop =</span> <span class="fl">0.80</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>train_nn <span class="ot">&lt;-</span> <span class="fu">training</span>(split_nn)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>test_nn <span class="ot">&lt;-</span> <span class="fu">testing</span>(split_nn)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>folds_nn <span class="ot">&lt;-</span> <span class="fu">group_vfold_cv</span>(</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  train_nn,</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> animal_id,</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">v =</span> <span class="dv">5</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><br></p>
 </section>
+<section id="de-la-regresión-lineal-a-una-red-neuronal" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="de-la-regresión-lineal-a-una-red-neuronal"><span class="header-section-number">11.2</span> De la regresión lineal a una red neuronal</h2>
+<p><br></p>
+<p>Una regresión lineal calcula una combinación ponderada de predictores. Una neurona realiza una operación semejante, pero aplica una función de activación. Al combinar varias neuronas en capas ocultas, la red puede representar relaciones no lineales complejas.</p>
+<p><br></p>
+<p>Para una capa oculta podemos expresar una neurona como:</p>
+<p>[ h_j = g(b_j + ^{p}w*{jk}x_k) ]</p>
+<p><br></p>
+<p>La salida de la red combina las activaciones de las neuronas ocultas para producir una predicción.</p>
+<p><br></p>
+</section>
+<section id="preprocesamiento" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="preprocesamiento"><span class="header-section-number">11.3</span> Preprocesamiento</h2>
+<p><br></p>
+<p>Las redes neuronales son sensibles a las escalas. Estandarizaremos todos los predictores numéricos y convertiremos las variables categóricas en indicadores.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>receta_nn <span class="ot">&lt;-</span> <span class="fu">recipe</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  peso_kg <span class="sc">~</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    consumo_kg_dia <span class="sc">+</span> consumo_agua_l_dia <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    edad_inicio_meses <span class="sc">+</span> sexo <span class="sc">+</span> raza <span class="sc">+</span> tiempo <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    temperatura_C <span class="sc">+</span> humedad_pct <span class="sc">+</span> precipitacion_mm <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    actividad_h_dia <span class="sc">+</span> sistema_produccion <span class="sc">+</span> zona,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> train_nn</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_unknown</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_novel</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>receta_nn</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><br></p>
+</section>
+<section id="perceptrón-multicapa" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="perceptrón-multicapa"><span class="header-section-number">11.4</span> Perceptrón multicapa</h2>
+<p><br></p>
+<p>Utilizaremos <code>nnet</code>, que ajusta una red con una única capa oculta. El parámetro <code>hidden_units</code> controla el número de neuronas ocultas y <code>penalty</code> introduce regularización sobre los pesos.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>modelo_nn <span class="ot">&lt;-</span> <span class="fu">mlp</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">hidden_units =</span> <span class="fu">tune</span>(),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">penalty =</span> <span class="fu">tune</span>(),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">epochs =</span> <span class="fu">tune</span>()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nnet"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">trace =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">MaxNWts =</span> <span class="dv">20000</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>flujo_nn <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receta_nn) <span class="sc">|&gt;</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(modelo_nn)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><br></p>
+</section>
+<section id="selección-de-la-arquitectura" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="selección-de-la-arquitectura"><span class="header-section-number">11.5</span> Selección de la arquitectura</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rejilla_nn <span class="ot">&lt;-</span> <span class="fu">grid_latin_hypercube</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hidden_units</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">2</span>L, <span class="dv">10</span>L)),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">penalty</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="sc">-</span><span class="dv">1</span>)),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">epochs</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">20</span>L, <span class="dv">100</span>L)),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>resultados_nn <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  flujo_nn,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> <span class="fu">vfold_cv</span>(train_nn, <span class="at">v =</span> <span class="dv">2</span>),</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> rejilla_nn,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(rmse),</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">control_grid</span>(</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">save_pred =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="fu">show_best</span>(</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  resultados_nn,</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="st">"rmse"</span>,</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">3</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 9
+  hidden_units  penalty epochs .metric .estimator  mean     n std_err .config   
+         &lt;int&gt;    &lt;dbl&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;     
+1            3 0.00838      98 rmse    standard    2.52     2  0.0601 pre0_mod1…
+2            9 0.0315       48 rmse    standard    3.11     2  0.0237 pre0_mod3…
+3            7 0.000644     38 rmse    standard    3.64     2  0.724  pre0_mod2…</code></pre>
+</div>
+</div>
+<p><br></p>
+<p>Más neuronas aumentan la flexibilidad, pero también el número de parámetros. La penalización reduce pesos extremos y puede mejorar la generalización. El número de épocas indica cuántas iteraciones de entrenamiento se realizan.</p>
+<p><br></p>
+</section>
+<section id="modelo-final-y-evaluación" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="modelo-final-y-evaluación"><span class="header-section-number">11.6</span> Modelo final y evaluación</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mejor_nn <span class="ot">&lt;-</span> <span class="fu">select_best</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  resultados_nn,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="st">"rmse"</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>flujo_nn_final <span class="ot">&lt;-</span> <span class="fu">finalize_workflow</span>(</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  flujo_nn,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  mejor_nn</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>resultado_nn <span class="ot">&lt;-</span> <span class="fu">last_fit</span>(</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  flujo_nn_final,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">split =</span> split_nn,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(rmse, mae, rsq)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(resultado_nn)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  .metric .estimator .estimate .config        
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;          
+1 rmse    standard       4.43  pre0_mod0_post0
+2 mae     standard       3.52  pre0_mod0_post0
+3 rsq     standard       0.746 pre0_mod0_post0</code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>predicciones_nn <span class="ot">&lt;-</span> <span class="fu">collect_predictions</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  resultado_nn</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  predicciones_nn,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> .pred, <span class="at">y =</span> peso_kg)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.20</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">intercept =</span> <span class="dv">0</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">slope =</span> <span class="dv">1</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"firebrick"</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Peso observado y predicho por la red neuronal"</span>,</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Peso predicho (kg)"</span>,</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Peso observado (kg)"</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ml_04_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="comparación-con-una-regresión-lineal" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="comparación-con-una-regresión-lineal"><span class="header-section-number">11.7</span> Comparación con una regresión lineal</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>modelo_lineal_referencia <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>flujo_lineal_referencia <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receta_nn) <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(modelo_lineal_referencia)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>resultado_lineal_referencia <span class="ot">&lt;-</span> <span class="fu">last_fit</span>(</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  flujo_lineal_referencia,</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">split =</span> split_nn,</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="fu">metric_set</span>(rmse, mae, rsq)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>comparacion_nn <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>(resultado_lineal_referencia) <span class="sc">|&gt;</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">modelo =</span> <span class="st">"Regresión lineal"</span>),</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>(resultado_nn) <span class="sc">|&gt;</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">modelo =</span> <span class="st">"Red neuronal"</span>)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>comparacion_nn</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  .metric .estimator .estimate .config         modelo          
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;           
+1 rmse    standard       3.89  pre0_mod0_post0 Regresión lineal
+2 mae     standard       3.06  pre0_mod0_post0 Regresión lineal
+3 rsq     standard       0.792 pre0_mod0_post0 Regresión lineal
+4 rmse    standard       4.43  pre0_mod0_post0 Red neuronal    
+5 mae     standard       3.52  pre0_mod0_post0 Red neuronal    
+6 rsq     standard       0.746 pre0_mod0_post0 Red neuronal    </code></pre>
+</div>
+</div>
+<p><br></p>
+<p>La red neuronal no debe considerarse mejor únicamente por ser más compleja. Si la mejora predictiva es pequeña, la regresión lineal puede ser preferible por su rapidez e interpretación.</p>
+<p><br></p>
+</section>
+<section id="error-según-la-semana" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="error-según-la-semana"><span class="header-section-number">11.8</span> Error según la semana</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>predicciones_nn_detalle <span class="ot">&lt;-</span> predicciones_nn <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    test_nn <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">.row =</span> <span class="fu">row_number</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(.row, tiempo, granja_id, animal_id),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">".row"</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> peso_kg <span class="sc">-</span> .pred,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">error_absoluto =</span> <span class="fu">abs</span>(error)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>predicciones_nn_detalle <span class="sc">|&gt;</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tiempo) <span class="sc">|&gt;</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAE =</span> <span class="fu">mean</span>(error_absoluto),</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tiempo, <span class="at">y =</span> MAE)) <span class="sc">+</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"steelblue4"</span>) <span class="sc">+</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"steelblue4"</span>) <span class="sc">+</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Error absoluto medio por semana"</span>,</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Semana"</span>,</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"MAE (kg)"</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ml_04_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="visión-general-del-aprendizaje-profundo" class="level2" data-number="11.9">
+<h2 data-number="11.9" class="anchored" data-anchor-id="visión-general-del-aprendizaje-profundo"><span class="header-section-number">11.9</span> Visión general del aprendizaje profundo</h2>
+<p><br></p>
+<p>El aprendizaje profundo utiliza redes con varias capas y un gran número de parámetros. Estas arquitecturas son especialmente útiles para imágenes, audio, texto, secuencias extensas y grandes volúmenes de datos.</p>
+<p><br></p>
+<p>En ciencias animales podrían utilizarse para clasificar imágenes de lesiones, analizar vídeo de comportamiento, procesar sonidos, reconocer animales o modelar secuencias de sensores. Para la tabla actual, una red profunda probablemente sería innecesaria y podría sobreajustarse.</p>
+<p><br></p>
+</section>
+<section id="límites-e-interpretación" class="level2" data-number="11.10">
+<h2 data-number="11.10" class="anchored" data-anchor-id="límites-e-interpretación"><span class="header-section-number">11.10</span> Límites e interpretación</h2>
+<p><br></p>
+<p>Las redes neuronales presentan varias limitaciones:</p>
+<ul>
+<li>Requieren preprocesamiento y selección cuidadosa de hiperparámetros.</li>
+<li>Pueden cambiar con la inicialización aleatoria.</li>
+<li>Su interpretación es menos directa que la de una regresión.</li>
+<li>Necesitan más datos y cálculo cuando aumenta la profundidad.</li>
+<li>No corrigen automáticamente la dependencia entre mediciones repetidas.</li>
+<li>Una alta precisión no implica causalidad.</li>
+</ul>
+<p><br></p>
+</section>
+<section id="actividad-de-interpretación" class="level2" data-number="11.11">
+<h2 data-number="11.11" class="anchored" data-anchor-id="actividad-de-interpretación"><span class="header-section-number">11.11</span> Actividad de interpretación</h2>
+<p><br></p>
+<ol type="1">
+<li>¿Qué operación realiza una neurona?</li>
+<li>¿Qué aporta una función de activación?</li>
+<li>¿Por qué deben estandarizarse los predictores?</li>
+<li>¿Qué controla <code>hidden_units</code>?</li>
+<li>¿Qué función cumple la penalización?</li>
+<li>¿Qué representa el número de épocas?</li>
+<li>¿La red mejora el RMSE respecto a la regresión lineal?</li>
+<li>¿El error es estable durante el seguimiento?</li>
+<li>¿Por qué una red más grande puede sobreajustar?</li>
+<li>¿Qué tipos de datos justificarían aprendizaje profundo?</li>
+</ol>
+<p><br></p>
+<p>Al finalizar este capítulo debemos comprender la estructura básica de un perceptrón multicapa, ajustar una red sencilla, controlar su complejidad mediante validación cruzada y comparar su rendimiento con un modelo de referencia más interpretable.</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -920,13 +1377,13 @@ converged</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../modulos/ml_03.html" class="pagination-link" aria-label="Árboles y Random Forest">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Árboles y Random Forest</span></span>
+      <a href="../modulos/ml_03.html" class="pagination-link" aria-label="Capítulo 3. Métodos basados en árboles">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 3. Métodos basados en árboles</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../modulos/ml_05.html" class="pagination-link" aria-label="Clustering y PCA">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clustering y PCA</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../modulos/ml_05.html" class="pagination-link" aria-label="Segmentación y reducción de dimensionalidad">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Segmentación y reducción de dimensionalidad</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

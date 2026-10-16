@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Introducción al aprendizaje estadístico – Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal</title>
+<title>8&nbsp; Introducción al aprendizaje supervisado y no supervisado – Aprendizaje Estadístico en Ciencia Animal</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -117,6 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -290,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_01.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje estadístico</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_01.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje supervisado y no supervisado</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -305,7 +306,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal</a> 
+      <a href="../">Aprendizaje Estadístico en Ciencia Animal</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
 </div>
@@ -341,20 +342,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../modulos/st_02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Modelos lineales generalizados mixtos</span></span></a>
+  <a href="../modulos/st_02A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estadística descriptiva y visualización</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../modulos/st_03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Modelos espaciales autorregresivos</span></span></a>
+  <a href="../modulos/st_02B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">De la regresión lineal simple a la múltiple</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modulos/st_03A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dependencia temporal y modelos mixtos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../modulos/st_03B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">GLMM y respuestas no continuas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/st_04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modelos espacio-temporales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dependencia espacial y modelos SAR espacio-temporales</span></span></a>
   </div>
 </li>
       </ul>
@@ -371,31 +384,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_01.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje estadístico</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje supervisado y no supervisado</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regresión y clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Métodos de regresión y clasificación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Árboles y Random Forest</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 3. Métodos basados en árboles</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Redes neuronales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introducción a las redes neuronales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clustering y PCA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Segmentación y reducción de dimensionalidad</span></span></a>
   </div>
 </li>
       </ul>
@@ -412,7 +425,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/crosscarry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">CrossCarry</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">CrossCarry</span></span></a>
   </div>
 </li>
       </ul>
@@ -420,7 +433,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../recursos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Recursos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Recursos</span></span></a>
   </div>
 </li>
     </ul>
@@ -433,47 +446,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-de-aprendizaje" id="toc-objetivos-de-aprendizaje" class="nav-link active" data-scroll-target="#objetivos-de-aprendizaje"><span class="header-section-number">7</span> Objetivos de aprendizaje</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">8</span> Introducción</a></li>
-  <li><a href="#qué-es-el-aprendizaje-estadístico" id="toc-qué-es-el-aprendizaje-estadístico" class="nav-link" data-scroll-target="#qué-es-el-aprendizaje-estadístico"><span class="header-section-number">9</span> ¿Qué es el aprendizaje estadístico?</a>
-  <ul class="collapse">
-  <li><a href="#ejemplo" id="toc-ejemplo" class="nav-link" data-scroll-target="#ejemplo"><span class="header-section-number">9.1</span> Ejemplo</a></li>
-  </ul></li>
-  <li><a href="#dos-grandes-objetivos" id="toc-dos-grandes-objetivos" class="nav-link" data-scroll-target="#dos-grandes-objetivos"><span class="header-section-number">10</span> Dos grandes objetivos</a>
-  <ul class="collapse">
-  <li><a href="#inferencia" id="toc-inferencia" class="nav-link" data-scroll-target="#inferencia"><span class="header-section-number">10.1</span> Inferencia</a></li>
-  <li><a href="#predicción" id="toc-predicción" class="nav-link" data-scroll-target="#predicción"><span class="header-section-number">10.2</span> Predicción</a></li>
-  </ul></li>
-  <li><a href="#aprendizaje-supervisado" id="toc-aprendizaje-supervisado" class="nav-link" data-scroll-target="#aprendizaje-supervisado"><span class="header-section-number">11</span> Aprendizaje supervisado</a>
-  <ul class="collapse">
-  <li><a href="#ejemplos-en-ciencia-animal" id="toc-ejemplos-en-ciencia-animal" class="nav-link" data-scroll-target="#ejemplos-en-ciencia-animal"><span class="header-section-number">11.1</span> Ejemplos en ciencia animal</a>
-  <ul class="collapse">
-  <li><a href="#regresión" id="toc-regresión" class="nav-link" data-scroll-target="#regresión"><span class="header-section-number">11.1.1</span> Regresión</a></li>
-  <li><a href="#clasificación" id="toc-clasificación" class="nav-link" data-scroll-target="#clasificación"><span class="header-section-number">11.1.2</span> Clasificación</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#aprendizaje-no-supervisado" id="toc-aprendizaje-no-supervisado" class="nav-link" data-scroll-target="#aprendizaje-no-supervisado"><span class="header-section-number">12</span> Aprendizaje no supervisado</a>
-  <ul class="collapse">
-  <li><a href="#ejemplos" id="toc-ejemplos" class="nav-link" data-scroll-target="#ejemplos"><span class="header-section-number">12.1</span> Ejemplos</a></li>
-  </ul></li>
-  <li><a href="#ejemplo-práctico" id="toc-ejemplo-práctico" class="nav-link" data-scroll-target="#ejemplo-práctico"><span class="header-section-number">13</span> Ejemplo práctico</a></li>
-  <li><a href="#visualización-de-los-datos" id="toc-visualización-de-los-datos" class="nav-link" data-scroll-target="#visualización-de-los-datos"><span class="header-section-number">14</span> Visualización de los datos</a>
-  <ul class="collapse">
-  <li><a href="#discusión" id="toc-discusión" class="nav-link" data-scroll-target="#discusión"><span class="header-section-number">14.1</span> Discusión</a></li>
-  </ul></li>
-  <li><a href="#error-de-predicción" id="toc-error-de-predicción" class="nav-link" data-scroll-target="#error-de-predicción"><span class="header-section-number">15</span> Error de predicción</a>
-  <ul class="collapse">
-  <li><a href="#pregunta" id="toc-pregunta" class="nav-link" data-scroll-target="#pregunta"><span class="header-section-number">15.1</span> Pregunta</a></li>
-  </ul></li>
-  <li><a href="#entrenamiento-y-prueba" id="toc-entrenamiento-y-prueba" class="nav-link" data-scroll-target="#entrenamiento-y-prueba"><span class="header-section-number">16</span> Entrenamiento y prueba</a></li>
-  <li><a href="#sobreajuste" id="toc-sobreajuste" class="nav-link" data-scroll-target="#sobreajuste"><span class="header-section-number">17</span> Sobreajuste</a>
-  <ul class="collapse">
-  <li><a href="#analogía" id="toc-analogía" class="nav-link" data-scroll-target="#analogía"><span class="header-section-number">17.1</span> Analogía</a></li>
-  </ul></li>
-  <li><a href="#complejidad-del-modelo" id="toc-complejidad-del-modelo" class="nav-link" data-scroll-target="#complejidad-del-modelo"><span class="header-section-number">18</span> Complejidad del modelo</a></li>
-  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">19</span> Resumen</a></li>
-  <li><a href="#actividades-propuestas" id="toc-actividades-propuestas" class="nav-link" data-scroll-target="#actividades-propuestas"><span class="header-section-number">20</span> Actividades propuestas</a></li>
-  <li><a href="#lecturas-recomendadas" id="toc-lecturas-recomendadas" class="nav-link" data-scroll-target="#lecturas-recomendadas"><span class="header-section-number">21</span> Lecturas recomendadas</a></li>
+  <li><a href="#qué-es-el-aprendizaje-automático" id="toc-qué-es-el-aprendizaje-automático" class="nav-link active" data-scroll-target="#qué-es-el-aprendizaje-automático"><span class="header-section-number">8.1</span> ¿Qué es el aprendizaje automático?</a></li>
+  <li><a href="#aprendizaje-supervisado" id="toc-aprendizaje-supervisado" class="nav-link" data-scroll-target="#aprendizaje-supervisado"><span class="header-section-number">8.2</span> Aprendizaje supervisado</a></li>
+  <li><a href="#aprendizaje-no-supervisado" id="toc-aprendizaje-no-supervisado" class="nav-link" data-scroll-target="#aprendizaje-no-supervisado"><span class="header-section-number">8.3</span> Aprendizaje no supervisado</a></li>
+  <li><a href="#unidad-de-análisis" id="toc-unidad-de-análisis" class="nav-link" data-scroll-target="#unidad-de-análisis"><span class="header-section-number">8.4</span> Unidad de análisis</a></li>
+  <li><a href="#conjunto-de-entrenamiento-y-conjunto-de-prueba" id="toc-conjunto-de-entrenamiento-y-conjunto-de-prueba" class="nav-link" data-scroll-target="#conjunto-de-entrenamiento-y-conjunto-de-prueba"><span class="header-section-number">8.5</span> Conjunto de entrenamiento y conjunto de prueba</a></li>
+  <li><a href="#predictores-respuesta-y-fuga-de-información" id="toc-predictores-respuesta-y-fuga-de-información" class="nav-link" data-scroll-target="#predictores-respuesta-y-fuga-de-información"><span class="header-section-number">8.6</span> Predictores, respuesta y fuga de información</a></li>
+  <li><a href="#preprocesamiento-mediante-recetas" id="toc-preprocesamiento-mediante-recetas" class="nav-link" data-scroll-target="#preprocesamiento-mediante-recetas"><span class="header-section-number">8.7</span> Preprocesamiento mediante recetas</a></li>
+  <li><a href="#validación-cruzada-agrupada" id="toc-validación-cruzada-agrupada" class="nav-link" data-scroll-target="#validación-cruzada-agrupada"><span class="header-section-number">8.8</span> Validación cruzada agrupada</a></li>
+  <li><a href="#aplicaciones-según-la-escala-de-predicción" id="toc-aplicaciones-según-la-escala-de-predicción" class="nav-link" data-scroll-target="#aplicaciones-según-la-escala-de-predicción"><span class="header-section-number">8.9</span> Aplicaciones según la escala de predicción</a></li>
+  <li><a href="#línea-base-predictiva" id="toc-línea-base-predictiva" class="nav-link" data-scroll-target="#línea-base-predictiva"><span class="header-section-number">8.10</span> Línea base predictiva</a></li>
+  <li><a href="#actividad-de-interpretación" id="toc-actividad-de-interpretación" class="nav-link" data-scroll-target="#actividad-de-interpretación"><span class="header-section-number">8.11</span> Actividad de interpretación</a></li>
   </ul>
 </nav>
     </div>
@@ -481,9 +464,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_01.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje estadístico</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_01.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje supervisado y no supervisado</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje estadístico</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje supervisado y no supervisado</span></h1>
 </div>
 
 
@@ -500,297 +483,606 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="objetivos-de-aprendizaje" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Objetivos de aprendizaje</h1>
-<p>Al finalizar esta sesión, el estudiante será capaz de:</p>
-<ul>
-<li>Comprender qué es el aprendizaje estadístico.</li>
-<li>Diferenciar problemas supervisados y no supervisados.</li>
-<li>Entender la diferencia entre explicación y predicción.</li>
-<li>Reconocer los conceptos de error de entrenamiento y error de generalización.</li>
-<li>Identificar situaciones de sobreajuste.</li>
-</ul>
-</section>
-<section id="introducción" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Introducción</h1>
-<p>Las ciencias de la salud y la producción animal generan actualmente grandes cantidades de información. En una explotación ganadera pueden registrarse diariamente variables relacionadas con alimentación, producción, reproducción, bienestar animal, sanidad y condiciones ambientales.</p>
-<p>El reto ya no consiste únicamente en almacenar datos, sino en transformarlos en conocimiento útil para la toma de decisiones.</p>
-<p>El aprendizaje estadístico proporciona un conjunto de herramientas que permiten:</p>
-<ul>
-<li>Comprender relaciones entre variables.</li>
-<li>Identificar factores de riesgo.</li>
-<li>Construir modelos predictivos.</li>
-<li>Detectar patrones complejos.</li>
-<li>Apoyar la toma de decisiones en sistemas productivos.</li>
-</ul>
-</section>
-<section id="qué-es-el-aprendizaje-estadístico" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> ¿Qué es el aprendizaje estadístico?</h1>
-<p>El aprendizaje estadístico es una disciplina que combina estadística, matemáticas y ciencias computacionales para construir modelos a partir de datos.</p>
-<p>La idea central consiste en utilizar información observada para aprender una relación entre variables y posteriormente utilizar esa información para describir, explicar o predecir fenómenos.</p>
-<section id="ejemplo" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="ejemplo"><span class="header-section-number">9.1</span> Ejemplo</h2>
-<p>Supongamos que disponemos de información sobre 500 vacas:</p>
-<ul>
-<li>Producción de leche.</li>
-<li>Consumo de alimento.</li>
-<li>Edad.</li>
-<li>Número de parto.</li>
-<li>Temperatura ambiental.</li>
-</ul>
-<p>Una pregunta posible sería:</p>
-<blockquote class="blockquote">
-<p>¿Podemos predecir la producción de leche de una vaca a partir de estas variables?</p>
-</blockquote>
-<p>Esa es una tarea típica de aprendizaje estadístico.</p>
-</section>
-</section>
-<section id="dos-grandes-objetivos" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Dos grandes objetivos</h1>
-<p>Tradicionalmente existen dos objetivos fundamentales.</p>
-<section id="inferencia" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="inferencia"><span class="header-section-number">10.1</span> Inferencia</h2>
-<p>La inferencia busca responder preguntas científicas.</p>
-<p>Por ejemplo:</p>
-<ul>
-<li>¿Aumenta la producción de leche con un nuevo aditivo?</li>
-<li>¿Influye la temperatura en la incidencia de mastitis?</li>
-<li>¿Existe asociación entre una enfermedad y el sistema de manejo?</li>
-</ul>
-<p>El interés principal es comprender el fenómeno.</p>
-</section>
-<section id="predicción" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="predicción"><span class="header-section-number">10.2</span> Predicción</h2>
-<p>La predicción busca anticipar valores futuros o desconocidos.</p>
-<p>Por ejemplo:</p>
-<ul>
-<li>Predecir la ganancia diaria de peso.</li>
-<li>Predecir un brote de enfermedad.</li>
-<li>Predecir la probabilidad de descarte de una vaca.</li>
-</ul>
-<p>El interés principal es obtener predicciones precisas.</p>
-</section>
-</section>
-<section id="aprendizaje-supervisado" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Aprendizaje supervisado</h1>
-<p>En el aprendizaje supervisado conocemos la respuesta de interés.</p>
-<p>Disponemos de:</p>
-<ul>
-<li>Variables explicativas (X).</li>
-<li>Variable respuesta (Y).</li>
-</ul>
-<p>El objetivo consiste en aprender una función que relacione ambas.</p>
-<section id="ejemplos-en-ciencia-animal" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="ejemplos-en-ciencia-animal"><span class="header-section-number">11.1</span> Ejemplos en ciencia animal</h2>
-<section id="regresión" class="level3" data-number="11.1.1">
-<h3 data-number="11.1.1" class="anchored" data-anchor-id="regresión"><span class="header-section-number">11.1.1</span> Regresión</h3>
-<p>Predecir:</p>
-<ul>
-<li>Producción de leche.</li>
-<li>Ganancia de peso.</li>
-<li>Consumo de alimento.</li>
-</ul>
-</section>
-<section id="clasificación" class="level3" data-number="11.1.2">
-<h3 data-number="11.1.2" class="anchored" data-anchor-id="clasificación"><span class="header-section-number">11.1.2</span> Clasificación</h3>
-<p>Predecir:</p>
-<ul>
-<li>Enfermo o sano.</li>
-<li>Gestante o no gestante.</li>
-<li>Sobrevive o no sobrevive.</li>
-</ul>
-</section>
-</section>
-</section>
-<section id="aprendizaje-no-supervisado" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Aprendizaje no supervisado</h1>
-<p>En este caso no existe una variable respuesta conocida.</p>
-<p>El objetivo consiste en descubrir patrones ocultos en los datos.</p>
-<section id="ejemplos" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="ejemplos"><span class="header-section-number">12.1</span> Ejemplos</h2>
-<ul>
-<li>Identificar grupos de granjas similares.</li>
-<li>Detectar perfiles metabólicos.</li>
-<li>Clasificar animales según su comportamiento.</li>
-</ul>
-<p>Las técnicas más utilizadas incluyen:</p>
-<ul>
-<li>Clustering.</li>
-<li>Análisis de componentes principales.</li>
-<li>Métodos de reducción de dimensionalidad.</li>
-</ul>
-</section>
-</section>
-<section id="ejemplo-práctico" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Ejemplo práctico</h1>
+<p><br></p>
+<p>En este capítulo introduciremos los fundamentos del aprendizaje automático mediante ejemplos relacionados con animales, granjas y estados. Utilizaremos la base longitudinal preparada en los bloques anteriores, pero cambiaremos el objetivo del análisis: en lugar de concentrarnos únicamente en la estimación de asociaciones, estudiaremos cómo construir modelos capaces de predecir resultados en observaciones nuevas y cómo descubrir estructuras sin una respuesta previamente definida.</p>
+<p><br></p>
+<p>El aprendizaje automático no sustituye el razonamiento científico. Una predicción precisa no demuestra causalidad y una agrupación obtenida algorítmicamente no representa necesariamente categorías biológicas reales. La definición de la unidad de análisis, la separación entre entrenamiento y prueba y la prevención de fugas de información son esenciales, especialmente cuando existen mediciones repetidas del mismo animal.</p>
+<p><br></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"datos"</span>,<span class="st">"leche.csv"</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar los paquetes si es necesario.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c(</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   "sf", "spdep", "spatialreg", "tidyverse",</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   "readxl", "Matrix"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ))</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatialreg)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre del archivo Excel.</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>archivo <span class="ot">&lt;-</span> <span class="st">"../datos/base_borregos_espaciotemporal_Hidalgo.xlsx"</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Consultar las hojas disponibles.</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(archivo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>  animal granja tratamiento semana leche
-1      1      3     Control      1 33.38
-2      1      3     Control      2 33.00
-3      1      3     Control      3 34.71
-4      1      3     Control      4 30.06
-5      1      3     Control      5 35.04
-6      1      3     Control      6 24.95</code></pre>
+<pre><code>[1] "datos_long"    "granja_tiempo" "animales"      "granjas"      
+[5] "W_vecindad"    "distancias_km" "diccionario"   "LEEME"        </code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importar la tabla longitudinal.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(archivo, <span class="at">sheet =</span> <span class="st">"datos_long"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>datos_b2 <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">animal_id =</span> <span class="fu">as.factor</span>(animal_id),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">granja_id =</span> <span class="fu">as.factor</span>(granja_id),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sexo =</span> <span class="fu">as.factor</span>(sexo),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">raza =</span> <span class="fu">as.factor</span>(raza),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">tratamiento =</span> <span class="fu">as.factor</span>(tratamiento),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">sistema_produccion =</span> <span class="fu">as.factor</span>(sistema_produccion),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_score_0_4 =</span> <span class="fu">factor</span>(</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>      salud_score_0_4,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_alta =</span> <span class="fu">as.factor</span>(salud_alta),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">periodo =</span> <span class="fu">cut</span>(</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>      tiempo,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="cn">Inf</span>),</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 1-20"</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 21-40"</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 41-60"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 61-80"</span>,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 81-100"</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar que los objetos de los bloques anteriores están disponibles.</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(datos_b2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50000    29</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(datos_b2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 50,000
+Columns: 29
+$ animal_id              &lt;fct&gt; A001, A001, A001, A001, A001, A001, A001, A001,…
+$ tiempo                 &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, …
+$ granja_id              &lt;fct&gt; G01, G01, G01, G01, G01, G01, G01, G01, G01, G0…
+$ sexo                   &lt;fct&gt; Macho, Macho, Macho, Macho, Macho, Macho, Macho…
+$ edad_inicio_meses      &lt;dbl&gt; 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,…
+$ raza                   &lt;fct&gt; Raza_B, Raza_B, Raza_B, Raza_B, Raza_B, Raza_B,…
+$ longitud               &lt;dbl&gt; -98.33413, -98.33413, -98.33413, -98.33413, -98…
+$ latitud                &lt;dbl&gt; 19.65949, 19.65949, 19.65949, 19.65949, 19.6594…
+$ zona                   &lt;chr&gt; "Sur", "Sur", "Sur", "Sur", "Sur", "Sur", "Sur"…
+$ tamano_granja          &lt;chr&gt; "Grande", "Grande", "Grande", "Grande", "Grande…
+$ sistema_produccion     &lt;fct&gt; Extensivo, Extensivo, Extensivo, Extensivo, Ext…
+$ efecto_granja          &lt;dbl&gt; 0.6536355, 0.6536355, 0.6536355, 0.6536355, 0.6…
+$ efecto_animal          &lt;dbl&gt; 2.914282, 2.914282, 2.914282, 2.914282, 2.91428…
+$ peso_inicial           &lt;dbl&gt; 36.74311, 36.74311, 36.74311, 36.74311, 36.7431…
+$ fecha                  &lt;dttm&gt; 2026-01-05, 2026-01-12, 2026-01-19, 2026-01-26…
+$ temperatura_C          &lt;dbl&gt; 15.88818, 20.48193, 20.39116, 20.47973, 18.3227…
+$ humedad_pct            &lt;dbl&gt; 60.32583, 64.99599, 63.95246, 54.16418, 64.4185…
+$ precipitacion_mm       &lt;dbl&gt; 1.6688677, 5.3912852, 5.4537042, 4.8266453, 8.4…
+$ consumo_kg_dia         &lt;dbl&gt; 1.072022, 1.357391, 1.225139, 1.411625, 1.41050…
+$ consumo_agua_l_dia     &lt;dbl&gt; 3.677850, 5.364670, 5.052596, 4.208338, 4.81631…
+$ salud_score_0_4        &lt;ord&gt; 0, 2, 1, 2, 2, 2, 1, 0, 2, 3, 3, 1, 2, 1, 3, 1,…
+$ salud_alta             &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0,…
+$ actividad_h_dia        &lt;dbl&gt; 5.923437, 4.537974, 4.990502, 6.221985, 5.62676…
+$ ganancia_semanal_kg    &lt;dbl&gt; 0.29565465, 0.29575272, 0.17001814, 0.19513973,…
+$ peso_kg                &lt;dbl&gt; 37.05724, 37.34766, 37.48476, 37.69459, 38.0102…
+$ produccion_lana_kg     &lt;dbl&gt; 0.10708573, 0.13682758, 0.11903028, 0.12099647,…
+$ n_visitas_veterinarias &lt;dbl&gt; 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 1, 0,…
+$ tratamiento            &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, Si, No,…
+$ periodo                &lt;fct&gt; Semanas 1-20, Semanas 1-20, Semanas 1-20, Seman…</code></pre>
 </div>
 </div>
-</section>
-<section id="visualización-de-los-datos" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> Visualización de los datos</h1>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> semana,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> leche,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">group =</span> animal)) <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Semana"</span>,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Producción de leche"</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar los paquetes si es necesario.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("tidyverse", "tidymodels", "rsample", "sf"))</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar los datos disponibles.</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(datos_b2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ml_01_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50000    29</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(datos_b2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 50,000
+Columns: 29
+$ animal_id              &lt;fct&gt; A001, A001, A001, A001, A001, A001, A001, A001,…
+$ tiempo                 &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, …
+$ granja_id              &lt;fct&gt; G01, G01, G01, G01, G01, G01, G01, G01, G01, G0…
+$ sexo                   &lt;fct&gt; Macho, Macho, Macho, Macho, Macho, Macho, Macho…
+$ edad_inicio_meses      &lt;dbl&gt; 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,…
+$ raza                   &lt;fct&gt; Raza_B, Raza_B, Raza_B, Raza_B, Raza_B, Raza_B,…
+$ longitud               &lt;dbl&gt; -98.33413, -98.33413, -98.33413, -98.33413, -98…
+$ latitud                &lt;dbl&gt; 19.65949, 19.65949, 19.65949, 19.65949, 19.6594…
+$ zona                   &lt;chr&gt; "Sur", "Sur", "Sur", "Sur", "Sur", "Sur", "Sur"…
+$ tamano_granja          &lt;chr&gt; "Grande", "Grande", "Grande", "Grande", "Grande…
+$ sistema_produccion     &lt;fct&gt; Extensivo, Extensivo, Extensivo, Extensivo, Ext…
+$ efecto_granja          &lt;dbl&gt; 0.6536355, 0.6536355, 0.6536355, 0.6536355, 0.6…
+$ efecto_animal          &lt;dbl&gt; 2.914282, 2.914282, 2.914282, 2.914282, 2.91428…
+$ peso_inicial           &lt;dbl&gt; 36.74311, 36.74311, 36.74311, 36.74311, 36.7431…
+$ fecha                  &lt;dttm&gt; 2026-01-05, 2026-01-12, 2026-01-19, 2026-01-26…
+$ temperatura_C          &lt;dbl&gt; 15.88818, 20.48193, 20.39116, 20.47973, 18.3227…
+$ humedad_pct            &lt;dbl&gt; 60.32583, 64.99599, 63.95246, 54.16418, 64.4185…
+$ precipitacion_mm       &lt;dbl&gt; 1.6688677, 5.3912852, 5.4537042, 4.8266453, 8.4…
+$ consumo_kg_dia         &lt;dbl&gt; 1.072022, 1.357391, 1.225139, 1.411625, 1.41050…
+$ consumo_agua_l_dia     &lt;dbl&gt; 3.677850, 5.364670, 5.052596, 4.208338, 4.81631…
+$ salud_score_0_4        &lt;ord&gt; 0, 2, 1, 2, 2, 2, 1, 0, 2, 3, 3, 1, 2, 1, 3, 1,…
+$ salud_alta             &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0,…
+$ actividad_h_dia        &lt;dbl&gt; 5.923437, 4.537974, 4.990502, 6.221985, 5.62676…
+$ ganancia_semanal_kg    &lt;dbl&gt; 0.29565465, 0.29575272, 0.17001814, 0.19513973,…
+$ peso_kg                &lt;dbl&gt; 37.05724, 37.34766, 37.48476, 37.69459, 38.0102…
+$ produccion_lana_kg     &lt;dbl&gt; 0.10708573, 0.13682758, 0.11903028, 0.12099647,…
+$ n_visitas_veterinarias &lt;dbl&gt; 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 1, 0,…
+$ tratamiento            &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, Si, No,…
+$ periodo                &lt;fct&gt; Semanas 1-20, Semanas 1-20, Semanas 1-20, Seman…</code></pre>
 </div>
 </div>
-</div>
-<section id="discusión" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="discusión"><span class="header-section-number">14.1</span> Discusión</h2>
-<p>Observamos que cada animal presenta una trayectoria distinta a lo largo del tiempo.</p>
-<p>Esto sugiere que existe variabilidad entre individuos y que probablemente necesitaremos modelos que tengan en cuenta la dependencia temporal y la heterogeneidad entre animales.</p>
-</section>
-</section>
-<section id="error-de-predicción" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> Error de predicción</h1>
-<p>Un modelo nunca es perfecto.</p>
-<p>La diferencia entre el valor observado y el valor predicho recibe el nombre de error.</p>
-<section id="pregunta" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="pregunta"><span class="header-section-number">15.1</span> Pregunta</h2>
-<p>Si observamos:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Producción observada</th>
-<th>Producción predicha</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>32 kg</td>
-<td>30 kg</td>
-</tr>
-</tbody>
-</table>
-<p>el error es:</p>
-<pre class="text"><code>32 - 30 = 2 kg</code></pre>
-<p>Cuanto menores sean los errores, mejor será el modelo.</p>
-</section>
-</section>
-<section id="entrenamiento-y-prueba" class="level1" data-number="16">
-<h1 data-number="16"><span class="header-section-number">16</span> Entrenamiento y prueba</h1>
-<p>Para evaluar correctamente un modelo debemos utilizar datos que no hayan participado en el ajuste.</p>
-<p>La práctica habitual consiste en dividir los datos en:</p>
+<p><br></p>
+<section id="qué-es-el-aprendizaje-automático" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="qué-es-el-aprendizaje-automático"><span class="header-section-number">8.1</span> ¿Qué es el aprendizaje automático?</h2>
+<p><br></p>
+<p>El aprendizaje automático reúne métodos que utilizan datos para construir reglas de predicción, clasificación o agrupación. El algoritmo aprende patrones a partir de ejemplos observados y después aplica esos patrones a casos nuevos.</p>
+<p><br></p>
+<p>En producción animal podemos plantear, entre otras, las siguientes tareas:</p>
 <ul>
-<li>Conjunto de entrenamiento.</li>
-<li>Conjunto de prueba.</li>
+<li>Predecir el peso de un animal a partir de consumo, edad, raza, sexo, semana y condiciones ambientales.</li>
+<li>Clasificar una medición como salud alta o no alta.</li>
+<li>Predecir qué animales podrían requerir una visita veterinaria.</li>
+<li>Identificar perfiles de granjas con características productivas semejantes.</li>
+<li>Detectar observaciones atípicas o combinaciones poco frecuentes de condiciones ambientales.</li>
 </ul>
+<p><br></p>
+</section>
+<section id="aprendizaje-supervisado" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="aprendizaje-supervisado"><span class="header-section-number">8.2</span> Aprendizaje supervisado</h2>
+<p><br></p>
+<p>En el aprendizaje supervisado existe una variable de respuesta conocida durante el entrenamiento. El modelo aprende la relación entre los predictores y esa respuesta.</p>
+<p><br></p>
+<p>Si la respuesta es cuantitativa, hablamos de regresión. Si representa categorías, hablamos de clasificación.</p>
+<p><br></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(datos, <span class="at">prop =</span> <span class="fl">0.80</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> <span class="fu">training</span>(split)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>test  <span class="ot">&lt;-</span> <span class="fu">testing</span>(split)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(train)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de variables para regresión.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>datos_regresion_ml <span class="ot">&lt;-</span> datos_b2 <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    animal_id, granja_id, tiempo, <span class="at">estado =</span> zona,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    peso_kg, consumo_kg_dia, edad_inicio_meses,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    sexo, raza, temperatura_C, humedad_pct</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># La respuesta es continua.</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos_regresion_ml<span class="sc">$</span>peso_kg)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 8320</code></pre>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  15.72   34.37   40.42   40.81   46.98   74.20 </code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de respuesta para clasificación.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>datos_clasificacion_ml <span class="ot">&lt;-</span> datos_b2 <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_alta_ml =</span> <span class="fu">factor</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">if_else</span>(</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(salud_score_0_4)) <span class="sc">&gt;=</span> <span class="dv">3</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Sí"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"No"</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Sí"</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    animal_id, granja_id, tiempo,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    salud_alta_ml, consumo_kg_dia,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    edad_inicio_meses, sexo, raza,</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    temperatura_C, humedad_pct</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(datos_clasificacion_ml, salud_alta_ml)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  salud_alta_ml     n
+  &lt;fct&gt;         &lt;int&gt;
+1 No            43000
+2 Sí             6249</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="aprendizaje-no-supervisado" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="aprendizaje-no-supervisado"><span class="header-section-number">8.3</span> Aprendizaje no supervisado</h2>
+<p><br></p>
+<p>En el aprendizaje no supervisado no existe una respuesta que el algoritmo deba predecir. El objetivo consiste en descubrir estructuras, semejanzas o representaciones simplificadas de los datos.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Una fila por granja para evitar que las granjas con más registros</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dominen el análisis no supervisado.</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>perfiles_granja <span class="ot">&lt;-</span> datos_b2 <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(granja_id, zona, sistema_produccion) <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">peso_medio =</span> <span class="fu">mean</span>(peso_kg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">consumo_medio =</span> <span class="fu">mean</span>(consumo_kg_dia, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">agua_media =</span> <span class="fu">mean</span>(consumo_agua_l_dia, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperatura_media =</span> <span class="fu">mean</span>(temperatura_C, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">humedad_media =</span> <span class="fu">mean</span>(humedad_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">visitas_medias =</span> <span class="fu">mean</span>(n_visitas_veterinarias, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(perfiles_granja)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 50
+Columns: 9
+$ granja_id          &lt;fct&gt; G01, G02, G03, G04, G05, G06, G07, G08, G09, G10, G…
+$ zona               &lt;chr&gt; "Sur", "Norte", "Sur", "Centro", "Centro", "Centro"…
+$ sistema_produccion &lt;fct&gt; Extensivo, Semi-intensivo, Extensivo, Semi-intensiv…
+$ peso_medio         &lt;dbl&gt; 41.46637, 46.21052, 36.69874, 41.23786, 43.63550, 3…
+$ consumo_medio      &lt;dbl&gt; 1.225052, 1.310682, 1.136067, 1.229850, 1.285767, 1…
+$ agua_media         &lt;dbl&gt; 4.283437, 4.520976, 4.160707, 4.406654, 4.383379, 4…
+$ temperatura_media  &lt;dbl&gt; 17.80332, 18.33211, 17.66905, 18.38890, 17.84613, 1…
+$ humedad_media      &lt;dbl&gt; 59.84733, 59.75238, 60.67476, 60.31034, 59.88029, 6…
+$ visitas_medias     &lt;dbl&gt; 0.181, 0.209, 0.182, 0.228, 0.173, 0.207, 0.200, 0.…</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="unidad-de-análisis" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="unidad-de-análisis"><span class="header-section-number">8.4</span> Unidad de análisis</h2>
+<p><br></p>
+<p>La unidad de análisis determina qué representa cada fila utilizada por el algoritmo. En esta base podemos trabajar con mediciones, animales o granjas. La elección modifica la pregunta, el tamaño de la muestra y la manera correcta de dividir los datos.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>resumen_unidades <span class="ot">&lt;-</span> datos_b2 <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mediciones =</span> <span class="fu">n</span>(),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">animales =</span> <span class="fu">n_distinct</span>(animal_id),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">granjas =</span> <span class="fu">n_distinct</span>(granja_id),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">semanas =</span> <span class="fu">n_distinct</span>(tiempo)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>resumen_unidades</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+  mediciones animales granjas semanas
+       &lt;int&gt;    &lt;int&gt;   &lt;int&gt;   &lt;int&gt;
+1      50000      500      50     100</code></pre>
+</div>
+</div>
+<p><br></p>
+<p>Si usamos filas individuales, el mismo animal aparecerá muchas veces. Una división aleatoria de filas puede colocar observaciones del mismo animal tanto en entrenamiento como en prueba. El modelo reconocerá características persistentes del animal y obtendremos una evaluación excesivamente optimista.</p>
+<p><br></p>
+</section>
+<section id="conjunto-de-entrenamiento-y-conjunto-de-prueba" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="conjunto-de-entrenamiento-y-conjunto-de-prueba"><span class="header-section-number">8.5</span> Conjunto de entrenamiento y conjunto de prueba</h2>
+<p><br></p>
+<p>El conjunto de entrenamiento se utiliza para estimar el modelo. El conjunto de prueba se reserva para evaluar su comportamiento en casos que no participaron en el ajuste.</p>
+<p><br></p>
+<p>Para evaluar la generalización a animales nuevos, dividiremos por <code>animal_id</code> y no por filas.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>particion_animales <span class="ot">&lt;-</span> <span class="fu">group_initial_split</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  datos_regresion_ml,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> animal_id,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">prop =</span> <span class="fl">0.80</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>entrenamiento <span class="ot">&lt;-</span> <span class="fu">training</span>(particion_animales)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>prueba <span class="ot">&lt;-</span> <span class="fu">testing</span>(particion_animales)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>entrenamiento <span class="sc">|&gt;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">filas =</span> <span class="fu">n</span>(),</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">animales =</span> <span class="fu">n_distinct</span>(animal_id),</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">granjas =</span> <span class="fu">n_distinct</span>(granja_id)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  filas animales granjas
+  &lt;int&gt;    &lt;int&gt;   &lt;int&gt;
+1 38771      400      50</code></pre>
 </div>
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(test)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>prueba <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">filas =</span> <span class="fu">n</span>(),</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">animales =</span> <span class="fu">n_distinct</span>(animal_id),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">granjas =</span> <span class="fu">n_distinct</span>(granja_id)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2080</code></pre>
+<pre><code># A tibble: 1 × 3
+  filas animales granjas
+  &lt;int&gt;    &lt;int&gt;   &lt;int&gt;
+1  9681      100      45</code></pre>
 </div>
 </div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar que ningún animal aparezca en ambos conjuntos.</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>(entrenamiento<span class="sc">$</span>animal_id),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>(prueba<span class="sc">$</span>animal_id)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>factor()
+500 Levels: A001 A002 A003 A004 A005 A006 A007 A008 A009 A010 A011 A012 ... A500</code></pre>
+</div>
+</div>
+<p><br></p>
+<p>Si el objetivo fuera predecir una granja nueva, tendríamos que dividir por <code>granja_id</code>. Si quisiéramos predecir semanas futuras, utilizaríamos una partición temporal y evitaríamos entrenar con información posterior a la fecha evaluada.</p>
+<p><br></p>
 </section>
-<section id="sobreajuste" class="level1" data-number="17">
-<h1 data-number="17"><span class="header-section-number">17</span> Sobreajuste</h1>
-<p>Uno de los problemas más frecuentes en aprendizaje estadístico es el sobreajuste.</p>
-<p>Un modelo sobreajustado aprende demasiado bien los datos de entrenamiento.</p>
-<p>Como consecuencia:</p>
-<ul>
-<li>Presenta poco error en entrenamiento.</li>
-<li>Presenta mucho error en datos nuevos.</li>
-</ul>
-<section id="analogía" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="analogía"><span class="header-section-number">17.1</span> Analogía</h2>
-<p>Un estudiante memoriza las preguntas exactas de un examen.</p>
-<p>Obtendrá una nota excelente en ese examen específico.</p>
-<p>Sin embargo, si se le formula una pregunta diferente, posiblemente fracase.</p>
-<p>Eso es exactamente el sobreajuste.</p>
+<section id="predictores-respuesta-y-fuga-de-información" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="predictores-respuesta-y-fuga-de-información"><span class="header-section-number">8.6</span> Predictores, respuesta y fuga de información</h2>
+<p><br></p>
+<p>La fuga de información aparece cuando el modelo recibe datos que no estarían disponibles en el momento real de la predicción o variables construidas a partir de la propia respuesta.</p>
+<p><br></p>
+<p>Ejemplos de fuga serían utilizar el peso final para predecir el peso de semanas anteriores, calcular la media de un animal empleando también las observaciones del conjunto de prueba o imputar valores antes de realizar la partición.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables disponibles para una predicción didáctica del peso.</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>predictores_candidatos <span class="ot">&lt;-</span> entrenamiento <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    consumo_kg_dia,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    edad_inicio_meses,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    sexo,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    raza,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    tiempo,</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    temperatura_C,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    humedad_pct</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(predictores_candidatos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 38,771
+Columns: 7
+$ consumo_kg_dia    &lt;dbl&gt; 1.072022, 1.357391, 1.225139, 1.411625, 1.410509, 1.…
+$ edad_inicio_meses &lt;dbl&gt; 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, …
+$ sexo              &lt;fct&gt; Macho, Macho, Macho, Macho, Macho, Macho, Macho, Mac…
+$ raza              &lt;fct&gt; Raza_B, Raza_B, Raza_B, Raza_B, Raza_B, Raza_B, Raza…
+$ tiempo            &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1…
+$ temperatura_C     &lt;dbl&gt; 15.88818, 20.48193, 20.39116, 20.47973, 18.32274, 22…
+$ humedad_pct       &lt;dbl&gt; 60.32583, 64.99599, 63.95246, 54.16418, 64.41850, 54…</code></pre>
+</div>
+</div>
+<p><br></p>
 </section>
+<section id="preprocesamiento-mediante-recetas" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="preprocesamiento-mediante-recetas"><span class="header-section-number">8.7</span> Preprocesamiento mediante recetas</h2>
+<p><br></p>
+<p>Las recetas de <code>tidymodels</code> permiten definir transformaciones que se estiman exclusivamente con el conjunto de entrenamiento. Las variables categóricas se convierten en indicadores y los predictores numéricos pueden estandarizarse.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>receta_intro <span class="ot">&lt;-</span> <span class="fu">recipe</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  peso_kg <span class="sc">~</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    consumo_kg_dia <span class="sc">+</span> edad_inicio_meses <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    sexo <span class="sc">+</span> raza <span class="sc">+</span> tiempo <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    temperatura_C <span class="sc">+</span> humedad_pct,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> entrenamiento</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_unknown</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_novel</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>receta_intro</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimar las transformaciones solamente con entrenamiento.</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>receta_preparada <span class="ot">&lt;-</span> <span class="fu">prep</span>(receta_intro)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicarlas a entrenamiento y prueba.</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>entrenamiento_procesado <span class="ot">&lt;-</span> <span class="fu">bake</span>(</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  receta_preparada,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">new_data =</span> <span class="cn">NULL</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>prueba_procesada <span class="ot">&lt;-</span> <span class="fu">bake</span>(</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  receta_preparada,</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">new_data =</span> prueba</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(entrenamiento_procesado)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 38,771
+Columns: 11
+$ consumo_kg_dia    &lt;dbl&gt; -0.8128868, 0.6544510, -0.0255780, 0.9333181, 0.9275…
+$ edad_inicio_meses &lt;dbl&gt; 0.4552672, 0.4552672, 0.4552672, 0.4552672, 0.455267…
+$ tiempo            &lt;dbl&gt; -1.7152089, -1.6805734, -1.6459380, -1.6113025, -1.5…
+$ temperatura_C     &lt;dbl&gt; -0.57584762, 0.60041306, 0.57716894, 0.59984858, 0.0…
+$ humedad_pct       &lt;dbl&gt; 0.04422076, 0.66462898, 0.52599992, -0.77432499, 0.5…
+$ peso_kg           &lt;dbl&gt; 37.05724, 37.34766, 37.48476, 37.69459, 38.01026, 38…
+$ sexo_Macho        &lt;dbl&gt; 1.034873, 1.034873, 1.034873, 1.034873, 1.034873, 1.…
+$ raza_Raza_B       &lt;dbl&gt; 1.987996, 1.987996, 1.987996, 1.987996, 1.987996, 1.…
+$ raza_Raza_C       &lt;dbl&gt; -0.5274598, -0.5274598, -0.5274598, -0.5274598, -0.5…
+$ raza_Raza_D       &lt;dbl&gt; -0.5397065, -0.5397065, -0.5397065, -0.5397065, -0.5…
+$ raza_Raza_E       &lt;dbl&gt; -0.4324721, -0.4324721, -0.4324721, -0.4324721, -0.4…</code></pre>
+</div>
+</div>
+<p><br></p>
 </section>
-<section id="complejidad-del-modelo" class="level1" data-number="18">
-<h1 data-number="18"><span class="header-section-number">18</span> Complejidad del modelo</h1>
-<p>Existe un compromiso permanente entre:</p>
-<ul>
-<li>Simplicidad.</li>
-<li>Capacidad predictiva.</li>
-</ul>
-<p>Los modelos demasiado simples pueden ignorar información importante.</p>
-<p>Los modelos excesivamente complejos pueden sobreajustarse.</p>
-<p>El objetivo consiste en encontrar un equilibrio adecuado.</p>
+<section id="validación-cruzada-agrupada" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="validación-cruzada-agrupada"><span class="header-section-number">8.8</span> Validación cruzada agrupada</h2>
+<p><br></p>
+<p>Una única división entrenamiento-prueba ofrece una sola estimación del desempeño. La validación cruzada repite el entrenamiento y la evaluación en diferentes subconjuntos. En datos longitudinales debemos mantener juntas las mediciones del mismo animal.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>folds_animales <span class="ot">&lt;-</span> <span class="fu">group_vfold_cv</span>(</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  entrenamiento,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> animal_id,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">v =</span> <span class="dv">5</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>folds_animales</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># Group 5-fold cross-validation 
+# A tibble: 5 × 2
+  splits               id       
+  &lt;list&gt;               &lt;chr&gt;    
+1 &lt;split [30997/7774]&gt; Resample1
+2 &lt;split [31022/7749]&gt; Resample2
+3 &lt;split [31028/7743]&gt; Resample3
+4 &lt;split [31026/7745]&gt; Resample4
+5 &lt;split [31011/7760]&gt; Resample5</code></pre>
+</div>
+</div>
+<p><br></p>
+<p>La validación agrupada permite seleccionar métodos o parámetros sin utilizar el conjunto de prueba. La prueba se consulta una sola vez al finalizar el proceso.</p>
+<p><br></p>
 </section>
-<section id="resumen" class="level1" data-number="19">
-<h1 data-number="19"><span class="header-section-number">19</span> Resumen</h1>
-<p>En esta sesión hemos introducido:</p>
-<ul>
-<li>El concepto de aprendizaje estadístico.</li>
-<li>Inferencia frente a predicción.</li>
-<li>Aprendizaje supervisado.</li>
-<li>Aprendizaje no supervisado.</li>
-<li>Error de predicción.</li>
-<li>División entrenamiento-prueba.</li>
-<li>Sobreajuste.</li>
-</ul>
-<p>Estos conceptos constituirán la base para los siguientes temas del curso: regresión, clasificación, árboles de decisión, random forest y redes neuronales.</p>
+<section id="aplicaciones-según-la-escala-de-predicción" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="aplicaciones-según-la-escala-de-predicción"><span class="header-section-number">8.9</span> Aplicaciones según la escala de predicción</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>preguntas_ml <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>pregunta, <span class="sc">~</span>respuesta, <span class="sc">~</span>unidad, <span class="sc">~</span>tipo,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Predecir peso semanal"</span>, <span class="st">"peso_kg"</span>, <span class="st">"medición"</span>, <span class="st">"Regresión"</span>,</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Predecir salud alta"</span>, <span class="st">"salud_alta_ml"</span>, <span class="st">"medición"</span>, <span class="st">"Clasificación"</span>,</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Predecir producción de lana"</span>, <span class="st">"produccion_lana_kg"</span>, <span class="st">"animal"</span>, <span class="st">"Regresión"</span>,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Predecir muchas visitas"</span>, <span class="st">"visitas_altas"</span>, <span class="st">"animal"</span>, <span class="st">"Clasificación"</span>,</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Agrupar granjas productivas"</span>, <span class="st">"Sin respuesta"</span>, <span class="st">"granja"</span>, <span class="st">"Clustering"</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>preguntas_ml</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  pregunta                    respuesta          unidad   tipo         
+  &lt;chr&gt;                       &lt;chr&gt;              &lt;chr&gt;    &lt;chr&gt;        
+1 Predecir peso semanal       peso_kg            medición Regresión    
+2 Predecir salud alta         salud_alta_ml      medición Clasificación
+3 Predecir producción de lana produccion_lana_kg animal   Regresión    
+4 Predecir muchas visitas     visitas_altas      animal   Clasificación
+5 Agrupar granjas productivas Sin respuesta      granja   Clustering   </code></pre>
+</div>
+</div>
+<p><br></p>
 </section>
-<section id="actividades-propuestas" class="level1" data-number="20">
-<h1 data-number="20"><span class="header-section-number">20</span> Actividades propuestas</h1>
+<section id="línea-base-predictiva" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="línea-base-predictiva"><span class="header-section-number">8.10</span> Línea base predictiva</h2>
+<p><br></p>
+<p>Todo modelo debe compararse con una referencia sencilla. Para regresión, una línea base consiste en predecir siempre la media del conjunto de entrenamiento.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>media_entrenamiento <span class="ot">&lt;-</span> <span class="fu">mean</span>(</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  entrenamiento<span class="sc">$</span>peso_kg,</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>prediccion_base <span class="ot">&lt;-</span> prueba <span class="sc">|&gt;</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    peso_kg,</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.pred =</span> media_entrenamiento</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="fu">metric_set</span>(rmse, mae, rsq)(</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  prediccion_base,</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">truth =</span> peso_kg,</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimate =</span> .pred</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard        8.93
+2 mae     standard        7.28
+3 rsq     standard       NA   </code></pre>
+</div>
+</div>
+<p><br></p>
+<p>Un modelo complejo solo resulta útil si mejora de forma relevante esta referencia y si esa mejora se mantiene en datos nuevos.</p>
+<p><br></p>
+</section>
+<section id="actividad-de-interpretación" class="level2" data-number="8.11">
+<h2 data-number="8.11" class="anchored" data-anchor-id="actividad-de-interpretación"><span class="header-section-number">8.11</span> Actividad de interpretación</h2>
+<p><br></p>
 <ol type="1">
-<li>Identifique tres ejemplos de problemas supervisados en producción animal.</li>
-<li>Identifique tres ejemplos de problemas no supervisados en salud animal.</li>
-<li>Explique con sus palabras la diferencia entre inferencia y predicción.</li>
-<li>¿Por qué es necesario disponer de un conjunto de prueba?</li>
-<li>¿Qué consecuencias puede tener un modelo sobreajustado en un sistema de producción animal?</li>
+<li>¿Cuál es la respuesta en el ejemplo de regresión?</li>
+<li>¿Cuál es el evento positivo en el ejemplo de clasificación?</li>
+<li>¿Qué representa una fila de <code>datos_regresion_ml</code>?</li>
+<li>¿Por qué no conviene dividir aleatoriamente las filas?</li>
+<li>¿Cómo cambiaría la partición para predecir granjas nuevas?</li>
+<li>¿Qué información no estaría disponible al predecir una semana futura?</li>
+<li>¿Qué transformaciones se incluyeron en la receta?</li>
+<li>¿Por qué la receta debe estimarse con entrenamiento?</li>
+<li>¿Qué función cumple la validación cruzada?</li>
+<li>¿Qué representa la línea base de regresión?</li>
 </ol>
-</section>
-<section id="lecturas-recomendadas" class="level1" data-number="21">
-<h1 data-number="21"><span class="header-section-number">21</span> Lecturas recomendadas</h1>
-<ul>
-<li>James, Witten, Hastie y Tibshirani. <em>An Introduction to Statistical Learning</em>.</li>
-<li>Hastie, Tibshirani y Friedman. <em>The Elements of Statistical Learning</em>.</li>
-<li>Kuhn y Johnson. <em>Applied Predictive Modeling</em>.</li>
-</ul>
+<p><br></p>
+<p>Al finalizar este capítulo debemos diferenciar aprendizaje supervisado y no supervisado, reconocer problemas de regresión y clasificación, definir correctamente la unidad de análisis y dividir los datos sin mezclar información entre entrenamiento y evaluación. Estas decisiones son más importantes que la elección inicial de un algoritmo complejo.</p>
 
 
 </section>
@@ -1211,13 +1503,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../modulos/st_04.html" class="pagination-link" aria-label="Modelos espacio-temporales">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modelos espacio-temporales</span></span>
+      <a href="../modulos/st_04.html" class="pagination-link" aria-label="Dependencia espacial y modelos SAR espacio-temporales">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dependencia espacial y modelos SAR espacio-temporales</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../modulos/ml_02.html" class="pagination-link" aria-label="Regresión y clasificación">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regresión y clasificación</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../modulos/ml_02.html" class="pagination-link" aria-label="Métodos de regresión y clasificación">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Métodos de regresión y clasificación</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

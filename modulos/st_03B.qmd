@@ -1,0 +1,822 @@
+# GLMM y respuestas no continuas
+
+<br>
+
+## Diferencia entre un modelo lineal mixto y un GLMM
+
+<br>
+
+El modelo lineal mixto utilizado en el bloque anterior es apropiado cuando la respuesta es cuantitativa continua y puede representarse razonablemente mediante una distribución normal alrededor de la media. El peso, expresado en kilogramos, es un ejemplo de este tipo de respuesta.
+
+<br>
+
+Un modelo lineal generalizado mixto, o GLMM, amplía esta estructura para respuestas que no son continuas ni normales. Algunos ejemplos son:
+
+- Respuestas binarias, como presencia o ausencia de una condición.
+- Conteos, como el número de visitas veterinarias.
+- Proporciones, como el número de animales enfermos entre los examinados.
+
+<br>
+
+Un GLMM combina tres elementos:
+
+1.  Una distribución para la respuesta, como binomial o Poisson.
+2.  Una función de enlace que relaciona la media con los predictores.
+3.  Efectos aleatorios para representar la agrupación y las mediciones repetidas.
+
+<br>
+
+Para una respuesta binaria utilizaremos una distribución binomial y un enlace logit. El modelo se expresa como:
+
+\[ \log\left( \frac{p_{ijk}}{1-p_{ijk}} \right) = \beta*0 +* \beta*1X*{1ijk} + \cdots + u_k+b{jk} \]
+
+<br>
+
+La cantidad (p\_{ijk}) es la probabilidad de que la observación presente el resultado de interés. El término (p/(1-p)) corresponde a las odds, y su logaritmo es el logit.
+
+<br>
+
+## Construcción de una respuesta binaria
+
+<br>
+
+La base contiene una puntuación de salud de 0 a 4. Para fines didácticos construiremos una respuesta binaria denominada `salud_alta_bin`, que tomará el valor 1 cuando la puntuación sea igual o superior a 3 y el valor 0 cuando sea inferior a 3.
+
+<br>
+
+Este punto de corte es una decisión didáctica. En una investigación real debería definirse mediante criterios clínicos, productivos o previamente establecidos, y no seleccionarse después de observar los resultados.
+
+```{r}
+
+library(readxl)
+library(tidyverse)
+library(corrplot)
+library(naniar)
+library(lmerTest)
+library(lme4)
+library(broom.mixed)
+
+# Consultar la carpeta de trabajo.
+getwd()
+
+# Nombre del archivo Excel.
+archivo <- "../datos/base_borregos_espaciotemporal_Hidalgo.xlsx"
+
+# Consultar las hojas disponibles.
+excel_sheets(archivo)
+
+# Importar la tabla longitudinal.
+datos <- read_excel(archivo, sheet = "datos_long")
+
+
+datos_b2 <- datos |>
+  mutate(
+    animal_id = as.factor(animal_id),
+    granja_id = as.factor(granja_id),
+    sexo = as.factor(sexo),
+    raza = as.factor(raza),
+    tratamiento = as.factor(tratamiento),
+    sistema_produccion = as.factor(sistema_produccion),
+    salud_score_0_4 = factor(
+      salud_score_0_4,
+      levels = 0:4,
+      ordered = TRUE
+    ),
+    salud_alta = as.factor(salud_alta),
+    periodo = cut(
+      tiempo,
+      breaks = c(-Inf, 20, 40, 60, 80, Inf),
+      labels = c(
+        "Semanas 1-20",
+        "Semanas 21-40",
+        "Semanas 41-60",
+        "Semanas 61-80",
+        "Semanas 81-100"
+      )
+    )
+  )
+
+# Comprobar las variables preparadas.
+datos_b2 |>
+  select(
+    animal_id, granja_id, tiempo, periodo,
+    sexo, raza, peso_kg, consumo_kg_dia,
+    salud_score_0_4, salud_alta
+  ) |>
+  glimpse()
+```
+<br>
+
+```{r}
+datos_glmm <- datos_b2 |>
+  select(
+    animal_id,
+    granja_id,
+    tiempo,
+    salud_score_0_4,
+    consumo_kg_dia,
+    edad_inicio_meses,
+    sexo,
+    raza
+  ) |>
+  mutate(
+    salud_num = as.numeric(
+      as.character(salud_score_0_4)
+    ),
+    salud_alta_bin = case_when(
+      is.na(salud_num) ~ NA_real_,
+      salud_num >= 3 ~ 1,
+      salud_num < 3 ~ 0
+    )
+  ) |>
+  drop_na(
+    animal_id,
+    granja_id,
+    tiempo,
+    salud_alta_bin,
+    consumo_kg_dia,
+    edad_inicio_meses,
+    sexo,
+    raza
+  ) |>
+  mutate(
+    animal_id = droplevels(as.factor(animal_id)),
+    granja_id = droplevels(as.factor(granja_id)),
+    sexo = droplevels(as.factor(sexo)),
+    raza = droplevels(as.factor(raza)),
+    animal_granja = interaction(
+      granja_id,
+      animal_id,
+      drop = TRUE
+    ),
+    tiempo_c = tiempo - mean(tiempo),
+    consumo_c = consumo_kg_dia - mean(consumo_kg_dia),
+    edad_inicio_c = edad_inicio_meses -
+      mean(edad_inicio_meses)
+  )
+
+# Comprobar la codificación.
+count(datos_glmm, salud_score_0_4, salud_alta_bin)
+```
+
+<br>
+
+Si `salud_score_0_4` ya fuera numérica, también podríamos construir la respuesta directamente con `if_else(salud_score_0_4 >= 3, 1, 0)`. La conversión utilizada aquí permite trabajar con una variable almacenada como factor ordinal.
+
+<br>
+
+## Frecuencia y evolución de la respuesta binaria
+
+<br>
+
+Antes de ajustar el modelo debemos comprobar cuántos ceros y unos existen. Una respuesta extremadamente desequilibrada puede dificultar la estimación.
+
+<br>
+
+```{r}
+resumen_salud_binaria <- datos_glmm |>
+  count(salud_alta_bin, name = "n") |>
+  mutate(
+    porcentaje = 100 * n / sum(n)
+  )
+
+resumen_salud_binaria
+```
+
+<br>
+
+```{r}
+ggplot(
+  resumen_salud_binaria,
+  aes(
+    x = factor(salud_alta_bin),
+    y = porcentaje,
+    fill = factor(salud_alta_bin)
+  )
+) +
+  geom_col(width = 0.70) +
+  geom_text(
+    aes(label = paste0(round(porcentaje, 1), "%")),
+    vjust = -0.3
+  ) +
+  labs(
+    title = "Distribución de la respuesta binaria de salud",
+    x = "Salud alta",
+    y = "Porcentaje de mediciones",
+    fill = "Salud alta"
+  ) +
+  scale_x_discrete(
+    labels = c("0" = "No", "1" = "Sí")
+  ) +
+  guides(fill = "none") +
+  expand_limits(
+    y = max(resumen_salud_binaria$porcentaje) * 1.10
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+Calcularemos también la proporción semanal de mediciones con salud alta.
+
+<br>
+
+```{r}
+salud_alta_semana_glmm <- datos_glmm |>
+  group_by(tiempo) |>
+  summarise(
+    n = n(),
+    casos = sum(salud_alta_bin),
+    proporcion = mean(salud_alta_bin),
+    .groups = "drop"
+  )
+
+ggplot(
+  salud_alta_semana_glmm,
+  aes(x = tiempo, y = proporcion)
+) +
+  geom_line(color = "steelblue4", linewidth = 0.9) +
+  geom_point(color = "steelblue4", size = 1.3) +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1),
+    limits = c(0, 1)
+  ) +
+  labs(
+    title = "Proporción de salud alta por semana",
+    x = "Semana de seguimiento",
+    y = "Proporción con salud alta"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+Las proporciones semanales describen los datos, pero no ajustan por las características de los animales ni consideran que un mismo animal contribuye con varias mediciones.
+
+<br>
+
+## Regresión logística convencional como punto de partida
+
+<br>
+
+Antes del modelo mixto, ajustaremos una regresión logística convencional. Este modelo utiliza una distribución binomial y un enlace logit, pero todavía considera todas las filas como independientes.
+
+<br>
+
+```{r}
+modelo_logistico <- glm(
+  salud_alta_bin ~
+    consumo_c +
+    edad_inicio_c +
+    sexo +
+    raza +
+    tiempo_c,
+  data = datos_glmm,
+  family = binomial(link = "logit")
+)
+
+summary(modelo_logistico)
+```
+
+<br>
+
+Los coeficientes se encuentran en la escala logit, es decir, en log-odds. Esta escala es útil para construir el modelo, pero suele ser poco intuitiva para la interpretación aplicada.
+
+<br>
+
+```{r}
+tidy(
+  modelo_logistico,
+  conf.int = TRUE
+)
+```
+
+<br>
+
+## Modelo logístico mixto con glmer()
+
+<br>
+
+Incorporaremos interceptos aleatorios para granja y animal. La función `glmer()` permite ajustar el GLMM binomial.
+
+<br>
+
+```{r}
+modelo_glmm <- glmer(
+  salud_alta_bin ~
+    consumo_c +
+    edad_inicio_c +
+    sexo +
+    raza +
+    tiempo_c +
+    (1 | granja_id) +
+    (1 | animal_granja),
+  data = datos_glmm,
+  family = binomial(link = "logit"),
+  nAGQ = 0,
+  control = glmerControl(
+    optimizer = "bobyqa",
+    optCtrl = list(maxfun = 20000)
+  )
+)
+
+
+summary(modelo_glmm)
+```
+
+<br>
+
+El argumento `family = binomial(link = "logit")` indica que la respuesta es binaria y que se modela el logaritmo de las odds. Los términos aleatorios representan diferencias persistentes en la propensión a presentar salud alta entre granjas y entre animales.
+
+<br>
+
+El optimizador `bobyqa` y el aumento de `maxfun` pueden ayudar en modelos que requieren más iteraciones. No deben utilizarse para ocultar problemas estructurales: si aparecen advertencias de convergencia, debemos revisar los datos y la complejidad del modelo.
+
+<br>
+
+## Efectos fijos y odds ratios
+
+<br>
+
+En una regresión logística, los coeficientes están expresados en log-odds. Al exponenciarlos obtenemos odds ratios:
+
+\[ OR = \exp(\beta) \]
+
+<br>
+
+Un odds ratio mayor que 1 indica que las odds del resultado aumentan. Un valor menor que 1 indica que disminuyen. Un valor igual a 1 indica ausencia de cambio en las odds.
+
+<br>
+
+```{r}
+OR_glmm <- tidy(
+  modelo_glmm,
+  effects = "fixed",
+  conf.int = TRUE,
+  conf.method = "Wald",
+  exponentiate = TRUE
+)
+
+OR_glmm
+```
+
+<br>
+
+La interpretación depende del tipo de predictor:
+
+- Para `consumo_c`, el OR representa el cambio multiplicativo en las odds de salud alta por 1 kg/día adicional de consumo, manteniendo constantes las demás variables y condicionando por los efectos aleatorios.
+- Para `edad_inicio_c`, representa el cambio en las odds por un mes adicional de edad inicial.
+- Para `tiempo_c`, representa el cambio en las odds por una semana adicional.
+- Para sexo y raza, compara cada categoría con la categoría de referencia.
+
+<br>
+
+Por ejemplo, un OR de 1,20 representa odds 20 % mayores, mientras que un OR de 0,80 representa odds 20 % menores. Esta interpretación se refiere a las odds, no directamente a la probabilidad.
+
+<br>
+
+Podemos añadir una columna con el cambio porcentual en las odds.
+
+<br>
+
+```{r}
+OR_glmm_interpretacion <- OR_glmm |>
+  mutate(
+    cambio_porcentual_odds = 100 * (estimate - 1)
+  ) |>
+  select(
+    term,
+    estimate,
+    conf.low,
+    conf.high,
+    p.value,
+    cambio_porcentual_odds
+  )
+
+OR_glmm_interpretacion
+```
+
+<br>
+
+Un cambio porcentual negativo indica una reducción de las odds. Debemos informar siempre la categoría de referencia y la unidad de incremento de las variables continuas.
+
+<br>
+
+## Gráfico de odds ratios
+
+<br>
+
+```{r}
+OR_glmm |>
+  filter(term != "(Intercept)") |>
+  mutate(
+    term = forcats::fct_reorder(term, estimate)
+  ) |>
+  ggplot(
+    aes(x = estimate, y = term)
+  ) +
+  geom_vline(
+    xintercept = 1,
+    linetype = "dashed",
+    color = "grey45"
+  ) +
+  geom_errorbarh(
+    aes(xmin = conf.low, xmax = conf.high),
+    height = 0.20,
+    color = "steelblue4"
+  ) +
+  geom_point(
+    size = 2.5,
+    color = "steelblue4"
+  ) +
+  scale_x_log10() +
+  labs(
+    title = "Odds ratios del modelo logístico mixto",
+    subtitle = "Estimaciones e intervalos de confianza del 95 %",
+    x = "Odds ratio, escala logarítmica",
+    y = "Variable"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+La línea vertical se sitúa en OR = 1, que corresponde a ausencia de asociación en la escala de las odds. La escala logarítmica representa de forma simétrica los incrementos y las reducciones multiplicativas.
+
+<br>
+
+## Efectos aleatorios del GLMM
+
+<br>
+
+Los componentes aleatorios describen la variabilidad entre granjas y animales en la propensión basal a presentar salud alta.
+
+<br>
+
+```{r}
+tidy(
+  modelo_glmm,
+  effects = "ran_pars",
+  conf.int = TRUE,
+  conf.method = "Wald"
+)
+```
+
+<br>
+
+```{r}
+VarCorr(modelo_glmm)
+```
+
+<br>
+
+Una varianza elevada del intercepto de animal indica diferencias importantes entre animales que no quedan explicadas por consumo, edad, sexo, raza y semana. Una varianza elevada de granja indica diferencias persistentes entre explotaciones.
+
+<br>
+
+En un modelo logístico no se estima una varianza residual en la misma forma que en un modelo lineal. La variabilidad de nivel individual está vinculada a la distribución binomial. Por ello, los componentes de varianza no deben compararse directamente con los de un modelo lineal mixto.
+
+<br>
+
+## Probabilidades predichas
+
+<br>
+
+Las probabilidades suelen ser más intuitivas que las log-odds. Calcularemos predicciones poblacionales para diferentes niveles de consumo, manteniendo las variables restantes en valores de referencia.
+
+<br>
+
+```{r}
+consumos_prediccion <- seq(
+  quantile(datos_glmm$consumo_c, 0.05),
+  quantile(datos_glmm$consumo_c, 0.95),
+  length.out = 100
+)
+
+nuevos_datos_glmm <- expand_grid(
+  consumo_c = consumos_prediccion,
+  edad_inicio_c = 0,
+  tiempo_c = 0,
+  sexo = levels(datos_glmm$sexo)[1],
+  raza = levels(datos_glmm$raza)[1]
+) |>
+  mutate(
+    sexo = factor(
+      sexo,
+      levels = levels(datos_glmm$sexo)
+    ),
+    raza = factor(
+      raza,
+      levels = levels(datos_glmm$raza)
+    )
+  )
+
+nuevos_datos_glmm <- nuevos_datos_glmm |>
+  mutate(
+    probabilidad = predict(
+      modelo_glmm,
+      newdata = nuevos_datos_glmm,
+      type = "response",
+      re.form = NA
+    ),
+    consumo_kg_dia = consumo_c +
+      mean(datos_glmm$consumo_kg_dia)
+  )
+
+head(nuevos_datos_glmm)
+```
+
+<br>
+
+```{r}
+ggplot(
+  nuevos_datos_glmm,
+  aes(x = consumo_kg_dia, y = probabilidad)
+) +
+  geom_line(
+    color = "steelblue4",
+    linewidth = 1
+  ) +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1),
+    limits = c(0, 1)
+  ) +
+  labs(
+    title = "Probabilidad predicha de salud alta",
+    subtitle = "Predicción poblacional para las categorías de referencia",
+    x = "Consumo de alimento (kg/día)",
+    y = "Probabilidad predicha"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+La curva muestra cómo cambia la probabilidad predicha con el consumo para un animal de las categorías de referencia, con edad inicial y semana centradas en sus promedios. Como `re.form = NA`, la predicción no incorpora desviaciones específicas de animales o granjas.
+
+<br>
+
+## Diferencia entre odds y probabilidad
+
+<br>
+
+La probabilidad y las odds están relacionadas, pero no son equivalentes:
+
+\[ Odds = \frac{p}{1-p} \]
+
+\[ p = \frac{Odds}{1+Odds} \]
+
+<br>
+
+```{r}
+ejemplo_odds <- tibble(
+  probabilidad = c(0.10, 0.25, 0.50, 0.75, 0.90)
+) |>
+  mutate(
+    odds = probabilidad / (1 - probabilidad)
+  )
+
+ejemplo_odds
+```
+
+<br>
+
+Un mismo odds ratio puede producir cambios de probabilidad diferentes según la probabilidad inicial. Por esta razón, conviene presentar los odds ratios junto con probabilidades predichas en escenarios relevantes.
+
+<br>
+
+## Comparación entre el modelo logístico y el GLMM
+
+<br>
+
+Podemos comparar las estimaciones del modelo que ignora la agrupación y del modelo mixto.
+
+<br>
+
+```{r}
+comparacion_logistica <- bind_rows(
+  tidy(
+    modelo_logistico,
+    conf.int = TRUE,
+    exponentiate = TRUE
+  ) |>
+    mutate(modelo = "Logístico convencional"),
+  tidy(
+    modelo_glmm,
+    effects = "fixed",
+    conf.int = TRUE,
+    conf.method = "Wald",
+    exponentiate = TRUE
+  ) |>
+    mutate(modelo = "Logístico mixto")
+) |>
+  select(
+    modelo,
+    term,
+    estimate,
+    std.error,
+    conf.low,
+    conf.high,
+    p.value
+  )
+
+comparacion_logistica
+```
+
+<br>
+
+Las diferencias entre ambos modelos pueden aparecer tanto en los odds ratios como en sus errores estándar. El GLMM condiciona la interpretación a las diferencias aleatorias entre animales y granjas y representa la correlación de las observaciones agrupadas.
+
+<br>
+
+## R² marginal y condicional del GLMM
+
+<br>
+
+```{r}
+performance::r2_nakagawa(modelo_glmm)
+```
+
+<br>
+
+El (R\^2) marginal resume la contribución de los efectos fijos. El (R\^2) condicional incorpora también la variabilidad asociada con animales y granjas. En un GLMM estas medidas son aproximaciones y no deben interpretarse exactamente como el (R\^2) de una regresión lineal convencional.
+
+<br>
+
+## Comprobación de convergencia y singularidad
+
+<br>
+
+```{r}
+modelo_glmm@optinfo$conv$lme4$messages
+
+isSingular(
+  modelo_glmm,
+  tol = 1e-4
+)
+
+performance::check_singularity(modelo_glmm)
+```
+
+<br>
+
+Si no aparecen mensajes de convergencia y el modelo no es singular, el ajuste numérico es una señal favorable, aunque no garantiza que el modelo sea científicamente adecuado. También debemos revisar la codificación de la respuesta, las categorías poco frecuentes, la separación y la complejidad de la estructura aleatoria.
+
+<br>
+
+## Predicciones observadas y predichas por semana
+
+<br>
+
+Como comprobación descriptiva, compararemos la proporción observada de salud alta y la probabilidad media predicha en cada semana.
+
+<br>
+
+```{r}
+datos_glmm <- datos_glmm |>
+  mutate(
+    probabilidad_condicional = predict(
+      modelo_glmm,
+      type = "response",
+      re.form = NULL
+    ),
+    probabilidad_poblacional = predict(
+      modelo_glmm,
+      type = "response",
+      re.form = NA
+    )
+  )
+
+ajuste_semana_glmm <- datos_glmm |>
+  group_by(tiempo) |>
+  summarise(
+    proporcion_observada = mean(salud_alta_bin),
+    prediccion_condicional = mean(probabilidad_condicional),
+    prediccion_poblacional = mean(probabilidad_poblacional),
+    .groups = "drop"
+  ) |>
+  pivot_longer(
+    cols = c(
+      proporcion_observada,
+      prediccion_condicional,
+      prediccion_poblacional
+    ),
+    names_to = "serie",
+    values_to = "proporcion"
+  )
+
+ggplot(
+  ajuste_semana_glmm,
+  aes(
+    x = tiempo,
+    y = proporcion,
+    color = serie,
+    linetype = serie
+  )
+) +
+  geom_line(linewidth = 0.9) +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1),
+    limits = c(0, 1)
+  ) +
+  labs(
+    title = "Salud alta observada y predicha por semana",
+    x = "Semana de seguimiento",
+    y = "Proporción o probabilidad media",
+    color = NULL,
+    linetype = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom"
+  )
+```
+
+<br>
+
+La predicción condicional incorpora la información específica de los animales y granjas observados. La predicción poblacional utiliza únicamente los efectos fijos. Por ello, la primera puede reproducir más estrechamente los datos utilizados para ajustar el modelo.
+
+<br>
+
+## Limitaciones del GLMM binario
+
+<br>
+
+La transformación de una puntuación ordinal de 0 a 4 en una respuesta binaria simplifica el análisis, pero también elimina información. Las puntuaciones 0, 1 y 2 quedan agrupadas, al igual que las puntuaciones 3 y 4.
+
+<br>
+
+Si la escala ordinal tiene significado científico, un modelo ordinal mixto podría ser más apropiado. La elección entre un análisis binario y uno ordinal debe basarse en la pregunta científica y en la definición del resultado, no únicamente en la facilidad del análisis.
+
+<br>
+
+El modelo supone además que el cambio temporal es lineal en la escala logit y que los efectos del consumo, la edad y la semana son iguales para todos los animales. También supone que la estructura aleatoria de interceptos representa suficientemente la dependencia. Estas hipótesis deben revisarse y justificarse.
+
+<br>
+
+## Resumen de interpretación del GLMM
+
+<br>
+
+Para comunicar un modelo logístico mixto conviene indicar:
+
+1.  Cómo se definió el resultado binario y cuál es el evento codificado como 1.
+2.  Qué distribución y función de enlace se utilizaron.
+3.  Cuáles fueron los efectos fijos incluidos.
+4.  Qué unidades se representaron mediante efectos aleatorios.
+5.  Cuáles son las categorías de referencia.
+6.  Los odds ratios y sus intervalos de confianza.
+7.  Probabilidades predichas para escenarios interpretables.
+8.  Los componentes de varianza y la importancia de la agrupación.
+9.  Los resultados de convergencia y singularidad.
+10. Las limitaciones de convertir una respuesta ordinal en binaria.
+
+<br>
+
+```{r}
+tabla_final_glmm <- OR_glmm |>
+  mutate(
+    across(
+      c(estimate, conf.low, conf.high, p.value),
+      ~ round(.x, 3)
+    )
+  ) |>
+  rename(
+    odds_ratio = estimate,
+    IC95_inferior = conf.low,
+    IC95_superior = conf.high,
+    valor_p = p.value
+  )
+
+tabla_final_glmm
+```
+
+<br>
+
+## Actividad de interpretación del Bloque 5
+
+<br>
+
+1.  ¿Por qué un modelo lineal mixto no es adecuado para una respuesta 0/1?
+2.  ¿Qué criterio se utilizó para construir `salud_alta_bin`?
+3.  ¿Qué proporción de las mediciones presenta salud alta?
+4.  ¿Cuál es el evento modelado por `glmer()`?
+5.  ¿Qué representa el enlace logit?
+6.  ¿Cómo se interpreta el OR del consumo?
+7.  ¿Cómo se interpreta un OR asociado con una categoría de raza?
+8.  ¿Cuál es la categoría de referencia para sexo y raza?
+9.  ¿Qué diferencia existe entre odds y probabilidad?
+10. ¿Por qué un OR de 2 no significa que la probabilidad se duplique necesariamente?
+11. ¿Qué representan los interceptos aleatorios de animal y granja?
+12. ¿Cambian los resultados respecto a la regresión logística convencional?
+13. ¿Cuál es la diferencia entre una predicción poblacional y una condicional?
+14. ¿El modelo presenta problemas de convergencia o singularidad?
+15. ¿Qué información se pierde al convertir la puntuación ordinal en binaria?
+
+<br>
+
+Al finalizar estos bloques debemos comprender por qué las mediciones repetidas requieren métodos que representen su dependencia. El modelo lineal mixto permite analizar una respuesta continua, como el peso, incorporando diferencias entre animales y granjas. El GLMM amplía esta estructura para respuestas no continuas, como una condición binaria de salud.
+
+<br>
+
+Los efectos fijos resumen asociaciones promedio, mientras que los efectos aleatorios describen variabilidad entre las unidades agrupadas. En la regresión logística mixta, los coeficientes pueden transformarse en odds ratios, pero su interpretación debe complementarse con probabilidades predichas y con una descripción clara de las categorías de referencia y del evento analizado.

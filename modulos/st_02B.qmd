@@ -1,0 +1,1347 @@
+
+# De la regresión lineal simple a la múltiple
+
+<br>
+
+En este bloque utilizaremos la regresión lineal para estudiar la relación entre el peso de los animales y distintas variables explicativas. Comenzaremos con un modelo sencillo en el que el peso se explica únicamente mediante el consumo de alimento. Después incorporaremos la edad, el sexo, la raza y la semana de seguimiento para construir un modelo de regresión múltiple.
+
+<br>
+
+El objetivo es comprender cómo cambia la interpretación de los coeficientes cuando pasamos de una relación entre dos variables a un modelo con varios predictores. También estudiaremos los intervalos de confianza, el coeficiente de determinación, los residuos, la heterocedasticidad y las limitaciones de aplicar una regresión convencional a datos longitudinales.
+
+<br>
+
+Los modelos de este bloque se utilizarán con fines didácticos y exploratorios. La base contiene mediciones repetidas del mismo animal y animales agrupados dentro de granjas. La regresión lineal convencional no representa adecuadamente esas dependencias, pero constituye un punto de partida útil antes de introducir los modelos mixtos.
+
+<br>
+
+```{r}
+# Paquetes utilizados en este bloque.
+library(tidyverse)
+library(broom)
+library(readxl)
+library(corrplot)
+library(naniar)
+
+# Consultar la carpeta de trabajo.
+getwd()
+
+# Nombre del archivo Excel.
+archivo <- "../datos/base_borregos_espaciotemporal_Hidalgo.xlsx"
+
+# Consultar las hojas disponibles.
+excel_sheets(archivo)
+
+# Importar la tabla longitudinal.
+datos <- read_excel(archivo, sheet = "datos_long")
+
+datos_b2 <- datos |>
+  mutate(
+    animal_id = as.factor(animal_id),
+    granja_id = as.factor(granja_id),
+    sexo = as.factor(sexo),
+    raza = as.factor(raza),
+    tratamiento = as.factor(tratamiento),
+    sistema_produccion = as.factor(sistema_produccion),
+    salud_score_0_4 = factor(
+      salud_score_0_4,
+      levels = 0:4,
+      ordered = TRUE
+    ),
+    salud_alta = as.factor(salud_alta),
+    periodo = cut(
+      tiempo,
+      breaks = c(-Inf, 20, 40, 60, 80, Inf),
+      labels = c(
+        "Semanas 1-20",
+        "Semanas 21-40",
+        "Semanas 41-60",
+        "Semanas 61-80",
+        "Semanas 81-100"
+      )
+    )
+  )
+
+# Comprobar las variables preparadas.
+datos_b2 |>
+  select(
+    animal_id, granja_id, tiempo, periodo,
+    sexo, raza, peso_kg, consumo_kg_dia,
+    salud_score_0_4, salud_alta
+  ) |>
+  glimpse()
+# Comprobar que la base preparada en el bloque anterior está disponible.
+dim(datos_b2)
+glimpse(datos_b2)
+```
+
+<br>
+
+## Preparación de la base para los modelos
+
+<br>
+
+Antes de ajustar una regresión debemos comprobar que la variable de respuesta es numérica y que las variables categóricas están correctamente definidas como factores. También debemos revisar la cantidad de valores ausentes en las variables que formarán parte de los modelos.
+
+<br>
+
+```{r}
+variables_modelo <- datos_b2 |>
+  select(
+    animal_id,
+    granja_id,
+    peso_kg,
+    consumo_kg_dia,
+    edad_inicio_meses,
+    sexo,
+    raza,
+    tiempo
+  )
+
+# Revisar la estructura de las variables.
+glimpse(variables_modelo)
+
+# Contar valores ausentes.
+variables_modelo |>
+  summarise(
+    across(
+      everything(),
+      ~ sum(is.na(.x))
+    )
+  )
+```
+
+<br>
+
+Para comparar correctamente los modelos, utilizaremos una misma base de casos completos. De este modo, las diferencias entre los resultados no se deberán a que cada modelo haya utilizado un número distinto de observaciones.
+
+<br>
+
+```{r}
+datos_modelo <- variables_modelo |>
+  drop_na(
+    peso_kg,
+    consumo_kg_dia,
+    edad_inicio_meses,
+    sexo,
+    raza,
+    tiempo
+  ) |>
+  mutate(
+    sexo = droplevels(as.factor(sexo)),
+    raza = droplevels(as.factor(raza)),
+    tiempo_c = tiempo - mean(tiempo),
+    edad_inicio_c = edad_inicio_meses -
+      mean(edad_inicio_meses)
+  )
+
+# Número de filas y unidades representadas.
+datos_modelo |>
+  summarise(
+    n_filas = n(),
+    n_animales = n_distinct(animal_id),
+    n_granjas = n_distinct(granja_id)
+  )
+```
+
+<br>
+
+Las variables `tiempo_c` y `edad_inicio_c` son versiones centradas de la semana y la edad inicial. Centrar una variable consiste en restarle su media. Este procedimiento no modifica su asociación con el peso ni la pendiente estimada, pero facilita la interpretación del intercepto.
+
+<br>
+
+Con las variables centradas, el intercepto del modelo múltiple corresponde al peso esperado para un animal de las categorías de referencia, con consumo igual a cero si el consumo no se centra, edad inicial promedio y situado en la semana promedio. Más adelante centraremos también el consumo para obtener un intercepto biológicamente más interpretable.
+
+<br>
+
+## Exploración inicial del peso y el consumo
+
+<br>
+
+Antes de ajustar una regresión, debemos representar gráficamente la relación entre la variable de respuesta y la variable explicativa. El diagrama de dispersión permite observar si la relación parece aproximadamente lineal, si existen valores extremos y si la variabilidad del peso cambia a lo largo del rango de consumo.
+
+<br>
+
+```{r}
+ggplot(
+  datos_modelo,
+  aes(x = consumo_kg_dia, y = peso_kg)
+) +
+  geom_point(
+    alpha = 0.15,
+    size = 1,
+    color = "grey35"
+  ) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x,
+    se = TRUE,
+    color = "steelblue4",
+    fill = "steelblue",
+    linewidth = 0.9
+  ) +
+  labs(
+    title = "Relación entre consumo de alimento y peso",
+    subtitle = "Línea de regresión e intervalo de confianza del 95 %",
+    x = "Consumo de alimento (kg/día)",
+    y = "Peso (kg)"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+La línea representa el peso medio estimado para cada nivel de consumo. La banda muestra la incertidumbre asociada a la estimación de esa media. No representa el rango dentro del cual se encontrará el 95 % de los animales individuales.
+
+<br>
+
+También podemos calcular la correlación de Pearson entre ambas variables como una primera medida de asociación lineal.
+
+<br>
+
+```{r}
+cor_consumo_peso <- cor(
+  datos_modelo$consumo_kg_dia,
+  datos_modelo$peso_kg,
+  use = "complete.obs",
+  method = "pearson"
+)
+
+cor_consumo_peso
+```
+
+<br>
+
+La correlación resume la intensidad y la dirección de la asociación lineal, pero no permite ajustar por edad, sexo, raza o semana. Tampoco distingue las diferencias entre animales de los cambios que ocurren dentro de un mismo animal a lo largo del tiempo.
+
+<br>
+
+## Regresión lineal simple
+
+<br>
+
+En una regresión lineal simple relacionamos una variable de respuesta cuantitativa con una única variable explicativa cuantitativa. En este caso, utilizaremos el peso como respuesta y el consumo diario de alimento como predictor.
+
+<br>
+
+La ecuación general del modelo es:
+
+\[ \text{Peso}\_i = \beta\_0 + \beta\_1\text{Consumo}\_i + \varepsilon\_i \]
+
+<br>
+
+En esta expresión, (\beta\_0) es el intercepto, (\beta\_1) es la pendiente y (\varepsilon\_i) representa la parte del peso que el modelo no explica para la observación (i).
+
+<br>
+
+```{r}
+modelo_simple <- lm(
+  peso_kg ~ consumo_kg_dia,
+  data = datos_modelo
+)
+
+summary(modelo_simple)
+```
+
+<br>
+
+La salida de `summary()` contiene los coeficientes estimados, sus errores estándar, los estadísticos de contraste, los valores p, el error residual y los coeficientes de determinación. En este bloque nos centraremos especialmente en la interpretación de los coeficientes, los intervalos de confianza y el (R\^2).
+
+<br>
+
+Podemos extraer los resultados en una tabla más sencilla mediante `tidy()`.
+
+<br>
+
+```{r}
+coeficientes_simple <- tidy(
+  modelo_simple,
+  conf.int = TRUE,
+  conf.level = 0.95
+)
+
+coeficientes_simple
+```
+
+<br>
+
+El coeficiente de `consumo_kg_dia` representa el cambio medio esperado en el peso, expresado en kilogramos, asociado con un incremento de 1 kg/día en el consumo de alimento.
+
+<br>
+
+Si la pendiente es positiva, las mediciones con mayor consumo tienden a presentar mayor peso. Si es negativa, las mediciones con mayor consumo tienden a presentar menor peso. Esta interpretación describe una asociación y no demuestra que aumentar el consumo produzca directamente el cambio estimado en el peso.
+
+<br>
+
+El intercepto representa el peso medio estimado cuando el consumo es igual a cero. Aunque es necesario para construir la recta, puede carecer de interés biológico si un consumo de cero se encuentra fuera del rango observado o no corresponde a una situación compatible con el diseño del estudio.
+
+<br>
+
+Podemos comprobar el rango de consumo para valorar si el intercepto implica una extrapolación.
+
+<br>
+
+```{r}
+range(
+  datos_modelo$consumo_kg_dia,
+  na.rm = TRUE
+)
+```
+
+<br>
+
+## Predicciones del modelo simple
+
+<br>
+
+Una vez ajustado el modelo, podemos utilizarlo para estimar el peso medio correspondiente a determinados niveles de consumo. Seleccionaremos tres valores representativos: el primer cuartil, la mediana y el tercer cuartil.
+
+<br>
+
+```{r}
+nuevos_consumos <- tibble(
+  consumo_kg_dia = quantile(
+    datos_modelo$consumo_kg_dia,
+    probs = c(0.25, 0.50, 0.75),
+    na.rm = TRUE
+  )
+)
+
+predicciones_media <- predict(
+  modelo_simple,
+  newdata = nuevos_consumos,
+  interval = "confidence",
+  level = 0.95
+)
+
+bind_cols(
+  nuevos_consumos,
+  as.data.frame(predicciones_media)
+)
+```
+
+<br>
+
+El intervalo de confianza se refiere al peso medio esperado para las observaciones con un nivel determinado de consumo. Si queremos predecir el peso de una observación individual, debemos incorporar también la variabilidad residual mediante un intervalo de predicción.
+
+<br>
+
+```{r}
+predicciones_individuales <- predict(
+  modelo_simple,
+  newdata = nuevos_consumos,
+  interval = "prediction",
+  level = 0.95
+)
+
+bind_cols(
+  nuevos_consumos,
+  as.data.frame(predicciones_individuales)
+)
+```
+
+<br>
+
+El intervalo de predicción es más amplio que el intervalo de confianza porque incluye tanto la incertidumbre de la media estimada como la variabilidad de las observaciones individuales alrededor de la recta.
+
+<br>
+
+## Coeficiente de determinación
+
+<br>
+
+El coeficiente de determinación (R\^2) representa la proporción de la variabilidad observada en el peso que queda descrita por los predictores incluidos en el modelo.
+
+<br>
+
+Un (R\^2) próximo a 0 indica que el modelo explica poca variabilidad del peso. Un valor próximo a 1 indica que las predicciones del modelo reproducen una proporción elevada de la variabilidad observada. Sin embargo, un (R\^2) alto no demuestra causalidad ni garantiza que se cumplan los supuestos de la regresión.
+
+<br>
+
+```{r}
+ajuste_simple <- glance(modelo_simple)
+
+ajuste_simple |>
+  select(
+    nobs,
+    r.squared,
+    adj.r.squared,
+    sigma,
+    statistic,
+    p.value
+  )
+```
+
+<br>
+
+En la regresión simple, el (R\^2) coincide con el cuadrado de la correlación de Pearson entre el peso y el consumo, siempre que el modelo incluya intercepto y se utilicen las mismas observaciones.
+
+<br>
+
+```{r}
+c(
+  R2_modelo = summary(modelo_simple)$r.squared,
+  correlacion_al_cuadrado = cor_consumo_peso^2
+)
+```
+
+<br>
+
+El (R\^2) ajustado incorpora una penalización por el número de predictores. En un modelo con una sola variable explicativa suele ser muy parecido al (R\^2), pero cobra mayor importancia al comparar modelos múltiples con distinto número de variables.
+
+<br>
+
+## Incorporación de la edad
+
+<br>
+
+El consumo y el peso pueden estar relacionados con la edad del animal. Los animales de mayor edad inicial podrían presentar simultáneamente un peso y un consumo superiores. Si ignoramos la edad, una parte de su asociación con el peso podría atribuirse incorrectamente al consumo.
+
+<br>
+
+```{r}
+modelo_consumo_edad <- lm(
+  peso_kg ~ consumo_kg_dia + edad_inicio_c,
+  data = datos_modelo
+)
+
+summary(modelo_consumo_edad)
+```
+
+<br>
+
+```{r}
+tidy(
+  modelo_consumo_edad,
+  conf.int = TRUE,
+  conf.level = 0.95
+)
+```
+
+<br>
+
+En este modelo, el coeficiente del consumo representa la diferencia media esperada en el peso asociada con un incremento de 1 kg/día en el consumo, comparando observaciones con la misma edad inicial.
+
+<br>
+
+El coeficiente de `edad_inicio_c` representa la diferencia media esperada en el peso asociada con un mes adicional de edad inicial, manteniendo constante el consumo. Como la variable está centrada, el intercepto se refiere a un animal con la edad inicial promedio.
+
+<br>
+
+Podemos comparar cómo cambia el coeficiente del consumo al incorporar la edad.
+
+<br>
+
+```{r}
+comparacion_consumo <- bind_rows(
+  tidy(modelo_simple, conf.int = TRUE) |>
+    filter(term == "consumo_kg_dia") |>
+    mutate(modelo = "Consumo"),
+  tidy(modelo_consumo_edad, conf.int = TRUE) |>
+    filter(term == "consumo_kg_dia") |>
+    mutate(modelo = "Consumo + edad")
+) |>
+  select(
+    modelo,
+    term,
+    estimate,
+    std.error,
+    conf.low,
+    conf.high,
+    p.value
+  )
+
+comparacion_consumo
+```
+
+<br>
+
+Si el coeficiente del consumo cambia de forma importante al incorporar la edad, esto indica que la asociación simple estaba parcialmente mezclada con diferencias de edad. No existe un porcentaje universal que defina cuándo un cambio es importante; la valoración debe combinar magnitud, precisión y sentido biológico.
+
+<br>
+
+## Incorporación de sexo y raza
+
+<br>
+
+El sexo y la raza son variables categóricas. R las incorpora mediante variables indicadoras y selecciona una categoría de referencia. Los coeficientes de las demás categorías expresan diferencias respecto a esa referencia, manteniendo constantes los otros predictores.
+
+<br>
+
+Podemos consultar las categorías y las referencias utilizadas.
+
+<br>
+
+```{r}
+levels(datos_modelo$sexo)
+levels(datos_modelo$raza)
+
+contrasts(datos_modelo$sexo)
+contrasts(datos_modelo$raza)
+```
+
+<br>
+
+Por defecto, R suele utilizar como referencia el primer nivel del factor. Si queremos seleccionar referencias con interés científico, podemos hacerlo explícitamente mediante `relevel()`.
+
+<br>
+
+```{r}
+# Consultar primero los niveles reales antes de cambiar la referencia.
+# Sustituir "categoria_referencia" por un nivel existente si se desea.
+
+# datos_modelo <- datos_modelo |>
+#   mutate(
+#     sexo = relevel(sexo, ref = "categoria_referencia"),
+#     raza = relevel(raza, ref = "categoria_referencia")
+#   )
+```
+
+<br>
+
+Ajustaremos un modelo que incluya consumo, edad, sexo y raza.
+
+<br>
+
+```{r}
+modelo_individual <- lm(
+  peso_kg ~
+    consumo_kg_dia +
+    edad_inicio_c +
+    sexo +
+    raza,
+  data = datos_modelo
+)
+
+summary(modelo_individual)
+```
+
+<br>
+
+```{r}
+coeficientes_individual <- tidy(
+  modelo_individual,
+  conf.int = TRUE,
+  conf.level = 0.95
+)
+
+coeficientes_individual
+```
+
+<br>
+
+La interpretación de cada coeficiente depende de su tipo:
+
+- El coeficiente del consumo compara observaciones con igual edad inicial, sexo y raza.
+- El coeficiente de la edad compara observaciones con igual consumo, sexo y raza.
+- Cada coeficiente del sexo compara una categoría con el sexo de referencia, manteniendo constantes las demás variables.
+- Cada coeficiente de raza compara una raza con la raza de referencia, manteniendo constantes las demás variables.
+
+<br>
+
+Los coeficientes categóricos no representan el efecto global de toda la variable. Para valorar conjuntamente una variable con varias categorías, debemos considerar todos sus coeficientes o comparar modelos con y sin esa variable.
+
+<br>
+
+## Incorporación de la semana de seguimiento
+
+<br>
+
+El peso de los animales cambia a lo largo del seguimiento. Por ello, incorporaremos la semana como predictor cuantitativo. En este primer modelo asumiremos que el cambio medio del peso por semana es lineal y constante durante todo el periodo.
+
+<br>
+
+```{r}
+modelo_multiple <- lm(
+  peso_kg ~
+    consumo_kg_dia +
+    edad_inicio_c +
+    sexo +
+    raza +
+    tiempo_c,
+  data = datos_modelo
+)
+
+summary(modelo_multiple)
+```
+
+<br>
+
+```{r}
+coeficientes_multiple <- tidy(
+  modelo_multiple,
+  conf.int = TRUE,
+  conf.level = 0.95
+)
+
+coeficientes_multiple
+```
+
+<br>
+
+El coeficiente de `tiempo_c` representa el cambio medio esperado en el peso por cada semana adicional de seguimiento, comparando observaciones con igual consumo, edad inicial, sexo y raza.
+
+<br>
+
+La palabra “manteniendo constantes” es esencial en una regresión múltiple. Cada coeficiente se interpreta después de ajustar por las otras variables incluidas en el modelo. Por ello, un coeficiente múltiple puede diferir del obtenido en una regresión simple.
+
+<br>
+
+## Centrado del consumo e interpretación del intercepto
+
+<br>
+
+El intercepto del modelo anterior corresponde a un consumo de cero, que puede no tener interés biológico. Para obtener un intercepto más interpretable, centraremos también el consumo en su media.
+
+<br>
+
+```{r}
+datos_modelo <- datos_modelo |>
+  mutate(
+    consumo_c = consumo_kg_dia -
+      mean(consumo_kg_dia)
+  )
+
+modelo_multiple_centrado <- lm(
+  peso_kg ~
+    consumo_c +
+    edad_inicio_c +
+    sexo +
+    raza +
+    tiempo_c,
+  data = datos_modelo
+)
+
+tidy(
+  modelo_multiple_centrado,
+  conf.int = TRUE
+)
+```
+
+<br>
+
+Ahora el intercepto representa el peso medio estimado para un animal de las categorías de referencia, con consumo promedio, edad inicial promedio y observado en la semana promedio.
+
+<br>
+
+El centrado no modifica la pendiente del consumo, el ajuste del modelo, las predicciones ni los residuos. Únicamente cambia el punto utilizado como referencia para interpretar el intercepto.
+
+<br>
+
+```{r}
+c(
+  pendiente_original = coef(modelo_multiple)["consumo_kg_dia"],
+  pendiente_centrada = coef(modelo_multiple_centrado)["consumo_c"],
+  R2_original = summary(modelo_multiple)$r.squared,
+  R2_centrado = summary(modelo_multiple_centrado)$r.squared
+)
+```
+
+<br>
+
+## Intervalos de confianza de los coeficientes
+
+<br>
+
+Un intervalo de confianza del 95 % presenta un rango de valores compatibles con los datos y el modelo utilizado. Un intervalo estrecho indica mayor precisión, mientras que uno amplio indica mayor incertidumbre.
+
+<br>
+
+Podemos representar los coeficientes del modelo múltiple y sus intervalos de confianza. Excluiremos el intercepto porque utiliza una escala diferente y suele dificultar la visualización de los demás coeficientes.
+
+<br>
+
+```{r}
+coeficientes_grafico <- tidy(
+  modelo_multiple_centrado,
+  conf.int = TRUE,
+  conf.level = 0.95
+) |>
+  filter(term != "(Intercept)") |>
+  mutate(
+    term = forcats::fct_reorder(term, estimate)
+  )
+
+ggplot(
+  coeficientes_grafico,
+  aes(x = estimate, y = term)
+) +
+  geom_vline(
+    xintercept = 0,
+    linetype = "dashed",
+    color = "grey45"
+  ) +
+  geom_errorbarh(
+    aes(xmin = conf.low, xmax = conf.high),
+    height = 0.20,
+    color = "steelblue4"
+  ) +
+  geom_point(
+    size = 2.5,
+    color = "steelblue4"
+  ) +
+  labs(
+    title = "Coeficientes del modelo múltiple",
+    subtitle = "Estimaciones e intervalos de confianza del 95 %",
+    x = "Coeficiente estimado",
+    y = "Variable"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+Cuando un intervalo incluye el valor cero, los datos son compatibles con asociaciones positivas, negativas o muy pequeñas bajo las condiciones del modelo. No debemos interpretar automáticamente este resultado como demostración de ausencia de relación.
+
+<br>
+
+La magnitud del coeficiente debe interpretarse en las unidades originales de cada variable. Por tanto, no es correcto comparar directamente el tamaño numérico de coeficientes expresados por kilogramo de consumo, mes de edad y semana de seguimiento.
+
+<br>
+
+## Comparación del ajuste de los modelos
+
+<br>
+
+Compararemos progresivamente los modelos para observar cómo cambian el (R\^2), el (R\^2) ajustado y el error residual al incorporar nuevas variables.
+
+<br>
+
+```{r}
+comparacion_modelos <- bind_rows(
+  glance(modelo_simple) |>
+    mutate(modelo = "Consumo"),
+  glance(modelo_consumo_edad) |>
+    mutate(modelo = "Consumo + edad"),
+  glance(modelo_individual) |>
+    mutate(modelo = "Consumo + edad + sexo + raza"),
+  glance(modelo_multiple) |>
+    mutate(modelo = "Modelo múltiple + semana")
+) |>
+  select(
+    modelo,
+    nobs,
+    r.squared,
+    adj.r.squared,
+    sigma,
+    AIC,
+    BIC
+  )
+
+comparacion_modelos
+```
+
+<br>
+
+El (R\^2) nunca disminuye cuando se incorporan nuevos predictores, incluso si estos aportan poca información. Por esa razón, para comparar modelos con diferente número de variables también debemos observar el (R\^2) ajustado y valorar si la mejora tiene relevancia científica.
+
+<br>
+
+```{r}
+comparacion_modelos |>
+  pivot_longer(
+    cols = c(r.squared, adj.r.squared),
+    names_to = "medida",
+    values_to = "valor"
+  ) |>
+  mutate(
+    medida = recode(
+      medida,
+      r.squared = "R²",
+      adj.r.squared = "R² ajustado"
+    )
+  ) |>
+  ggplot(
+    aes(x = modelo, y = valor, fill = medida)
+  ) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Capacidad descriptiva de los modelos",
+    x = "Modelo",
+    y = "Coeficiente de determinación",
+    fill = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 25, hjust = 1),
+    legend.position = "bottom"
+  )
+```
+
+<br>
+
+Un modelo no debe seleccionarse únicamente porque tenga el mayor (R\^2). También debe ser coherente con la pregunta científica, utilizar variables medidas adecuadamente, evitar ajustes innecesariamente complejos y cumplir razonablemente sus supuestos.
+
+<br>
+
+## Valores ajustados y residuos
+
+<br>
+
+Para cada observación, el modelo produce un valor ajustado y un residuo. El valor ajustado es el peso estimado por el modelo. El residuo es la diferencia entre el peso observado y el peso ajustado:
+
+\[ e_i = y_i - \widehat{y}\_i \]
+
+<br>
+
+Un residuo positivo indica que el peso observado es superior al estimado. Un residuo negativo indica que el peso observado es inferior al estimado.
+
+<br>
+
+```{r}
+diagnostico_multiple <- augment(modelo_multiple_centrado)
+
+head(
+  diagnostico_multiple |>
+    select(
+      peso_kg,
+      .fitted,
+      .resid,
+      .std.resid,
+      .hat,
+      .cooksd
+    ),
+  10
+)
+```
+
+<br>
+
+Podemos representar los pesos observados frente a los valores ajustados. Si el modelo reproduce adecuadamente los datos, los puntos deberían situarse aproximadamente alrededor de la línea de igualdad.
+
+<br>
+
+```{r}
+ggplot(
+  diagnostico_multiple,
+  aes(x = .fitted, y = peso_kg)
+) +
+  geom_point(
+    alpha = 0.18,
+    size = 1,
+    color = "grey35"
+  ) +
+  geom_abline(
+    intercept = 0,
+    slope = 1,
+    color = "firebrick",
+    linewidth = 0.9,
+    linetype = "dashed"
+  ) +
+  labs(
+    title = "Peso observado y peso ajustado",
+    subtitle = "La línea discontinua representa la igualdad perfecta",
+    x = "Peso ajustado (kg)",
+    y = "Peso observado (kg)"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+## Diagnóstico de linealidad y heterocedasticidad
+
+<br>
+
+Uno de los principales gráficos de diagnóstico representa los residuos frente a los valores ajustados. Si la relación lineal y la varianza constante son aproximaciones razonables, los residuos deberían formar una nube sin patrones claros alrededor de cero.
+
+<br>
+
+```{r}
+ggplot(
+  diagnostico_multiple,
+  aes(x = .fitted, y = .resid)
+) +
+  geom_point(
+    alpha = 0.18,
+    size = 1,
+    color = "grey35"
+  ) +
+  geom_hline(
+    yintercept = 0,
+    color = "firebrick",
+    linetype = "dashed"
+  ) +
+  geom_smooth(
+    method = "loess",
+    formula = y ~ x,
+    se = FALSE,
+    color = "steelblue4",
+    linewidth = 0.9
+  ) +
+  labs(
+    title = "Residuos frente a valores ajustados",
+    x = "Peso ajustado (kg)",
+    y = "Residuo (kg)"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+Un patrón curvo puede indicar que alguna relación no es lineal. Una forma de embudo, en la que la dispersión de los residuos aumenta o disminuye con el valor ajustado, puede indicar heterocedasticidad.
+
+<br>
+
+La heterocedasticidad aparece cuando la varianza de los residuos no es constante. Por ejemplo, el modelo podría cometer errores pequeños en animales de bajo peso y errores mucho mayores en animales pesados.
+
+<br>
+
+Podemos utilizar también el gráfico de raíz de los residuos estandarizados absolutos. Una tendencia ascendente sugiere que la dispersión aumenta con los valores ajustados.
+
+<br>
+
+```{r}
+ggplot(
+  diagnostico_multiple,
+  aes(
+    x = .fitted,
+    y = sqrt(abs(.std.resid))
+  )
+) +
+  geom_point(
+    alpha = 0.18,
+    size = 1,
+    color = "grey35"
+  ) +
+  geom_smooth(
+    method = "loess",
+    formula = y ~ x,
+    se = FALSE,
+    color = "firebrick",
+    linewidth = 0.9
+  ) +
+  labs(
+    title = "Dispersión de los residuos",
+    subtitle = "Gráfico de escala-localización",
+    x = "Peso ajustado (kg)",
+    y = "Raíz de |residuo estandarizado|"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+Los gráficos de diagnóstico no deben interpretarse buscando una perfección absoluta. En bases grandes pueden detectarse pequeñas desviaciones con poca importancia práctica. Debemos valorar la intensidad del patrón, su posible causa y su repercusión sobre las conclusiones.
+
+<br>
+
+## Distribución de los residuos
+
+<br>
+
+La normalidad de los residuos es especialmente relevante para la inferencia basada en errores estándar, intervalos de confianza y contrastes. No implica que el peso original deba seguir una distribución normal.
+
+<br>
+
+```{r}
+ggplot(
+  diagnostico_multiple,
+  aes(x = .resid)
+) +
+  geom_histogram(
+    bins = 30,
+    fill = "steelblue",
+    color = "white"
+  ) +
+  labs(
+    title = "Distribución de los residuos",
+    x = "Residuo (kg)",
+    y = "Número de mediciones"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+El gráfico cuantíl-cuantíl compara los residuos estandarizados con los valores esperados bajo una distribución normal. Si la aproximación es razonable, los puntos deberían seguir aproximadamente una línea recta.
+
+<br>
+
+```{r}
+ggplot(
+  diagnostico_multiple,
+  aes(sample = .std.resid)
+) +
+  stat_qq(alpha = 0.25, size = 1) +
+  stat_qq_line(
+    color = "firebrick",
+    linewidth = 0.9
+  ) +
+  labs(
+    title = "Gráfico Q-Q de los residuos estandarizados",
+    x = "Cuantiles teóricos",
+    y = "Cuantiles observados"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+Desviaciones importantes en los extremos pueden indicar colas más pesadas que la distribución normal o la presencia de observaciones atípicas. Una ligera desviación no invalida automáticamente el modelo, especialmente cuando la muestra es grande.
+
+<br>
+
+## Observaciones atípicas e influyentes
+
+<br>
+
+Un valor atípico presenta un residuo grande. Una observación con alta palanca tiene una combinación poco frecuente de valores explicativos. Una observación influyente es aquella cuya eliminación podría cambiar de forma apreciable los coeficientes del modelo.
+
+<br>
+
+La distancia de Cook combina información sobre el residuo y la palanca para identificar observaciones potencialmente influyentes.
+
+<br>
+
+```{r}
+diagnostico_multiple |>
+  mutate(
+    fila_modelo = row_number()
+  ) |>
+  arrange(desc(.cooksd)) |>
+  select(
+    fila_modelo,
+    peso_kg,
+    consumo_c,
+    edad_inicio_c,
+    tiempo_c,
+    .fitted,
+    .std.resid,
+    .hat,
+    .cooksd
+  ) |>
+  slice_head(n = 10)
+```
+
+<br>
+
+```{r}
+diagnostico_multiple |>
+  mutate(
+    fila_modelo = row_number()
+  ) |>
+  ggplot(
+    aes(x = fila_modelo, y = .cooksd)
+  ) +
+  geom_col(fill = "steelblue4") +
+  labs(
+    title = "Distancia de Cook por observación",
+    x = "Fila utilizada en el modelo",
+    y = "Distancia de Cook"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+Una observación señalada por los diagnósticos no debe eliminarse automáticamente. Primero debemos comprobar si existe un error de registro, si corresponde a una situación biológica posible y cuánto cambian los resultados al incluirla o excluirla.
+
+<br>
+
+## Comprobación visual por sexo, raza y semana
+
+<br>
+
+Los residuos también pueden examinarse por grupos. Esto ayuda a detectar si el modelo tiende a sobreestimar o subestimar sistemáticamente el peso en determinadas categorías.
+
+<br>
+
+```{r}
+ggplot(
+  diagnostico_multiple,
+  aes(x = sexo, y = .resid, fill = sexo)
+) +
+  geom_boxplot(
+    outlier.alpha = 0.20
+  ) +
+  geom_hline(
+    yintercept = 0,
+    linetype = "dashed",
+    color = "firebrick"
+  ) +
+  labs(
+    title = "Residuos según el sexo",
+    x = "Sexo",
+    y = "Residuo (kg)"
+  ) +
+  guides(fill = "none") +
+  theme_minimal()
+```
+
+<br>
+
+```{r}
+ggplot(
+  diagnostico_multiple,
+  aes(x = raza, y = .resid, fill = raza)
+) +
+  geom_boxplot(
+    outlier.alpha = 0.15
+  ) +
+  geom_hline(
+    yintercept = 0,
+    linetype = "dashed",
+    color = "firebrick"
+  ) +
+  labs(
+    title = "Residuos según la raza",
+    x = "Raza",
+    y = "Residuo (kg)"
+  ) +
+  guides(fill = "none") +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 35, hjust = 1)
+  )
+```
+
+<br>
+
+Si la línea suavizada muestra un patrón temporal, la relación entre la semana y el peso podría no ser completamente lineal. También podría indicar que faltan variables temporales o que los residuos se encuentran correlacionados dentro de cada animal.
+
+<br>
+
+## Posible relación no lineal con la semana
+
+<br>
+
+El modelo múltiple anterior supone que el peso cambia a una tasa constante por semana. Podemos explorar una relación curva incorporando un término cuadrático para el tiempo.
+
+<br>
+
+```{r}
+modelo_tiempo_cuadratico <- lm(
+  peso_kg ~
+    consumo_c +
+    edad_inicio_c +
+    sexo +
+    raza +
+    tiempo_c +
+    I(tiempo_c^2),
+  data = datos_modelo
+)
+
+summary(modelo_tiempo_cuadratico)
+```
+
+<br>
+
+```{r}
+bind_rows(
+  glance(modelo_multiple_centrado) |>
+    mutate(modelo = "Tiempo lineal"),
+  glance(modelo_tiempo_cuadratico) |>
+    mutate(modelo = "Tiempo lineal y cuadrático")
+) |>
+  select(
+    modelo,
+    r.squared,
+    adj.r.squared,
+    sigma,
+    AIC,
+    BIC
+  )
+```
+
+<br>
+
+El término cuadrático permite que la pendiente cambie a lo largo del seguimiento. Si se incluye, los coeficientes lineal y cuadrático deben interpretarse conjuntamente. No es adecuado interpretar el término cuadrático de forma aislada como si representara un cambio constante.
+
+<br>
+
+Esta exploración amplía la forma de la tendencia temporal, pero no resuelve la dependencia entre mediciones repetidas del mismo animal.
+
+<br>
+
+## Límites de la regresión lineal convencional
+
+<br>
+
+La regresión lineal convencional supone que, una vez consideradas las variables explicativas, los residuos son independientes. Este supuesto no es razonable en nuestra base longitudinal.
+
+<br>
+
+Cada animal aparece en múltiples semanas. Las mediciones de un mismo animal tienden a parecerse porque comparten características biológicas, genéticas y de manejo. Además, los animales de una misma granja comparten alimentación, ambiente y sistema productivo.
+
+<br>
+
+Podemos visualizar esta repetición calculando cuántas observaciones aporta cada animal y cada granja a la base usada por el modelo.
+
+<br>
+
+```{r}
+datos_modelo |>
+  summarise(
+    filas = n(),
+    animales = n_distinct(animal_id),
+    granjas = n_distinct(granja_id),
+    mediciones_medias_por_animal = n() /
+      n_distinct(animal_id),
+    mediciones_medias_por_granja = n() /
+      n_distinct(granja_id)
+  )
+```
+
+<br>
+
+Cuando tratamos todas las filas como independientes, el modelo puede sobreestimar la cantidad de información disponible. Como consecuencia, los errores estándar pueden ser demasiado pequeños y los intervalos de confianza excesivamente estrechos.
+
+<br>
+
+Además, la regresión convencional combina dos tipos de asociación:
+
+1.  Diferencias entre animales: los animales que consumen más en promedio pueden pesar más que otros animales.
+2.  Cambios dentro del animal: un animal puede pesar más en las semanas en las que consume más que su propio promedio.
+
+<br>
+
+Estos dos procesos no tienen necesariamente el mismo significado biológico ni el mismo coeficiente. Para separarlos y representar la correlación de las mediciones repetidas, necesitaremos modelos mixtos con efectos aleatorios para animal y granja.
+
+<br>
+
+## Comparación visual de trayectorias y recta convencional
+
+<br>
+
+Para mostrar por qué las observaciones no son independientes, seleccionaremos algunos animales y representaremos sus trayectorias individuales junto con la tendencia general estimada por una regresión convencional.
+
+<br>
+
+```{r}
+animales_regresion <- datos_modelo |>
+  distinct(animal_id) |>
+  slice_head(n = 8)
+
+datos_animales_regresion <- datos_modelo |>
+  semi_join(
+    animales_regresion,
+    by = "animal_id"
+  )
+
+ggplot(
+  datos_animales_regresion,
+  aes(
+    x = tiempo,
+    y = peso_kg,
+    group = animal_id,
+    color = animal_id
+  )
+) +
+  geom_line(alpha = 0.75) +
+  geom_point(size = 1.2, alpha = 0.75) +
+  geom_smooth(
+    aes(group = 1),
+    method = "lm",
+    formula = y ~ x,
+    se = FALSE,
+    color = "black",
+    linewidth = 1.1,
+    linetype = "dashed"
+  ) +
+  labs(
+    title = "Trayectorias individuales y tendencia lineal general",
+    x = "Semana de seguimiento",
+    y = "Peso (kg)",
+    color = "Animal"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom"
+  )
+```
+
+<br>
+
+La recta discontinua resume el cambio promedio de todas las mediciones seleccionadas, pero no representa las diferencias iniciales entre animales ni la dependencia de sus observaciones. Las trayectorias muestran que cada animal posee su propio nivel de peso y puede presentar un patrón temporal particular.
+
+<br>
+
+## Resumen de interpretación del modelo múltiple
+
+<br>
+
+Para comunicar los resultados de una regresión múltiple conviene seguir un orden claro:
+
+1.  Identificar la variable de respuesta y las variables explicativas.
+2.  Indicar las unidades de las variables cuantitativas.
+3.  Señalar las categorías de referencia de las variables categóricas.
+4.  Interpretar cada coeficiente manteniendo constantes las demás variables.
+5.  Presentar los intervalos de confianza para describir la precisión.
+6.  Informar el (R\^2) y el (R\^2) ajustado sin interpretarlos como pruebas de causalidad.
+7.  Revisar los residuos y las observaciones influyentes.
+8.  Reconocer las limitaciones derivadas del diseño longitudinal y jerárquico.
+
+<br>
+
+Podemos generar una tabla final con los resultados principales del modelo.
+
+<br>
+
+```{r}
+tabla_modelo_final <- tidy(
+  modelo_multiple_centrado,
+  conf.int = TRUE,
+  conf.level = 0.95
+) |>
+  mutate(
+    across(
+      c(estimate, std.error, conf.low, conf.high, p.value),
+      ~ round(.x, 3)
+    )
+  )
+
+tabla_modelo_final
+```
+
+<br>
+
+```{r}
+resumen_modelo_final <- glance(
+  modelo_multiple_centrado
+) |>
+  transmute(
+    n_observaciones = nobs,
+    R2 = round(r.squared, 3),
+    R2_ajustado = round(adj.r.squared, 3),
+    error_residual = round(sigma, 3),
+    AIC = round(AIC, 1),
+    BIC = round(BIC, 1)
+  )
+
+resumen_modelo_final
+```
+
+<br>
+
+## Actividad de interpretación
+
+<br>
+
+A partir de los modelos y gráficos anteriores, responda las siguientes preguntas:
+
+<br>
+
+1.  ¿La relación entre consumo de alimento y peso parece aproximadamente lineal?
+2.  ¿Cómo se interpreta el coeficiente del consumo en el modelo simple?
+3.  ¿Tiene sentido biológico interpretar el intercepto del modelo simple?
+4.  ¿Cómo cambia el coeficiente del consumo al incorporar la edad?
+5.  ¿Cuáles son las categorías de referencia para sexo y raza?
+6.  ¿Cómo se interpreta un coeficiente asociado con una categoría de raza?
+7.  ¿Qué representa el coeficiente de la semana en el modelo múltiple?
+8.  ¿Qué diferencia existe entre un intervalo de confianza y un intervalo de predicción?
+9.  ¿Cuánto aumenta el (R\^2) al pasar del modelo simple al modelo múltiple?
+10. ¿El aumento del (R\^2) implica que el modelo múltiple sea causalmente correcto?
+11. ¿Los residuos muestran curvatura, forma de embudo o valores extremos?
+12. ¿La variabilidad de los residuos parece constante?
+13. ¿Existen observaciones potencialmente influyentes?
+14. ¿Qué limitación produce la repetición de mediciones del mismo animal?
+15. ¿Por qué un modelo mixto sería más apropiado para estos datos?
+
+<br>
+
+Al finalizar este bloque debemos ser capaces de ajustar e interpretar una regresión lineal simple y una regresión múltiple, explicar los coeficientes y sus intervalos de confianza, diferenciar el (R\^2) del (R\^2) ajustado y revisar los principales gráficos de residuos.
+
+<br>
+
+También debemos reconocer que una regresión convencional no representa adecuadamente la estructura longitudinal y jerárquica de la base. El paso siguiente consistirá en incorporar efectos aleatorios para considerar las diferencias entre animales y granjas, así como la correlación entre observaciones repetidas.

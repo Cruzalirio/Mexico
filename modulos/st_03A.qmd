@@ -1,0 +1,1679 @@
+# Dependencia temporal y modelos mixtos
+
+<br> Los modelos mixtos permiten combinar efectos fijos, que describen asociaciones promedio para la población, y efectos aleatorios, que representan diferencias entre animales, granjas u otras unidades agrupadas. Esta estructura resulta especialmente apropiada cuando cada animal aporta varias observaciones y los animales se encuentran agrupados dentro de explotaciones.
+
+<br>
+
+```{r}
+library(readxl)
+library(tidyverse)
+library(corrplot)
+library(naniar)
+library(lmerTest)
+library(lme4)
+library(broom.mixed)
+
+# Consultar la carpeta de trabajo.
+getwd()
+
+# Nombre del archivo Excel.
+archivo <- "../datos/base_borregos_espaciotemporal_Hidalgo.xlsx"
+
+# Consultar las hojas disponibles.
+excel_sheets(archivo)
+
+# Importar la tabla longitudinal.
+datos <- read_excel(archivo, sheet = "datos_long")
+
+```
+
+<br>
+
+## Preparación de las variables
+
+<br>
+
+Antes de elaborar los resúmenes, revisaremos las variables que utilizaremos. Los identificadores y las variables categóricas se transforman en factores para evitar que R los interprete como cantidades numéricas.
+
+<br>
+
+También crearemos periodos de seguimiento agrupando las semanas. Estos periodos facilitarán la elaboración de tablas de contingencia y gráficos de barras temporales. La variable original `tiempo` se conserva sin modificaciones.
+
+<br>
+
+```{r}
+datos_b2 <- datos |>
+  mutate(
+    animal_id = as.factor(animal_id),
+    granja_id = as.factor(granja_id),
+    sexo = as.factor(sexo),
+    raza = as.factor(raza),
+    tratamiento = as.factor(tratamiento),
+    sistema_produccion = as.factor(sistema_produccion),
+    salud_score_0_4 = factor(
+      salud_score_0_4,
+      levels = 0:4,
+      ordered = TRUE
+    ),
+    salud_alta = as.factor(salud_alta),
+    periodo = cut(
+      tiempo,
+      breaks = c(-Inf, 20, 40, 60, 80, Inf),
+      labels = c(
+        "Semanas 1-20",
+        "Semanas 21-40",
+        "Semanas 41-60",
+        "Semanas 61-80",
+        "Semanas 81-100"
+      )
+    )
+  )
+
+# Comprobar las variables preparadas.
+datos_b2 |>
+  select(
+    animal_id, granja_id, tiempo, periodo,
+    sexo, raza, peso_kg, consumo_kg_dia,
+    salud_score_0_4, salud_alta
+  ) |>
+  glimpse()
+```
+
+<br>
+
+## Por qué las mediciones del mismo animal están relacionadas
+
+<br>
+
+En una base longitudinal, cada animal aparece en varias filas porque se observa repetidamente a lo largo del seguimiento. Las mediciones de un mismo animal suelen parecerse entre sí más que las mediciones de animales diferentes. Esta semejanza puede deberse a características genéticas, edad, estado fisiológico, manejo previo y otras condiciones individuales que persisten durante el estudio.
+
+<br>
+
+Los animales de una misma granja también comparten alimentación, instalaciones, clima local, prácticas de manejo y condiciones sanitarias. Por tanto, la base presenta al menos tres niveles:
+
+1.  Mediciones realizadas en diferentes semanas.
+2.  Mediciones agrupadas dentro de animales.
+3.  Animales agrupados dentro de granjas.
+
+<br>
+
+La regresión lineal convencional supone que, una vez incluidas las variables explicativas, los residuos son independientes. Si ignoramos la agrupación, podremos subestimar los errores estándar y obtener intervalos de confianza demasiado estrechos.
+
+<br>
+
+Primero prepararemos una base común para los modelos lineales mixtos.
+
+<br>
+
+```{r}
+datos_lmm <- datos_b2 |>
+  select(
+    animal_id,
+    granja_id,
+    tiempo,
+    peso_kg,
+    consumo_kg_dia,
+    edad_inicio_meses,
+    sexo,
+    raza
+  ) |>
+  drop_na(
+    animal_id,
+    granja_id,
+    tiempo,
+    peso_kg,
+    consumo_kg_dia,
+    edad_inicio_meses,
+    sexo,
+    raza
+  ) |>
+  mutate(
+    animal_id = droplevels(as.factor(animal_id)),
+    granja_id = droplevels(as.factor(granja_id)),
+    sexo = droplevels(as.factor(sexo)),
+    raza = droplevels(as.factor(raza)),
+    tiempo_c = tiempo - mean(tiempo),
+    consumo_c = consumo_kg_dia - mean(consumo_kg_dia),
+    edad_inicio_c = edad_inicio_meses -
+      mean(edad_inicio_meses)
+  )
+
+# Resumen de la estructura jerárquica.
+datos_lmm |>
+  summarise(
+    n_mediciones = n(),
+    n_animales = n_distinct(animal_id),
+    n_granjas = n_distinct(granja_id),
+    mediciones_por_animal = n() / n_distinct(animal_id),
+    animales_por_granja = n_distinct(animal_id) /
+      n_distinct(granja_id)
+  )
+```
+
+<br>
+
+Antes de formular el modelo debemos comprobar si cada animal pertenece a una sola granja. Esta condición es importante para interpretar la estructura anidada de los datos.
+
+<br>
+
+```{r}
+animales_en_varias_granjas <- datos_lmm |>
+  distinct(animal_id, granja_id) |>
+  count(animal_id, name = "n_granjas") |>
+  filter(n_granjas > 1)
+
+animales_en_varias_granjas
+```
+
+<br>
+
+Si la tabla anterior está vacía, cada animal pertenece a una única granja. En ese caso, podemos considerar que los animales están anidados dentro de las granjas. Si un animal aparece en varias explotaciones, será necesario estudiar si realmente fue trasladado o si existe un problema con los identificadores.
+
+<br>
+
+## Evolución individual y variabilidad entre animales
+
+<br>
+
+Las trayectorias individuales permiten observar que los animales pueden comenzar con pesos diferentes y evolucionar de manera distinta. Seleccionaremos algunos animales para evitar que el gráfico resulte demasiado denso.
+
+<br>
+
+```{r}
+animales_ejemplo_lmm <- datos_lmm |>
+  count(animal_id, sort = TRUE) |>
+  slice_head(n = 12) |>
+  select(animal_id)
+
+datos_trayectorias <- datos_lmm |>
+  semi_join(
+    animales_ejemplo_lmm,
+    by = "animal_id"
+  )
+
+ggplot(
+  datos_trayectorias,
+  aes(
+    x = tiempo,
+    y = peso_kg,
+    group = animal_id,
+    color = animal_id
+  )
+) +
+  geom_line(alpha = 0.80, linewidth = 0.7) +
+  geom_point(alpha = 0.70, size = 1) +
+  labs(
+    title = "Trayectorias de peso de varios animales",
+    x = "Semana de seguimiento",
+    y = "Peso (kg)",
+    color = "Animal"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom"
+  )
+```
+
+<br>
+
+Las diferencias verticales entre trayectorias indican que algunos animales mantienen un peso sistemáticamente mayor o menor que otros. Un modelo con intercepto aleatorio permite representar estas diferencias individuales de nivel.
+
+<br>
+
+También podemos resumir el peso medio de cada animal y observar su distribución.
+
+<br>
+
+```{r}
+peso_por_animal <- datos_lmm |>
+  group_by(animal_id, granja_id) |>
+  summarise(
+    peso_medio = mean(peso_kg),
+    peso_inicial = peso_kg[which.min(tiempo)],
+    peso_final = peso_kg[which.max(tiempo)],
+    n_mediciones = n(),
+    .groups = "drop"
+  )
+
+summary(peso_por_animal$peso_medio)
+```
+
+<br>
+
+```{r}
+ggplot(
+  peso_por_animal,
+  aes(x = peso_medio)
+) +
+  geom_histogram(
+    bins = 30,
+    fill = "steelblue",
+    color = "white"
+  ) +
+  labs(
+    title = "Distribución del peso medio entre animales",
+    x = "Peso medio del animal (kg)",
+    y = "Número de animales"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+La dispersión de los promedios individuales constituye una primera evidencia descriptiva de variabilidad entre animales. Sin embargo, estos promedios no separan las diferencias individuales de las diferencias entre granjas ni ajustan por consumo, edad, sexo, raza o semana.
+
+<br>
+
+## Modelo nulo con intercepto aleatorio de animal
+
+<br>
+
+El modelo mixto más sencillo para el peso no contiene variables explicativas y únicamente incorpora un intercepto general y un intercepto aleatorio para cada animal:
+
+\[ \text{Peso}*{ij} =* \beta*0 + b*{0j} + \varepsilon{ij} \]
+
+<br>
+
+En esta expresión, (\beta*0) es el peso promedio de la población, (b*{0j}) representa la desviación particular del animal (j) respecto al promedio y (\varepsilon\_{ij}) es la desviación de la medición (i) respecto al nivel esperado para ese animal.
+
+<br>
+
+```{r}
+modelo_nulo_animal <- lmer(
+  peso_kg ~ 1 + (1 | animal_id),
+  data = datos_lmm,
+  REML = TRUE
+)
+
+summary(modelo_nulo_animal)
+```
+
+<br>
+
+La expresión `(1 | animal_id)` indica que cada animal tiene su propio intercepto. Todos los animales comparten el mismo modelo general, pero pueden situarse por encima o por debajo del intercepto poblacional.
+
+<br>
+
+Podemos extraer los componentes de varianza.
+
+<br>
+
+```{r}
+varianzas_animal <- as.data.frame(
+  VarCorr(modelo_nulo_animal)
+)
+
+varianzas_animal
+```
+
+<br>
+
+La varianza del intercepto aleatorio describe cuánto difieren los niveles medios de peso entre animales. La varianza residual describe la variabilidad de las mediciones alrededor del nivel esperado para cada animal.
+
+<br>
+
+## Correlación intraclase del animal
+
+<br>
+
+La correlación intraclase, o ICC, cuantifica qué proporción de la variabilidad total del peso se atribuye a diferencias entre animales. En un modelo con un único intercepto aleatorio se calcula como:
+
+\[ ICC\_{animal} = \frac{\sigma^2_{animal}} {\sigma\^2\_{animal} + \sigma\^2\_{residual}} \]
+
+<br>
+
+```{r}
+performance::icc(modelo_nulo_animal)
+```
+
+<br>
+
+También podemos calcularla directamente a partir de los componentes de varianza.
+
+<br>
+
+```{r}
+var_animal <- as.numeric(
+  VarCorr(modelo_nulo_animal)$animal_id[1]
+)
+
+var_residual <- sigma(modelo_nulo_animal)^2
+
+ICC_animal <- var_animal /
+  (var_animal + var_residual)
+
+ICC_animal
+```
+
+<br>
+
+Un ICC próximo a cero indica que las mediciones del mismo animal no son mucho más parecidas que las mediciones de animales diferentes. Un ICC alto indica una semejanza importante dentro de cada animal y confirma que la independencia de todas las filas sería una aproximación inadecuada.
+
+<br>
+
+## Interceptos aleatorios de animal y granja
+
+<br>
+
+Además de las diferencias individuales, puede existir variabilidad entre granjas. Ajustaremos un modelo nulo con interceptos aleatorios para granja y animal.
+
+<br>
+
+Si `animal_id` es único en toda la base, podemos utilizar dos términos separados:
+
+\[ \text{Peso}*{ijk} =* \beta*0 + u*{0k} + b{0jk} + \varepsilon\_{ijk} \]
+
+<br>
+
+Aquí, (u\_{0k}) representa la desviación de la granja (k) y (b\_{0jk}) representa la desviación del animal (j) respecto a su granja.
+
+<br>
+
+```{r}
+modelo_nulo_dos_niveles <- lmer(
+  peso_kg ~ 1 +
+    (1 | granja_id) +
+    (1 | animal_id),
+  data = datos_lmm,
+  REML = TRUE
+)
+
+summary(modelo_nulo_dos_niveles)
+```
+
+<br>
+
+Cuando los códigos de los animales solamente son únicos dentro de cada granja, debemos construir un identificador global o expresar explícitamente el anidamiento.
+
+<br>
+
+```{r}
+# Alternativa segura: crear un identificador global granja-animal.
+datos_lmm <- datos_lmm |>
+  mutate(
+    animal_granja = interaction(
+      granja_id,
+      animal_id,
+      drop = TRUE
+    )
+  )
+
+modelo_nulo_anidado <- lmer(
+  peso_kg ~ 1 +
+    (1 | granja_id) +
+    (1 | animal_granja),
+  data = datos_lmm,
+  REML = TRUE
+)
+
+summary(modelo_nulo_anidado)
+```
+
+<br>
+
+La notación `(1 | granja_id/animal_id)` es una forma abreviada de especificar un intercepto para granja y otro para animal dentro de granja. Sin embargo, crear `animal_granja` de forma explícita facilita la revisión de la estructura y evita confusiones cuando los códigos se repiten.
+
+<br>
+
+```{r}
+# Modelo equivalente mediante notación de anidamiento.
+modelo_nulo_notacion_anidada <- lmer(
+  peso_kg ~ 1 +
+    (1 | granja_id/animal_id),
+  data = datos_lmm,
+  REML = TRUE
+)
+```
+
+<br>
+
+## Variabilidad atribuible a animales y granjas
+
+<br>
+
+Podemos examinar los componentes de varianza del modelo jerárquico.
+
+<br>
+
+```{r}
+componentes_varianza <- as.data.frame(
+  VarCorr(modelo_nulo_anidado)
+) |>
+  select(grp, var1, vcov, sdcor)
+
+componentes_varianza
+```
+
+<br>
+
+```{r}
+performance::icc(
+  modelo_nulo_anidado,
+  by_group = TRUE
+)
+```
+
+<br>
+
+La varianza de granja representa diferencias sistemáticas entre explotaciones. La varianza de animal representa diferencias entre animales después de considerar su granja. La varianza residual representa diferencias entre mediciones del mismo animal que el modelo todavía no explica.
+
+<br>
+
+Un componente de varianza muy cercano a cero puede indicar que ese nivel aporta poca variabilidad adicional. También puede producir un ajuste singular, especialmente cuando existen pocas unidades o el modelo aleatorio es demasiado complejo para la información disponible.
+
+<br>
+
+## Primer modelo mixto con efectos fijos
+
+<br>
+
+Incorporaremos ahora el consumo de alimento, la edad inicial, el sexo, la raza y la semana como efectos fijos. Mantendremos interceptos aleatorios para granja y animal.
+
+<br>
+
+```{r}
+modelo_lmm <- lmer(
+  peso_kg ~
+    consumo_c +
+    edad_inicio_c +
+    sexo +
+    raza +
+    tiempo_c +
+    (1 | granja_id) +
+    (1 | animal_granja),
+  data = datos_lmm,
+  REML = TRUE
+)
+
+summary(modelo_lmm)
+```
+
+<br>
+
+Los efectos fijos describen asociaciones promedio para la población:
+
+- `consumo_c` representa el cambio medio del peso asociado con 1 kg/día adicional de consumo, manteniendo constantes las demás variables.
+- `edad_inicio_c` representa el cambio medio asociado con un mes adicional de edad inicial.
+- Los coeficientes de sexo y raza comparan cada categoría con su categoría de referencia.
+- `tiempo_c` representa el cambio medio del peso por semana de seguimiento.
+
+<br>
+
+Los efectos aleatorios representan desviaciones de cada granja y cada animal respecto al intercepto general. No se interpretan como una lista de coeficientes fijos independientes, sino como una distribución de diferencias entre unidades.
+
+<br>
+
+Podemos obtener una tabla de efectos fijos con intervalos de confianza.
+
+<br>
+
+```{r}
+efectos_fijos_lmm <- tidy(
+  modelo_lmm,
+  effects = "fixed",
+  conf.int = TRUE,
+  conf.method = "Wald"
+)
+
+efectos_fijos_lmm
+```
+
+<br>
+
+Y una tabla separada con los componentes aleatorios.
+
+<br>
+
+```{r}
+efectos_aleatorios_lmm <- tidy(
+  modelo_lmm,
+  effects = "ran_pars",
+  conf.int = TRUE,
+  conf.method = "Wald"
+)
+
+efectos_aleatorios_lmm
+```
+
+<br>
+
+## Intervalos de confianza de los efectos fijos
+
+<br>
+
+```{r}
+efectos_fijos_lmm |>
+  filter(term != "(Intercept)") |>
+  mutate(
+    term = forcats::fct_reorder(term, estimate)
+  ) |>
+  ggplot(
+    aes(x = estimate, y = term)
+  ) +
+  geom_vline(
+    xintercept = 0,
+    linetype = "dashed",
+    color = "grey45"
+  ) +
+  geom_errorbarh(
+    aes(xmin = conf.low, xmax = conf.high),
+    height = 0.20,
+    color = "steelblue4"
+  ) +
+  geom_point(
+    size = 2.5,
+    color = "steelblue4"
+  ) +
+  labs(
+    title = "Efectos fijos del modelo lineal mixto",
+    subtitle = "Estimaciones e intervalos de confianza del 95 %",
+    x = "Coeficiente estimado",
+    y = "Variable"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+Los coeficientes se expresan en kilogramos de peso. Para las variables continuas representan cambios por unidad. Para las variables categóricas representan diferencias respecto a la categoría de referencia.
+
+<br>
+
+## Comparación con la regresión lineal convencional
+
+<br>
+
+Ajustaremos una regresión lineal con los mismos efectos fijos, pero sin considerar la agrupación por granja y animal.
+
+<br>
+
+```{r}
+modelo_lm_equivalente <- lm(
+  peso_kg ~
+    consumo_c +
+    edad_inicio_c +
+    sexo +
+    raza +
+    tiempo_c,
+  data = datos_lmm
+)
+
+comparacion_coeficientes <- bind_rows(
+  tidy(
+    modelo_lm_equivalente,
+    conf.int = TRUE
+  ) |>
+    mutate(modelo = "Regresión convencional"),
+  tidy(
+    modelo_lmm,
+    effects = "fixed",
+    conf.int = TRUE,
+    conf.method = "Wald"
+  ) |>
+    mutate(modelo = "Modelo mixto")
+) |>
+  select(
+    modelo,
+    term,
+    estimate,
+    std.error,
+    conf.low,
+    conf.high,
+    p.value
+  )
+
+comparacion_coeficientes
+```
+
+<br>
+
+Las estimaciones puntuales pueden ser parecidas, pero los errores estándar y los intervalos de confianza pueden cambiar porque el modelo mixto reconoce que las filas no aportan información completamente independiente.
+
+<br>
+
+## R² marginal y condicional
+
+<br>
+
+En un modelo mixto podemos distinguir dos coeficientes de determinación:
+
+- El (R\^2) marginal representa la variabilidad descrita por los efectos fijos.
+- El (R\^2) condicional representa la variabilidad descrita conjuntamente por los efectos fijos y aleatorios.
+
+<br>
+
+```{r}
+performance::r2_nakagawa(modelo_lmm)
+```
+
+<br>
+
+Una diferencia grande entre el (R\^2) marginal y el condicional indica que las diferencias entre granjas y animales explican una parte importante de la variabilidad del peso.
+
+<br>
+
+## Interceptos estimados para animales y granjas
+
+<br>
+
+Podemos extraer las desviaciones aleatorias estimadas. Estas cantidades muestran qué unidades se sitúan por encima o por debajo del intercepto poblacional después de considerar los efectos fijos.
+
+<br>
+
+```{r}
+interceptos_aleatorios <- ranef(
+  modelo_lmm,
+  condVar = TRUE
+)
+
+head(interceptos_aleatorios$granja_id)
+head(interceptos_aleatorios$animal_granja)
+```
+
+<br>
+
+Representaremos las desviaciones de las granjas.
+
+<br>
+
+```{r}
+efectos_granja <- interceptos_aleatorios$granja_id |>
+  rownames_to_column("granja_id") |>
+  rename(desviacion_intercepto = `(Intercept)`) |>
+  arrange(desviacion_intercepto) |>
+  mutate(
+    granja_id = factor(
+      granja_id,
+      levels = granja_id
+    )
+  )
+
+ggplot(
+  efectos_granja,
+  aes(x = desviacion_intercepto, y = granja_id)
+) +
+  geom_vline(
+    xintercept = 0,
+    linetype = "dashed",
+    color = "grey45"
+  ) +
+  geom_point(color = "steelblue4", size = 2) +
+  labs(
+    title = "Desviaciones aleatorias de las granjas",
+    x = "Desviación respecto al intercepto general (kg)",
+    y = "Granja"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+Una desviación positiva indica que la granja presenta un peso medio ajustado superior al intercepto general. Una desviación negativa indica un nivel inferior. Estas estimaciones están sujetas a contracción hacia la media, especialmente en granjas con poca información.
+
+<br>
+
+## Predicciones poblacionales e individuales
+
+<br>
+
+El modelo mixto permite generar predicciones basadas únicamente en los efectos fijos o predicciones que también incorporan los efectos aleatorios de las unidades observadas.
+
+<br>
+
+```{r}
+datos_lmm <- datos_lmm |>
+  mutate(
+    prediccion_poblacional = predict(
+      modelo_lmm,
+      re.form = NA
+    ),
+    prediccion_condicional = predict(
+      modelo_lmm,
+      re.form = NULL
+    )
+  )
+
+head(
+  datos_lmm |>
+    select(
+      animal_id,
+      granja_id,
+      tiempo,
+      peso_kg,
+      prediccion_poblacional,
+      prediccion_condicional
+    )
+)
+```
+
+<br>
+
+La predicción poblacional utiliza solamente los efectos fijos y representa un animal promedio. La predicción condicional incorpora las desviaciones estimadas de la granja y del animal, por lo que suele seguir más de cerca las trayectorias observadas de las unidades incluidas en el estudio.
+
+<br>
+
+```{r}
+animal_prediccion <- datos_lmm |>
+  count(animal_granja, sort = TRUE) |>
+  slice_head(n = 1) |>
+  pull(animal_granja)
+
+datos_lmm |>
+  filter(animal_granja == animal_prediccion) |>
+  select(
+    tiempo,
+    peso_kg,
+    prediccion_poblacional,
+    prediccion_condicional
+  ) |>
+  pivot_longer(
+    cols = c(
+      peso_kg,
+      prediccion_poblacional,
+      prediccion_condicional
+    ),
+    names_to = "serie",
+    values_to = "peso"
+  ) |>
+  ggplot(
+    aes(
+      x = tiempo,
+      y = peso,
+      color = serie,
+      linetype = serie
+    )
+  ) +
+  geom_line(linewidth = 0.9) +
+  geom_point(size = 1.5) +
+  labs(
+    title = "Predicción poblacional y predicción individual",
+    x = "Semana de seguimiento",
+    y = "Peso (kg)",
+    color = NULL,
+    linetype = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom"
+  )
+```
+
+<br>
+
+## Diagnóstico básico del modelo lineal mixto
+
+<br>
+
+Los residuos del modelo mixto también deben revisarse. Buscaremos patrones de curvatura, cambios en la dispersión y observaciones extremas.
+
+<br>
+
+```{r}
+diagnostico_lmm <- tibble(
+  ajustado = fitted(modelo_lmm),
+  residuo = resid(modelo_lmm),
+  residuo_pearson = residuals(
+    modelo_lmm,
+    type = "pearson"
+  )
+)
+
+ggplot(
+  diagnostico_lmm,
+  aes(x = ajustado, y = residuo)
+) +
+  geom_point(
+    alpha = 0.15,
+    size = 1,
+    color = "grey35"
+  ) +
+  geom_hline(
+    yintercept = 0,
+    linetype = "dashed",
+    color = "firebrick"
+  ) +
+  geom_smooth(
+    method = "loess",
+    formula = y ~ x,
+    se = FALSE,
+    color = "steelblue4"
+  ) +
+  labs(
+    title = "Residuos del modelo lineal mixto",
+    x = "Peso ajustado (kg)",
+    y = "Residuo (kg)"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+```{r}
+ggplot(
+  diagnostico_lmm,
+  aes(sample = residuo_pearson)
+) +
+  stat_qq(alpha = 0.25, size = 1) +
+  stat_qq_line(
+    color = "firebrick",
+    linewidth = 0.9
+  ) +
+  labs(
+    title = "Gráfico Q-Q de los residuos del modelo mixto",
+    x = "Cuantiles teóricos",
+    y = "Cuantiles observados"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+El modelo con interceptos aleatorios representa la correlación derivada de compartir animal y granja, pero todavía supone una relación lineal con el tiempo y una varianza residual constante. Tampoco incorpora una pendiente temporal diferente para cada animal.
+
+<br>
+
+## Comprobación del ajuste singular
+
+<br>
+
+Un ajuste singular aparece cuando uno o más componentes de varianza se estiman prácticamente en cero o cuando la estructura aleatoria es demasiado compleja para los datos.
+
+<br>
+
+```{r}
+isSingular(
+  modelo_lmm,
+  tol = 1e-4
+)
+
+performance::check_singularity(modelo_lmm)
+```
+
+<br>
+
+Un resultado singular no implica necesariamente que el código sea incorrecto. Puede indicar que los datos no aportan evidencia suficiente para estimar todos los componentes aleatorios. En ese caso debemos revisar el número de granjas y animales, la estructura del diseño y la necesidad de cada término aleatorio.
+
+<br>
+
+## Actividad de interpretación del Bloque 4
+
+<br>
+
+1.  ¿Cuántas mediciones aporta en promedio cada animal?
+2.  ¿Cada animal pertenece a una única granja?
+3.  ¿Las trayectorias individuales muestran diferencias de nivel entre animales?
+4.  ¿Qué representa el intercepto aleatorio de animal?
+5.  ¿Qué representa el intercepto aleatorio de granja?
+6.  ¿Qué proporción de la variabilidad se atribuye a diferencias entre animales?
+7.  ¿Qué proporción se atribuye a las granjas?
+8.  ¿Cómo se interpreta el coeficiente de la semana en el modelo mixto?
+9.  ¿Cambian los errores estándar respecto a la regresión convencional?
+10. ¿Cuál es la diferencia entre el (R\^2) marginal y el condicional?
+11. ¿En qué se diferencian una predicción poblacional y una predicción condicional?
+12. ¿El modelo presenta un ajuste singular?
+
+<br>
+
+# Bloque 5. GLMM y respuestas no continuas
+
+<br>
+
+## Diferencia entre un modelo lineal mixto y un GLMM
+
+<br>
+
+El modelo lineal mixto utilizado en el bloque anterior es apropiado cuando la respuesta es cuantitativa continua y puede representarse razonablemente mediante una distribución normal alrededor de la media. El peso, expresado en kilogramos, es un ejemplo de este tipo de respuesta.
+
+<br>
+
+Un modelo lineal generalizado mixto, o GLMM, amplía esta estructura para respuestas que no son continuas ni normales. Algunos ejemplos son:
+
+- Respuestas binarias, como presencia o ausencia de una condición.
+- Conteos, como el número de visitas veterinarias.
+- Proporciones, como el número de animales enfermos entre los examinados.
+
+<br>
+
+Un GLMM combina tres elementos:
+
+1.  Una distribución para la respuesta, como binomial o Poisson.
+2.  Una función de enlace que relaciona la media con los predictores.
+3.  Efectos aleatorios para representar la agrupación y las mediciones repetidas.
+
+<br>
+
+Para una respuesta binaria utilizaremos una distribución binomial y un enlace logit. El modelo se expresa como:
+
+\[ \log\left( \frac{p_{ijk}}{1-p_{ijk}} \right) = \beta*0 +* \beta*1X*{1ijk} + \cdots + u_k+b{jk} \]
+
+<br>
+
+La cantidad (p\_{ijk}) es la probabilidad de que la observación presente el resultado de interés. El término (p/(1-p)) corresponde a las odds, y su logaritmo es el logit.
+
+<br>
+
+## Construcción de una respuesta binaria
+
+<br>
+
+La base contiene una puntuación de salud de 0 a 4. Para fines didácticos construiremos una respuesta binaria denominada `salud_alta_bin`, que tomará el valor 1 cuando la puntuación sea igual o superior a 3 y el valor 0 cuando sea inferior a 3.
+
+<br>
+
+Este punto de corte es una decisión didáctica. En una investigación real debería definirse mediante criterios clínicos, productivos o previamente establecidos, y no seleccionarse después de observar los resultados.
+
+<br>
+
+```{r}
+datos_glmm <- datos_b2 |>
+  select(
+    animal_id,
+    granja_id,
+    tiempo,
+    salud_score_0_4,
+    consumo_kg_dia,
+    edad_inicio_meses,
+    sexo,
+    raza
+  ) |>
+  mutate(
+    salud_num = as.numeric(
+      as.character(salud_score_0_4)
+    ),
+    salud_alta_bin = case_when(
+      is.na(salud_num) ~ NA_real_,
+      salud_num >= 3 ~ 1,
+      salud_num < 3 ~ 0
+    )
+  ) |>
+  drop_na(
+    animal_id,
+    granja_id,
+    tiempo,
+    salud_alta_bin,
+    consumo_kg_dia,
+    edad_inicio_meses,
+    sexo,
+    raza
+  ) |>
+  mutate(
+    animal_id = droplevels(as.factor(animal_id)),
+    granja_id = droplevels(as.factor(granja_id)),
+    sexo = droplevels(as.factor(sexo)),
+    raza = droplevels(as.factor(raza)),
+    animal_granja = interaction(
+      granja_id,
+      animal_id,
+      drop = TRUE
+    ),
+    tiempo_c = tiempo - mean(tiempo),
+    consumo_c = consumo_kg_dia - mean(consumo_kg_dia),
+    edad_inicio_c = edad_inicio_meses -
+      mean(edad_inicio_meses)
+  )
+
+# Comprobar la codificación.
+count(datos_glmm, salud_score_0_4, salud_alta_bin)
+```
+
+<br>
+
+Si `salud_score_0_4` ya fuera numérica, también podríamos construir la respuesta directamente con `if_else(salud_score_0_4 >= 3, 1, 0)`. La conversión utilizada aquí permite trabajar con una variable almacenada como factor ordinal.
+
+<br>
+
+## Frecuencia y evolución de la respuesta binaria
+
+<br>
+
+Antes de ajustar el modelo debemos comprobar cuántos ceros y unos existen. Una respuesta extremadamente desequilibrada puede dificultar la estimación.
+
+<br>
+
+```{r}
+resumen_salud_binaria <- datos_glmm |>
+  count(salud_alta_bin, name = "n") |>
+  mutate(
+    porcentaje = 100 * n / sum(n)
+  )
+
+resumen_salud_binaria
+```
+
+<br>
+
+```{r}
+ggplot(
+  resumen_salud_binaria,
+  aes(
+    x = factor(salud_alta_bin),
+    y = porcentaje,
+    fill = factor(salud_alta_bin)
+  )
+) +
+  geom_col(width = 0.70) +
+  geom_text(
+    aes(label = paste0(round(porcentaje, 1), "%")),
+    vjust = -0.3
+  ) +
+  labs(
+    title = "Distribución de la respuesta binaria de salud",
+    x = "Salud alta",
+    y = "Porcentaje de mediciones",
+    fill = "Salud alta"
+  ) +
+  scale_x_discrete(
+    labels = c("0" = "No", "1" = "Sí")
+  ) +
+  guides(fill = "none") +
+  expand_limits(
+    y = max(resumen_salud_binaria$porcentaje) * 1.10
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+Calcularemos también la proporción semanal de mediciones con salud alta.
+
+<br>
+
+```{r}
+salud_alta_semana_glmm <- datos_glmm |>
+  group_by(tiempo) |>
+  summarise(
+    n = n(),
+    casos = sum(salud_alta_bin),
+    proporcion = mean(salud_alta_bin),
+    .groups = "drop"
+  )
+
+ggplot(
+  salud_alta_semana_glmm,
+  aes(x = tiempo, y = proporcion)
+) +
+  geom_line(color = "steelblue4", linewidth = 0.9) +
+  geom_point(color = "steelblue4", size = 1.3) +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1),
+    limits = c(0, 1)
+  ) +
+  labs(
+    title = "Proporción de salud alta por semana",
+    x = "Semana de seguimiento",
+    y = "Proporción con salud alta"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+Las proporciones semanales describen los datos, pero no ajustan por las características de los animales ni consideran que un mismo animal contribuye con varias mediciones.
+
+<br>
+
+## Regresión logística convencional como punto de partida
+
+<br>
+
+Antes del modelo mixto, ajustaremos una regresión logística convencional. Este modelo utiliza una distribución binomial y un enlace logit, pero todavía considera todas las filas como independientes.
+
+<br>
+
+```{r}
+modelo_logistico <- glm(
+  salud_alta_bin ~
+    consumo_c +
+    edad_inicio_c +
+    sexo +
+    raza +
+    tiempo_c,
+  data = datos_glmm,
+  family = binomial(link = "logit")
+)
+
+summary(modelo_logistico)
+```
+
+<br>
+
+Los coeficientes se encuentran en la escala logit, es decir, en log-odds. Esta escala es útil para construir el modelo, pero suele ser poco intuitiva para la interpretación aplicada.
+
+<br>
+
+```{r}
+tidy(
+  modelo_logistico,
+  conf.int = TRUE
+)
+```
+
+<br>
+
+## Modelo logístico mixto con glmer()
+
+<br>
+
+Incorporaremos interceptos aleatorios para granja y animal. La función `glmer()` permite ajustar el GLMM binomial.
+
+<br>
+
+```{r}
+modelo_glmm <- glmer(
+  salud_alta_bin ~
+    consumo_c +
+    edad_inicio_c +
+    sexo +
+    raza +
+    tiempo_c +
+    (1 | granja_id) +
+    (1 | animal_granja),
+  data = datos_glmm,
+  family = binomial(link = "logit"),
+  nAGQ = 0,
+  control = glmerControl(
+    optimizer = "bobyqa",
+    optCtrl = list(maxfun = 20000)
+  )
+)
+
+
+summary(modelo_glmm)
+```
+
+<br>
+
+El argumento `family = binomial(link = "logit")` indica que la respuesta es binaria y que se modela el logaritmo de las odds. Los términos aleatorios representan diferencias persistentes en la propensión a presentar salud alta entre granjas y entre animales.
+
+<br>
+
+El optimizador `bobyqa` y el aumento de `maxfun` pueden ayudar en modelos que requieren más iteraciones. No deben utilizarse para ocultar problemas estructurales: si aparecen advertencias de convergencia, debemos revisar los datos y la complejidad del modelo.
+
+<br>
+
+## Efectos fijos y odds ratios
+
+<br>
+
+En una regresión logística, los coeficientes están expresados en log-odds. Al exponenciarlos obtenemos odds ratios:
+
+\[ OR = \exp(\beta) \]
+
+<br>
+
+Un odds ratio mayor que 1 indica que las odds del resultado aumentan. Un valor menor que 1 indica que disminuyen. Un valor igual a 1 indica ausencia de cambio en las odds.
+
+<br>
+
+```{r}
+OR_glmm <- tidy(
+  modelo_glmm,
+  effects = "fixed",
+  conf.int = TRUE,
+  conf.method = "Wald",
+  exponentiate = TRUE
+)
+
+OR_glmm
+```
+
+<br>
+
+La interpretación depende del tipo de predictor:
+
+- Para `consumo_c`, el OR representa el cambio multiplicativo en las odds de salud alta por 1 kg/día adicional de consumo, manteniendo constantes las demás variables y condicionando por los efectos aleatorios.
+- Para `edad_inicio_c`, representa el cambio en las odds por un mes adicional de edad inicial.
+- Para `tiempo_c`, representa el cambio en las odds por una semana adicional.
+- Para sexo y raza, compara cada categoría con la categoría de referencia.
+
+<br>
+
+Por ejemplo, un OR de 1,20 representa odds 20 % mayores, mientras que un OR de 0,80 representa odds 20 % menores. Esta interpretación se refiere a las odds, no directamente a la probabilidad.
+
+<br>
+
+Podemos añadir una columna con el cambio porcentual en las odds.
+
+<br>
+
+```{r}
+OR_glmm_interpretacion <- OR_glmm |>
+  mutate(
+    cambio_porcentual_odds = 100 * (estimate - 1)
+  ) |>
+  select(
+    term,
+    estimate,
+    conf.low,
+    conf.high,
+    p.value,
+    cambio_porcentual_odds
+  )
+
+OR_glmm_interpretacion
+```
+
+<br>
+
+Un cambio porcentual negativo indica una reducción de las odds. Debemos informar siempre la categoría de referencia y la unidad de incremento de las variables continuas.
+
+<br>
+
+## Gráfico de odds ratios
+
+<br>
+
+```{r}
+OR_glmm |>
+  filter(term != "(Intercept)") |>
+  mutate(
+    term = forcats::fct_reorder(term, estimate)
+  ) |>
+  ggplot(
+    aes(x = estimate, y = term)
+  ) +
+  geom_vline(
+    xintercept = 1,
+    linetype = "dashed",
+    color = "grey45"
+  ) +
+  geom_errorbarh(
+    aes(xmin = conf.low, xmax = conf.high),
+    height = 0.20,
+    color = "steelblue4"
+  ) +
+  geom_point(
+    size = 2.5,
+    color = "steelblue4"
+  ) +
+  scale_x_log10() +
+  labs(
+    title = "Odds ratios del modelo logístico mixto",
+    subtitle = "Estimaciones e intervalos de confianza del 95 %",
+    x = "Odds ratio, escala logarítmica",
+    y = "Variable"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+La línea vertical se sitúa en OR = 1, que corresponde a ausencia de asociación en la escala de las odds. La escala logarítmica representa de forma simétrica los incrementos y las reducciones multiplicativas.
+
+<br>
+
+## Efectos aleatorios del GLMM
+
+<br>
+
+Los componentes aleatorios describen la variabilidad entre granjas y animales en la propensión basal a presentar salud alta.
+
+<br>
+
+```{r}
+tidy(
+  modelo_glmm,
+  effects = "ran_pars",
+  conf.int = TRUE,
+  conf.method = "Wald"
+)
+```
+
+<br>
+
+```{r}
+VarCorr(modelo_glmm)
+```
+
+<br>
+
+Una varianza elevada del intercepto de animal indica diferencias importantes entre animales que no quedan explicadas por consumo, edad, sexo, raza y semana. Una varianza elevada de granja indica diferencias persistentes entre explotaciones.
+
+<br>
+
+En un modelo logístico no se estima una varianza residual en la misma forma que en un modelo lineal. La variabilidad de nivel individual está vinculada a la distribución binomial. Por ello, los componentes de varianza no deben compararse directamente con los de un modelo lineal mixto.
+
+<br>
+
+## Probabilidades predichas
+
+<br>
+
+Las probabilidades suelen ser más intuitivas que las log-odds. Calcularemos predicciones poblacionales para diferentes niveles de consumo, manteniendo las variables restantes en valores de referencia.
+
+<br>
+
+```{r}
+consumos_prediccion <- seq(
+  quantile(datos_glmm$consumo_c, 0.05),
+  quantile(datos_glmm$consumo_c, 0.95),
+  length.out = 100
+)
+
+nuevos_datos_glmm <- expand_grid(
+  consumo_c = consumos_prediccion,
+  edad_inicio_c = 0,
+  tiempo_c = 0,
+  sexo = levels(datos_glmm$sexo)[1],
+  raza = levels(datos_glmm$raza)[1]
+) |>
+  mutate(
+    sexo = factor(
+      sexo,
+      levels = levels(datos_glmm$sexo)
+    ),
+    raza = factor(
+      raza,
+      levels = levels(datos_glmm$raza)
+    )
+  )
+
+nuevos_datos_glmm <- nuevos_datos_glmm |>
+  mutate(
+    probabilidad = predict(
+      modelo_glmm,
+      newdata = nuevos_datos_glmm,
+      type = "response",
+      re.form = NA
+    ),
+    consumo_kg_dia = consumo_c +
+      mean(datos_glmm$consumo_kg_dia)
+  )
+
+head(nuevos_datos_glmm)
+```
+
+<br>
+
+```{r}
+ggplot(
+  nuevos_datos_glmm,
+  aes(x = consumo_kg_dia, y = probabilidad)
+) +
+  geom_line(
+    color = "steelblue4",
+    linewidth = 1
+  ) +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1),
+    limits = c(0, 1)
+  ) +
+  labs(
+    title = "Probabilidad predicha de salud alta",
+    subtitle = "Predicción poblacional para las categorías de referencia",
+    x = "Consumo de alimento (kg/día)",
+    y = "Probabilidad predicha"
+  ) +
+  theme_minimal()
+```
+
+<br>
+
+La curva muestra cómo cambia la probabilidad predicha con el consumo para un animal de las categorías de referencia, con edad inicial y semana centradas en sus promedios. Como `re.form = NA`, la predicción no incorpora desviaciones específicas de animales o granjas.
+
+<br>
+
+## Diferencia entre odds y probabilidad
+
+<br>
+
+La probabilidad y las odds están relacionadas, pero no son equivalentes:
+
+\[ Odds = \frac{p}{1-p} \]
+
+\[ p = \frac{Odds}{1+Odds} \]
+
+<br>
+
+```{r}
+ejemplo_odds <- tibble(
+  probabilidad = c(0.10, 0.25, 0.50, 0.75, 0.90)
+) |>
+  mutate(
+    odds = probabilidad / (1 - probabilidad)
+  )
+
+ejemplo_odds
+```
+
+<br>
+
+Un mismo odds ratio puede producir cambios de probabilidad diferentes según la probabilidad inicial. Por esta razón, conviene presentar los odds ratios junto con probabilidades predichas en escenarios relevantes.
+
+<br>
+
+## Comparación entre el modelo logístico y el GLMM
+
+<br>
+
+Podemos comparar las estimaciones del modelo que ignora la agrupación y del modelo mixto.
+
+<br>
+
+```{r}
+comparacion_logistica <- bind_rows(
+  tidy(
+    modelo_logistico,
+    conf.int = TRUE,
+    exponentiate = TRUE
+  ) |>
+    mutate(modelo = "Logístico convencional"),
+  tidy(
+    modelo_glmm,
+    effects = "fixed",
+    conf.int = TRUE,
+    conf.method = "Wald",
+    exponentiate = TRUE
+  ) |>
+    mutate(modelo = "Logístico mixto")
+) |>
+  select(
+    modelo,
+    term,
+    estimate,
+    std.error,
+    conf.low,
+    conf.high,
+    p.value
+  )
+
+comparacion_logistica
+```
+
+<br>
+
+Las diferencias entre ambos modelos pueden aparecer tanto en los odds ratios como en sus errores estándar. El GLMM condiciona la interpretación a las diferencias aleatorias entre animales y granjas y representa la correlación de las observaciones agrupadas.
+
+<br>
+
+## R² marginal y condicional del GLMM
+
+<br>
+
+```{r}
+performance::r2_nakagawa(modelo_glmm)
+```
+
+<br>
+
+El (R\^2) marginal resume la contribución de los efectos fijos. El (R\^2) condicional incorpora también la variabilidad asociada con animales y granjas. En un GLMM estas medidas son aproximaciones y no deben interpretarse exactamente como el (R\^2) de una regresión lineal convencional.
+
+<br>
+
+## Comprobación de convergencia y singularidad
+
+<br>
+
+```{r}
+modelo_glmm@optinfo$conv$lme4$messages
+
+isSingular(
+  modelo_glmm,
+  tol = 1e-4
+)
+
+performance::check_singularity(modelo_glmm)
+```
+
+<br>
+
+Si no aparecen mensajes de convergencia y el modelo no es singular, el ajuste numérico es una señal favorable, aunque no garantiza que el modelo sea científicamente adecuado. También debemos revisar la codificación de la respuesta, las categorías poco frecuentes, la separación y la complejidad de la estructura aleatoria.
+
+<br>
+
+## Predicciones observadas y predichas por semana
+
+<br>
+
+Como comprobación descriptiva, compararemos la proporción observada de salud alta y la probabilidad media predicha en cada semana.
+
+<br>
+
+```{r}
+datos_glmm <- datos_glmm |>
+  mutate(
+    probabilidad_condicional = predict(
+      modelo_glmm,
+      type = "response",
+      re.form = NULL
+    ),
+    probabilidad_poblacional = predict(
+      modelo_glmm,
+      type = "response",
+      re.form = NA
+    )
+  )
+
+ajuste_semana_glmm <- datos_glmm |>
+  group_by(tiempo) |>
+  summarise(
+    proporcion_observada = mean(salud_alta_bin),
+    prediccion_condicional = mean(probabilidad_condicional),
+    prediccion_poblacional = mean(probabilidad_poblacional),
+    .groups = "drop"
+  ) |>
+  pivot_longer(
+    cols = c(
+      proporcion_observada,
+      prediccion_condicional,
+      prediccion_poblacional
+    ),
+    names_to = "serie",
+    values_to = "proporcion"
+  )
+
+ggplot(
+  ajuste_semana_glmm,
+  aes(
+    x = tiempo,
+    y = proporcion,
+    color = serie,
+    linetype = serie
+  )
+) +
+  geom_line(linewidth = 0.9) +
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1),
+    limits = c(0, 1)
+  ) +
+  labs(
+    title = "Salud alta observada y predicha por semana",
+    x = "Semana de seguimiento",
+    y = "Proporción o probabilidad media",
+    color = NULL,
+    linetype = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom"
+  )
+```
+
+<br>
+
+La predicción condicional incorpora la información específica de los animales y granjas observados. La predicción poblacional utiliza únicamente los efectos fijos. Por ello, la primera puede reproducir más estrechamente los datos utilizados para ajustar el modelo.
+
+<br>
+
+## Limitaciones del GLMM binario
+
+<br>
+
+La transformación de una puntuación ordinal de 0 a 4 en una respuesta binaria simplifica el análisis, pero también elimina información. Las puntuaciones 0, 1 y 2 quedan agrupadas, al igual que las puntuaciones 3 y 4.
+
+<br>
+
+Si la escala ordinal tiene significado científico, un modelo ordinal mixto podría ser más apropiado. La elección entre un análisis binario y uno ordinal debe basarse en la pregunta científica y en la definición del resultado, no únicamente en la facilidad del análisis.
+
+<br>
+
+El modelo supone además que el cambio temporal es lineal en la escala logit y que los efectos del consumo, la edad y la semana son iguales para todos los animales. También supone que la estructura aleatoria de interceptos representa suficientemente la dependencia. Estas hipótesis deben revisarse y justificarse.
+
+<br>
+
+## Resumen de interpretación del GLMM
+
+<br>
+
+Para comunicar un modelo logístico mixto conviene indicar:
+
+1.  Cómo se definió el resultado binario y cuál es el evento codificado como 1.
+2.  Qué distribución y función de enlace se utilizaron.
+3.  Cuáles fueron los efectos fijos incluidos.
+4.  Qué unidades se representaron mediante efectos aleatorios.
+5.  Cuáles son las categorías de referencia.
+6.  Los odds ratios y sus intervalos de confianza.
+7.  Probabilidades predichas para escenarios interpretables.
+8.  Los componentes de varianza y la importancia de la agrupación.
+9.  Los resultados de convergencia y singularidad.
+10. Las limitaciones de convertir una respuesta ordinal en binaria.
+
+<br>
+
+```{r}
+tabla_final_glmm <- OR_glmm |>
+  mutate(
+    across(
+      c(estimate, conf.low, conf.high, p.value),
+      ~ round(.x, 3)
+    )
+  ) |>
+  rename(
+    odds_ratio = estimate,
+    IC95_inferior = conf.low,
+    IC95_superior = conf.high,
+    valor_p = p.value
+  )
+
+tabla_final_glmm
+```
+
+<br>
+
+## Actividad de interpretación del Bloque 5
+
+<br>
+
+1.  ¿Por qué un modelo lineal mixto no es adecuado para una respuesta 0/1?
+2.  ¿Qué criterio se utilizó para construir `salud_alta_bin`?
+3.  ¿Qué proporción de las mediciones presenta salud alta?
+4.  ¿Cuál es el evento modelado por `glmer()`?
+5.  ¿Qué representa el enlace logit?
+6.  ¿Cómo se interpreta el OR del consumo?
+7.  ¿Cómo se interpreta un OR asociado con una categoría de raza?
+8.  ¿Cuál es la categoría de referencia para sexo y raza?
+9.  ¿Qué diferencia existe entre odds y probabilidad?
+10. ¿Por qué un OR de 2 no significa que la probabilidad se duplique necesariamente?
+11. ¿Qué representan los interceptos aleatorios de animal y granja?
+12. ¿Cambian los resultados respecto a la regresión logística convencional?
+13. ¿Cuál es la diferencia entre una predicción poblacional y una condicional?
+14. ¿El modelo presenta problemas de convergencia o singularidad?
+15. ¿Qué información se pierde al convertir la puntuación ordinal en binaria?
+
+<br>
+
+Al finalizar estos bloques debemos comprender por qué las mediciones repetidas requieren métodos que representen su dependencia. El modelo lineal mixto permite analizar una respuesta continua, como el peso, incorporando diferencias entre animales y granjas. El GLMM amplía esta estructura para respuestas no continuas, como una condición binaria de salud.
+
+<br>
+
+Los efectos fijos resumen asociaciones promedio, mientras que los efectos aleatorios describen variabilidad entre las unidades agrupadas. En la regresión logística mixta, los coeficientes pueden transformarse en odds ratios, pero su interpretación debe complementarse con probabilidades predichas y con una descripción clara de las categorías de referencia y del evento analizado.
