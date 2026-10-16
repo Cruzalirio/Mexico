@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Clustering y PCA – Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal</title>
+<title>10&nbsp; Capítulo 5. Segmentación y reducción de dimensionalidad – Análisis de Datos Espacio-Temporales y Aprendizaje Estadístico en Ciencia Animal</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -290,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_05.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clustering y PCA</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_05.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 5. Segmentación y reducción de dimensionalidad</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -371,31 +371,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introducción al aprendizaje estadístico</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regresión y clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Capítulo 2. Métodos de regresión y clasificación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Árboles y Random Forest</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Capítulo 3. Métodos basados en árboles</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Redes neuronales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Capítulo 4. Introducción a las redes neuronales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../modulos/ml_05.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clustering y PCA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 5. Segmentación y reducción de dimensionalidad</span></span></a>
   </div>
 </li>
       </ul>
@@ -433,12 +433,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#temas" id="toc-temas" class="nav-link active" data-scroll-target="#temas"><span class="header-section-number">11</span> Temas</a>
-  <ul class="collapse">
-  <li><a href="#k-means" id="toc-k-means" class="nav-link" data-scroll-target="#k-means"><span class="header-section-number">11.1</span> K-means</a></li>
-  <li><a href="#clustering-jerárquico" id="toc-clustering-jerárquico" class="nav-link" data-scroll-target="#clustering-jerárquico"><span class="header-section-number">11.2</span> Clustering jerárquico</a></li>
-  <li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca"><span class="header-section-number">11.3</span> PCA</a></li>
-  </ul></li>
+  <li><a href="#construcción-de-perfiles-de-granja" id="toc-construcción-de-perfiles-de-granja" class="nav-link active" data-scroll-target="#construcción-de-perfiles-de-granja"><span class="header-section-number">10.1</span> Construcción de perfiles de granja</a></li>
+  <li><a href="#selección-y-estandarización-de-variables" id="toc-selección-y-estandarización-de-variables" class="nav-link" data-scroll-target="#selección-y-estandarización-de-variables"><span class="header-section-number">10.2</span> Selección y estandarización de variables</a></li>
+  <li><a href="#número-de-conglomerados" id="toc-número-de-conglomerados" class="nav-link" data-scroll-target="#número-de-conglomerados"><span class="header-section-number">10.3</span> Número de conglomerados</a></li>
+  <li><a href="#k-means" id="toc-k-means" class="nav-link" data-scroll-target="#k-means"><span class="header-section-number">10.4</span> K-means</a></li>
+  <li><a href="#caracterización-de-los-grupos" id="toc-caracterización-de-los-grupos" class="nav-link" data-scroll-target="#caracterización-de-los-grupos"><span class="header-section-number">10.5</span> Caracterización de los grupos</a></li>
+  <li><a href="#análisis-de-componentes-principales" id="toc-análisis-de-componentes-principales" class="nav-link" data-scroll-target="#análisis-de-componentes-principales"><span class="header-section-number">10.6</span> Análisis de componentes principales</a></li>
+  <li><a href="#variables-asociadas-con-los-componentes" id="toc-variables-asociadas-con-los-componentes" class="nav-link" data-scroll-target="#variables-asociadas-con-los-componentes"><span class="header-section-number">10.7</span> Variables asociadas con los componentes</a></li>
+  <li><a href="#clustering-jerárquico" id="toc-clustering-jerárquico" class="nav-link" data-scroll-target="#clustering-jerárquico"><span class="header-section-number">10.8</span> Clustering jerárquico</a></li>
+  <li><a href="#calidad-mediante-siluetas" id="toc-calidad-mediante-siluetas" class="nav-link" data-scroll-target="#calidad-mediante-siluetas"><span class="header-section-number">10.9</span> Calidad mediante siluetas</a></li>
+  <li><a href="#distribución-geográfica-de-los-conglomerados" id="toc-distribución-geográfica-de-los-conglomerados" class="nav-link" data-scroll-target="#distribución-geográfica-de-los-conglomerados"><span class="header-section-number">10.10</span> Distribución geográfica de los conglomerados</a></li>
+  <li><a href="#actividad-de-interpretación" id="toc-actividad-de-interpretación" class="nav-link" data-scroll-target="#actividad-de-interpretación"><span class="header-section-number">10.11</span> Actividad de interpretación</a></li>
   </ul>
 </nav>
     </div>
@@ -446,9 +451,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_05.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clustering y PCA</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modulos/ml_01.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../modulos/ml_05.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 5. Segmentación y reducción de dimensionalidad</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clustering y PCA</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Capítulo 5. Segmentación y reducción de dimensionalidad</span></h1>
 </div>
 
 
@@ -465,34 +470,869 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="temas" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Temas</h1>
-<section id="k-means" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="k-means"><span class="header-section-number">11.1</span> K-means</h2>
-</section>
-<section id="clustering-jerárquico" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="clustering-jerárquico"><span class="header-section-number">11.2</span> Clustering jerárquico</h2>
-</section>
-<section id="pca" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="pca"><span class="header-section-number">11.3</span> PCA</h2>
+<p><br></p>
+<p>En este capítulo utilizaremos métodos no supervisados para identificar perfiles de granjas y representar su semejanza en pocas dimensiones. Trabajaremos con una fila por explotación, porque el objetivo es segmentar granjas y no agrupar las miles de mediciones repetidas de los animales.</p>
+<p><br></p>
+<p>Los conglomerados son construcciones algorítmicas. No deben convertirse automáticamente en categorías biológicas o administrativas. Su interpretación requiere revisar las variables utilizadas, la escala, la estabilidad y la distribución geográfica de los grupos.</p>
+<p><br></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"datos"</span>,<span class="st">"mastitis.csv"</span>))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>km <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(<span class="fu">scale</span>(datos),<span class="at">centers=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c(</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   "tidyverse", "cluster", "factoextra",</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   "tidymodels", "sf", "patchwork"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ))</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pr <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(<span class="fu">scale</span>(datos))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar los paquetes si es necesario.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c(</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   "sf", "spdep", "spatialreg", "tidyverse",</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   "readxl", "Matrix"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ))</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatialreg)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre del archivo Excel.</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>archivo <span class="ot">&lt;-</span> <span class="st">"../datos/base_borregos_espaciotemporal_Hidalgo.xlsx"</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Consultar las hojas disponibles.</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(archivo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "datos_long"    "granja_tiempo" "animales"      "granjas"      
+[5] "W_vecindad"    "distancias_km" "diccionario"   "LEEME"        </code></pre>
 </div>
-
-
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importar la tabla longitudinal.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(archivo, <span class="at">sheet =</span> <span class="st">"datos_long"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>animales_muestra <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(animal_id) <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">prop =</span> <span class="fl">0.2</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>datos_b2 <span class="ot">&lt;-</span> datos <span class="sc">|&gt;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(animales_muestra, <span class="at">by =</span> <span class="st">"animal_id"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>datos_b2 <span class="ot">&lt;-</span> datos_b2 <span class="sc">|&gt;</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">animal_id =</span> <span class="fu">as.factor</span>(animal_id),</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">granja_id =</span> <span class="fu">as.factor</span>(granja_id),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">sexo =</span> <span class="fu">as.factor</span>(sexo),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">raza =</span> <span class="fu">as.factor</span>(raza),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">tratamiento =</span> <span class="fu">as.factor</span>(tratamiento),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">sistema_produccion =</span> <span class="fu">as.factor</span>(sistema_produccion),</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_score_0_4 =</span> <span class="fu">factor</span>(</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>      salud_score_0_4,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_alta =</span> <span class="fu">as.factor</span>(salud_alta),</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">periodo =</span> <span class="fu">cut</span>(</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      tiempo,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="cn">Inf</span>),</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 1-20"</span>,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 21-40"</span>,</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 41-60"</span>,</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 61-80"</span>,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Semanas 81-100"</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar que los objetos de los bloques anteriores están disponibles.</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(datos_b2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10000    29</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(datos_b2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 10,000
+Columns: 29
+$ animal_id              &lt;fct&gt; A004, A004, A004, A004, A004, A004, A004, A004,…
+$ tiempo                 &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, …
+$ granja_id              &lt;fct&gt; G01, G01, G01, G01, G01, G01, G01, G01, G01, G0…
+$ sexo                   &lt;fct&gt; Macho, Macho, Macho, Macho, Macho, Macho, Macho…
+$ edad_inicio_meses      &lt;dbl&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,…
+$ raza                   &lt;fct&gt; Raza_B, Raza_B, Raza_B, Raza_B, Raza_B, Raza_B,…
+$ longitud               &lt;dbl&gt; -98.33413, -98.33413, -98.33413, -98.33413, -98…
+$ latitud                &lt;dbl&gt; 19.65949, 19.65949, 19.65949, 19.65949, 19.6594…
+$ zona                   &lt;chr&gt; "Sur", "Sur", "Sur", "Sur", "Sur", "Sur", "Sur"…
+$ tamano_granja          &lt;chr&gt; "Grande", "Grande", "Grande", "Grande", "Grande…
+$ sistema_produccion     &lt;fct&gt; Extensivo, Extensivo, Extensivo, Extensivo, Ext…
+$ efecto_granja          &lt;dbl&gt; 0.6536355, 0.6536355, 0.6536355, 0.6536355, 0.6…
+$ efecto_animal          &lt;dbl&gt; 2.413296, 2.413296, 2.413296, 2.413296, 2.41329…
+$ peso_inicial           &lt;dbl&gt; 37.42929, 37.42929, 37.42929, 37.42929, 37.4292…
+$ fecha                  &lt;dttm&gt; 2026-01-05, 2026-01-12, 2026-01-19, 2026-01-26…
+$ temperatura_C          &lt;dbl&gt; 15.88818, 20.48193, 20.39116, 20.47973, 18.3227…
+$ humedad_pct            &lt;dbl&gt; 60.32583, 64.99599, 63.95246, 54.16418, 64.4185…
+$ precipitacion_mm       &lt;dbl&gt; 1.6688677, 5.3912852, 5.4537042, 4.8266453, 8.4…
+$ consumo_kg_dia         &lt;dbl&gt; 1.339560, 1.561999, 1.480853, 1.654302, 1.50944…
+$ consumo_agua_l_dia     &lt;dbl&gt; 3.809575, 4.526432, 4.647925, 5.197635, 4.78052…
+$ salud_score_0_4        &lt;ord&gt; 1, 1, 1, 1, 0, 2, 3, 2, 2, 1, 1, 3, 3, 0, 2, 2,…
+$ salud_alta             &lt;fct&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0,…
+$ actividad_h_dia        &lt;dbl&gt; 7.805707, 4.988635, 5.757200, 4.963114, 5.55975…
+$ ganancia_semanal_kg    &lt;dbl&gt; 0.34846627, 0.17276523, 0.35894263, 0.28918360,…
+$ peso_kg                &lt;dbl&gt; 37.75597, 37.95950, 38.33896, 38.58755, 38.8099…
+$ produccion_lana_kg     &lt;dbl&gt; 0.12568442, 0.10190917, 0.09494479, 0.09752781,…
+$ n_visitas_veterinarias &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,…
+$ tratamiento            &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, Si,…
+$ periodo                &lt;fct&gt; Semanas 1-20, Semanas 1-20, Semanas 1-20, Seman…</code></pre>
+</div>
+</div>
+<p><br></p>
+<section id="construcción-de-perfiles-de-granja" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="construcción-de-perfiles-de-granja"><span class="header-section-number">10.1</span> Construcción de perfiles de granja</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>perfiles_granja_ml <span class="ot">&lt;-</span> datos_b2 <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    granja_id,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    zona,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    sistema_produccion,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    tamano_granja,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    longitud,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    latitud</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">peso_medio =</span> <span class="fu">mean</span>(peso_kg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">ganancia_media =</span> <span class="fu">mean</span>(ganancia_semanal_kg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">consumo_medio =</span> <span class="fu">mean</span>(consumo_kg_dia, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">agua_media =</span> <span class="fu">mean</span>(consumo_agua_l_dia, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">actividad_media =</span> <span class="fu">mean</span>(actividad_h_dia, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperatura_media =</span> <span class="fu">mean</span>(temperatura_C, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">humedad_media =</span> <span class="fu">mean</span>(humedad_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">precipitacion_media =</span> <span class="fu">mean</span>(precipitacion_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_media =</span> <span class="fu">mean</span>(</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(salud_score_0_4)),</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">visitas_medias =</span> <span class="fu">mean</span>(n_visitas_veterinarias, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">lana_media =</span> <span class="fu">mean</span>(produccion_lana_kg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_animales =</span> <span class="fu">n_distinct</span>(animal_id),</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>      <span class="fu">where</span>(is.numeric),</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">ifelse</span>(<span class="fu">is.nan</span>(.x), <span class="cn">NA_real_</span>, .x)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(perfiles_granja_ml)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 45
+Columns: 18
+$ granja_id           &lt;fct&gt; G01, G02, G04, G05, G07, G08, G09, G10, G11, G12, …
+$ zona                &lt;chr&gt; "Sur", "Norte", "Centro", "Centro", "Norte", "Nort…
+$ sistema_produccion  &lt;fct&gt; Extensivo, Semi-intensivo, Semi-intensivo, Semi-in…
+$ tamano_granja       &lt;chr&gt; "Grande", "Mediana", "Mediana", "Mediana", "Pequen…
+$ longitud            &lt;dbl&gt; -98.33413, -99.06099, -98.97805, -98.92374, -99.05…
+$ latitud             &lt;dbl&gt; 19.65949, 20.39721, 20.08023, 20.07241, 20.35439, …
+$ peso_medio          &lt;dbl&gt; 50.42908, 52.90802, 47.04589, 50.09531, 44.91896, …
+$ ganancia_media      &lt;dbl&gt; 0.2606344, 0.2780500, 0.2267352, 0.2425230, 0.2070…
+$ consumo_medio       &lt;dbl&gt; 1.413521, 1.485926, 1.300764, 1.392938, 1.259629, …
+$ agua_media          &lt;dbl&gt; 4.536829, 4.830246, 4.532755, 4.589663, 4.445672, …
+$ actividad_media     &lt;dbl&gt; 5.633013, 5.728755, 5.607317, 5.577144, 5.551316, …
+$ temperatura_media   &lt;dbl&gt; 17.80332, 18.33211, 18.38890, 17.84613, 18.34675, …
+$ humedad_media       &lt;dbl&gt; 59.84733, 59.75238, 60.31034, 59.88029, 59.81702, …
+$ precipitacion_media &lt;dbl&gt; 4.357784, 4.625845, 5.086300, 4.724499, 4.558110, …
+$ salud_media         &lt;dbl&gt; 1.280000, 1.130000, 1.445000, 1.375000, 1.436667, …
+$ visitas_medias      &lt;dbl&gt; 0.1400000, 0.2600000, 0.2100000, 0.1700000, 0.2100…
+$ lana_media          &lt;dbl&gt; 0.1423423, 0.1432781, 0.1339453, 0.1389930, 0.1299…
+$ n_animales          &lt;int&gt; 1, 1, 2, 2, 3, 1, 1, 1, 5, 2, 1, 2, 1, 1, 1, 4, 1,…</code></pre>
+</div>
+</div>
+<p><br></p>
 </section>
+<section id="selección-y-estandarización-de-variables" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="selección-y-estandarización-de-variables"><span class="header-section-number">10.2</span> Selección y estandarización de variables</h2>
+<p><br></p>
+<p>K-means utiliza distancias euclidianas. Si no estandarizamos, las variables con escalas numéricas grandes dominarán la formación de los grupos.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>variables_cluster <span class="ot">&lt;-</span> perfiles_granja_ml <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    peso_medio,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    ganancia_media,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    consumo_medio,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    agua_media,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    actividad_media,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    temperatura_media,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    humedad_media,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    precipitacion_media,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    salud_media,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    visitas_medias,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    lana_media</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>receta_cluster <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="sc">~</span> ., <span class="at">data =</span> variables_cluster) <span class="sc">|&gt;</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>matriz_cluster <span class="ot">&lt;-</span> receta_cluster <span class="sc">|&gt;</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bake</span>(<span class="at">new_data =</span> <span class="cn">NULL</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>()</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(matriz_cluster[, <span class="dv">1</span><span class="sc">:</span><span class="fu">min</span>(<span class="dv">5</span>, <span class="fu">ncol</span>(matriz_cluster))])</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   peso_medio       ganancia_media     consumo_medio        agua_media      
+ Min.   :-2.26521   Min.   :-2.09593   Min.   :-2.54482   Min.   :-2.06590  
+ 1st Qu.:-0.81070   1st Qu.:-0.77901   1st Qu.:-0.73752   1st Qu.:-0.65278  
+ Median : 0.00397   Median :-0.09662   Median : 0.01441   Median : 0.04892  
+ Mean   : 0.00000   Mean   : 0.00000   Mean   : 0.00000   Mean   : 0.00000  
+ 3rd Qu.: 0.64999   3rd Qu.: 0.79247   3rd Qu.: 0.50265   3rd Qu.: 0.51658  
+ Max.   : 2.15400   Max.   : 2.16892   Max.   : 2.38966   Max.   : 2.78823  
+ actividad_media  
+ Min.   :-3.2594  
+ 1st Qu.:-0.4129  
+ Median : 0.1366  
+ Mean   : 0.0000  
+ 3rd Qu.: 0.6017  
+ Max.   : 1.9215  </code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="número-de-conglomerados" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="número-de-conglomerados"><span class="header-section-number">10.3</span> Número de conglomerados</h2>
+<p><br></p>
+<p>No existe un único criterio universal. Compararemos la suma de cuadrados interna y la silueta media.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  matriz_cluster,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  kmeans,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"wss"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">k.max =</span> <span class="dv">8</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Método del codo"</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ml_05_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  matriz_cluster,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  kmeans,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"silhouette"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">k.max =</span> <span class="dv">8</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Silueta media según el número de grupos"</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ml_05_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<p>El método del codo busca un punto a partir del cual añadir grupos reduce poco la variabilidad interna. La silueta combina cohesión dentro del grupo y separación frente a los demás grupos.</p>
+<p><br></p>
+</section>
+<section id="k-means" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="k-means"><span class="header-section-number">10.4</span> K-means</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>k_seleccionado <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>modelo_kmeans <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  matriz_cluster,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">centers =</span> k_seleccionado,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">nstart =</span> <span class="dv">100</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter.max =</span> <span class="dv">100</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>modelo_kmeans</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>K-means clustering with 3 clusters of sizes 16, 18, 11
+
+Cluster means:
+  peso_medio ganancia_media consumo_medio agua_media actividad_media
+1  0.2068138     0.06191074     0.2614086  0.4231573     -0.73667143
+2 -0.9061808    -0.62663597    -0.8930399 -0.9318242      0.09900627
+3  1.1820213     0.93535233     1.0811073  0.9093017      0.90951183
+  temperatura_media humedad_media precipitacion_media salud_media
+1         0.8829502    -0.2141191           0.2344341   0.3576694
+2        -0.2930483    -0.1291642           0.1255931   0.2790179
+3        -0.8047577     0.5228055          -0.5465110  -0.9768211
+  visitas_medias lana_media
+1     -0.0822712  0.2162184
+2      0.1998317 -0.9111561
+3     -0.2073302  1.1764832
+
+Clustering vector:
+ [1] 3 3 1 3 1 1 1 3 2 2 1 1 1 1 2 1 1 3 2 2 1 1 3 2 2 2 3 2 3 2 2 2 1 3 2 1 2 2
+[39] 1 2 1 2 3 3 2
+
+Within cluster sum of squares by cluster:
+[1] 105.59234 103.00220  78.17095
+ (between_SS / total_SS =  40.8 %)
+
+Available components:
+
+[1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
+[6] "betweenss"    "size"         "iter"         "ifault"      </code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>perfiles_granja_cluster <span class="ot">&lt;-</span> perfiles_granja_ml <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cluster_kmeans =</span> <span class="fu">factor</span>(modelo_kmeans<span class="sc">$</span>cluster)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(perfiles_granja_cluster, cluster_kmeans)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  cluster_kmeans     n
+  &lt;fct&gt;          &lt;int&gt;
+1 1                 16
+2 2                 18
+3 3                 11</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="caracterización-de-los-grupos" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="caracterización-de-los-grupos"><span class="header-section-number">10.5</span> Caracterización de los grupos</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>resumen_clusters <span class="ot">&lt;-</span> perfiles_granja_cluster <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cluster_kmeans) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_granjas =</span> <span class="fu">n</span>(),</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">peso_medio =</span> <span class="fu">mean</span>(peso_medio),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">consumo_medio =</span> <span class="fu">mean</span>(consumo_medio),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperatura_media =</span> <span class="fu">mean</span>(temperatura_media),</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">humedad_media =</span> <span class="fu">mean</span>(humedad_media),</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_media =</span> <span class="fu">mean</span>(salud_media),</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">visitas_medias =</span> <span class="fu">mean</span>(visitas_medias),</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">lana_media =</span> <span class="fu">mean</span>(lana_media),</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>resumen_clusters</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 9
+  cluster_kmeans n_granjas peso_medio consumo_medio temperatura_media
+  &lt;fct&gt;              &lt;int&gt;      &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;
+1 1                     16       43.1          1.27              18.3
+2 2                     18       37.5          1.16              18.1
+3 3                     11       48.0          1.36              18.0
+# ℹ 4 more variables: humedad_media &lt;dbl&gt;, salud_media &lt;dbl&gt;,
+#   visitas_medias &lt;dbl&gt;, lana_media &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>perfiles_granja_cluster <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(cluster_kmeans, sistema_produccion) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cluster_kmeans) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">porcentaje =</span> <span class="dv">100</span> <span class="sc">*</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> cluster_kmeans,</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> porcentaje,</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> sistema_produccion</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Sistema productivo dentro de cada conglomerado"</span>,</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Conglomerado"</span>,</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Porcentaje de granjas"</span>,</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Sistema productivo"</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ml_05_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="análisis-de-componentes-principales" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="análisis-de-componentes-principales"><span class="header-section-number">10.6</span> Análisis de componentes principales</h2>
+<p><br></p>
+<p>El PCA construye combinaciones lineales de las variables estandarizadas. Los primeros componentes concentran la mayor parte posible de la variabilidad y permiten representar las granjas en dos dimensiones.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pca_granjas <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  matriz_cluster,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">center =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">scale. =</span> <span class="cn">FALSE</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca_granjas)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                          PC1    PC2     PC3     PC4     PC5     PC6     PC7
+Standard deviation     2.2260 1.4539 1.02902 0.96365 0.93911 0.66160 0.64012
+Proportion of Variance 0.4504 0.1922 0.09626 0.08442 0.08018 0.03979 0.03725
+Cumulative Proportion  0.4504 0.6426 0.73887 0.82330 0.90347 0.94326 0.98051
+                          PC8     PC9    PC10    PC11
+Standard deviation     0.4116 0.17162 0.11700 0.04242
+Proportion of Variance 0.0154 0.00268 0.00124 0.00016
+Cumulative Proportion  0.9959 0.99859 0.99984 1.00000</code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>varianza_pca <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">componente =</span> <span class="fu">seq_along</span>(pca_granjas<span class="sc">$</span>sdev),</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">proporcion =</span> pca_granjas<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(pca_granjas<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">acumulada =</span> <span class="fu">cumsum</span>(proporcion)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>varianza_pca</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 3
+   componente proporcion acumulada
+        &lt;int&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+ 1          1   0.450        0.450
+ 2          2   0.192        0.643
+ 3          3   0.0963       0.739
+ 4          4   0.0844       0.823
+ 5          5   0.0802       0.903
+ 6          6   0.0398       0.943
+ 7          7   0.0373       0.981
+ 8          8   0.0154       0.996
+ 9          9   0.00268      0.999
+10         10   0.00124      1.000
+11         11   0.000164     1    </code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  varianza_pca,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> componente, <span class="at">y =</span> proporcion)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue4"</span>) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> acumulada), <span class="at">color =</span> <span class="st">"firebrick"</span>) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> acumulada), <span class="at">color =</span> <span class="st">"firebrick"</span>) <span class="sc">+</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Varianza explicada por los componentes"</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Componente principal"</span>,</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Proporción de varianza"</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ml_05_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>coordenadas_pca <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  pca_granjas<span class="sc">$</span>x[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    perfiles_granja_cluster <span class="sc">|&gt;</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        granja_id,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        zona,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        sistema_produccion,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>        cluster_kmeans</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  coordenadas_pca,</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> PC1,</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> PC2,</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> cluster_kmeans,</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> sistema_produccion</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Granjas en los dos primeros componentes"</span>,</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Conglomerado"</span>,</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Sistema productivo"</span></span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ml_05_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="variables-asociadas-con-los-componentes" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="variables-asociadas-con-los-componentes"><span class="header-section-number">10.7</span> Variables asociadas con los componentes</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>cargas_pca <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  pca_granjas<span class="sc">$</span>rotation[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">rownames =</span> <span class="st">"variable"</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>cargas_pca <span class="sc">|&gt;</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(PC1)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 3
+   variable                PC1     PC2
+   &lt;chr&gt;                 &lt;dbl&gt;   &lt;dbl&gt;
+ 1 consumo_medio       -0.429  -0.175 
+ 2 peso_medio          -0.424  -0.0988
+ 3 lana_media          -0.423  -0.0949
+ 4 agua_media          -0.400  -0.278 
+ 5 ganancia_media      -0.371  -0.0846
+ 6 salud_media          0.279  -0.333 
+ 7 actividad_media     -0.179   0.508 
+ 8 humedad_media       -0.140   0.219 
+ 9 visitas_medias       0.132  -0.0845
+10 temperatura_media    0.0890 -0.567 
+11 precipitacion_media  0.0668 -0.348 </code></pre>
+</div>
+</div>
+<p><br></p>
+<p>Las cargas indican qué variables contribuyen a cada componente. El signo puede invertirse sin cambiar el significado del PCA; lo importante es la estructura relativa de las variables y las observaciones.</p>
+<p><br></p>
+</section>
+<section id="clustering-jerárquico" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="clustering-jerárquico"><span class="header-section-number">10.8</span> Clustering jerárquico</h2>
+<p><br></p>
+<p>El clustering jerárquico comienza con cada granja como un grupo separado y fusiona progresivamente los grupos según una regla de enlace.</p>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>distancias_granjas <span class="ot">&lt;-</span> <span class="fu">dist</span>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  matriz_cluster,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"euclidean"</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>modelo_jerarquico <span class="ot">&lt;-</span> <span class="fu">hclust</span>(</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  distancias_granjas,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"ward.D2"</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  modelo_jerarquico,</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> perfiles_granja_ml<span class="sc">$</span>granja_id,</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Dendrograma de las granjas"</span>,</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Granja"</span>,</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">sub =</span> <span class="st">"Método de Ward"</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="fu">rect.hclust</span>(</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>  modelo_jerarquico,</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">k =</span> k_seleccionado,</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ml_05_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>perfiles_granja_cluster <span class="ot">&lt;-</span> perfiles_granja_cluster <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cluster_jerarquico =</span> <span class="fu">factor</span>(</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cutree</span>(</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        modelo_jerarquico,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">k =</span> k_seleccionado</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">table</span>(</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Kmeans =</span> perfiles_granja_cluster<span class="sc">$</span>cluster_kmeans,</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">Jerarquico =</span> perfiles_granja_cluster<span class="sc">$</span>cluster_jerarquico</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Jerarquico
+Kmeans  1  2  3
+     1  4 12  0
+     2  4  1 13
+     3 10  1  0</code></pre>
+</div>
+</div>
+<p><br></p>
+<p>Los números de los grupos son etiquetas arbitrarias. El grupo 1 de K-means no tiene por qué corresponder al grupo 1 del método jerárquico.</p>
+<p><br></p>
+</section>
+<section id="calidad-mediante-siluetas" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="calidad-mediante-siluetas"><span class="header-section-number">10.9</span> Calidad mediante siluetas</h2>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>siluetas_kmeans <span class="ot">&lt;-</span> <span class="fu">silhouette</span>(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  modelo_kmeans<span class="sc">$</span>cluster,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  distancias_granjas</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(siluetas_kmeans)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Silhouette of 45 units in 3 clusters from silhouette.default(x = modelo_kmeans$cluster, dist = distancias_granjas) :
+ Cluster sizes and average silhouette widths:
+       16        18        11 
+0.1451505 0.2508086 0.2078233 
+Individual silhouette widths:
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+-0.001611  0.098898  0.179254  0.202734  0.312638  0.419014 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_silhouette</span>(siluetas_kmeans) <span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Silueta de los conglomerados K-means"</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  cluster size ave.sil.width
+1       1   16          0.15
+2       2   18          0.25
+3       3   11          0.21</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ml_05_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<p>Una silueta próxima a 1 indica buena asignación. Valores cercanos a 0 indican posiciones fronterizas. Valores negativos sugieren que la granja podría estar más próxima a otro grupo.</p>
+<p><br></p>
+</section>
+<section id="distribución-geográfica-de-los-conglomerados" class="level2" data-number="10.10">
+<h2 data-number="10.10" class="anchored" data-anchor-id="distribución-geográfica-de-los-conglomerados"><span class="header-section-number">10.10</span> Distribución geográfica de los conglomerados</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar los paquetes si todavía no están instalados.</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("sf", "geodata", "terra", "dplyr", "ggplot2"))</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geodata)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Límites nacionales de México.</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>mexico <span class="ot">&lt;-</span> geodata<span class="sc">::</span><span class="fu">gadm</span>(</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="st">"MEX"</span>,</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">level =</span> <span class="dv">0</span>,</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"mapas"</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Límites de los estados mexicanos.</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>estados <span class="ot">&lt;-</span> geodata<span class="sc">::</span><span class="fu">gadm</span>(</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="st">"MEX"</span>,</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">level =</span> <span class="dv">1</span>,</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"mapas"</span></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>mexico_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(mexico)</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>estados_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(estados)</span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>estados_region_sf <span class="ot">&lt;-</span> estados_sf <span class="sc">%&gt;%</span></span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>    NAME_1 <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Hidalgo"</span>,</span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>      <span class="st">"México"</span>,</span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Tlaxcala"</span>,</span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Veracruz"</span></span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar qué estados se han seleccionado.</span></span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(estados_region_sf<span class="sc">$</span>NAME_1))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Hidalgo"  "México"   "Tlaxcala" "Veracruz"</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar cuántos polígonos contiene el objeto.</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(estados_region_sf)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>granjas_cluster_sf <span class="ot">&lt;-</span> perfiles_granja_cluster <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitud"</span>, <span class="st">"latitud"</span>),</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">crs =</span> <span class="dv">4326</span>,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">remove =</span> <span class="cn">FALSE</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>delta<span class="ot">=</span><span class="fl">0.4</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> estados_region_sf,</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> NAME_1),</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey45"</span>,</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.4</span>,</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.60</span></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> granjas_cluster_sf,</span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> cluster_kmeans),</span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(</span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="st">"Pastel1"</span>,</span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Estado"</span></span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribución espacial de los perfiles de granja"</span>,</span>
+<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Conglomerado"</span>,</span>
+<span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Longitud"</span>,</span>
+<span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Latitud"</span></span>
+<span id="cb40-31"><a href="#cb40-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb40-32"><a href="#cb40-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb40-33"><a href="#cb40-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb40-34"><a href="#cb40-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb40-35"><a href="#cb40-35" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span><span class="fu">coord_sf</span>(</span>
+<span id="cb40-36"><a href="#cb40-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">range</span>(granjas_cluster_sf<span class="sc">$</span>longitud, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb40-37"><a href="#cb40-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="sc">-</span>delta, delta),</span>
+<span id="cb40-38"><a href="#cb40-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">range</span>(granjas_cluster_sf<span class="sc">$</span>latitud, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb40-39"><a href="#cb40-39" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="sc">-</span>delta, delta),</span>
+<span id="cb40-40"><a href="#cb40-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="cn">FALSE</span></span>
+<span id="cb40-41"><a href="#cb40-41" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ml_05_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<p>Si los grupos se concentran geográficamente, la segmentación puede estar reflejando gradientes ambientales o regionales. Esto no significa que K-means haya incorporado dependencia espacial, porque las coordenadas no se utilizaron como variables de agrupación.</p>
+<p><br></p>
+</section>
+<section id="actividad-de-interpretación" class="level2" data-number="10.11">
+<h2 data-number="10.11" class="anchored" data-anchor-id="actividad-de-interpretación"><span class="header-section-number">10.11</span> Actividad de interpretación</h2>
+<p><br></p>
+<ol type="1">
+<li>¿Por qué utilizamos una fila por granja?</li>
+<li>¿Por qué deben estandarizarse las variables?</li>
+<li>¿Qué sugieren el codo y la silueta sobre el número de grupos?</li>
+<li>¿Qué caracteriza a cada conglomerado?</li>
+<li>¿Los grupos coinciden con los sistemas productivos?</li>
+<li>¿Qué proporción de varianza explican PC1 y PC2?</li>
+<li>¿Qué variables contribuyen más a PC1?</li>
+<li>¿Coinciden K-means y el clustering jerárquico?</li>
+<li>¿Existen granjas con siluetas negativas?</li>
+<li>¿Los conglomerados presentan una distribución espacial reconocible?</li>
+</ol>
+<p><br></p>
+<p>Al finalizar este capítulo debemos ser capaces de construir perfiles de granja, estandarizar variables, aplicar K-means y clustering jerárquico, evaluar la calidad mediante siluetas y utilizar PCA para visualizar la estructura de los grupos. Los conglomerados deben interpretarse como resultados exploratorios y no como categorías naturales demostradas.</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -911,8 +1751,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../modulos/ml_04.html" class="pagination-link" aria-label="Redes neuronales">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Redes neuronales</span></span>
+      <a href="../modulos/ml_04.html" class="pagination-link" aria-label="Capítulo 4. Introducción a las redes neuronales">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Capítulo 4. Introducción a las redes neuronales</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

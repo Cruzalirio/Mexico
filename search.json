@@ -1067,7 +1067,7 @@
     "href": "modulos/st_04.html#interpretación-de-los-coeficientes-en-un-modelo-sar",
     "title": "5  Bloques 6 y 7. Dependencia espacial y modelos SAR espacio-temporales",
     "section": "5.23 Interpretación de los coeficientes en un modelo SAR",
-    "text": "5.23 Interpretación de los coeficientes en un modelo SAR\n\nEn una regresión lineal convencional, un coeficiente describe un cambio local manteniendo constantes las otras variables. En un modelo SAR, un cambio en una granja puede propagarse a través de la red porque el resultado aparece también en (Wy).\n\nPor esta razón, los coeficientes () no deben interpretarse únicamente como efectos marginales directos. Es conveniente descomponerlos en:\n\nEfecto directo: cambio promedio en la propia granja.\nEfecto indirecto: cambio transmitido a otras granjas mediante la estructura espacial.\nEfecto total: suma de los efectos directo e indirecto.\n\n\n\n\nCódigo\nimpactos_sar &lt;- impacts(\n  modelo_sar_semana,\n  listw = listw_semana,\n  R = 500\n)\n\nsummary(\n  impactos_sar,\n  zstats = TRUE,\n  short = TRUE\n)\n\n\nImpact measures (lag, exact):\n                               Direct   Indirect      Total\nconsumo_medio_kg_dia dy/dx 27.9055319 -4.2717363 23.6337956\nedad_media_meses dy/dx      0.5325366 -0.0815199  0.4510167\ntemperatura_media_C dy/dx  -0.7526447  0.1152137 -0.6374310\n========================================================\nSimulation results ( variance matrix):\n========================================================\nSimulated standard errors\n                              Direct   Indirect     Total\nconsumo_medio_kg_dia dy/dx 3.9418421 4.04562562 4.9279885\nedad_media_meses dy/dx     0.1643761 0.08493387 0.1590541\ntemperatura_media_C dy/dx  0.2281742 0.11780298 0.2285268\n\nSimulated z-values:\n                              Direct   Indirect     Total\nconsumo_medio_kg_dia dy/dx  7.160862 -0.9742006  4.928124\nedad_media_meses dy/dx      3.271168 -0.8850132  2.908029\ntemperatura_media_C dy/dx  -3.339269  0.8911581 -2.874735\n\nSimulated p-values:\n                           Direct     Indirect Total     \nconsumo_medio_kg_dia dy/dx 8.018e-13  0.32996  8.3023e-07\nedad_media_meses dy/dx     0.00107104 0.37615  0.0036371 \ntemperatura_media_C dy/dx  0.00083999 0.37284  0.0040437 \n\n\n\nEl argumento R = 500 utiliza simulaciones para obtener medidas de incertidumbre de los impactos. En un análisis definitivo podría aumentarse el número de simulaciones, asumiendo un mayor tiempo de cálculo.\n\nEl efecto indirecto no demuestra necesariamente una transmisión biológica entre granjas. Puede representar interacción, difusión, imitación, condiciones compartidas o variables espaciales omitidas. La interpretación debe apoyarse en el mecanismo científico y en la forma de construcción de (W).",
+    "text": "5.23 Interpretación de los coeficientes en un modelo SAR\n\nEn una regresión lineal convencional, un coeficiente describe un cambio local manteniendo constantes las otras variables. En un modelo SAR, un cambio en una granja puede propagarse a través de la red porque el resultado aparece también en (Wy).\n\nPor esta razón, los coeficientes () no deben interpretarse únicamente como efectos marginales directos. Es conveniente descomponerlos en:\n\nEfecto directo: cambio promedio en la propia granja.\nEfecto indirecto: cambio transmitido a otras granjas mediante la estructura espacial.\nEfecto total: suma de los efectos directo e indirecto.\n\n\n\n\nCódigo\nimpactos_sar &lt;- impacts(\n  modelo_sar_semana,\n  listw = listw_semana,\n  R = 500\n)\n\nsummary(\n  impactos_sar,\n  zstats = TRUE,\n  short = TRUE\n)\n\n\nImpact measures (lag, exact):\n                               Direct   Indirect      Total\nconsumo_medio_kg_dia dy/dx 27.9055319 -4.2717363 23.6337956\nedad_media_meses dy/dx      0.5325366 -0.0815199  0.4510167\ntemperatura_media_C dy/dx  -0.7526447  0.1152137 -0.6374310\n========================================================\nSimulation results ( variance matrix):\n========================================================\nSimulated standard errors\n                              Direct   Indirect     Total\nconsumo_medio_kg_dia dy/dx 4.3120339 4.15370758 5.4480024\nedad_media_meses dy/dx     0.1655376 0.08592074 0.1550146\ntemperatura_media_C dy/dx  0.2393026 0.12006174 0.2448824\n\nSimulated z-values:\n                              Direct   Indirect     Total\nconsumo_medio_kg_dia dy/dx  6.531578 -0.9493742  4.445843\nedad_media_meses dy/dx      3.190472 -0.8840749  2.917033\ntemperatura_media_C dy/dx  -3.201728  0.8686678 -2.702882\n\nSimulated p-values:\n                           Direct    Indirect Total     \nconsumo_medio_kg_dia dy/dx 6.508e-11 0.34243  8.7548e-06\nedad_media_meses dy/dx     0.0014204 0.37666  0.0035338 \ntemperatura_media_C dy/dx  0.0013661 0.38503  0.0068741 \n\n\n\nEl argumento R = 500 utiliza simulaciones para obtener medidas de incertidumbre de los impactos. En un análisis definitivo podría aumentarse el número de simulaciones, asumiendo un mayor tiempo de cálculo.\n\nEl efecto indirecto no demuestra necesariamente una transmisión biológica entre granjas. Puede representar interacción, difusión, imitación, condiciones compartidas o variables espaciales omitidas. La interpretación debe apoyarse en el mecanismo científico y en la forma de construcción de (W).",
     "crumbs": [
       "Análisis Espacio-Temporal",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bloques 6 y 7. Dependencia espacial y modelos SAR espacio-temporales</span>"
@@ -1208,287 +1208,551 @@
   {
     "objectID": "modulos/ml_01.html",
     "href": "modulos/ml_01.html",
-    "title": "6  Introducción al aprendizaje estadístico",
+    "title": "6  Introducción al aprendizaje supervisado y no supervisado",
     "section": "",
-    "text": "7 Objetivos de aprendizaje\nAl finalizar esta sesión, el estudiante será capaz de:",
+    "text": "6.1 ¿Qué es el aprendizaje automático?\nEn este capítulo introduciremos los fundamentos del aprendizaje automático mediante ejemplos relacionados con animales, granjas y estados. Utilizaremos la base longitudinal preparada en los bloques anteriores, pero cambiaremos el objetivo del análisis: en lugar de concentrarnos únicamente en la estimación de asociaciones, estudiaremos cómo construir modelos capaces de predecir resultados en observaciones nuevas y cómo descubrir estructuras sin una respuesta previamente definida.\nEl aprendizaje automático no sustituye el razonamiento científico. Una predicción precisa no demuestra causalidad y una agrupación obtenida algorítmicamente no representa necesariamente categorías biológicas reales. La definición de la unidad de análisis, la separación entre entrenamiento y prueba y la prevención de fugas de información son esenciales, especialmente cuando existen mediciones repetidas del mismo animal.\nEl aprendizaje automático reúne métodos que utilizan datos para construir reglas de predicción, clasificación o agrupación. El algoritmo aprende patrones a partir de ejemplos observados y después aplica esos patrones a casos nuevos.\nEn producción animal podemos plantear, entre otras, las siguientes tareas:",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_01.html#ejemplo",
-    "href": "modulos/ml_01.html#ejemplo",
-    "title": "6  Introducción al aprendizaje estadístico",
-    "section": "9.1 Ejemplo",
-    "text": "9.1 Ejemplo\nSupongamos que disponemos de información sobre 500 vacas:\n\nProducción de leche.\nConsumo de alimento.\nEdad.\nNúmero de parto.\nTemperatura ambiental.\n\nUna pregunta posible sería:\n\n¿Podemos predecir la producción de leche de una vaca a partir de estas variables?\n\nEsa es una tarea típica de aprendizaje estadístico.",
+    "objectID": "modulos/ml_01.html#qué-es-el-aprendizaje-automático",
+    "href": "modulos/ml_01.html#qué-es-el-aprendizaje-automático",
+    "title": "6  Introducción al aprendizaje supervisado y no supervisado",
+    "section": "",
+    "text": "Predecir el peso de un animal a partir de consumo, edad, raza, sexo, semana y condiciones ambientales.\nClasificar una medición como salud alta o no alta.\nPredecir qué animales podrían requerir una visita veterinaria.\nIdentificar perfiles de granjas con características productivas semejantes.\nDetectar observaciones atípicas o combinaciones poco frecuentes de condiciones ambientales.",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_01.html#inferencia",
-    "href": "modulos/ml_01.html#inferencia",
-    "title": "6  Introducción al aprendizaje estadístico",
-    "section": "10.1 Inferencia",
-    "text": "10.1 Inferencia\nLa inferencia busca responder preguntas científicas.\nPor ejemplo:\n\n¿Aumenta la producción de leche con un nuevo aditivo?\n¿Influye la temperatura en la incidencia de mastitis?\n¿Existe asociación entre una enfermedad y el sistema de manejo?\n\nEl interés principal es comprender el fenómeno.",
+    "objectID": "modulos/ml_01.html#aprendizaje-supervisado",
+    "href": "modulos/ml_01.html#aprendizaje-supervisado",
+    "title": "6  Introducción al aprendizaje supervisado y no supervisado",
+    "section": "6.2 Aprendizaje supervisado",
+    "text": "6.2 Aprendizaje supervisado\n\nEn el aprendizaje supervisado existe una variable de respuesta conocida durante el entrenamiento. El modelo aprende la relación entre los predictores y esa respuesta.\n\nSi la respuesta es cuantitativa, hablamos de regresión. Si representa categorías, hablamos de clasificación.\n\n\n\nCódigo\n# Ejemplo de variables para regresión.\ndatos_regresion_ml &lt;- datos_b2 |&gt;\n  select(\n    animal_id, granja_id, tiempo, estado = zona,\n    peso_kg, consumo_kg_dia, edad_inicio_meses,\n    sexo, raza, temperatura_C, humedad_pct\n  ) |&gt;\n  drop_na()\n\n# La respuesta es continua.\nsummary(datos_regresion_ml$peso_kg)\n\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  15.72   34.37   40.42   40.81   46.98   74.20 \n\n\n\n\n\nCódigo\n# Ejemplo de respuesta para clasificación.\ndatos_clasificacion_ml &lt;- datos_b2 |&gt;\n  mutate(\n    salud_alta_ml = factor(\n      if_else(\n        as.numeric(as.character(salud_score_0_4)) &gt;= 3,\n        \"Sí\",\n        \"No\"\n      ),\n      levels = c(\"No\", \"Sí\")\n    )\n  ) |&gt;\n  select(\n    animal_id, granja_id, tiempo,\n    salud_alta_ml, consumo_kg_dia,\n    edad_inicio_meses, sexo, raza,\n    temperatura_C, humedad_pct\n  ) |&gt;\n  drop_na()\n\ncount(datos_clasificacion_ml, salud_alta_ml)\n\n\n# A tibble: 2 × 2\n  salud_alta_ml     n\n  &lt;fct&gt;         &lt;int&gt;\n1 No            43000\n2 Sí             6249",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_01.html#predicción",
-    "href": "modulos/ml_01.html#predicción",
-    "title": "6  Introducción al aprendizaje estadístico",
-    "section": "10.2 Predicción",
-    "text": "10.2 Predicción\nLa predicción busca anticipar valores futuros o desconocidos.\nPor ejemplo:\n\nPredecir la ganancia diaria de peso.\nPredecir un brote de enfermedad.\nPredecir la probabilidad de descarte de una vaca.\n\nEl interés principal es obtener predicciones precisas.",
+    "objectID": "modulos/ml_01.html#aprendizaje-no-supervisado",
+    "href": "modulos/ml_01.html#aprendizaje-no-supervisado",
+    "title": "6  Introducción al aprendizaje supervisado y no supervisado",
+    "section": "6.3 Aprendizaje no supervisado",
+    "text": "6.3 Aprendizaje no supervisado\n\nEn el aprendizaje no supervisado no existe una respuesta que el algoritmo deba predecir. El objetivo consiste en descubrir estructuras, semejanzas o representaciones simplificadas de los datos.\n\n\n\nCódigo\n# Una fila por granja para evitar que las granjas con más registros\n# dominen el análisis no supervisado.\nperfiles_granja &lt;- datos_b2 |&gt;\n  group_by(granja_id, zona, sistema_produccion) |&gt;\n  summarise(\n    peso_medio = mean(peso_kg, na.rm = TRUE),\n    consumo_medio = mean(consumo_kg_dia, na.rm = TRUE),\n    agua_media = mean(consumo_agua_l_dia, na.rm = TRUE),\n    temperatura_media = mean(temperatura_C, na.rm = TRUE),\n    humedad_media = mean(humedad_pct, na.rm = TRUE),\n    visitas_medias = mean(n_visitas_veterinarias, na.rm = TRUE),\n    .groups = \"drop\"\n  )\n\nglimpse(perfiles_granja)\n\n\nRows: 50\nColumns: 9\n$ granja_id          &lt;fct&gt; G01, G02, G03, G04, G05, G06, G07, G08, G09, G10, G…\n$ zona               &lt;chr&gt; \"Sur\", \"Norte\", \"Sur\", \"Centro\", \"Centro\", \"Centro\"…\n$ sistema_produccion &lt;fct&gt; Extensivo, Semi-intensivo, Extensivo, Semi-intensiv…\n$ peso_medio         &lt;dbl&gt; 41.46637, 46.21052, 36.69874, 41.23786, 43.63550, 3…\n$ consumo_medio      &lt;dbl&gt; 1.225052, 1.310682, 1.136067, 1.229850, 1.285767, 1…\n$ agua_media         &lt;dbl&gt; 4.283437, 4.520976, 4.160707, 4.406654, 4.383379, 4…\n$ temperatura_media  &lt;dbl&gt; 17.80332, 18.33211, 17.66905, 18.38890, 17.84613, 1…\n$ humedad_media      &lt;dbl&gt; 59.84733, 59.75238, 60.67476, 60.31034, 59.88029, 6…\n$ visitas_medias     &lt;dbl&gt; 0.181, 0.209, 0.182, 0.228, 0.173, 0.207, 0.200, 0.…",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_01.html#ejemplos-en-ciencia-animal",
-    "href": "modulos/ml_01.html#ejemplos-en-ciencia-animal",
-    "title": "6  Introducción al aprendizaje estadístico",
-    "section": "11.1 Ejemplos en ciencia animal",
-    "text": "11.1 Ejemplos en ciencia animal\n\n11.1.1 Regresión\nPredecir:\n\nProducción de leche.\nGanancia de peso.\nConsumo de alimento.\n\n\n\n11.1.2 Clasificación\nPredecir:\n\nEnfermo o sano.\nGestante o no gestante.\nSobrevive o no sobrevive.",
+    "objectID": "modulos/ml_01.html#unidad-de-análisis",
+    "href": "modulos/ml_01.html#unidad-de-análisis",
+    "title": "6  Introducción al aprendizaje supervisado y no supervisado",
+    "section": "6.4 Unidad de análisis",
+    "text": "6.4 Unidad de análisis\n\nLa unidad de análisis determina qué representa cada fila utilizada por el algoritmo. En esta base podemos trabajar con mediciones, animales o granjas. La elección modifica la pregunta, el tamaño de la muestra y la manera correcta de dividir los datos.\n\n\n\nCódigo\nresumen_unidades &lt;- datos_b2 |&gt;\n  summarise(\n    mediciones = n(),\n    animales = n_distinct(animal_id),\n    granjas = n_distinct(granja_id),\n    semanas = n_distinct(tiempo)\n  )\n\nresumen_unidades\n\n\n# A tibble: 1 × 4\n  mediciones animales granjas semanas\n       &lt;int&gt;    &lt;int&gt;   &lt;int&gt;   &lt;int&gt;\n1      50000      500      50     100\n\n\n\nSi usamos filas individuales, el mismo animal aparecerá muchas veces. Una división aleatoria de filas puede colocar observaciones del mismo animal tanto en entrenamiento como en prueba. El modelo reconocerá características persistentes del animal y obtendremos una evaluación excesivamente optimista.",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_01.html#ejemplos",
-    "href": "modulos/ml_01.html#ejemplos",
-    "title": "6  Introducción al aprendizaje estadístico",
-    "section": "12.1 Ejemplos",
-    "text": "12.1 Ejemplos\n\nIdentificar grupos de granjas similares.\nDetectar perfiles metabólicos.\nClasificar animales según su comportamiento.\n\nLas técnicas más utilizadas incluyen:\n\nClustering.\nAnálisis de componentes principales.\nMétodos de reducción de dimensionalidad.",
+    "objectID": "modulos/ml_01.html#conjunto-de-entrenamiento-y-conjunto-de-prueba",
+    "href": "modulos/ml_01.html#conjunto-de-entrenamiento-y-conjunto-de-prueba",
+    "title": "6  Introducción al aprendizaje supervisado y no supervisado",
+    "section": "6.5 Conjunto de entrenamiento y conjunto de prueba",
+    "text": "6.5 Conjunto de entrenamiento y conjunto de prueba\n\nEl conjunto de entrenamiento se utiliza para estimar el modelo. El conjunto de prueba se reserva para evaluar su comportamiento en casos que no participaron en el ajuste.\n\nPara evaluar la generalización a animales nuevos, dividiremos por animal_id y no por filas.\n\n\n\nCódigo\nset.seed(2026)\n\nparticion_animales &lt;- group_initial_split(\n  datos_regresion_ml,\n  group = animal_id,\n  prop = 0.80\n)\n\nentrenamiento &lt;- training(particion_animales)\nprueba &lt;- testing(particion_animales)\n\nentrenamiento |&gt;\n  summarise(\n    filas = n(),\n    animales = n_distinct(animal_id),\n    granjas = n_distinct(granja_id)\n  )\n\n\n# A tibble: 1 × 3\n  filas animales granjas\n  &lt;int&gt;    &lt;int&gt;   &lt;int&gt;\n1 38771      400      50\n\n\nCódigo\nprueba |&gt;\n  summarise(\n    filas = n(),\n    animales = n_distinct(animal_id),\n    granjas = n_distinct(granja_id)\n  )\n\n\n# A tibble: 1 × 3\n  filas animales granjas\n  &lt;int&gt;    &lt;int&gt;   &lt;int&gt;\n1  9681      100      45\n\n\n\n\n\nCódigo\n# Verificar que ningún animal aparezca en ambos conjuntos.\nintersect(\n  unique(entrenamiento$animal_id),\n  unique(prueba$animal_id)\n)\n\n\nfactor()\n500 Levels: A001 A002 A003 A004 A005 A006 A007 A008 A009 A010 A011 A012 ... A500\n\n\n\nSi el objetivo fuera predecir una granja nueva, tendríamos que dividir por granja_id. Si quisiéramos predecir semanas futuras, utilizaríamos una partición temporal y evitaríamos entrenar con información posterior a la fecha evaluada.",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_01.html#discusión",
-    "href": "modulos/ml_01.html#discusión",
-    "title": "6  Introducción al aprendizaje estadístico",
-    "section": "14.1 Discusión",
-    "text": "14.1 Discusión\nObservamos que cada animal presenta una trayectoria distinta a lo largo del tiempo.\nEsto sugiere que existe variabilidad entre individuos y que probablemente necesitaremos modelos que tengan en cuenta la dependencia temporal y la heterogeneidad entre animales.",
+    "objectID": "modulos/ml_01.html#predictores-respuesta-y-fuga-de-información",
+    "href": "modulos/ml_01.html#predictores-respuesta-y-fuga-de-información",
+    "title": "6  Introducción al aprendizaje supervisado y no supervisado",
+    "section": "6.6 Predictores, respuesta y fuga de información",
+    "text": "6.6 Predictores, respuesta y fuga de información\n\nLa fuga de información aparece cuando el modelo recibe datos que no estarían disponibles en el momento real de la predicción o variables construidas a partir de la propia respuesta.\n\nEjemplos de fuga serían utilizar el peso final para predecir el peso de semanas anteriores, calcular la media de un animal empleando también las observaciones del conjunto de prueba o imputar valores antes de realizar la partición.\n\n\n\nCódigo\n# Variables disponibles para una predicción didáctica del peso.\npredictores_candidatos &lt;- entrenamiento |&gt;\n  select(\n    consumo_kg_dia,\n    edad_inicio_meses,\n    sexo,\n    raza,\n    tiempo,\n    temperatura_C,\n    humedad_pct\n  )\n\nglimpse(predictores_candidatos)\n\n\nRows: 38,771\nColumns: 7\n$ consumo_kg_dia    &lt;dbl&gt; 1.072022, 1.357391, 1.225139, 1.411625, 1.410509, 1.…\n$ edad_inicio_meses &lt;dbl&gt; 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, …\n$ sexo              &lt;fct&gt; Macho, Macho, Macho, Macho, Macho, Macho, Macho, Mac…\n$ raza              &lt;fct&gt; Raza_B, Raza_B, Raza_B, Raza_B, Raza_B, Raza_B, Raza…\n$ tiempo            &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1…\n$ temperatura_C     &lt;dbl&gt; 15.88818, 20.48193, 20.39116, 20.47973, 18.32274, 22…\n$ humedad_pct       &lt;dbl&gt; 60.32583, 64.99599, 63.95246, 54.16418, 64.41850, 54…",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_01.html#pregunta",
-    "href": "modulos/ml_01.html#pregunta",
-    "title": "6  Introducción al aprendizaje estadístico",
-    "section": "15.1 Pregunta",
-    "text": "15.1 Pregunta\nSi observamos:\n\n\n\nProducción observada\nProducción predicha\n\n\n\n\n32 kg\n30 kg\n\n\n\nel error es:\n32 - 30 = 2 kg\nCuanto menores sean los errores, mejor será el modelo.",
+    "objectID": "modulos/ml_01.html#preprocesamiento-mediante-recetas",
+    "href": "modulos/ml_01.html#preprocesamiento-mediante-recetas",
+    "title": "6  Introducción al aprendizaje supervisado y no supervisado",
+    "section": "6.7 Preprocesamiento mediante recetas",
+    "text": "6.7 Preprocesamiento mediante recetas\n\nLas recetas de tidymodels permiten definir transformaciones que se estiman exclusivamente con el conjunto de entrenamiento. Las variables categóricas se convierten en indicadores y los predictores numéricos pueden estandarizarse.\n\n\n\nCódigo\nreceta_intro &lt;- recipe(\n  peso_kg ~\n    consumo_kg_dia + edad_inicio_meses +\n    sexo + raza + tiempo +\n    temperatura_C + humedad_pct,\n  data = entrenamiento\n) |&gt;\n  step_unknown(all_nominal_predictors()) |&gt;\n  step_novel(all_nominal_predictors()) |&gt;\n  step_dummy(all_nominal_predictors()) |&gt;\n  step_zv(all_predictors()) |&gt;\n  step_normalize(all_numeric_predictors())\n\nreceta_intro\n\n\n\n\n\nCódigo\n# Estimar las transformaciones solamente con entrenamiento.\nreceta_preparada &lt;- prep(receta_intro)\n\n# Aplicarlas a entrenamiento y prueba.\nentrenamiento_procesado &lt;- bake(\n  receta_preparada,\n  new_data = NULL\n)\n\nprueba_procesada &lt;- bake(\n  receta_preparada,\n  new_data = prueba\n)\n\nglimpse(entrenamiento_procesado)\n\n\nRows: 38,771\nColumns: 11\n$ consumo_kg_dia    &lt;dbl&gt; -0.8128868, 0.6544510, -0.0255780, 0.9333181, 0.9275…\n$ edad_inicio_meses &lt;dbl&gt; 0.4552672, 0.4552672, 0.4552672, 0.4552672, 0.455267…\n$ tiempo            &lt;dbl&gt; -1.7152089, -1.6805734, -1.6459380, -1.6113025, -1.5…\n$ temperatura_C     &lt;dbl&gt; -0.57584762, 0.60041306, 0.57716894, 0.59984858, 0.0…\n$ humedad_pct       &lt;dbl&gt; 0.04422076, 0.66462898, 0.52599992, -0.77432499, 0.5…\n$ peso_kg           &lt;dbl&gt; 37.05724, 37.34766, 37.48476, 37.69459, 38.01026, 38…\n$ sexo_Macho        &lt;dbl&gt; 1.034873, 1.034873, 1.034873, 1.034873, 1.034873, 1.…\n$ raza_Raza_B       &lt;dbl&gt; 1.987996, 1.987996, 1.987996, 1.987996, 1.987996, 1.…\n$ raza_Raza_C       &lt;dbl&gt; -0.5274598, -0.5274598, -0.5274598, -0.5274598, -0.5…\n$ raza_Raza_D       &lt;dbl&gt; -0.5397065, -0.5397065, -0.5397065, -0.5397065, -0.5…\n$ raza_Raza_E       &lt;dbl&gt; -0.4324721, -0.4324721, -0.4324721, -0.4324721, -0.4…",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_01.html#analogía",
-    "href": "modulos/ml_01.html#analogía",
-    "title": "6  Introducción al aprendizaje estadístico",
-    "section": "17.1 Analogía",
-    "text": "17.1 Analogía\nUn estudiante memoriza las preguntas exactas de un examen.\nObtendrá una nota excelente en ese examen específico.\nSin embargo, si se le formula una pregunta diferente, posiblemente fracase.\nEso es exactamente el sobreajuste.",
+    "objectID": "modulos/ml_01.html#validación-cruzada-agrupada",
+    "href": "modulos/ml_01.html#validación-cruzada-agrupada",
+    "title": "6  Introducción al aprendizaje supervisado y no supervisado",
+    "section": "6.8 Validación cruzada agrupada",
+    "text": "6.8 Validación cruzada agrupada\n\nUna única división entrenamiento-prueba ofrece una sola estimación del desempeño. La validación cruzada repite el entrenamiento y la evaluación en diferentes subconjuntos. En datos longitudinales debemos mantener juntas las mediciones del mismo animal.\n\n\n\nCódigo\nset.seed(2026)\n\nfolds_animales &lt;- group_vfold_cv(\n  entrenamiento,\n  group = animal_id,\n  v = 5\n)\n\nfolds_animales\n\n\n# Group 5-fold cross-validation \n# A tibble: 5 × 2\n  splits               id       \n  &lt;list&gt;               &lt;chr&gt;    \n1 &lt;split [30997/7774]&gt; Resample1\n2 &lt;split [31022/7749]&gt; Resample2\n3 &lt;split [31028/7743]&gt; Resample3\n4 &lt;split [31026/7745]&gt; Resample4\n5 &lt;split [31011/7760]&gt; Resample5\n\n\n\nLa validación agrupada permite seleccionar métodos o parámetros sin utilizar el conjunto de prueba. La prueba se consulta una sola vez al finalizar el proceso.",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Introducción al aprendizaje estadístico</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_01.html#aplicaciones-según-la-escala-de-predicción",
+    "href": "modulos/ml_01.html#aplicaciones-según-la-escala-de-predicción",
+    "title": "6  Introducción al aprendizaje supervisado y no supervisado",
+    "section": "6.9 Aplicaciones según la escala de predicción",
+    "text": "6.9 Aplicaciones según la escala de predicción\n\n\n\nCódigo\npreguntas_ml &lt;- tribble(\n  ~pregunta, ~respuesta, ~unidad, ~tipo,\n  \"Predecir peso semanal\", \"peso_kg\", \"medición\", \"Regresión\",\n  \"Predecir salud alta\", \"salud_alta_ml\", \"medición\", \"Clasificación\",\n  \"Predecir producción de lana\", \"produccion_lana_kg\", \"animal\", \"Regresión\",\n  \"Predecir muchas visitas\", \"visitas_altas\", \"animal\", \"Clasificación\",\n  \"Agrupar granjas productivas\", \"Sin respuesta\", \"granja\", \"Clustering\"\n)\n\npreguntas_ml\n\n\n# A tibble: 5 × 4\n  pregunta                    respuesta          unidad   tipo         \n  &lt;chr&gt;                       &lt;chr&gt;              &lt;chr&gt;    &lt;chr&gt;        \n1 Predecir peso semanal       peso_kg            medición Regresión    \n2 Predecir salud alta         salud_alta_ml      medición Clasificación\n3 Predecir producción de lana produccion_lana_kg animal   Regresión    \n4 Predecir muchas visitas     visitas_altas      animal   Clasificación\n5 Agrupar granjas productivas Sin respuesta      granja   Clustering",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_01.html#línea-base-predictiva",
+    "href": "modulos/ml_01.html#línea-base-predictiva",
+    "title": "6  Introducción al aprendizaje supervisado y no supervisado",
+    "section": "6.10 Línea base predictiva",
+    "text": "6.10 Línea base predictiva\n\nTodo modelo debe compararse con una referencia sencilla. Para regresión, una línea base consiste en predecir siempre la media del conjunto de entrenamiento.\n\n\n\nCódigo\nmedia_entrenamiento &lt;- mean(\n  entrenamiento$peso_kg,\n  na.rm = TRUE\n)\n\nprediccion_base &lt;- prueba |&gt;\n  transmute(\n    peso_kg,\n    .pred = media_entrenamiento\n  )\n\nmetric_set(rmse, mae, rsq)(\n  prediccion_base,\n  truth = peso_kg,\n  estimate = .pred\n)\n\n\n# A tibble: 3 × 3\n  .metric .estimator .estimate\n  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;\n1 rmse    standard        8.93\n2 mae     standard        7.28\n3 rsq     standard       NA   \n\n\n\nUn modelo complejo solo resulta útil si mejora de forma relevante esta referencia y si esa mejora se mantiene en datos nuevos.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_01.html#actividad-de-interpretación",
+    "href": "modulos/ml_01.html#actividad-de-interpretación",
+    "title": "6  Introducción al aprendizaje supervisado y no supervisado",
+    "section": "6.11 Actividad de interpretación",
+    "text": "6.11 Actividad de interpretación\n\n\n¿Cuál es la respuesta en el ejemplo de regresión?\n¿Cuál es el evento positivo en el ejemplo de clasificación?\n¿Qué representa una fila de datos_regresion_ml?\n¿Por qué no conviene dividir aleatoriamente las filas?\n¿Cómo cambiaría la partición para predecir granjas nuevas?\n¿Qué información no estaría disponible al predecir una semana futura?\n¿Qué transformaciones se incluyeron en la receta?\n¿Por qué la receta debe estimarse con entrenamiento?\n¿Qué función cumple la validación cruzada?\n¿Qué representa la línea base de regresión?\n\n\nAl finalizar este capítulo debemos diferenciar aprendizaje supervisado y no supervisado, reconocer problemas de regresión y clasificación, definir correctamente la unidad de análisis y dividir los datos sin mezclar información entre entrenamiento y evaluación. Estas decisiones son más importantes que la elección inicial de un algoritmo complejo.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Capítulo 1. Introducción al aprendizaje supervisado y no supervisado</span>"
     ]
   },
   {
     "objectID": "modulos/ml_02.html",
     "href": "modulos/ml_02.html",
-    "title": "7  Regresión y clasificación",
+    "title": "7  Métodos de regresión y clasificación",
     "section": "",
-    "text": "8 Temas",
+    "text": "7.1 Preparación de los datos\nEn este capítulo construiremos modelos predictivos de regresión y clasificación con los datos de animales y granjas. Utilizaremos regresión lineal para predecir el peso y regresión logística para predecir una respuesta binaria de salud. Después introduciremos la regularización y evaluaremos el desempeño mediante métricas calculadas en animales no utilizados durante el entrenamiento.\nCódigo\ndatos_ml2 &lt;- datos_b2 |&gt;\n  mutate(\n    salud_num = as.numeric(as.character(salud_score_0_4)),\n    salud_alta_ml = factor(\n      if_else(salud_num &gt;= 3, \"Sí\", \"No\"),\n      levels = c(\"No\", \"Sí\")\n    )\n  ) |&gt;\n  select(\n    animal_id, granja_id, tiempo,\n    peso_kg, salud_alta_ml,\n    consumo_kg_dia, consumo_agua_l_dia,\n    edad_inicio_meses, sexo, raza,\n    temperatura_C, humedad_pct,\n    precipitacion_mm, actividad_h_dia,\n    sistema_produccion, zona\n  ) |&gt;\n  drop_na()\n\ncount(datos_ml2, salud_alta_ml)\n\n\n# A tibble: 2 × 2\n  salud_alta_ml     n\n  &lt;fct&gt;         &lt;int&gt;\n1 No            41058\n2 Sí             5958",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Regresión y clasificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Capítulo 2. Métodos de regresión y clasificación</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_02.html#regresión-lineal",
-    "href": "modulos/ml_02.html#regresión-lineal",
-    "title": "7  Regresión y clasificación",
-    "section": "8.1 Regresión lineal",
-    "text": "8.1 Regresión lineal",
+    "objectID": "modulos/ml_02.html#división-agrupada-por-animal",
+    "href": "modulos/ml_02.html#división-agrupada-por-animal",
+    "title": "7  Métodos de regresión y clasificación",
+    "section": "7.2 División agrupada por animal",
+    "text": "7.2 División agrupada por animal\n\n\n\nCódigo\nset.seed(2026)\n\nparticion_ml2 &lt;- group_initial_split(\n  datos_ml2,\n  group = animal_id,\n  prop = 0.80\n)\n\ntrain_ml2 &lt;- training(particion_ml2)\ntest_ml2 &lt;- testing(particion_ml2)\n\nset.seed(2026)\nfolds_ml2 &lt;- group_vfold_cv(\n  train_ml2,\n  group = animal_id,\n  v = 5\n)",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Regresión y clasificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Capítulo 2. Métodos de regresión y clasificación</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_02.html#regresión-logística",
-    "href": "modulos/ml_02.html#regresión-logística",
-    "title": "7  Regresión y clasificación",
-    "section": "8.2 Regresión logística",
-    "text": "8.2 Regresión logística",
+    "objectID": "modulos/ml_02.html#regresión-lineal-para-predecir-peso",
+    "href": "modulos/ml_02.html#regresión-lineal-para-predecir-peso",
+    "title": "7  Métodos de regresión y clasificación",
+    "section": "7.3 Regresión lineal para predecir peso",
+    "text": "7.3 Regresión lineal para predecir peso\n\n\n\nCódigo\nreceta_peso &lt;- recipe(\n  peso_kg ~\n    consumo_kg_dia + consumo_agua_l_dia +\n    edad_inicio_meses + sexo + raza + tiempo +\n    temperatura_C + humedad_pct + precipitacion_mm +\n    actividad_h_dia + sistema_produccion + zona,\n  data = train_ml2\n) |&gt;\n  step_unknown(all_nominal_predictors()) |&gt;\n  step_novel(all_nominal_predictors()) |&gt;\n  step_dummy(all_nominal_predictors()) |&gt;\n  step_zv(all_predictors()) |&gt;\n  step_normalize(all_numeric_predictors())\n\nmodelo_lm_ml &lt;- linear_reg() |&gt;\n  set_engine(\"lm\")\n\nflujo_lm &lt;- workflow() |&gt;\n  add_recipe(receta_peso) |&gt;\n  add_model(modelo_lm_ml)\n\najuste_lm &lt;- fit(\n  flujo_lm,\n  data = train_ml2\n)\n\najuste_lm\n\n\n══ Workflow [trained] ══════════════════════════════════════════════════════════\nPreprocessor: Recipe\nModel: linear_reg()\n\n── Preprocessor ────────────────────────────────────────────────────────────────\n5 Recipe Steps\n\n• step_unknown()\n• step_novel()\n• step_dummy()\n• step_zv()\n• step_normalize()\n\n── Model ───────────────────────────────────────────────────────────────────────\n\nCall:\nstats::lm(formula = ..y ~ ., data = data)\n\nCoefficients:\n                      (Intercept)                     consumo_kg_dia  \n                        41.048642                           2.401394  \n               consumo_agua_l_dia                  edad_inicio_meses  \n                         0.062575                           3.256538  \n                           tiempo                      temperatura_C  \n                         6.392882                          -1.245451  \n                      humedad_pct                   precipitacion_mm  \n                        -0.007571                          -0.012876  \n                  actividad_h_dia                         sexo_Macho  \n                         0.030994                           0.490955  \n                      raza_Raza_B                        raza_Raza_C  \n                         0.438409                          -0.631904  \n                      raza_Raza_D                        raza_Raza_E  \n                         1.189205                           0.304300  \n     sistema_produccion_Intensivo  sistema_produccion_Semi.intensivo  \n                        -0.070327                           0.302244  \n                       zona_Norte                           zona_Sur  \n                         0.091138                          -0.301635  \n\n\n\n\n\nCódigo\npred_lm &lt;- predict(\n  ajuste_lm,\n  new_data = test_ml2\n) |&gt;\n  bind_cols(\n    test_ml2 |&gt;\n      select(peso_kg, animal_id, granja_id)\n  )\n\nmetric_set(rmse, mae, rsq)(\n  pred_lm,\n  truth = peso_kg,\n  estimate = .pred\n)\n\n\n# A tibble: 3 × 3\n  .metric .estimator .estimate\n  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;\n1 rmse    standard       3.61 \n2 mae     standard       2.88 \n3 rsq     standard       0.835\n\n\n\nEl RMSE penaliza especialmente los errores grandes. El MAE representa el error absoluto medio en kilogramos. El (R^2) predictivo describe cuánto se aproximan las predicciones a los valores observados en el conjunto de prueba.\n\n\n\nCódigo\nggplot(\n  pred_lm,\n  aes(x = .pred, y = peso_kg)\n) +\n  geom_point(alpha = 0.20, size = 1) +\n  geom_abline(\n    intercept = 0,\n    slope = 1,\n    linetype = \"dashed\",\n    color = \"firebrick\"\n  ) +\n  labs(\n    title = \"Peso observado y predicho\",\n    x = \"Peso predicho (kg)\",\n    y = \"Peso observado (kg)\"\n  ) +\n  theme_minimal()",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Regresión y clasificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Capítulo 2. Métodos de regresión y clasificación</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_02.html#validación-cruzada",
-    "href": "modulos/ml_02.html#validación-cruzada",
-    "title": "7  Regresión y clasificación",
-    "section": "8.3 Validación cruzada",
-    "text": "8.3 Validación cruzada\n\n\nCódigo\nlibrary(here)\n\ndatos &lt;- read.csv(here(\"datos\",\"leche.csv\"))",
+    "objectID": "modulos/ml_02.html#regularización-mediante-elastic-net",
+    "href": "modulos/ml_02.html#regularización-mediante-elastic-net",
+    "title": "7  Métodos de regresión y clasificación",
+    "section": "7.4 Regularización mediante elastic net",
+    "text": "7.4 Regularización mediante elastic net\n\nLa regularización reduce la magnitud de los coeficientes para controlar la complejidad. La penalización mixture = 0 corresponde a ridge, mixture = 1 a lasso y los valores intermedios a elastic net.\n\n\n\nCódigo\nmodelo_glmnet &lt;- linear_reg(\n  penalty = tune(),\n  mixture = tune()\n) |&gt;\n  set_engine(\"glmnet\")\n\nflujo_glmnet &lt;- workflow() |&gt;\n  add_recipe(receta_peso) |&gt;\n  add_model(modelo_glmnet)\n\nrejilla_glmnet &lt;- grid_regular(\n  penalty(range = c(-5, 0)),\n  mixture(range = c(0, 1)),\n  levels = c(20, 5)\n)\n\n\n\n\n\nCódigo\nset.seed(2026)\nresultados_glmnet &lt;- tune_grid(\n  flujo_glmnet,\n  resamples = folds_ml2,\n  grid = rejilla_glmnet,\n  metrics = metric_set(rmse, mae, rsq),\n  control = control_grid(save_pred = TRUE)\n)\n\nshow_best(\n  resultados_glmnet,\n  metric = \"rmse\",\n  n = 10\n)\n\n\n# A tibble: 10 × 8\n     penalty mixture .metric .estimator  mean     n std_err .config          \n       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;            \n 1 0.00001      0.75 rmse    standard    3.55     5  0.0799 pre0_mod004_post0\n 2 0.0000183    0.75 rmse    standard    3.55     5  0.0799 pre0_mod009_post0\n 3 0.0000336    0.75 rmse    standard    3.55     5  0.0799 pre0_mod014_post0\n 4 0.0000616    0.75 rmse    standard    3.55     5  0.0799 pre0_mod019_post0\n 5 0.000113     0.75 rmse    standard    3.55     5  0.0799 pre0_mod024_post0\n 6 0.000207     0.75 rmse    standard    3.55     5  0.0799 pre0_mod029_post0\n 7 0.000379     0.75 rmse    standard    3.55     5  0.0799 pre0_mod034_post0\n 8 0.000695     0.75 rmse    standard    3.55     5  0.0799 pre0_mod039_post0\n 9 0.00127      0.75 rmse    standard    3.55     5  0.0799 pre0_mod044_post0\n10 0.00234      0.75 rmse    standard    3.55     5  0.0799 pre0_mod049_post0\n\n\n\n\n\nCódigo\nmejores_parametros &lt;- select_best(\n  resultados_glmnet,\n  metric = \"rmse\"\n)\n\nflujo_glmnet_final &lt;- finalize_workflow(\n  flujo_glmnet,\n  mejores_parametros\n)\n\najuste_glmnet_final &lt;- last_fit(\n  flujo_glmnet_final,\n  split = particion_ml2,\n  metrics = metric_set(rmse, mae, rsq)\n)\n\ncollect_metrics(ajuste_glmnet_final)\n\n\n# A tibble: 3 × 4\n  .metric .estimator .estimate .config        \n  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;          \n1 rmse    standard       3.62  pre0_mod0_post0\n2 mae     standard       2.89  pre0_mod0_post0\n3 rsq     standard       0.834 pre0_mod0_post0",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Regresión y clasificación</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Capítulo 2. Métodos de regresión y clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_02.html#regresión-logística-para-salud-alta",
+    "href": "modulos/ml_02.html#regresión-logística-para-salud-alta",
+    "title": "7  Métodos de regresión y clasificación",
+    "section": "7.5 Regresión logística para salud alta",
+    "text": "7.5 Regresión logística para salud alta\n\n\n\nCódigo\nreceta_salud &lt;- recipe(\n  salud_alta_ml ~\n    consumo_kg_dia + consumo_agua_l_dia +\n    edad_inicio_meses + sexo + raza + tiempo +\n    temperatura_C + humedad_pct + precipitacion_mm +\n    actividad_h_dia + sistema_produccion + zona,\n  data = train_ml2\n) |&gt;\n  step_unknown(all_nominal_predictors()) |&gt;\n  step_novel(all_nominal_predictors()) |&gt;\n  step_dummy(all_nominal_predictors()) |&gt;\n  step_zv(all_predictors()) |&gt;\n  step_normalize(all_numeric_predictors())\n\nmodelo_logistico_ml &lt;- logistic_reg() |&gt;\n  set_engine(\"glm\")\n\nflujo_logistico &lt;- workflow() |&gt;\n  add_recipe(receta_salud) |&gt;\n  add_model(modelo_logistico_ml)\n\najuste_logistico &lt;- fit(\n  flujo_logistico,\n  data = train_ml2\n)\n\n\n\n\n\nCódigo\npred_prob_logistica &lt;- predict(\n  ajuste_logistico,\n  new_data = test_ml2,\n  type = \"prob\"\n)\n\npred_clase_logistica &lt;- predict(\n  ajuste_logistico,\n  new_data = test_ml2,\n  type = \"class\"\n)\n\npred_logistica &lt;- bind_cols(\n  test_ml2 |&gt;\n    select(salud_alta_ml, animal_id, granja_id),\n  pred_prob_logistica,\n  pred_clase_logistica\n)",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Capítulo 2. Métodos de regresión y clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_02.html#métricas-de-clasificación",
+    "href": "modulos/ml_02.html#métricas-de-clasificación",
+    "title": "7  Métodos de regresión y clasificación",
+    "section": "7.6 Métricas de clasificación",
+    "text": "7.6 Métricas de clasificación\n\n\n\nCódigo\nmetric_set(\n  accuracy,\n  sens,\n  spec,\n  bal_accuracy,\n  roc_auc,\n  pr_auc,\n  mn_log_loss\n)(\n  pred_logistica,\n  truth = salud_alta_ml,\n  estimate = .pred_class,\n  .pred_Sí,\n  event_level = \"second\"\n)\n\n\n# A tibble: 7 × 3\n  .metric      .estimator .estimate\n  &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt;\n1 accuracy     binary        0.875 \n2 sens         binary        0.0818\n3 spec         binary        0.990 \n4 bal_accuracy binary        0.536 \n5 roc_auc      binary        0.799 \n6 pr_auc       binary        0.373 \n7 mn_log_loss  binary        0.313 \n\n\n\nLa exactitud puede ser engañosa cuando las clases están desequilibradas. La sensibilidad representa la proporción de mediciones con salud alta identificadas correctamente. La especificidad representa la proporción de mediciones sin salud alta clasificadas correctamente. El AUC ROC evalúa el ordenamiento de las probabilidades a través de todos los umbrales.\n\n\n\nCódigo\nconf_mat(\n  pred_logistica,\n  truth = salud_alta_ml,\n  estimate = .pred_class\n)\n\n\n          Truth\nPrediction   No   Sí\n        No 8151 1100\n        Sí   83   98\n\n\n\n\n\nCódigo\nroc_obj &lt;- roc_curve(\n  pred_logistica,\n  truth = salud_alta_ml,\n  .pred_Sí,\n  event_level = \"second\"\n)\n\nautoplot(roc_obj) +\n  labs(\n    title = \"Curva ROC para salud alta\"\n  ) +\n  theme_minimal()",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Capítulo 2. Métodos de regresión y clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_02.html#selección-del-umbral",
+    "href": "modulos/ml_02.html#selección-del-umbral",
+    "title": "7  Métodos de regresión y clasificación",
+    "section": "7.7 Selección del umbral",
+    "text": "7.7 Selección del umbral\n\nEl valor 0,5 no es obligatorio. Puede elegirse otro umbral según el costo de falsos negativos y falsos positivos.\n\n\n\nCódigo\numbral &lt;- 0.35\n\npred_logistica_umbral &lt;- pred_logistica |&gt;\n  mutate(\n    clase_umbral = factor(\n      if_else(.pred_Sí &gt;= umbral, \"Sí\", \"No\"),\n      levels = levels(salud_alta_ml)\n    )\n  )\n\nmetric_set(sens, spec, accuracy)(\n  pred_logistica_umbral,\n  truth = salud_alta_ml,\n  estimate = clase_umbral,\n  event_level = \"second\"\n)\n\n\n# A tibble: 3 × 3\n  .metric  .estimator .estimate\n  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;\n1 sens     binary         0.265\n2 spec     binary         0.957\n3 accuracy binary         0.869",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Capítulo 2. Métodos de regresión y clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_02.html#regularización-logística",
+    "href": "modulos/ml_02.html#regularización-logística",
+    "title": "7  Métodos de regresión y clasificación",
+    "section": "7.8 Regularización logística",
+    "text": "7.8 Regularización logística\n\n\n\nCódigo\nmodelo_logit_penalizado &lt;- logistic_reg(\n  penalty = tune(),\n  mixture = tune()\n) |&gt;\n  set_engine(\"glmnet\")\n\nflujo_logit_penalizado &lt;- workflow() |&gt;\n  add_recipe(receta_salud) |&gt;\n  add_model(modelo_logit_penalizado)\n\nset.seed(2026)\nresultados_logit_penalizado &lt;- tune_grid(\n  flujo_logit_penalizado,\n  resamples = folds_ml2,\n  grid = rejilla_glmnet,\n  metrics = metric_set(roc_auc, pr_auc, mn_log_loss),\n  control = control_grid(save_pred = TRUE),\n  event_level = \"second\"\n)\n\nshow_best(\n  resultados_logit_penalizado,\n  metric = \"roc_auc\",\n  n = 10\n)\n\n\n# A tibble: 10 × 8\n     penalty mixture .metric .estimator  mean     n std_err .config          \n       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;            \n 1 0.00127      1    roc_auc binary     0.791     5 0.00559 pre0_mod045_post0\n 2 0.00127      0.75 roc_auc binary     0.791     5 0.00559 pre0_mod044_post0\n 3 0.000695     1    roc_auc binary     0.791     5 0.00561 pre0_mod040_post0\n 4 0.00234      0.75 roc_auc binary     0.791     5 0.00557 pre0_mod049_post0\n 5 0.00234      0.5  roc_auc binary     0.791     5 0.00558 pre0_mod048_post0\n 6 0.00234      1    roc_auc binary     0.791     5 0.00556 pre0_mod050_post0\n 7 0.000695     0.75 roc_auc binary     0.791     5 0.00561 pre0_mod039_post0\n 8 0.00001      1    roc_auc binary     0.791     5 0.00562 pre0_mod005_post0\n 9 0.0000183    1    roc_auc binary     0.791     5 0.00562 pre0_mod010_post0\n10 0.0000336    1    roc_auc binary     0.791     5 0.00562 pre0_mod015_post0",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Capítulo 2. Métodos de regresión y clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_02.html#actividad-de-interpretación",
+    "href": "modulos/ml_02.html#actividad-de-interpretación",
+    "title": "7  Métodos de regresión y clasificación",
+    "section": "7.9 Actividad de interpretación",
+    "text": "7.9 Actividad de interpretación\n\n\n¿Qué variables utiliza el modelo de peso?\n¿Qué representan RMSE y MAE?\n¿Por qué el (R^2) debe calcularse en prueba?\n¿Qué diferencia existe entre ridge y lasso?\n¿Qué parámetros se seleccionan mediante validación cruzada?\n¿Cuál es el evento positivo de la clasificación?\n¿Qué representan sensibilidad y especificidad?\n¿Por qué la exactitud puede ser insuficiente?\n¿Cómo cambia la clasificación al reducir el umbral?\n¿Qué modelo utilizaría para priorizar la detección de animales con salud baja?\n\n\nAl finalizar este capítulo debemos ser capaces de construir modelos de regresión y clasificación, aplicar regularización, seleccionar parámetros sin consultar la prueba y evaluar el desempeño mediante métricas adecuadas para el tipo de respuesta.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Capítulo 2. Métodos de regresión y clasificación</span>"
     ]
   },
   {
     "objectID": "modulos/ml_03.html",
     "href": "modulos/ml_03.html",
-    "title": "8  Árboles y Random Forest",
+    "title": "8  Capítulo 3. Métodos basados en árboles",
     "section": "",
-    "text": "9 Temas",
+    "text": "8.1 Preparación y partición\nEn este capítulo utilizaremos árboles de decisión, Random Forest y Gradient Boosting para predecir el peso y clasificar la salud de los animales. Estos métodos pueden representar relaciones no lineales e interacciones sin especificarlas manualmente, pero requieren control de complejidad y una evaluación rigurosa fuera de muestra.\nCódigo\ndatos_arboles &lt;- datos_b2 |&gt;\n  mutate(\n    salud_num = as.numeric(as.character(salud_score_0_4)),\n    salud_alta_ml = factor(\n      if_else(salud_num &gt;= 3, \"Sí\", \"No\"),\n      levels = c(\"No\", \"Sí\")\n    )\n  ) |&gt;\n  select(\n    animal_id, granja_id, tiempo,\n    peso_kg, salud_alta_ml,\n    consumo_kg_dia, consumo_agua_l_dia,\n    edad_inicio_meses, sexo, raza,\n    temperatura_C, humedad_pct,\n    precipitacion_mm, actividad_h_dia,\n    sistema_produccion, zona\n  ) |&gt;\n  drop_na()\n\nset.seed(2026)\nsplit_arboles &lt;- group_initial_split(\n  datos_arboles,\n  group = animal_id,\n  prop = 0.80\n)\n\ntrain_arboles &lt;- training(split_arboles)\ntest_arboles &lt;- testing(split_arboles)\n\nset.seed(2026)\nfolds_arboles &lt;- group_vfold_cv(\n  train_arboles,\n  group = animal_id,\n  v = 5\n)",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Árboles y Random Forest</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 3. Métodos basados en árboles</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_03.html#cart",
-    "href": "modulos/ml_03.html#cart",
-    "title": "8  Árboles y Random Forest",
-    "section": "9.1 CART",
-    "text": "9.1 CART",
+    "objectID": "modulos/ml_03.html#árbol-de-regresión",
+    "href": "modulos/ml_03.html#árbol-de-regresión",
+    "title": "8  Capítulo 3. Métodos basados en árboles",
+    "section": "8.2 Árbol de regresión",
+    "text": "8.2 Árbol de regresión\n\n\n\nCódigo\nreceta_arbol_peso &lt;- recipe(\n  peso_kg ~\n    consumo_kg_dia + consumo_agua_l_dia +\n    edad_inicio_meses + sexo + raza + tiempo +\n    temperatura_C + humedad_pct + precipitacion_mm +\n    actividad_h_dia + sistema_produccion + zona,\n  data = train_arboles\n) |&gt;\n  step_unknown(all_nominal_predictors()) |&gt;\n  step_novel(all_nominal_predictors())\n\nmodelo_arbol_reg &lt;- decision_tree(\n  cost_complexity = tune(),\n  tree_depth = tune(),\n  min_n = tune()\n) |&gt;\n  set_engine(\"rpart\") |&gt;\n  set_mode(\"regression\")\n\nflujo_arbol_reg &lt;- workflow() |&gt;\n  add_recipe(receta_arbol_peso) |&gt;\n  add_model(modelo_arbol_reg)\n\n\n\n\n\nCódigo\nrejilla_arbol &lt;- grid_random(\n  cost_complexity(range = c(-5, -1)),\n  tree_depth(range = c(2L, 12L)),\n  min_n(range = c(5L, 50L)),\n  size = 10\n)\n\nfolds_arboles_rapidos &lt;- vfold_cv(\n  train_arboles,\n  v = 3\n)\n\nset.seed(2026)\nresultados_arbol_reg &lt;- tune_grid(\n  flujo_arbol_reg,\n  resamples = folds_arboles_rapidos,\n  grid = rejilla_arbol,\n  metrics = metric_set(rmse),\n  control = control_grid(verbose = TRUE)\n)\n\nshow_best(resultados_arbol_reg, metric = \"rmse\", n = 5)\n\n\n# A tibble: 5 × 9\n  cost_complexity tree_depth min_n .metric .estimator  mean     n std_err\n            &lt;dbl&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;\n1       0.0000236         10    32 rmse    standard    2.48     3  0.0250\n2       0.0000428         10    38 rmse    standard    2.58     3  0.0155\n3       0.0000139         12    48 rmse    standard    2.70     3  0.0327\n4       0.00108            9    38 rmse    standard    3.14     3  0.0466\n5       0.00172           10    46 rmse    standard    3.41     3  0.0425\n# ℹ 1 more variable: .config &lt;chr&gt;\n\n\n\n\n\nCódigo\nmejor_arbol &lt;- select_best(\n  resultados_arbol_reg,\n  metric = \"rmse\"\n)\n\narbol_final &lt;- finalize_workflow(\n  flujo_arbol_reg,\n  mejor_arbol\n) |&gt;\n  fit(data = train_arboles)\n\narbol_rpart &lt;- extract_fit_engine(arbol_final)\n\nrpart.plot(\n  arbol_rpart,\n  type = 2,\n  extra = 101,\n  fallen.leaves = TRUE\n)\n\n\n\n\n\n\n\n\n\n\nCada división separa observaciones según una variable y un punto de corte. Las hojas contienen predicciones de peso. Un árbol profundo puede ajustarse demasiado a peculiaridades del entrenamiento.",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Árboles y Random Forest</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 3. Métodos basados en árboles</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_03.html#bagging",
-    "href": "modulos/ml_03.html#bagging",
-    "title": "8  Árboles y Random Forest",
-    "section": "9.2 Bagging",
-    "text": "9.2 Bagging",
+    "objectID": "modulos/ml_03.html#random-forest-para-regresión",
+    "href": "modulos/ml_03.html#random-forest-para-regresión",
+    "title": "8  Capítulo 3. Métodos basados en árboles",
+    "section": "8.3 Random Forest para regresión",
+    "text": "8.3 Random Forest para regresión\n\nRandom Forest combina muchos árboles construidos con muestras y subconjuntos aleatorios de predictores. El promedio de los árboles reduce la inestabilidad de un árbol individual.\n\n\n\nCódigo\nreceta_forest_peso &lt;- receta_arbol_peso |&gt;\n  step_dummy(all_nominal_predictors()) |&gt;\n  step_zv(all_predictors())\n\nmodelo_rf_reg &lt;- rand_forest(\n  mtry = tune(),\n  min_n = tune(),\n  trees = 800\n) |&gt;\n  set_engine(\n    \"ranger\",\n    importance = \"permutation\"\n  ) |&gt;\n  set_mode(\"regression\")\n\nflujo_rf_reg &lt;- workflow() |&gt;\n  add_recipe(receta_forest_peso) |&gt;\n  add_model(modelo_rf_reg)\n\nrejilla_rf &lt;- grid_space_filling(\n  finalize(mtry(), train_arboles),\n  min_n(range = c(2L, 40L)),\n  size = 20\n)\n\n\n\n\n\nCódigo\nrejilla_rf &lt;- grid_random(\n  mtry(range = c(2L, 12L)),\n  min_n(range = c(5L, 50L)),\n  size = 10\n)\n\nset.seed(2026)\nresultados_rf &lt;- tune_grid(\n  flujo_rf_reg,\n  resamples = folds_arboles_rapidos,\n  grid = rejilla_rf,\n  metrics = metric_set(rmse),\n  control = control_grid(verbose = TRUE)\n)\n\nshow_best(resultados_rf, metric = \"rmse\", n = 5)\n\n\n# A tibble: 5 × 8\n   mtry min_n .metric .estimator  mean     n  std_err .config         \n  &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;    &lt;dbl&gt; &lt;chr&gt;           \n1    11    30 rmse    standard    2.07     3 0.00564  pre0_mod10_post0\n2     5     6 rmse    standard    2.12     3 0.00650  pre0_mod07_post0\n3     4     8 rmse    standard    2.27     3 0.0128   pre0_mod04_post0\n4     9    45 rmse    standard    2.29     3 0.000308 pre0_mod09_post0\n5     6    46 rmse    standard    2.45     3 0.0106   pre0_mod08_post0\n\n\n\n\n\nCódigo\nmejor_rf &lt;- select_best(resultados_rf, metric = \"rmse\")\n\nrf_final &lt;- finalize_workflow(\n  flujo_rf_reg,\n  mejor_rf\n)\n\nresultado_rf_prueba &lt;- last_fit(\n  rf_final,\n  split = split_arboles,\n  metrics = metric_set(rmse, mae, rsq)\n)\n\ncollect_metrics(resultado_rf_prueba)\n\n\n# A tibble: 3 × 4\n  .metric .estimator .estimate .config        \n  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;          \n1 rmse    standard       4.08  pre0_mod0_post0\n2 mae     standard       3.28  pre0_mod0_post0\n3 rsq     standard       0.766 pre0_mod0_post0\n\n\n\n\n\nCódigo\najuste_rf_completo &lt;- fit(\n  rf_final,\n  data = train_arboles\n)\n\nmotor_rf &lt;- extract_fit_engine(ajuste_rf_completo)\n\nvip(\n  motor_rf,\n  num_features = 10\n) +\n  labs(\n    title = \"Importancia de variables en Random Forest\"\n  )\n\n\n\n\n\n\n\n\n\nNULL\n\n\n\nLa importancia por permutación mide cuánto empeora la predicción cuando se altera una variable. No demuestra causalidad y puede repartirse entre predictores altamente correlacionados.",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Árboles y Random Forest</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 3. Métodos basados en árboles</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_03.html#random-forest",
-    "href": "modulos/ml_03.html#random-forest",
-    "title": "8  Árboles y Random Forest",
-    "section": "9.3 Random Forest",
-    "text": "9.3 Random Forest",
+    "objectID": "modulos/ml_03.html#gradient-boosting-para-regresión",
+    "href": "modulos/ml_03.html#gradient-boosting-para-regresión",
+    "title": "8  Capítulo 3. Métodos basados en árboles",
+    "section": "8.4 Gradient Boosting para regresión",
+    "text": "8.4 Gradient Boosting para regresión\n\nGradient Boosting construye árboles secuencialmente. Cada nuevo árbol intenta corregir errores del conjunto anterior. La tasa de aprendizaje, la profundidad, el número de árboles y la regularización controlan la complejidad.\n\n\n\nCódigo\nreceta_boost &lt;- receta_forest_peso\n\nmodelo_boost &lt;- boost_tree(\n  trees = tune(),\n  tree_depth = tune(),\n  learn_rate = tune(),\n  loss_reduction = tune(),\n  min_n = tune(),\n  sample_size = tune(),\n  mtry = tune()\n) |&gt;\n  set_engine(\"xgboost\") |&gt;\n  set_mode(\"regression\")\n\nflujo_boost &lt;- workflow() |&gt;\n  add_recipe(receta_boost) |&gt;\n  add_model(modelo_boost)\n\n\n\n\n\nCódigo\nparametros_boost &lt;- parameters(\n  trees(range = c(30L, 50L)),\n  tree_depth(range = c(2L, 3L)),\n  learn_rate(range = c(-2, -1)),\n  loss_reduction(),\n  min_n(range = c(5L, 15L)),\n  sample_prop(range = c(0.8, 1.0)),\n  finalize(mtry(), train_arboles)\n)\n\nset.seed(2026)\nrejilla_boost &lt;- grid_latin_hypercube(\n  parametros_boost,\n  size = 3\n)\n\nset.seed(2026)\nresultados_boost &lt;- tune_grid(\n  flujo_boost,\n  resamples = vfold_cv(train_arboles, v = 2),\n  grid = rejilla_boost,\n  metrics = metric_set(rmse),\n  control = control_grid(verbose = TRUE)\n)\n\nshow_best(resultados_boost, metric = \"rmse\", n = 3)\n\n\n# A tibble: 3 × 13\n   mtry trees min_n tree_depth learn_rate loss_reduction sample_size .metric\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;      &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;  \n1     7    46    10          2     0.0535       4.09e-10       0.964 rmse   \n2     5    34     7          2     0.0272       2.15e+ 1       0.915 rmse   \n3    11    42    14          3     0.0111       1.95e- 6       0.838 rmse   \n# ℹ 5 more variables: .estimator &lt;chr&gt;, mean &lt;dbl&gt;, n &lt;int&gt;, std_err &lt;dbl&gt;,\n#   .config &lt;chr&gt;",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Árboles y Random Forest</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 3. Métodos basados en árboles</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_03.html#importancia-de-variables",
-    "href": "modulos/ml_03.html#importancia-de-variables",
-    "title": "8  Árboles y Random Forest",
-    "section": "9.4 Importancia de variables",
-    "text": "9.4 Importancia de variables\n\n\nCódigo\nlibrary(here)\n\ndatos &lt;- read.csv(here(\"datos\",\"mastitis.csv\"))\nlibrary(ranger)\nrf &lt;- ranger(caso~.,data=datos,importance='impurity')",
+    "objectID": "modulos/ml_03.html#comparación-de-modelos",
+    "href": "modulos/ml_03.html#comparación-de-modelos",
+    "title": "8  Capítulo 3. Métodos basados en árboles",
+    "section": "8.5 Comparación de modelos",
+    "text": "8.5 Comparación de modelos\n\n\n\nCódigo\nmejor_boost &lt;- select_best(\n  resultados_boost,\n  metric = \"rmse\"\n)\n\nboost_final &lt;- finalize_workflow(\n  flujo_boost,\n  mejor_boost\n)\n\nresultado_boost_prueba &lt;- last_fit(\n  boost_final,\n  split = split_arboles,\n  metrics = metric_set(rmse, mae, rsq)\n)\n\nmetricas_arboles &lt;- bind_rows(\n  collect_metrics(resultado_rf_prueba) |&gt;\n    mutate(modelo = \"Random Forest\"),\n  collect_metrics(resultado_boost_prueba) |&gt;\n    mutate(modelo = \"Gradient Boosting\")\n)\n\nmetricas_arboles\n\n\n# A tibble: 6 × 5\n  .metric .estimator .estimate .config         modelo           \n  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;            \n1 rmse    standard       4.08  pre0_mod0_post0 Random Forest    \n2 mae     standard       3.28  pre0_mod0_post0 Random Forest    \n3 rsq     standard       0.766 pre0_mod0_post0 Random Forest    \n4 rmse    standard       4.12  pre0_mod0_post0 Gradient Boosting\n5 mae     standard       3.24  pre0_mod0_post0 Gradient Boosting\n6 rsq     standard       0.811 pre0_mod0_post0 Gradient Boosting",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Árboles y Random Forest</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 3. Métodos basados en árboles</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_03.html#árbol-y-random-forest-para-clasificación",
+    "href": "modulos/ml_03.html#árbol-y-random-forest-para-clasificación",
+    "title": "8  Capítulo 3. Métodos basados en árboles",
+    "section": "8.6 Árbol y Random Forest para clasificación",
+    "text": "8.6 Árbol y Random Forest para clasificación\n\n\n\nCódigo\nreceta_clas_arbol &lt;- recipe(\n  salud_alta_ml ~\n    consumo_kg_dia + consumo_agua_l_dia +\n    edad_inicio_meses + sexo + raza + tiempo +\n    temperatura_C + humedad_pct + precipitacion_mm +\n    actividad_h_dia + sistema_produccion + zona,\n  data = train_arboles\n) |&gt;\n  step_unknown(all_nominal_predictors()) |&gt;\n  step_novel(all_nominal_predictors()) |&gt;\n  step_dummy(all_nominal_predictors()) |&gt;\n  step_zv(all_predictors())\n\nmodelo_rf_clas &lt;- rand_forest(\n  mtry = tune(),\n  min_n = tune(),\n  trees = 800\n) |&gt;\n  set_engine(\n    \"ranger\",\n    importance = \"permutation\",\n    probability = TRUE\n  ) |&gt;\n  set_mode(\"classification\")\n\nflujo_rf_clas &lt;- workflow() |&gt;\n  add_recipe(receta_clas_arbol) |&gt;\n  add_model(modelo_rf_clas)\n\n\n\n\n\nCódigo\nset.seed(2026)\n\nrejilla_rf_clas &lt;- grid_random(\n  mtry(range = c(2L, 10L)),\n  min_n(range = c(5L, 20L)),\n  size = 3\n)\n\nresultados_rf_clas &lt;- tune_grid(\n  flujo_rf_clas,\n  resamples = vfold_cv(train_arboles, v = 2),\n  grid = rejilla_rf_clas,\n  metrics = metric_set(roc_auc),\n  control = control_grid(verbose = TRUE)\n)\n\nshow_best(\n  resultados_rf_clas,\n  metric = \"roc_auc\",\n  n = 3\n)\n\n\n# A tibble: 3 × 8\n   mtry min_n .metric .estimator  mean     n std_err .config        \n  &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;          \n1     7    15 roc_auc binary     0.754     2 0.00406 pre0_mod2_post0\n2    10    17 roc_auc binary     0.752     2 0.00436 pre0_mod3_post0\n3     2    19 roc_auc binary     0.751     2 0.00806 pre0_mod1_post0",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 3. Métodos basados en árboles</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_03.html#actividad-de-interpretación",
+    "href": "modulos/ml_03.html#actividad-de-interpretación",
+    "title": "8  Capítulo 3. Métodos basados en árboles",
+    "section": "8.7 Actividad de interpretación",
+    "text": "8.7 Actividad de interpretación\n\n\n¿Qué representa una división de un árbol?\n¿Qué representan las hojas?\n¿Cómo controla cost_complexity el tamaño del árbol?\n¿Por qué un árbol profundo puede sobreajustar?\n¿Cómo reduce Random Forest la inestabilidad?\n¿Qué representa mtry?\n¿Qué mide la importancia por permutación?\n¿Cómo construye árboles Gradient Boosting?\n¿Qué ocurre si la tasa de aprendizaje es muy alta?\n¿Qué modelo obtuvo menor RMSE en animales nuevos?\n\n\nAl finalizar este capítulo debemos comprender las diferencias entre un árbol individual, Random Forest y Gradient Boosting, ajustar sus parámetros mediante validación cruzada agrupada y evaluar su rendimiento sobre animales no utilizados durante el entrenamiento.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Capítulo 3. Métodos basados en árboles</span>"
     ]
   },
   {
     "objectID": "modulos/ml_04.html",
     "href": "modulos/ml_04.html",
-    "title": "9  Redes neuronales",
+    "title": "9  Capítulo 4. Introducción a las redes neuronales",
     "section": "",
-    "text": "10 Temas",
+    "text": "9.1 Preparación de los datos\nEn este capítulo introduciremos las redes neuronales mediante un perceptrón multicapa para predecir el peso de los animales. El objetivo no es construir una arquitectura profunda, sino comprender las neuronas, las capas ocultas, las funciones de activación, el entrenamiento y el riesgo de sobreajuste.\nCódigo\ndatos_nn &lt;- datos_b2 |&gt;\n  select(\n    animal_id, granja_id, tiempo,\n    peso_kg, consumo_kg_dia,\n    consumo_agua_l_dia, edad_inicio_meses,\n    sexo, raza, temperatura_C,\n    humedad_pct, precipitacion_mm,\n    actividad_h_dia, sistema_produccion, zona\n  ) |&gt;\n  drop_na()\n\nset.seed(2026)\nsplit_nn &lt;- group_initial_split(\n  datos_nn,\n  group = animal_id,\n  prop = 0.80\n)\n\ntrain_nn &lt;- training(split_nn)\ntest_nn &lt;- testing(split_nn)\n\nset.seed(2026)\nfolds_nn &lt;- group_vfold_cv(\n  train_nn,\n  group = animal_id,\n  v = 5\n)",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Redes neuronales</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Capítulo 4. Introducción a las redes neuronales</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_04.html#neurona-artificial",
-    "href": "modulos/ml_04.html#neurona-artificial",
-    "title": "9  Redes neuronales",
-    "section": "10.1 Neurona artificial",
-    "text": "10.1 Neurona artificial",
+    "objectID": "modulos/ml_04.html#de-la-regresión-lineal-a-una-red-neuronal",
+    "href": "modulos/ml_04.html#de-la-regresión-lineal-a-una-red-neuronal",
+    "title": "9  Capítulo 4. Introducción a las redes neuronales",
+    "section": "9.2 De la regresión lineal a una red neuronal",
+    "text": "9.2 De la regresión lineal a una red neuronal\n\nUna regresión lineal calcula una combinación ponderada de predictores. Una neurona realiza una operación semejante, pero aplica una función de activación. Al combinar varias neuronas en capas ocultas, la red puede representar relaciones no lineales complejas.\n\nPara una capa oculta podemos expresar una neurona como:\n[ h_j = g(b_j + {k=1}^{p}w{jk}x_k) ]\n\nLa salida de la red combina las activaciones de las neuronas ocultas para producir una predicción.",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Redes neuronales</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Capítulo 4. Introducción a las redes neuronales</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_04.html#preprocesamiento",
+    "href": "modulos/ml_04.html#preprocesamiento",
+    "title": "9  Capítulo 4. Introducción a las redes neuronales",
+    "section": "9.3 Preprocesamiento",
+    "text": "9.3 Preprocesamiento\n\nLas redes neuronales son sensibles a las escalas. Estandarizaremos todos los predictores numéricos y convertiremos las variables categóricas en indicadores.\n\n\n\nCódigo\nreceta_nn &lt;- recipe(\n  peso_kg ~\n    consumo_kg_dia + consumo_agua_l_dia +\n    edad_inicio_meses + sexo + raza + tiempo +\n    temperatura_C + humedad_pct + precipitacion_mm +\n    actividad_h_dia + sistema_produccion + zona,\n  data = train_nn\n) |&gt;\n  step_unknown(all_nominal_predictors()) |&gt;\n  step_novel(all_nominal_predictors()) |&gt;\n  step_dummy(all_nominal_predictors()) |&gt;\n  step_zv(all_predictors()) |&gt;\n  step_normalize(all_numeric_predictors())\n\nreceta_nn",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Capítulo 4. Introducción a las redes neuronales</span>"
     ]
   },
   {
     "objectID": "modulos/ml_04.html#perceptrón-multicapa",
     "href": "modulos/ml_04.html#perceptrón-multicapa",
-    "title": "9  Redes neuronales",
-    "section": "10.2 Perceptrón multicapa",
-    "text": "10.2 Perceptrón multicapa",
+    "title": "9  Capítulo 4. Introducción a las redes neuronales",
+    "section": "9.4 Perceptrón multicapa",
+    "text": "9.4 Perceptrón multicapa\n\nUtilizaremos nnet, que ajusta una red con una única capa oculta. El parámetro hidden_units controla el número de neuronas ocultas y penalty introduce regularización sobre los pesos.\n\n\n\nCódigo\nmodelo_nn &lt;- mlp(\n  hidden_units = tune(),\n  penalty = tune(),\n  epochs = tune()\n) |&gt;\n  set_engine(\n    \"nnet\",\n    trace = FALSE,\n    MaxNWts = 20000\n  ) |&gt;\n  set_mode(\"regression\")\n\nflujo_nn &lt;- workflow() |&gt;\n  add_recipe(receta_nn) |&gt;\n  add_model(modelo_nn)",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Redes neuronales</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Capítulo 4. Introducción a las redes neuronales</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_04.html#entrenamiento",
-    "href": "modulos/ml_04.html#entrenamiento",
-    "title": "9  Redes neuronales",
-    "section": "10.3 Entrenamiento",
-    "text": "10.3 Entrenamiento\n\n\nCódigo\nlibrary(here)\ntrain &lt;- read.csv(here(\"datos\",\"mastitis.csv\"))\n\nlibrary(nnet)\nmodelo &lt;- nnet(caso~.,data=train,size=5)\n\n\n# weights:  26\ninitial  value 409.205642 \nfinal  value 164.000000 \nconverged",
+    "objectID": "modulos/ml_04.html#selección-de-la-arquitectura",
+    "href": "modulos/ml_04.html#selección-de-la-arquitectura",
+    "title": "9  Capítulo 4. Introducción a las redes neuronales",
+    "section": "9.5 Selección de la arquitectura",
+    "text": "9.5 Selección de la arquitectura\n\n\n\nCódigo\nrejilla_nn &lt;- grid_latin_hypercube(\n  hidden_units(range = c(2L, 10L)),\n  penalty(range = c(-4, -1)),\n  epochs(range = c(20L, 100L)),\n  size = 3\n)\n\nset.seed(2026)\nresultados_nn &lt;- tune_grid(\n  flujo_nn,\n  resamples = vfold_cv(train_nn, v = 2),\n  grid = rejilla_nn,\n  metrics = metric_set(rmse),\n  control = control_grid(\n    save_pred = FALSE,\n    verbose = TRUE\n  )\n)\n\nshow_best(\n  resultados_nn,\n  metric = \"rmse\",\n  n = 3\n)\n\n\n# A tibble: 3 × 9\n  hidden_units  penalty epochs .metric .estimator  mean     n std_err .config   \n         &lt;int&gt;    &lt;dbl&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;     \n1            3 0.00838      98 rmse    standard    2.52     2  0.0601 pre0_mod1…\n2            9 0.0315       48 rmse    standard    3.11     2  0.0237 pre0_mod3…\n3            7 0.000644     38 rmse    standard    3.64     2  0.724  pre0_mod2…\n\n\n\nMás neuronas aumentan la flexibilidad, pero también el número de parámetros. La penalización reduce pesos extremos y puede mejorar la generalización. El número de épocas indica cuántas iteraciones de entrenamiento se realizan.",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Redes neuronales</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Capítulo 4. Introducción a las redes neuronales</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_04.html#modelo-final-y-evaluación",
+    "href": "modulos/ml_04.html#modelo-final-y-evaluación",
+    "title": "9  Capítulo 4. Introducción a las redes neuronales",
+    "section": "9.6 Modelo final y evaluación",
+    "text": "9.6 Modelo final y evaluación\n\n\n\nCódigo\nmejor_nn &lt;- select_best(\n  resultados_nn,\n  metric = \"rmse\"\n)\n\nflujo_nn_final &lt;- finalize_workflow(\n  flujo_nn,\n  mejor_nn\n)\n\nresultado_nn &lt;- last_fit(\n  flujo_nn_final,\n  split = split_nn,\n  metrics = metric_set(rmse, mae, rsq)\n)\n\ncollect_metrics(resultado_nn)\n\n\n# A tibble: 3 × 4\n  .metric .estimator .estimate .config        \n  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;          \n1 rmse    standard       4.43  pre0_mod0_post0\n2 mae     standard       3.52  pre0_mod0_post0\n3 rsq     standard       0.746 pre0_mod0_post0\n\n\n\n\n\nCódigo\npredicciones_nn &lt;- collect_predictions(\n  resultado_nn\n)\n\nggplot(\n  predicciones_nn,\n  aes(x = .pred, y = peso_kg)\n) +\n  geom_point(alpha = 0.20, size = 1) +\n  geom_abline(\n    intercept = 0,\n    slope = 1,\n    linetype = \"dashed\",\n    color = \"firebrick\"\n  ) +\n  labs(\n    title = \"Peso observado y predicho por la red neuronal\",\n    x = \"Peso predicho (kg)\",\n    y = \"Peso observado (kg)\"\n  ) +\n  theme_minimal()",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Capítulo 4. Introducción a las redes neuronales</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_04.html#comparación-con-una-regresión-lineal",
+    "href": "modulos/ml_04.html#comparación-con-una-regresión-lineal",
+    "title": "9  Capítulo 4. Introducción a las redes neuronales",
+    "section": "9.7 Comparación con una regresión lineal",
+    "text": "9.7 Comparación con una regresión lineal\n\n\n\nCódigo\nmodelo_lineal_referencia &lt;- linear_reg() |&gt;\n  set_engine(\"lm\")\n\nflujo_lineal_referencia &lt;- workflow() |&gt;\n  add_recipe(receta_nn) |&gt;\n  add_model(modelo_lineal_referencia)\n\nresultado_lineal_referencia &lt;- last_fit(\n  flujo_lineal_referencia,\n  split = split_nn,\n  metrics = metric_set(rmse, mae, rsq)\n)\n\ncomparacion_nn &lt;- bind_rows(\n  collect_metrics(resultado_lineal_referencia) |&gt;\n    mutate(modelo = \"Regresión lineal\"),\n  collect_metrics(resultado_nn) |&gt;\n    mutate(modelo = \"Red neuronal\")\n)\n\ncomparacion_nn\n\n\n# A tibble: 6 × 5\n  .metric .estimator .estimate .config         modelo          \n  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;           \n1 rmse    standard       3.89  pre0_mod0_post0 Regresión lineal\n2 mae     standard       3.06  pre0_mod0_post0 Regresión lineal\n3 rsq     standard       0.792 pre0_mod0_post0 Regresión lineal\n4 rmse    standard       4.43  pre0_mod0_post0 Red neuronal    \n5 mae     standard       3.52  pre0_mod0_post0 Red neuronal    \n6 rsq     standard       0.746 pre0_mod0_post0 Red neuronal    \n\n\n\nLa red neuronal no debe considerarse mejor únicamente por ser más compleja. Si la mejora predictiva es pequeña, la regresión lineal puede ser preferible por su rapidez e interpretación.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Capítulo 4. Introducción a las redes neuronales</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_04.html#error-según-la-semana",
+    "href": "modulos/ml_04.html#error-según-la-semana",
+    "title": "9  Capítulo 4. Introducción a las redes neuronales",
+    "section": "9.8 Error según la semana",
+    "text": "9.8 Error según la semana\n\n\n\nCódigo\npredicciones_nn_detalle &lt;- predicciones_nn |&gt;\n  left_join(\n    test_nn |&gt;\n      mutate(.row = row_number()) |&gt;\n      select(.row, tiempo, granja_id, animal_id),\n    by = \".row\"\n  ) |&gt;\n  mutate(\n    error = peso_kg - .pred,\n    error_absoluto = abs(error)\n  )\n\npredicciones_nn_detalle |&gt;\n  group_by(tiempo) |&gt;\n  summarise(\n    MAE = mean(error_absoluto),\n    .groups = \"drop\"\n  ) |&gt;\n  ggplot(aes(x = tiempo, y = MAE)) +\n  geom_line(color = \"steelblue4\") +\n  geom_point(color = \"steelblue4\") +\n  labs(\n    title = \"Error absoluto medio por semana\",\n    x = \"Semana\",\n    y = \"MAE (kg)\"\n  ) +\n  theme_minimal()",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Capítulo 4. Introducción a las redes neuronales</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_04.html#visión-general-del-aprendizaje-profundo",
+    "href": "modulos/ml_04.html#visión-general-del-aprendizaje-profundo",
+    "title": "9  Capítulo 4. Introducción a las redes neuronales",
+    "section": "9.9 Visión general del aprendizaje profundo",
+    "text": "9.9 Visión general del aprendizaje profundo\n\nEl aprendizaje profundo utiliza redes con varias capas y un gran número de parámetros. Estas arquitecturas son especialmente útiles para imágenes, audio, texto, secuencias extensas y grandes volúmenes de datos.\n\nEn ciencias animales podrían utilizarse para clasificar imágenes de lesiones, analizar vídeo de comportamiento, procesar sonidos, reconocer animales o modelar secuencias de sensores. Para la tabla actual, una red profunda probablemente sería innecesaria y podría sobreajustarse.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Capítulo 4. Introducción a las redes neuronales</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_04.html#límites-e-interpretación",
+    "href": "modulos/ml_04.html#límites-e-interpretación",
+    "title": "9  Capítulo 4. Introducción a las redes neuronales",
+    "section": "9.10 Límites e interpretación",
+    "text": "9.10 Límites e interpretación\n\nLas redes neuronales presentan varias limitaciones:\n\nRequieren preprocesamiento y selección cuidadosa de hiperparámetros.\nPueden cambiar con la inicialización aleatoria.\nSu interpretación es menos directa que la de una regresión.\nNecesitan más datos y cálculo cuando aumenta la profundidad.\nNo corrigen automáticamente la dependencia entre mediciones repetidas.\nUna alta precisión no implica causalidad.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Capítulo 4. Introducción a las redes neuronales</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_04.html#actividad-de-interpretación",
+    "href": "modulos/ml_04.html#actividad-de-interpretación",
+    "title": "9  Capítulo 4. Introducción a las redes neuronales",
+    "section": "9.11 Actividad de interpretación",
+    "text": "9.11 Actividad de interpretación\n\n\n¿Qué operación realiza una neurona?\n¿Qué aporta una función de activación?\n¿Por qué deben estandarizarse los predictores?\n¿Qué controla hidden_units?\n¿Qué función cumple la penalización?\n¿Qué representa el número de épocas?\n¿La red mejora el RMSE respecto a la regresión lineal?\n¿El error es estable durante el seguimiento?\n¿Por qué una red más grande puede sobreajustar?\n¿Qué tipos de datos justificarían aprendizaje profundo?\n\n\nAl finalizar este capítulo debemos comprender la estructura básica de un perceptrón multicapa, ajustar una red sencilla, controlar su complejidad mediante validación cruzada y comparar su rendimiento con un modelo de referencia más interpretable.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Capítulo 4. Introducción a las redes neuronales</span>"
     ]
   },
   {
     "objectID": "modulos/ml_05.html",
     "href": "modulos/ml_05.html",
-    "title": "10  Clustering y PCA",
+    "title": "10  Capítulo 5. Segmentación y reducción de dimensionalidad",
     "section": "",
-    "text": "11 Temas",
+    "text": "10.1 Construcción de perfiles de granja\nEn este capítulo utilizaremos métodos no supervisados para identificar perfiles de granjas y representar su semejanza en pocas dimensiones. Trabajaremos con una fila por explotación, porque el objetivo es segmentar granjas y no agrupar las miles de mediciones repetidas de los animales.\nLos conglomerados son construcciones algorítmicas. No deben convertirse automáticamente en categorías biológicas o administrativas. Su interpretación requiere revisar las variables utilizadas, la escala, la estabilidad y la distribución geográfica de los grupos.\nCódigo\nperfiles_granja_ml &lt;- datos_b2 |&gt;\n  group_by(\n    granja_id,\n    zona,\n    sistema_produccion,\n    tamano_granja,\n    longitud,\n    latitud\n  ) |&gt;\n  summarise(\n    peso_medio = mean(peso_kg, na.rm = TRUE),\n    ganancia_media = mean(ganancia_semanal_kg, na.rm = TRUE),\n    consumo_medio = mean(consumo_kg_dia, na.rm = TRUE),\n    agua_media = mean(consumo_agua_l_dia, na.rm = TRUE),\n    actividad_media = mean(actividad_h_dia, na.rm = TRUE),\n    temperatura_media = mean(temperatura_C, na.rm = TRUE),\n    humedad_media = mean(humedad_pct, na.rm = TRUE),\n    precipitacion_media = mean(precipitacion_mm, na.rm = TRUE),\n    salud_media = mean(\n      as.numeric(as.character(salud_score_0_4)),\n      na.rm = TRUE\n    ),\n    visitas_medias = mean(n_visitas_veterinarias, na.rm = TRUE),\n    lana_media = mean(produccion_lana_kg, na.rm = TRUE),\n    n_animales = n_distinct(animal_id),\n    .groups = \"drop\"\n  ) |&gt;\n  mutate(\n    across(\n      where(is.numeric),\n      ~ ifelse(is.nan(.x), NA_real_, .x)\n    )\n  ) |&gt;\n  drop_na()\n\nglimpse(perfiles_granja_ml)\n\n\nRows: 45\nColumns: 18\n$ granja_id           &lt;fct&gt; G01, G02, G04, G05, G07, G08, G09, G10, G11, G12, …\n$ zona                &lt;chr&gt; \"Sur\", \"Norte\", \"Centro\", \"Centro\", \"Norte\", \"Nort…\n$ sistema_produccion  &lt;fct&gt; Extensivo, Semi-intensivo, Semi-intensivo, Semi-in…\n$ tamano_granja       &lt;chr&gt; \"Grande\", \"Mediana\", \"Mediana\", \"Mediana\", \"Pequen…\n$ longitud            &lt;dbl&gt; -98.33413, -99.06099, -98.97805, -98.92374, -99.05…\n$ latitud             &lt;dbl&gt; 19.65949, 20.39721, 20.08023, 20.07241, 20.35439, …\n$ peso_medio          &lt;dbl&gt; 50.42908, 52.90802, 47.04589, 50.09531, 44.91896, …\n$ ganancia_media      &lt;dbl&gt; 0.2606344, 0.2780500, 0.2267352, 0.2425230, 0.2070…\n$ consumo_medio       &lt;dbl&gt; 1.413521, 1.485926, 1.300764, 1.392938, 1.259629, …\n$ agua_media          &lt;dbl&gt; 4.536829, 4.830246, 4.532755, 4.589663, 4.445672, …\n$ actividad_media     &lt;dbl&gt; 5.633013, 5.728755, 5.607317, 5.577144, 5.551316, …\n$ temperatura_media   &lt;dbl&gt; 17.80332, 18.33211, 18.38890, 17.84613, 18.34675, …\n$ humedad_media       &lt;dbl&gt; 59.84733, 59.75238, 60.31034, 59.88029, 59.81702, …\n$ precipitacion_media &lt;dbl&gt; 4.357784, 4.625845, 5.086300, 4.724499, 4.558110, …\n$ salud_media         &lt;dbl&gt; 1.280000, 1.130000, 1.445000, 1.375000, 1.436667, …\n$ visitas_medias      &lt;dbl&gt; 0.1400000, 0.2600000, 0.2100000, 0.1700000, 0.2100…\n$ lana_media          &lt;dbl&gt; 0.1423423, 0.1432781, 0.1339453, 0.1389930, 0.1299…\n$ n_animales          &lt;int&gt; 1, 1, 2, 2, 3, 1, 1, 1, 5, 2, 1, 2, 1, 1, 1, 4, 1,…",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Clustering y PCA</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Capítulo 5. Segmentación y reducción de dimensionalidad</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_05.html#selección-y-estandarización-de-variables",
+    "href": "modulos/ml_05.html#selección-y-estandarización-de-variables",
+    "title": "10  Capítulo 5. Segmentación y reducción de dimensionalidad",
+    "section": "10.2 Selección y estandarización de variables",
+    "text": "10.2 Selección y estandarización de variables\n\nK-means utiliza distancias euclidianas. Si no estandarizamos, las variables con escalas numéricas grandes dominarán la formación de los grupos.\n\n\n\nCódigo\nvariables_cluster &lt;- perfiles_granja_ml |&gt;\n  select(\n    peso_medio,\n    ganancia_media,\n    consumo_medio,\n    agua_media,\n    actividad_media,\n    temperatura_media,\n    humedad_media,\n    precipitacion_media,\n    salud_media,\n    visitas_medias,\n    lana_media\n  )\n\nreceta_cluster &lt;- recipe(~ ., data = variables_cluster) |&gt;\n  step_zv(all_predictors()) |&gt;\n  step_normalize(all_numeric_predictors())\n\nmatriz_cluster &lt;- receta_cluster |&gt;\n  prep() |&gt;\n  bake(new_data = NULL) |&gt;\n  as.matrix()\n\nsummary(matriz_cluster[, 1:min(5, ncol(matriz_cluster))])\n\n\n   peso_medio       ganancia_media     consumo_medio        agua_media      \n Min.   :-2.26521   Min.   :-2.09593   Min.   :-2.54482   Min.   :-2.06590  \n 1st Qu.:-0.81070   1st Qu.:-0.77901   1st Qu.:-0.73752   1st Qu.:-0.65278  \n Median : 0.00397   Median :-0.09662   Median : 0.01441   Median : 0.04892  \n Mean   : 0.00000   Mean   : 0.00000   Mean   : 0.00000   Mean   : 0.00000  \n 3rd Qu.: 0.64999   3rd Qu.: 0.79247   3rd Qu.: 0.50265   3rd Qu.: 0.51658  \n Max.   : 2.15400   Max.   : 2.16892   Max.   : 2.38966   Max.   : 2.78823  \n actividad_media  \n Min.   :-3.2594  \n 1st Qu.:-0.4129  \n Median : 0.1366  \n Mean   : 0.0000  \n 3rd Qu.: 0.6017  \n Max.   : 1.9215",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Capítulo 5. Segmentación y reducción de dimensionalidad</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_05.html#número-de-conglomerados",
+    "href": "modulos/ml_05.html#número-de-conglomerados",
+    "title": "10  Capítulo 5. Segmentación y reducción de dimensionalidad",
+    "section": "10.3 Número de conglomerados",
+    "text": "10.3 Número de conglomerados\n\nNo existe un único criterio universal. Compararemos la suma de cuadrados interna y la silueta media.\n\n\n\nCódigo\nfviz_nbclust(\n  matriz_cluster,\n  kmeans,\n  method = \"wss\",\n  k.max = 8\n) +\n  labs(\n    title = \"Método del codo\"\n  )\n\n\n\n\n\n\n\n\n\n\n\n\nCódigo\nfviz_nbclust(\n  matriz_cluster,\n  kmeans,\n  method = \"silhouette\",\n  k.max = 8\n) +\n  labs(\n    title = \"Silueta media según el número de grupos\"\n  )\n\n\n\n\n\n\n\n\n\n\nEl método del codo busca un punto a partir del cual añadir grupos reduce poco la variabilidad interna. La silueta combina cohesión dentro del grupo y separación frente a los demás grupos.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Capítulo 5. Segmentación y reducción de dimensionalidad</span>"
     ]
   },
   {
     "objectID": "modulos/ml_05.html#k-means",
     "href": "modulos/ml_05.html#k-means",
-    "title": "10  Clustering y PCA",
-    "section": "11.1 K-means",
-    "text": "11.1 K-means",
+    "title": "10  Capítulo 5. Segmentación y reducción de dimensionalidad",
+    "section": "10.4 K-means",
+    "text": "10.4 K-means\n\n\n\nCódigo\nset.seed(2026)\n\nk_seleccionado &lt;- 3\n\nmodelo_kmeans &lt;- kmeans(\n  matriz_cluster,\n  centers = k_seleccionado,\n  nstart = 100,\n  iter.max = 100\n)\n\nmodelo_kmeans\n\n\nK-means clustering with 3 clusters of sizes 16, 18, 11\n\nCluster means:\n  peso_medio ganancia_media consumo_medio agua_media actividad_media\n1  0.2068138     0.06191074     0.2614086  0.4231573     -0.73667143\n2 -0.9061808    -0.62663597    -0.8930399 -0.9318242      0.09900627\n3  1.1820213     0.93535233     1.0811073  0.9093017      0.90951183\n  temperatura_media humedad_media precipitacion_media salud_media\n1         0.8829502    -0.2141191           0.2344341   0.3576694\n2        -0.2930483    -0.1291642           0.1255931   0.2790179\n3        -0.8047577     0.5228055          -0.5465110  -0.9768211\n  visitas_medias lana_media\n1     -0.0822712  0.2162184\n2      0.1998317 -0.9111561\n3     -0.2073302  1.1764832\n\nClustering vector:\n [1] 3 3 1 3 1 1 1 3 2 2 1 1 1 1 2 1 1 3 2 2 1 1 3 2 2 2 3 2 3 2 2 2 1 3 2 1 2 2\n[39] 1 2 1 2 3 3 2\n\nWithin cluster sum of squares by cluster:\n[1] 105.59234 103.00220  78.17095\n (between_SS / total_SS =  40.8 %)\n\nAvailable components:\n\n[1] \"cluster\"      \"centers\"      \"totss\"        \"withinss\"     \"tot.withinss\"\n[6] \"betweenss\"    \"size\"         \"iter\"         \"ifault\"      \n\n\n\n\n\nCódigo\nperfiles_granja_cluster &lt;- perfiles_granja_ml |&gt;\n  mutate(\n    cluster_kmeans = factor(modelo_kmeans$cluster)\n  )\n\ncount(perfiles_granja_cluster, cluster_kmeans)\n\n\n# A tibble: 3 × 2\n  cluster_kmeans     n\n  &lt;fct&gt;          &lt;int&gt;\n1 1                 16\n2 2                 18\n3 3                 11",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Clustering y PCA</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Capítulo 5. Segmentación y reducción de dimensionalidad</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_05.html#caracterización-de-los-grupos",
+    "href": "modulos/ml_05.html#caracterización-de-los-grupos",
+    "title": "10  Capítulo 5. Segmentación y reducción de dimensionalidad",
+    "section": "10.5 Caracterización de los grupos",
+    "text": "10.5 Caracterización de los grupos\n\n\n\nCódigo\nresumen_clusters &lt;- perfiles_granja_cluster |&gt;\n  group_by(cluster_kmeans) |&gt;\n  summarise(\n    n_granjas = n(),\n    peso_medio = mean(peso_medio),\n    consumo_medio = mean(consumo_medio),\n    temperatura_media = mean(temperatura_media),\n    humedad_media = mean(humedad_media),\n    salud_media = mean(salud_media),\n    visitas_medias = mean(visitas_medias),\n    lana_media = mean(lana_media),\n    .groups = \"drop\"\n  )\n\nresumen_clusters\n\n\n# A tibble: 3 × 9\n  cluster_kmeans n_granjas peso_medio consumo_medio temperatura_media\n  &lt;fct&gt;              &lt;int&gt;      &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;\n1 1                     16       43.1          1.27              18.3\n2 2                     18       37.5          1.16              18.1\n3 3                     11       48.0          1.36              18.0\n# ℹ 4 more variables: humedad_media &lt;dbl&gt;, salud_media &lt;dbl&gt;,\n#   visitas_medias &lt;dbl&gt;, lana_media &lt;dbl&gt;\n\n\n\n\n\nCódigo\nperfiles_granja_cluster |&gt;\n  count(cluster_kmeans, sistema_produccion) |&gt;\n  group_by(cluster_kmeans) |&gt;\n  mutate(\n    porcentaje = 100 * n / sum(n)\n  ) |&gt;\n  ggplot(\n    aes(\n      x = cluster_kmeans,\n      y = porcentaje,\n      fill = sistema_produccion\n    )\n  ) +\n  geom_col() +\n  labs(\n    title = \"Sistema productivo dentro de cada conglomerado\",\n    x = \"Conglomerado\",\n    y = \"Porcentaje de granjas\",\n    fill = \"Sistema productivo\"\n  ) +\n  theme_minimal()",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Capítulo 5. Segmentación y reducción de dimensionalidad</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_05.html#análisis-de-componentes-principales",
+    "href": "modulos/ml_05.html#análisis-de-componentes-principales",
+    "title": "10  Capítulo 5. Segmentación y reducción de dimensionalidad",
+    "section": "10.6 Análisis de componentes principales",
+    "text": "10.6 Análisis de componentes principales\n\nEl PCA construye combinaciones lineales de las variables estandarizadas. Los primeros componentes concentran la mayor parte posible de la variabilidad y permiten representar las granjas en dos dimensiones.\n\n\n\nCódigo\npca_granjas &lt;- prcomp(\n  matriz_cluster,\n  center = FALSE,\n  scale. = FALSE\n)\n\nsummary(pca_granjas)\n\n\nImportance of components:\n                          PC1    PC2     PC3     PC4     PC5     PC6     PC7\nStandard deviation     2.2260 1.4539 1.02902 0.96365 0.93911 0.66160 0.64012\nProportion of Variance 0.4504 0.1922 0.09626 0.08442 0.08018 0.03979 0.03725\nCumulative Proportion  0.4504 0.6426 0.73887 0.82330 0.90347 0.94326 0.98051\n                          PC8     PC9    PC10    PC11\nStandard deviation     0.4116 0.17162 0.11700 0.04242\nProportion of Variance 0.0154 0.00268 0.00124 0.00016\nCumulative Proportion  0.9959 0.99859 0.99984 1.00000\n\n\n\n\n\nCódigo\nvarianza_pca &lt;- tibble(\n  componente = seq_along(pca_granjas$sdev),\n  proporcion = pca_granjas$sdev^2 /\n    sum(pca_granjas$sdev^2),\n  acumulada = cumsum(proporcion)\n)\n\nvarianza_pca\n\n\n# A tibble: 11 × 3\n   componente proporcion acumulada\n        &lt;int&gt;      &lt;dbl&gt;     &lt;dbl&gt;\n 1          1   0.450        0.450\n 2          2   0.192        0.643\n 3          3   0.0963       0.739\n 4          4   0.0844       0.823\n 5          5   0.0802       0.903\n 6          6   0.0398       0.943\n 7          7   0.0373       0.981\n 8          8   0.0154       0.996\n 9          9   0.00268      0.999\n10         10   0.00124      1.000\n11         11   0.000164     1    \n\n\n\n\n\nCódigo\nggplot(\n  varianza_pca,\n  aes(x = componente, y = proporcion)\n) +\n  geom_col(fill = \"steelblue4\") +\n  geom_line(aes(y = acumulada), color = \"firebrick\") +\n  geom_point(aes(y = acumulada), color = \"firebrick\") +\n  labs(\n    title = \"Varianza explicada por los componentes\",\n    x = \"Componente principal\",\n    y = \"Proporción de varianza\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\n\nCódigo\ncoordenadas_pca &lt;- as_tibble(\n  pca_granjas$x[, 1:2]\n) |&gt;\n  bind_cols(\n    perfiles_granja_cluster |&gt;\n      select(\n        granja_id,\n        zona,\n        sistema_produccion,\n        cluster_kmeans\n      )\n  )\n\nggplot(\n  coordenadas_pca,\n  aes(\n    x = PC1,\n    y = PC2,\n    color = cluster_kmeans,\n    shape = sistema_produccion\n  )\n) +\n  geom_point(size = 3, alpha = 0.9) +\n  labs(\n    title = \"Granjas en los dos primeros componentes\",\n    color = \"Conglomerado\",\n    shape = \"Sistema productivo\"\n  ) +\n  theme_minimal()",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Capítulo 5. Segmentación y reducción de dimensionalidad</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_05.html#variables-asociadas-con-los-componentes",
+    "href": "modulos/ml_05.html#variables-asociadas-con-los-componentes",
+    "title": "10  Capítulo 5. Segmentación y reducción de dimensionalidad",
+    "section": "10.7 Variables asociadas con los componentes",
+    "text": "10.7 Variables asociadas con los componentes\n\n\n\nCódigo\ncargas_pca &lt;- as_tibble(\n  pca_granjas$rotation[, 1:2],\n  rownames = \"variable\"\n)\n\ncargas_pca |&gt;\n  arrange(desc(abs(PC1)))\n\n\n# A tibble: 11 × 3\n   variable                PC1     PC2\n   &lt;chr&gt;                 &lt;dbl&gt;   &lt;dbl&gt;\n 1 consumo_medio       -0.429  -0.175 \n 2 peso_medio          -0.424  -0.0988\n 3 lana_media          -0.423  -0.0949\n 4 agua_media          -0.400  -0.278 \n 5 ganancia_media      -0.371  -0.0846\n 6 salud_media          0.279  -0.333 \n 7 actividad_media     -0.179   0.508 \n 8 humedad_media       -0.140   0.219 \n 9 visitas_medias       0.132  -0.0845\n10 temperatura_media    0.0890 -0.567 \n11 precipitacion_media  0.0668 -0.348 \n\n\n\nLas cargas indican qué variables contribuyen a cada componente. El signo puede invertirse sin cambiar el significado del PCA; lo importante es la estructura relativa de las variables y las observaciones.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Capítulo 5. Segmentación y reducción de dimensionalidad</span>"
     ]
   },
   {
     "objectID": "modulos/ml_05.html#clustering-jerárquico",
     "href": "modulos/ml_05.html#clustering-jerárquico",
-    "title": "10  Clustering y PCA",
-    "section": "11.2 Clustering jerárquico",
-    "text": "11.2 Clustering jerárquico",
+    "title": "10  Capítulo 5. Segmentación y reducción de dimensionalidad",
+    "section": "10.8 Clustering jerárquico",
+    "text": "10.8 Clustering jerárquico\n\nEl clustering jerárquico comienza con cada granja como un grupo separado y fusiona progresivamente los grupos según una regla de enlace.\n\n\n\nCódigo\ndistancias_granjas &lt;- dist(\n  matriz_cluster,\n  method = \"euclidean\"\n)\n\nmodelo_jerarquico &lt;- hclust(\n  distancias_granjas,\n  method = \"ward.D2\"\n)\n\nplot(\n  modelo_jerarquico,\n  labels = perfiles_granja_ml$granja_id,\n  main = \"Dendrograma de las granjas\",\n  xlab = \"Granja\",\n  sub = \"Método de Ward\"\n)\n\nrect.hclust(\n  modelo_jerarquico,\n  k = k_seleccionado,\n  border = 2:4\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCódigo\nperfiles_granja_cluster &lt;- perfiles_granja_cluster |&gt;\n  mutate(\n    cluster_jerarquico = factor(\n      cutree(\n        modelo_jerarquico,\n        k = k_seleccionado\n      )\n    )\n  )\n\n table(\n  Kmeans = perfiles_granja_cluster$cluster_kmeans,\n  Jerarquico = perfiles_granja_cluster$cluster_jerarquico\n)\n\n\n      Jerarquico\nKmeans  1  2  3\n     1  4 12  0\n     2  4  1 13\n     3 10  1  0\n\n\n\nLos números de los grupos son etiquetas arbitrarias. El grupo 1 de K-means no tiene por qué corresponder al grupo 1 del método jerárquico.",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Clustering y PCA</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Capítulo 5. Segmentación y reducción de dimensionalidad</span>"
     ]
   },
   {
-    "objectID": "modulos/ml_05.html#pca",
-    "href": "modulos/ml_05.html#pca",
-    "title": "10  Clustering y PCA",
-    "section": "11.3 PCA",
-    "text": "11.3 PCA\n\n\nCódigo\nlibrary(here)\n\ndatos &lt;- read.csv(here(\"datos\",\"mastitis.csv\"))\nkm &lt;- kmeans(scale(datos),centers=3)\n\n\n\n\nCódigo\npr &lt;- prcomp(scale(datos))",
+    "objectID": "modulos/ml_05.html#calidad-mediante-siluetas",
+    "href": "modulos/ml_05.html#calidad-mediante-siluetas",
+    "title": "10  Capítulo 5. Segmentación y reducción de dimensionalidad",
+    "section": "10.9 Calidad mediante siluetas",
+    "text": "10.9 Calidad mediante siluetas\n\n\n\nCódigo\nsiluetas_kmeans &lt;- silhouette(\n  modelo_kmeans$cluster,\n  distancias_granjas\n)\n\nsummary(siluetas_kmeans)\n\n\nSilhouette of 45 units in 3 clusters from silhouette.default(x = modelo_kmeans$cluster, dist = distancias_granjas) :\n Cluster sizes and average silhouette widths:\n       16        18        11 \n0.1451505 0.2508086 0.2078233 \nIndividual silhouette widths:\n     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. \n-0.001611  0.098898  0.179254  0.202734  0.312638  0.419014 \n\n\nCódigo\nfviz_silhouette(siluetas_kmeans) +\n  labs(\n    title = \"Silueta de los conglomerados K-means\"\n  )\n\n\n  cluster size ave.sil.width\n1       1   16          0.15\n2       2   18          0.25\n3       3   11          0.21\n\n\n\n\n\n\n\n\n\n\nUna silueta próxima a 1 indica buena asignación. Valores cercanos a 0 indican posiciones fronterizas. Valores negativos sugieren que la granja podría estar más próxima a otro grupo.",
     "crumbs": [
       "Machine Learning",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Clustering y PCA</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Capítulo 5. Segmentación y reducción de dimensionalidad</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_05.html#distribución-geográfica-de-los-conglomerados",
+    "href": "modulos/ml_05.html#distribución-geográfica-de-los-conglomerados",
+    "title": "10  Capítulo 5. Segmentación y reducción de dimensionalidad",
+    "section": "10.10 Distribución geográfica de los conglomerados",
+    "text": "10.10 Distribución geográfica de los conglomerados\n\n\nCódigo\n# Instalar los paquetes si todavía no están instalados.\n# install.packages(c(\"sf\", \"geodata\", \"terra\", \"dplyr\", \"ggplot2\"))\n\nlibrary(sf)\nlibrary(geodata)\nlibrary(terra)\n\n# Límites nacionales de México.\nmexico &lt;- geodata::gadm(\n  country = \"MEX\",\n  level = 0,\n  path = \"mapas\"\n)\n\n# Límites de los estados mexicanos.\nestados &lt;- geodata::gadm(\n  country = \"MEX\",\n  level = 1,\n  path = \"mapas\"\n)\n\nmexico_sf &lt;- st_as_sf(mexico)\nestados_sf &lt;- st_as_sf(estados)\n\nestados_region_sf &lt;- estados_sf %&gt;%\n  filter(\n    NAME_1 %in% c(\n      \"Hidalgo\",\n      \"México\",\n      \"Tlaxcala\",\n      \"Veracruz\"\n    )\n  )\n\n# Comprobar qué estados se han seleccionado.\nsort(unique(estados_region_sf$NAME_1))\n\n\n[1] \"Hidalgo\"  \"México\"   \"Tlaxcala\" \"Veracruz\"\n\n\nCódigo\n# Comprobar cuántos polígonos contiene el objeto.\nnrow(estados_region_sf)\n\n\n[1] 4\n\n\n\n\n\nCódigo\ngranjas_cluster_sf &lt;- perfiles_granja_cluster |&gt;\n  st_as_sf(\n    coords = c(\"longitud\", \"latitud\"),\n    crs = 4326,\n    remove = FALSE\n  )\n\ndelta=0.4\nggplot() +\n  geom_sf(\n    data = estados_region_sf,\n    aes(fill = NAME_1),\n    color = \"grey45\",\n    linewidth = 0.4,\n    alpha = 0.60\n  ) +\n  geom_sf(\n    data = granjas_cluster_sf,\n    aes(color = cluster_kmeans),\n    size = 3\n  ) +\n  scale_fill_brewer(\n    palette = \"Pastel1\",\n    name = \"Estado\"\n  ) +\n  labs(\n    title = \"Distribución espacial de los perfiles de granja\",\n    color = \"Conglomerado\",\n    x = \"Longitud\",\n    y = \"Latitud\"\n  ) +\n  theme_minimal() +\n  theme(\n    legend.position = \"bottom\"\n  )+coord_sf(\n    xlim = range(granjas_cluster_sf$longitud, na.rm = TRUE) +\n      c(-delta, delta),\n    ylim = range(granjas_cluster_sf$latitud, na.rm = TRUE) +\n      c(-delta, delta),\n    expand = FALSE\n  ) \n\n\n\n\n\n\n\n\n\n\nSi los grupos se concentran geográficamente, la segmentación puede estar reflejando gradientes ambientales o regionales. Esto no significa que K-means haya incorporado dependencia espacial, porque las coordenadas no se utilizaron como variables de agrupación.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Capítulo 5. Segmentación y reducción de dimensionalidad</span>"
+    ]
+  },
+  {
+    "objectID": "modulos/ml_05.html#actividad-de-interpretación",
+    "href": "modulos/ml_05.html#actividad-de-interpretación",
+    "title": "10  Capítulo 5. Segmentación y reducción de dimensionalidad",
+    "section": "10.11 Actividad de interpretación",
+    "text": "10.11 Actividad de interpretación\n\n\n¿Por qué utilizamos una fila por granja?\n¿Por qué deben estandarizarse las variables?\n¿Qué sugieren el codo y la silueta sobre el número de grupos?\n¿Qué caracteriza a cada conglomerado?\n¿Los grupos coinciden con los sistemas productivos?\n¿Qué proporción de varianza explican PC1 y PC2?\n¿Qué variables contribuyen más a PC1?\n¿Coinciden K-means y el clustering jerárquico?\n¿Existen granjas con siluetas negativas?\n¿Los conglomerados presentan una distribución espacial reconocible?\n\n\nAl finalizar este capítulo debemos ser capaces de construir perfiles de granja, estandarizar variables, aplicar K-means y clustering jerárquico, evaluar la calidad mediante siluetas y utilizar PCA para visualizar la estructura de los grupos. Los conglomerados deben interpretarse como resultados exploratorios y no como categorías naturales demostradas.",
+    "crumbs": [
+      "Machine Learning",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Capítulo 5. Segmentación y reducción de dimensionalidad</span>"
     ]
   },
   {
