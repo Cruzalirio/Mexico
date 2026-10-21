@@ -49,7 +49,6 @@ Curso-taller sobre métodos para el análisis de datos longitudinales, espaciale
 :::
 ::::
 
-
 :::: {.g-col-12 .g-col-md-4}
 ::: activity-card
 [03 <small>NOV</small>]{.activity-date}
