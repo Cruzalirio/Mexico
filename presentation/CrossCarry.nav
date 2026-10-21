@@ -148,19 +148,29 @@
 \headcommand {\sectionentry {10}{\translate {References}}{60}{\translate {References}}{0}}
 \headcommand {\slideentry {10}{0}{0}{60/60}{}{0}}
 \headcommand {\beamer@framepages {60}{60}}
-\headcommand {\beamer@sectionpages {60}{60}}
-\headcommand {\beamer@subsectionpages {60}{60}}
-\headcommand {\sectionentry {11}{Events and Papers}{61}{Events and Papers}{0}}
-\headcommand {\slideentry {11}{0}{1}{61/61}{}{0}}
-\headcommand {\beamer@framepages {61}{61}}
-\headcommand {\slideentry {11}{0}{2}{62/62}{}{0}}
-\headcommand {\beamer@framepages {62}{62}}
-\headcommand {\slideentry {11}{0}{3}{63/63}{}{0}}
-\headcommand {\beamer@framepages {63}{63}}
-\headcommand {\slideentry {11}{0}{4}{64/64}{}{0}}
-\headcommand {\beamer@framepages {64}{64}}
-\headcommand {\beamer@partpages {1}{64}}
-\headcommand {\beamer@subsectionpages {61}{64}}
-\headcommand {\beamer@sectionpages {61}{64}}
-\headcommand {\beamer@documentpages {64}}
-\headcommand {\gdef \inserttotalframenumber {63}}
+\headcommand {\slideentry {10}{0}{0}{60/61}{}{0}}
+\headcommand {\beamer@framepages {60}{61}}
+\headcommand {\slideentry {10}{0}{0}{60/62}{}{0}}
+\headcommand {\beamer@framepages {60}{62}}
+\headcommand {\slideentry {10}{0}{0}{60/63}{}{0}}
+\headcommand {\beamer@framepages {60}{63}}
+\headcommand {\slideentry {10}{0}{0}{60/64}{}{0}}
+\headcommand {\beamer@framepages {60}{64}}
+\headcommand {\slideentry {10}{0}{0}{60/65}{}{0}}
+\headcommand {\beamer@framepages {60}{65}}
+\headcommand {\beamer@sectionpages {60}{65}}
+\headcommand {\beamer@subsectionpages {60}{65}}
+\headcommand {\sectionentry {11}{Events and Papers}{66}{Events and Papers}{0}}
+\headcommand {\slideentry {11}{0}{1}{66/66}{}{0}}
+\headcommand {\beamer@framepages {66}{66}}
+\headcommand {\slideentry {11}{0}{2}{67/67}{}{0}}
+\headcommand {\beamer@framepages {67}{67}}
+\headcommand {\slideentry {11}{0}{3}{68/68}{}{0}}
+\headcommand {\beamer@framepages {68}{68}}
+\headcommand {\slideentry {11}{0}{4}{69/69}{}{0}}
+\headcommand {\beamer@framepages {69}{69}}
+\headcommand {\beamer@partpages {1}{69}}
+\headcommand {\beamer@subsectionpages {66}{69}}
+\headcommand {\beamer@sectionpages {66}{69}}
+\headcommand {\beamer@documentpages {69}}
+\headcommand {\gdef \inserttotalframenumber {68}}

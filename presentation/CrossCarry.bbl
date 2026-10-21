@@ -1,8 +1,206 @@
-\begin{thebibliography}{0}
+\begin{thebibliography}{30}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Cordeiro(2004)]{cordeiro2004Pearson}
+G.~M. Cordeiro.
+\newblock On {P}earson's residuals in generalized linear models.
+\newblock \emph{Statistics \& {P}robability letters}, 66\penalty0 (3):\penalty0
+  213--219, 2004.
+
+\bibitem[Cox and Snell(1968)]{cox1968general}
+D.~R. Cox and E.~J. Snell.
+\newblock A general definition of residuals.
+\newblock \emph{Journal of the Royal Statistical Society: Series B
+  (Methodological)}, 30\penalty0 (2):\penalty0 248--265, 1968.
+
+\bibitem[Cruz et~al.(2023{\natexlab{a}})Cruz, Melo, and Lopez]{cruz2023gee}
+N.~A. Cruz, O.~O. Melo, and L.~A. Lopez.
+\newblock Analysis of cross-over experiments with count data in the presence of
+  carry-over effects.
+\newblock \emph{Statistica Neerlandica}, 32\penalty0 (5):\penalty0 1033--1050,
+  2023{\natexlab{a}}.
+
+\bibitem[Cruz et~al.(2023{\natexlab{b}})Cruz, Melo, and
+  Martinez]{cruz2023correlation}
+N.~A. Cruz, O.~O. Melo, and C.~A. Martinez.
+\newblock A correlation structure for the analysis of gaussian and non-gaussian
+  responses in crossover experimental designs with repeated measures.
+\newblock \emph{Statistical Papers}, pages 1--28, 2023{\natexlab{b}}.
+
+\bibitem[Cruz et~al.(2023{\natexlab{c}})Cruz, Melo, and
+  Martinez]{cruz2023semiparametric}
+N.~A. Cruz, O.~O. Melo, and C.~A. Martinez.
+\newblock Semiparametric generalized estimating equations for repeated
+  measurements in cross-over designs.
+\newblock \emph{Statistical Methods in Medical Research}, pages 1--18,
+  2023{\natexlab{c}}.
+
+\bibitem[Curtin(2017)]{curtin2017meta}
+F.~Curtin.
+\newblock Meta-analysis combining parallel and crossover trials using
+  generalised estimating equation method.
+\newblock \emph{Research Synthesis Methods}, 8\penalty0 (3):\penalty0 312--320,
+  2017.
+
+\bibitem[Diaz et~al.(2013)Diaz, Berg, Krebill, Welty, Gidal, Alloway, and
+  Privitera]{diaz2013random}
+F.~J. Diaz, M.~J. Berg, R.~Krebill, T.~Welty, B.~E. Gidal, R.~Alloway, and
+  M.~Privitera.
+\newblock Random-effects linear modeling and sample size tables for two special
+  crossover designs of average bioequivalence studies: the four-period,
+  two-sequence, two-formulation and six-period, three-sequence,
+  three-formulation designs.
+\newblock \emph{Clinical pharmacokinetics}, 52\penalty0 (12):\penalty0
+  1033--1043, 2013.
+
+\bibitem[Forbes et~al.(2015)Forbes, Akram, Pilcher, Cooper, and Bellomo]{for15}
+A.~B. Forbes, M.~Akram, D.~Pilcher, J.~Cooper, and R.~Bellomo.
+\newblock Cluster randomised crossover trials with binary data and unbalanced
+  cluster sizes: Application to studies of near-universal interventions in
+  intensive care.
+\newblock \emph{Clinical Trials}, 12\penalty0 (1):\penalty0 34--44, 2015.
+
+\bibitem[Grayling et~al.(2018)Grayling, Mander, and Wason]{grayling2018blinded}
+M.~J. Grayling, A.~P. Mander, and J.~M. Wason.
+\newblock Blinded and unblinded sample size reestimation in crossover trials
+  balanced for period.
+\newblock \emph{Biometrical Journal}, 60\penalty0 (5):\penalty0 917--933, 2018.
+
+\bibitem[Hao et~al.(2015)Hao, von Rosen, and von Rosen]{hao2015explicit}
+C.~Hao, D.~von Rosen, and T.~von Rosen.
+\newblock Explicit influence analysis in two-treatment balanced crossover
+  models.
+\newblock \emph{Mathematical Methods of Statistics}, 24\penalty0 (1):\penalty0
+  16--36, 2015.
+
+\bibitem[Harville(1997)]{harville}
+D.~A. Harville.
+\newblock \emph{Matrix algebra from a statistician's perspective}, volume~1.
+\newblock Springer, New York, 1997.
+
+\bibitem[He et~al.(2002)He, Zhu, and Fung]{he2002estimation}
+X.~He, Z.-Y. Zhu, and W.-K. Fung.
+\newblock Estimation in a semiparametric model for longitudinal data with
+  unspecified dependence structure.
+\newblock \emph{Biometrika}, 89\penalty0 (3):\penalty0 579--590, 2002.
+
+\bibitem[Jaime(2019)]{jaime}
+G.~Jaime.
+\newblock Uso de un residuo de papel como suplemento para vacas lecheras.
+\newblock \emph{Tesis de maestría, Universidad Nacional de Colombia, Sede
+  Bogota}, 2019.
+
+\bibitem[Jankar et~al.(2020)Jankar, Mandal, and Yang]{jankar2020optimal}
+J.~Jankar, A.~Mandal, and J.~Yang.
+\newblock Optimal crossover designs for generalized linear models.
+\newblock \emph{Journal of Statistical Theory and Practice}, 14\penalty0
+  (2):\penalty0 1--27, 2020.
+
+\bibitem[Jones and Kenward(2015)]{ken15}
+B.~Jones and M.~G. Kenward.
+\newblock \emph{Design and Analysis of Cross-Over Trials Third Edition}.
+\newblock Chapman \& Hall/CRC, Monographs on Statistics and Applied Probability
+  138, Boca Raton, 2015.
+
+\bibitem[Josephy et~al.(2015)Josephy, Vansteelandt, Vanderhasselt, and
+  Loeys]{josephy2015within}
+H.~Josephy, S.~Vansteelandt, M.-A. Vanderhasselt, and T.~Loeys.
+\newblock Within-subject mediation analysis in {A}{B}/{B}{A} crossover designs.
+\newblock \emph{The international journal of biostatistics}, 11\penalty0
+  (1):\penalty0 1--22, 2015.
+
+\bibitem[Kitchenham et~al.(2018)Kitchenham, Madeyski, Curtin,
+  et~al.]{kitchenham2018corrections}
+B.~Kitchenham, L.~Madeyski, F.~Curtin, et~al.
+\newblock Corrections to effect size variances for continuous outcomes of
+  cross-over clinical trials.
+\newblock \emph{Statistics in medicine}, 37\penalty0 (2):\penalty0 320--323,
+  2018.
+
+\bibitem[Lehmann and Casella(2006)]{lehmann2006theory}
+E.~L. Lehmann and G.~Casella.
+\newblock \emph{Theory of point estimation}.
+\newblock Springer Science \& Business Media, 2006.
+
+\bibitem[Li et~al.(2018)Li, Forbes, Turner, and Preisser]{li2018power}
+F.~Li, A.~B. Forbes, E.~L. Turner, and J.~S. Preisser.
+\newblock Power and sample size requirements for gee analyses of cluster
+  randomized crossover trials.
+\newblock \emph{Statistics in Medicine}, 2018.
+
+\bibitem[Liang and Zeger(1986)]{liang1986longitudinal}
+K.-Y. Liang and S.~L. Zeger.
+\newblock Longitudinal data analysis using generalized linear models.
+\newblock \emph{Biometrika}, 73\penalty0 (1):\penalty0 13--22, 1986.
+
+\bibitem[Lui(2015)]{lui2015test}
+K.-J. Lui.
+\newblock Test equality between three treatments under an incomplete block
+  crossover design.
+\newblock \emph{Journal of biopharmaceutical statistics}, 25\penalty0
+  (4):\penalty0 795--811, 2015.
+
+\bibitem[Madeyski and Kitchenham(2018)]{madeyski2018effect}
+L.~Madeyski and B.~Kitchenham.
+\newblock Effect sizes and their variance for {A}{B}/{B}{A} crossover design
+  studies.
+\newblock \emph{Empirical Software Engineering}, 23\penalty0 (4):\penalty0
+  1982--2017, 2018.
+
+\bibitem[Moschopoulos and Canada(1984)]{raro}
+P.~G. Moschopoulos and W.~B. Canada.
+\newblock The distribution function of a linear combination of chi-squares.
+\newblock \emph{Computers and Mathematics with Applications}, 10:\penalty0
+  383--386, 1984.
+
+\bibitem[Pan(2001)]{panv}
+W.~Pan.
+\newblock On the robust variance estimator in generalised estimating equations.
+\newblock \emph{Biometrika}, 88(3):\penalty0 901--906, 2001.
+
+\bibitem[Patterson(1951)]{pat51}
+H.~D. Patterson.
+\newblock Change-over trials.
+\newblock \emph{Journal of the Royal Statistical Society. Series B
+  (Methodological)}, 13:\penalty0 256--271, 1951.
+
+\bibitem[Rotnitzky and Jewell(1990)]{rk90}
+A.~Rotnitzky and N.~Jewell.
+\newblock Hypothesis testing of regression parameters in semiparametric
+  generalized linear models for clustered data.
+\newblock \emph{Biometrika}, 77:\penalty0 485--497, 1990.
+
+\bibitem[Srivastava et~al.(2008)Srivastava, von Rosen, and
+  Von~Rosen]{srivastava2008models}
+M.~S. Srivastava, T.~von Rosen, and D.~Von~Rosen.
+\newblock Models with a kronecker product covariance structure: estimation and
+  testing.
+\newblock \emph{Mathematical Methods of Statistics}, 17\penalty0 (4):\penalty0
+  357--370, 2008.
+
+\bibitem[Vegas et~al.(2016)Vegas, Apa, and Juristo]{vegas2016crossover}
+S.~Vegas, C.~Apa, and N.~Juristo.
+\newblock Crossover designs in software engineering experiments: Benefits and
+  perils.
+\newblock \emph{IEEE Transactions on Software Engineering}, 42\penalty0
+  (2):\penalty0 120--135, 2016.
+
+\bibitem[Yu and Peace(2012)]{yu2012spline}
+L.~Yu and K.~E. Peace.
+\newblock Spline nonparametric quasi-likelihood regression within the frame of
+  the accelerated failure time model.
+\newblock \emph{Computational Statistics \& Data Analysis}, 56\penalty0
+  (9):\penalty0 2675--2687, 2012.
+
+\bibitem[Zhang et~al.(2012)Zhang, Yu, Feng, Gunzler, Wu, and Tu]{zhang2012new}
+H.~Zhang, Q.~Yu, C.~Feng, D.~Gunzler, P.~Wu, and X.~Tu.
+\newblock A new look at the difference between the gee and the glmm when
+  modeling longitudinal count responses.
+\newblock \emph{Journal of Applied Statistics}, 39\penalty0 (9):\penalty0
+  2067--2079, 2012.
 
 \end{thebibliography}
