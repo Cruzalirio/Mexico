@@ -37,9 +37,10 @@ Una propuesta estadística y computacional para analizar diseños crossover con 
 \vfill
 
 \centering
-**Nelson Alirio Cruz**  
-Facultad de Medicina Veterinaria y Zootecnia · UNAM  
-27 de octubre de 2026
+
+**Nelson Alirio Cruz**\
+Facultad de Medicina Veterinaria y Zootecnia · UNAM\
+26 de octubre de 2026
 
 ## 1. ¿Por qué estudiar diseños crossover?
 
@@ -81,10 +82,10 @@ En un estudio **longitudinal**, cada unidad se observa varias veces, generalment
 
 En un diseño **crossover**, cada unidad:
 
-1. recibe una secuencia de tratamientos;
-2. aporta observaciones en varios períodos;
-3. puede tener varias mediciones dentro de cada período;
-4. puede conservar efectos de tratamientos previos.
+1.  recibe una secuencia de tratamientos;
+2.  aporta observaciones en varios períodos;
+3.  puede tener varias mediciones dentro de cada período;
+4.  puede conservar efectos de tratamientos previos.
 
 Por tanto, un crossover con medidas repetidas combina dos dependencias:
 
@@ -360,11 +361,11 @@ Un error de ordenamiento puede asignar como tratamiento previo una observación 
 
 Para separar tratamiento, período y carry-over deben cumplirse condiciones estructurales:
 
-1. cada tratamiento debe aparecer en más de una secuencia;
-2. cada tratamiento debe aparecer en más de un período;
-3. cada período debe contener más de un tratamiento;
-4. cada transición incluida debe observarse en al menos una unidad-período;
-5. las columnas asociadas con tratamiento, período y carry-over no deben ser linealmente dependientes.
+1.  cada tratamiento debe aparecer en más de una secuencia;
+2.  cada tratamiento debe aparecer en más de un período;
+3.  cada período debe contener más de un tratamiento;
+4.  cada transición incluida debe observarse en al menos una unidad-período;
+5.  las columnas asociadas con tratamiento, período y carry-over no deben ser linealmente dependientes.
 
 Estas condiciones se expresan mediante el rango de la matriz de diseño:
 
@@ -558,8 +559,8 @@ La base transforma la estimación funcional en la estimación de coeficientes. E
 
 Con medidas repetidas existen al menos dos mecanismos de dependencia:
 
-1. correlación entre tiempos dentro del mismo período;
-2. correlación entre períodos de la misma unidad.
+1.  correlación entre tiempos dentro del mismo período;
+2.  correlación entre períodos de la misma unidad.
 
 Una estructura única AR(1) o intercambiable sobre las $PL$ observaciones puede tratar ambas escalas como si fueran equivalentes.
 
@@ -836,12 +837,12 @@ El paquete organiza el análisis en cuatro funciones principales:
 
 Flujo recomendado:
 
-1. organizar y verificar los datos;
-2. construir las variables carry-over;
-3. ajustar modelos coherentes con el diseño;
-4. comparar estructura de media y correlación;
-5. revisar diagnóstico e incertidumbre;
-6. interpretar en la escala del enlace.
+1.  organizar y verificar los datos;
+2.  construir las variables carry-over;
+3.  ajustar modelos coherentes con el diseño;
+4.  comparar estructura de media y correlación;
+5.  revisar diagnóstico e incertidumbre;
+6.  interpretar en la escala del enlace.
 
 No todas las funciones admiten las mismas opciones. La versión instalada y la documentación del paquete deben revisarse antes de ejecutar un análisis reproducible.
 
@@ -967,15 +968,16 @@ CrossCarry integra una trayectoria metodológica para diseños crossover que inc
 
 Recomendaciones finales:
 
-1. diseñar pensando en las transiciones que se desean estimar;
-2. justificar científicamente el período de lavado;
-3. no confundir muchos registros con suficiente replicación;
-4. comenzar por modelos interpretables y aumentar complejidad solo cuando los datos la sostengan;
-5. interpretar efectos en su escala científica, no solo mediante valores $p$.
+1.  diseñar pensando en las transiciones que se desean estimar;
+2.  justificar científicamente el período de lavado;
+3.  no confundir muchos registros con suficiente replicación;
+4.  comenzar por modelos interpretables y aumentar complejidad solo cuando los datos la sostengan;
+5.  interpretar efectos en su escala científica, no solo mediante valores $p$.
 
 \vfill
 
 \centering
+
 \Large\textbf{CrossCarry convierte la memoria del tratamiento en una parte explícita, estimable e interpretable del análisis.}
 
 \vspace{0.4cm}
