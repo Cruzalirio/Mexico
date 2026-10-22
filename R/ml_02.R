@@ -1,0 +1,371 @@
+## ------------------------------------------------------------------------------------------------------------------
+# Instalar los paquetes si es necesario.
+# install.packages(c(
+#   "sf", "spdep", "spatialreg", "tidyverse",
+#   "readxl", "Matrix"
+# ))
+
+library(tidyverse)
+library(readxl)
+library(sf)
+library(spdep)
+library(spatialreg)
+library(Matrix)
+
+
+# Nombre del archivo Excel.
+archivo <- "../datos/base_borregos_espaciotemporal_Hidalgo.xlsx"
+
+# Consultar las hojas disponibles.
+excel_sheets(archivo)
+
+# Importar la tabla longitudinal.
+datos <- read_excel(archivo, sheet = "datos_long")
+
+datos_b2 <- datos |>
+  mutate(
+    animal_id = as.factor(animal_id),
+    granja_id = as.factor(granja_id),
+    sexo = as.factor(sexo),
+    raza = as.factor(raza),
+    tratamiento = as.factor(tratamiento),
+    sistema_produccion = as.factor(sistema_produccion),
+    salud_score_0_4 = factor(
+      salud_score_0_4,
+      levels = 0:4,
+      ordered = TRUE
+    ),
+    salud_alta = as.factor(salud_alta),
+    periodo = cut(
+      tiempo,
+      breaks = c(-Inf, 20, 40, 60, 80, Inf),
+      labels = c(
+        "Semanas 1-20",
+        "Semanas 21-40",
+        "Semanas 41-60",
+        "Semanas 61-80",
+        "Semanas 81-100"
+      )
+    )
+  )
+
+
+
+# Comprobar que los objetos de los bloques anteriores están disponibles.
+dim(datos_b2)
+glimpse(datos_b2)
+
+
+## ------------------------------------------------------------------------------------------------------------------
+# install.packages(c("tidyverse", "tidymodels", "glmnet", "vip"))
+#pak::pak("bgreenwell/vip@main")  
+
+library(tidyverse)
+library(tidymodels)
+library(glmnet)
+library(vip)
+
+tidymodels_prefer()
+
+
+## ------------------------------------------------------------------------------------------------------------------
+datos_ml2 <- datos_b2 |>
+  mutate(
+    salud_num = as.numeric(as.character(salud_score_0_4)),
+    salud_alta_ml = factor(
+      if_else(salud_num >= 3, "Sí", "No"),
+      levels = c("No", "Sí")
+    )
+  ) |>
+  select(
+    animal_id, granja_id, tiempo,
+    peso_kg, salud_alta_ml,
+    consumo_kg_dia, consumo_agua_l_dia,
+    edad_inicio_meses, sexo, raza,
+    temperatura_C, humedad_pct,
+    precipitacion_mm, actividad_h_dia,
+    sistema_produccion, zona
+  ) |>
+  drop_na()
+
+count(datos_ml2, salud_alta_ml)
+
+
+## ------------------------------------------------------------------------------------------------------------------
+set.seed(2026)
+
+particion_ml2 <- group_initial_split(
+  datos_ml2,
+  group = animal_id,
+  prop = 0.80
+)
+
+train_ml2 <- training(particion_ml2)
+test_ml2 <- testing(particion_ml2)
+
+set.seed(2026)
+folds_ml2 <- group_vfold_cv(
+  train_ml2,
+  group = animal_id,
+  v = 5
+)
+
+
+## ------------------------------------------------------------------------------------------------------------------
+receta_peso <- recipe(
+  peso_kg ~
+    consumo_kg_dia + consumo_agua_l_dia +
+    edad_inicio_meses + sexo + raza + tiempo +
+    temperatura_C + humedad_pct + precipitacion_mm +
+    actividad_h_dia + sistema_produccion + zona,
+  data = train_ml2
+) |>
+  step_unknown(all_nominal_predictors()) |>
+  step_novel(all_nominal_predictors()) |>
+  step_dummy(all_nominal_predictors()) |>
+  step_zv(all_predictors()) |>
+  step_normalize(all_numeric_predictors())
+
+modelo_lm_ml <- linear_reg() |>
+  set_engine("lm")
+
+flujo_lm <- workflow() |>
+  add_recipe(receta_peso) |>
+  add_model(modelo_lm_ml)
+
+ajuste_lm <- fit(
+  flujo_lm,
+  data = train_ml2
+)
+
+ajuste_lm
+
+
+## ------------------------------------------------------------------------------------------------------------------
+pred_lm <- predict(
+  ajuste_lm,
+  new_data = test_ml2
+) |>
+  bind_cols(
+    test_ml2 |>
+      select(peso_kg, animal_id, granja_id)
+  )
+
+metric_set(rmse, mae, rsq)(
+  pred_lm,
+  truth = peso_kg,
+  estimate = .pred
+)
+
+
+## ------------------------------------------------------------------------------------------------------------------
+ggplot(
+  pred_lm,
+  aes(x = .pred, y = peso_kg)
+) +
+  geom_point(alpha = 0.20, size = 1) +
+  geom_abline(
+    intercept = 0,
+    slope = 1,
+    linetype = "dashed",
+    color = "firebrick"
+  ) +
+  labs(
+    title = "Peso observado y predicho",
+    x = "Peso predicho (kg)",
+    y = "Peso observado (kg)"
+  ) +
+  theme_minimal()
+
+
+## ------------------------------------------------------------------------------------------------------------------
+modelo_glmnet <- linear_reg(
+  penalty = tune(),
+  mixture = tune()
+) |>
+  set_engine("glmnet")
+
+flujo_glmnet <- workflow() |>
+  add_recipe(receta_peso) |>
+  add_model(modelo_glmnet)
+
+rejilla_glmnet <- grid_regular(
+  penalty(range = c(-5, 0)),
+  mixture(range = c(0, 1)),
+  levels = c(20, 5)
+)
+
+
+## ------------------------------------------------------------------------------------------------------------------
+set.seed(2026)
+resultados_glmnet <- tune_grid(
+  flujo_glmnet,
+  resamples = folds_ml2,
+  grid = rejilla_glmnet,
+  metrics = metric_set(rmse, mae, rsq),
+  control = control_grid(save_pred = TRUE)
+)
+
+show_best(
+  resultados_glmnet,
+  metric = "rmse",
+  n = 10
+)
+
+
+## ------------------------------------------------------------------------------------------------------------------
+mejores_parametros <- select_best(
+  resultados_glmnet,
+  metric = "rmse"
+)
+
+flujo_glmnet_final <- finalize_workflow(
+  flujo_glmnet,
+  mejores_parametros
+)
+
+ajuste_glmnet_final <- last_fit(
+  flujo_glmnet_final,
+  split = particion_ml2,
+  metrics = metric_set(rmse, mae, rsq)
+)
+
+collect_metrics(ajuste_glmnet_final)
+
+
+## ------------------------------------------------------------------------------------------------------------------
+receta_salud <- recipe(
+  salud_alta_ml ~
+    consumo_kg_dia + consumo_agua_l_dia +
+    edad_inicio_meses + sexo + raza + tiempo +
+    temperatura_C + humedad_pct + precipitacion_mm +
+    actividad_h_dia + sistema_produccion + zona,
+  data = train_ml2
+) |>
+  step_unknown(all_nominal_predictors()) |>
+  step_novel(all_nominal_predictors()) |>
+  step_dummy(all_nominal_predictors()) |>
+  step_zv(all_predictors()) |>
+  step_normalize(all_numeric_predictors())
+
+modelo_logistico_ml <- logistic_reg() |>
+  set_engine("glm")
+
+flujo_logistico <- workflow() |>
+  add_recipe(receta_salud) |>
+  add_model(modelo_logistico_ml)
+
+ajuste_logistico <- fit(
+  flujo_logistico,
+  data = train_ml2
+)
+
+
+## ------------------------------------------------------------------------------------------------------------------
+pred_prob_logistica <- predict(
+  ajuste_logistico,
+  new_data = test_ml2,
+  type = "prob"
+)
+
+pred_clase_logistica <- predict(
+  ajuste_logistico,
+  new_data = test_ml2,
+  type = "class"
+)
+
+pred_logistica <- bind_cols(
+  test_ml2 |>
+    select(salud_alta_ml, animal_id, granja_id),
+  pred_prob_logistica,
+  pred_clase_logistica
+)
+
+
+## ------------------------------------------------------------------------------------------------------------------
+metric_set(
+  accuracy,
+  sens,
+  spec,
+  bal_accuracy,
+  roc_auc,
+  pr_auc,
+  mn_log_loss
+)(
+  pred_logistica,
+  truth = salud_alta_ml,
+  estimate = .pred_class,
+  .pred_Sí,
+  event_level = "second"
+)
+
+
+## ------------------------------------------------------------------------------------------------------------------
+conf_mat(
+  pred_logistica,
+  truth = salud_alta_ml,
+  estimate = .pred_class
+)
+
+
+## ------------------------------------------------------------------------------------------------------------------
+roc_obj <- roc_curve(
+  pred_logistica,
+  truth = salud_alta_ml,
+  .pred_Sí,
+  event_level = "second"
+)
+
+autoplot(roc_obj) +
+  labs(
+    title = "Curva ROC para salud alta"
+  ) +
+  theme_minimal()
+
+
+## ------------------------------------------------------------------------------------------------------------------
+umbral <- 0.35
+
+pred_logistica_umbral <- pred_logistica |>
+  mutate(
+    clase_umbral = factor(
+      if_else(.pred_Sí >= umbral, "Sí", "No"),
+      levels = levels(salud_alta_ml)
+    )
+  )
+
+metric_set(sens, spec, accuracy)(
+  pred_logistica_umbral,
+  truth = salud_alta_ml,
+  estimate = clase_umbral,
+  event_level = "second"
+)
+
+
+## ------------------------------------------------------------------------------------------------------------------
+modelo_logit_penalizado <- logistic_reg(
+  penalty = tune(),
+  mixture = tune()
+) |>
+  set_engine("glmnet")
+
+flujo_logit_penalizado <- workflow() |>
+  add_recipe(receta_salud) |>
+  add_model(modelo_logit_penalizado)
+
+set.seed(2026)
+resultados_logit_penalizado <- tune_grid(
+  flujo_logit_penalizado,
+  resamples = folds_ml2,
+  grid = rejilla_glmnet,
+  metrics = metric_set(roc_auc, pr_auc, mn_log_loss),
+  control = control_grid(save_pred = TRUE),
+  event_level = "second"
+)
+
+show_best(
+  resultados_logit_penalizado,
+  metric = "roc_auc",
+  n = 10
+)
+

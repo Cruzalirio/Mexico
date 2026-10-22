@@ -270,11 +270,11 @@ La dispersión de los promedios individuales constituye una primera evidencia de
 
 El modelo mixto más sencillo para el peso no contiene variables explicativas y únicamente incorpora un intercepto general y un intercepto aleatorio para cada animal:
 
-\[ \text{Peso}*{ij} =* \beta*0 + b*{0j} + \varepsilon{ij} \]
+\[ \text{Peso}*{ij} =* \beta*0 + b\*{0j} + \varepsilon{ij} \]
 
 <br>
 
-En esta expresión, (\beta*0) es el peso promedio de la población, (b*{0j}) representa la desviación particular del animal (j) respecto al promedio y (\varepsilon\_{ij}) es la desviación de la medición (i) respecto al nivel esperado para ese animal.
+En esta expresión, (\beta*0) es el peso promedio de la población, (b\*{0j}) representa la desviación particular del animal (j) respecto al promedio y (\varepsilon\_{ij}) es la desviación de la medición (i) respecto al nivel esperado para ese animal.
 
 <br>
 
@@ -361,7 +361,7 @@ Además de las diferencias individuales, puede existir variabilidad entre granja
 
 Si `animal_id` es único en toda la base, podemos utilizar dos términos separados:
 
-\[ \text{Peso}*{ijk} =* \beta*0 + u*{0k} + b{0jk} + \varepsilon\_{ijk} \]
+\[ \text{Peso}*{ijk} =* \beta*0 + u\*{0k} + b{0jk} + \varepsilon\_{ijk} \]
 
 <br>
 
@@ -944,7 +944,7 @@ Un GLMM combina tres elementos:
 
 Para una respuesta binaria utilizaremos una distribución binomial y un enlace logit. El modelo se expresa como:
 
-\[ \log\left( \frac{p_{ijk}}{1-p_{ijk}} \right) = \beta*0 +* \beta*1X*{1ijk} + \cdots + u_k+b{jk} \]
+\[ \log\left( \frac{p_{ijk}}{1-p_{ijk}} \right) = \beta*0 +\* \beta*1X\*{1ijk} + \cdots + u_k+b{jk} \]
 
 <br>
 

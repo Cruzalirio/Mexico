@@ -143,7 +143,7 @@ Estas dependencias son la razón por la que más adelante utilizaremos modelos m
 La siguiente tabla resume las principales variables de la base que utilizaremos en el curso.
 
 | Variable | Tipo | Unidad o categorías | Utilidad en el análisis |
-|:-----------------|:-----------------|:-----------------|:-----------------|
+|:---|:---|:---|:---|
 | `animal_id` | Identificador | Código de animal | Reconocer las mediciones del mismo animal. |
 | `granja_id` | Identificador | Código de granja | Identificar la explotación de origen. |
 | `tiempo` | Temporal discreta | Semana | Ordenar las mediciones longitudinales. |

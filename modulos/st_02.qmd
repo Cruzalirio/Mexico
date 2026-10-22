@@ -1040,21 +1040,20 @@ A partir de las tablas y los gráficos anteriores, responda las siguientes pregu
 
 <br>
 
-1. ¿La distribución del peso es aproximadamente simétrica o presenta asimetría?
-2. ¿La media y la mediana del peso son similares?
-3. ¿Qué sexo y qué raza presentan el mayor peso medio descriptivo?
-4. ¿El consumo medio aumenta, disminuye o permanece estable durante el seguimiento?
-5. ¿La composición de las categorías de salud cambia entre periodos?
-6. ¿Qué variables presentan las correlaciones positivas y negativas más intensas?
-7. ¿La trayectoria del animal seleccionado sigue el mismo patrón que el promedio semanal?
-8. ¿Existen granjas con distribuciones de peso claramente diferentes?
-9. ¿Qué patrones podrían explicarse por el tiempo y cuáles podrían relacionarse con características individuales o de manejo?
+1.  ¿La distribución del peso es aproximadamente simétrica o presenta asimetría?
+2.  ¿La media y la mediana del peso son similares?
+3.  ¿Qué sexo y qué raza presentan el mayor peso medio descriptivo?
+4.  ¿El consumo medio aumenta, disminuye o permanece estable durante el seguimiento?
+5.  ¿La composición de las categorías de salud cambia entre periodos?
+6.  ¿Qué variables presentan las correlaciones positivas y negativas más intensas?
+7.  ¿La trayectoria del animal seleccionado sigue el mismo patrón que el promedio semanal?
+8.  ¿Existen granjas con distribuciones de peso claramente diferentes?
+9.  ¿Qué patrones podrían explicarse por el tiempo y cuáles podrían relacionarse con características individuales o de manejo?
 10. ¿Qué resultados deberían comprobarse posteriormente mediante un modelo longitudinal?
 
 <br>
 
 Al finalizar este bloque debemos ser capaces de resumir variables cuantitativas y categóricas, interpretar histogramas, diagramas de caja, barras y diagramas de dispersión, construir tablas de contingencia y describir cambios temporales. También debemos reconocer que las comparaciones exploratorias no sustituyen a los modelos que consideran la dependencia entre mediciones del mismo animal y la agrupación de animales dentro de las granjas.
-
 
 # Bloque 3. De la regresión lineal simple a la múltiple
 
@@ -1233,13 +1232,11 @@ En una regresión lineal simple relacionamos una variable de respuesta cuantitat
 
 La ecuación general del modelo es:
 
-\[
-\text{Peso}_i = \beta_0 + \beta_1\text{Consumo}_i + \varepsilon_i
-\]
+\[ \text{Peso}\_i = \beta\_0 + \beta\_1\text{Consumo}\_i + \varepsilon\_i \]
 
 <br>
 
-En esta expresión, \(\beta_0\) es el intercepto, \(\beta_1\) es la pendiente y \(\varepsilon_i\) representa la parte del peso que el modelo no explica para la observación \(i\).
+En esta expresión, (\beta\_0) es el intercepto, (\beta\_1) es la pendiente y (\varepsilon\_i) representa la parte del peso que el modelo no explica para la observación (i).
 
 <br>
 
@@ -1254,7 +1251,7 @@ summary(modelo_simple)
 
 <br>
 
-La salida de `summary()` contiene los coeficientes estimados, sus errores estándar, los estadísticos de contraste, los valores p, el error residual y los coeficientes de determinación. En este bloque nos centraremos especialmente en la interpretación de los coeficientes, los intervalos de confianza y el \(R^2\).
+La salida de `summary()` contiene los coeficientes estimados, sus errores estándar, los estadísticos de contraste, los valores p, el error residual y los coeficientes de determinación. En este bloque nos centraremos especialmente en la interpretación de los coeficientes, los intervalos de confianza y el (R\^2).
 
 <br>
 
@@ -1359,11 +1356,11 @@ El intervalo de predicción es más amplio que el intervalo de confianza porque 
 
 <br>
 
-El coeficiente de determinación \(R^2\) representa la proporción de la variabilidad observada en el peso que queda descrita por los predictores incluidos en el modelo.
+El coeficiente de determinación (R\^2) representa la proporción de la variabilidad observada en el peso que queda descrita por los predictores incluidos en el modelo.
 
 <br>
 
-Un \(R^2\) próximo a 0 indica que el modelo explica poca variabilidad del peso. Un valor próximo a 1 indica que las predicciones del modelo reproducen una proporción elevada de la variabilidad observada. Sin embargo, un \(R^2\) alto no demuestra causalidad ni garantiza que se cumplan los supuestos de la regresión.
+Un (R\^2) próximo a 0 indica que el modelo explica poca variabilidad del peso. Un valor próximo a 1 indica que las predicciones del modelo reproducen una proporción elevada de la variabilidad observada. Sin embargo, un (R\^2) alto no demuestra causalidad ni garantiza que se cumplan los supuestos de la regresión.
 
 <br>
 
@@ -1383,7 +1380,7 @@ ajuste_simple |>
 
 <br>
 
-En la regresión simple, el \(R^2\) coincide con el cuadrado de la correlación de Pearson entre el peso y el consumo, siempre que el modelo incluya intercepto y se utilicen las mismas observaciones.
+En la regresión simple, el (R\^2) coincide con el cuadrado de la correlación de Pearson entre el peso y el consumo, siempre que el modelo incluya intercepto y se utilicen las mismas observaciones.
 
 <br>
 
@@ -1396,7 +1393,7 @@ c(
 
 <br>
 
-El \(R^2\) ajustado incorpora una penalización por el número de predictores. En un modelo con una sola variable explicativa suele ser muy parecido al \(R^2\), pero cobra mayor importancia al comparar modelos múltiples con distinto número de variables.
+El (R\^2) ajustado incorpora una penalización por el número de predictores. En un modelo con una sola variable explicativa suele ser muy parecido al (R\^2), pero cobra mayor importancia al comparar modelos múltiples con distinto número de variables.
 
 <br>
 
@@ -1712,7 +1709,7 @@ La magnitud del coeficiente debe interpretarse en las unidades originales de cad
 
 <br>
 
-Compararemos progresivamente los modelos para observar cómo cambian el \(R^2\), el \(R^2\) ajustado y el error residual al incorporar nuevas variables.
+Compararemos progresivamente los modelos para observar cómo cambian el (R\^2), el (R\^2) ajustado y el error residual al incorporar nuevas variables.
 
 <br>
 
@@ -1742,7 +1739,7 @@ comparacion_modelos
 
 <br>
 
-El \(R^2\) nunca disminuye cuando se incorporan nuevos predictores, incluso si estos aportan poca información. Por esa razón, para comparar modelos con diferente número de variables también debemos observar el \(R^2\) ajustado y valorar si la mejora tiene relevancia científica.
+El (R\^2) nunca disminuye cuando se incorporan nuevos predictores, incluso si estos aportan poca información. Por esa razón, para comparar modelos con diferente número de variables también debemos observar el (R\^2) ajustado y valorar si la mejora tiene relevancia científica.
 
 <br>
 
@@ -1779,7 +1776,7 @@ comparacion_modelos |>
 
 <br>
 
-Un modelo no debe seleccionarse únicamente porque tenga el mayor \(R^2\). También debe ser coherente con la pregunta científica, utilizar variables medidas adecuadamente, evitar ajustes innecesariamente complejos y cumplir razonablemente sus supuestos.
+Un modelo no debe seleccionarse únicamente porque tenga el mayor (R\^2). También debe ser coherente con la pregunta científica, utilizar variables medidas adecuadamente, evitar ajustes innecesariamente complejos y cumplir razonablemente sus supuestos.
 
 <br>
 
@@ -1789,9 +1786,7 @@ Un modelo no debe seleccionarse únicamente porque tenga el mayor \(R^2\). Tambi
 
 Para cada observación, el modelo produce un valor ajustado y un residuo. El valor ajustado es el peso estimado por el modelo. El residuo es la diferencia entre el peso observado y el peso ajustado:
 
-\[
-e_i = y_i - \widehat{y}_i
-\]
+\[ e_i = y_i - \widehat{y}\_i \]
 
 <br>
 
@@ -2202,8 +2197,8 @@ Cuando tratamos todas las filas como independientes, el modelo puede sobreestima
 
 Además, la regresión convencional combina dos tipos de asociación:
 
-1. Diferencias entre animales: los animales que consumen más en promedio pueden pesar más que otros animales.
-2. Cambios dentro del animal: un animal puede pesar más en las semanas en las que consume más que su propio promedio.
+1.  Diferencias entre animales: los animales que consumen más en promedio pueden pesar más que otros animales.
+2.  Cambios dentro del animal: un animal puede pesar más en las semanas en las que consume más que su propio promedio.
 
 <br>
 
@@ -2274,14 +2269,14 @@ La recta discontinua resume el cambio promedio de todas las mediciones seleccion
 
 Para comunicar los resultados de una regresión múltiple conviene seguir un orden claro:
 
-1. Identificar la variable de respuesta y las variables explicativas.
-2. Indicar las unidades de las variables cuantitativas.
-3. Señalar las categorías de referencia de las variables categóricas.
-4. Interpretar cada coeficiente manteniendo constantes las demás variables.
-5. Presentar los intervalos de confianza para describir la precisión.
-6. Informar el \(R^2\) y el \(R^2\) ajustado sin interpretarlos como pruebas de causalidad.
-7. Revisar los residuos y las observaciones influyentes.
-8. Reconocer las limitaciones derivadas del diseño longitudinal y jerárquico.
+1.  Identificar la variable de respuesta y las variables explicativas.
+2.  Indicar las unidades de las variables cuantitativas.
+3.  Señalar las categorías de referencia de las variables categóricas.
+4.  Interpretar cada coeficiente manteniendo constantes las demás variables.
+5.  Presentar los intervalos de confianza para describir la precisión.
+6.  Informar el (R\^2) y el (R\^2) ajustado sin interpretarlos como pruebas de causalidad.
+7.  Revisar los residuos y las observaciones influyentes.
+8.  Reconocer las limitaciones derivadas del diseño longitudinal y jerárquico.
 
 <br>
 
@@ -2333,16 +2328,16 @@ A partir de los modelos y gráficos anteriores, responda las siguientes pregunta
 
 <br>
 
-1. ¿La relación entre consumo de alimento y peso parece aproximadamente lineal?
-2. ¿Cómo se interpreta el coeficiente del consumo en el modelo simple?
-3. ¿Tiene sentido biológico interpretar el intercepto del modelo simple?
-4. ¿Cómo cambia el coeficiente del consumo al incorporar la edad?
-5. ¿Cuáles son las categorías de referencia para sexo y raza?
-6. ¿Cómo se interpreta un coeficiente asociado con una categoría de raza?
-7. ¿Qué representa el coeficiente de la semana en el modelo múltiple?
-8. ¿Qué diferencia existe entre un intervalo de confianza y un intervalo de predicción?
-9. ¿Cuánto aumenta el \(R^2\) al pasar del modelo simple al modelo múltiple?
-10. ¿El aumento del \(R^2\) implica que el modelo múltiple sea causalmente correcto?
+1.  ¿La relación entre consumo de alimento y peso parece aproximadamente lineal?
+2.  ¿Cómo se interpreta el coeficiente del consumo en el modelo simple?
+3.  ¿Tiene sentido biológico interpretar el intercepto del modelo simple?
+4.  ¿Cómo cambia el coeficiente del consumo al incorporar la edad?
+5.  ¿Cuáles son las categorías de referencia para sexo y raza?
+6.  ¿Cómo se interpreta un coeficiente asociado con una categoría de raza?
+7.  ¿Qué representa el coeficiente de la semana en el modelo múltiple?
+8.  ¿Qué diferencia existe entre un intervalo de confianza y un intervalo de predicción?
+9.  ¿Cuánto aumenta el (R\^2) al pasar del modelo simple al modelo múltiple?
+10. ¿El aumento del (R\^2) implica que el modelo múltiple sea causalmente correcto?
 11. ¿Los residuos muestran curvatura, forma de embudo o valores extremos?
 12. ¿La variabilidad de los residuos parece constante?
 13. ¿Existen observaciones potencialmente influyentes?
@@ -2351,9 +2346,8 @@ A partir de los modelos y gráficos anteriores, responda las siguientes pregunta
 
 <br>
 
-Al finalizar este bloque debemos ser capaces de ajustar e interpretar una regresión lineal simple y una regresión múltiple, explicar los coeficientes y sus intervalos de confianza, diferenciar el \(R^2\) del \(R^2\) ajustado y revisar los principales gráficos de residuos.
+Al finalizar este bloque debemos ser capaces de ajustar e interpretar una regresión lineal simple y una regresión múltiple, explicar los coeficientes y sus intervalos de confianza, diferenciar el (R\^2) del (R\^2) ajustado y revisar los principales gráficos de residuos.
 
 <br>
 
 También debemos reconocer que una regresión convencional no representa adecuadamente la estructura longitudinal y jerárquica de la base. El paso siguiente consistirá en incorporar efectos aleatorios para considerar las diferencias entre animales y granjas, así como la correlación entre observaciones repetidas.
-

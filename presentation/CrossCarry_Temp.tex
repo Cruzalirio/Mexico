@@ -1,0 +1,1246 @@
+% --------------------------------------------------------------------
+% LaTeX beamer slide example for Leiden slides
+% Copyright LaTeX template: 2009-2010 by Joost Schalken
+% --------------------------------------------------------------------
+
+% ====================================================================
+% Setup of slide environment
+\batchmode % Do not display issues with package loading
+\documentclass[t,9pt]{beamer}
+
+% --------------------------------------------------------------------
+% Load packages
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{natbib}
+\bibliographystyle{abbrvnat}
+\setcitestyle{authoryear,open={(},close={)}}
+\usepackage{tikz}
+\usetikzlibrary{calc,trees,positioning,arrows,chains,shapes.geometric,%
+    decorations.pathreplacing,decorations.pathmorphing,shapes,%
+    matrix,shapes.symbols}
+\usepackage{listings}
+\lstset{tabsize=2,showspaces=false,showtabs=false,basicstyle=\ttfamily\mdseries\itshape\normalsize}
+
+% --------------------------------------------------------------------
+% Beamer version theme settings
+\usetheme[
+    faculty=sciences,  % humanities, law, medicine, sciences, socialsciences
+    lang=en,           % en, nl
+    rmfont=pmn,
+    logofont=fpi,
+    %totalpages=off    % Disable total number of slides
+]{leiden}
+%\usetheme[faculty=sciences,lang=en]{leiden}
+
+% Remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Better default font
+\usepackage{iwona}
+\usepackage[textfont={scriptsize,it}]{caption}
+\setbeamerfont{caption}{size=\scriptsize}
+\renewcommand*{\familydefault}{\sfdefault}
+
+
+%% Comentarios
+%% Muletillas de las palabras, revisar en un video propio
+%% Algunas están muy cargadas de texto
+%% Más el detalle de tratamientos, periodos y como se aplica en cada caso
+%% En las definiciones de cada caso más enfásis
+%% Metricas de robustez sobre el modelo
+%% Los slides más compactos en información
+%% Mucho texto (en algunos)
+%% El críterio de QIC, cuál es el resultado del AIC para cada uno de los modelos
+%% Hacer enfásis en eso
+%% Placebo concepto
+%% Más dinamico a la hora de presentar las cosas
+%% 
+
+
+% --------------------------------------------------------------------
+\def\liketitle#1{%
+{\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}%
+\begin{flushleft}%
+\vspace{-\baselineskip}% Cometic correction for space introduced by flushleft
+#1\par
+\end{flushleft}%
+\vspace{-\baselineskip}% Cosmetic correction for space introduced by flushleft
+}%
+\vspace{0.75\baselineskip}%
+}
+
+% --------------------------------------------------------------------
+\setbeameroption{hide notes}
+%\setbeameroption{show notes}
+%\setbeameroption{show notes on second screen}
+
+% --------------------------------------------------------------------
+\nonstopmode % Include issues with the slides
+
+
+% ====================================================================
+% Header settings
+\def\lecturename{Lecture}
+\lecture[CrossCarry]{CrossCarry: An R package for the analysis of data from a crossover design with GEE}{ldn-bmr}
+\subtitle{Author: Nelson Alirio Cruz Gutierrez, PhD. Statistics, MSc. Statistics, BSc. Statistics}
+\date{Algún día}
+\title{\insertlecture}
+\author{Mathematics and Computer Science Statistics and Operations Research}
+\institute{University of the Balearic Islands}
+\subject{Lecture: \lecturename}
+
+
+% ====================================================================
+% Main part
+
+% --------------------------------------------------------------------
+\batchmode % Do not include issues with the package definitions
+\begin{document}
+\nonstopmode % Include issues with the slides
+
+
+% ====================================================================
+\section*{Introduction}
+
+% --------------------------------------------------------------------
+{
+\setbeamertemplate{navigation symbols}{}
+\begin{frame}[plain]
+  \maketitle
+\end{frame}
+\addtocounter{framenumber}{-1}% don't count the title slide.
+}
+
+% --------------------------------------------------------------------
+%% Colocar Outline
+\begin{frame}[allowframebreaks]{Outline}
+  \tableofcontents[sectionstyle=show/show, hideallsubsections]
+\end{frame}
+
+\section{Introduction}
+\begin{frame}[fragile]{Motivation}
+\vfill % Vertical centering
+\begin{figure}
+\includegraphics[width=.99\textwidth,height=.85\textheight,keepaspectratio]{img/Vacas.pdf}
+\end{figure}
+\end{frame}
+\backgroundimageonslide{}
+\begin{frame}{Crossover design in cows}
+An experiment carried out by researchers of the Department of Animal Sciences of Universidad Nacional de Colombia was focused on inferring the effects of two diets, A (grass) and B (a mixture of grass and paper recycling waste) on dairy cattle performance. Measurements of milk protein yield were taken \citep{jaime}.
+\begin{table}[ht]
+    \centering
+   \begin{tabular}{c|c|c|}
+        Sequence & Period 1 & Period 2\\
+        \hline
+        \begin{tabular}{cc}
+            (1) AB & Ind 1\\
+            &\vdots\\
+             & Ind 4
+        \end{tabular} & \begin{tabular}{c}
+               3 measurements\\
+               \vdots \\
+              3 measurements
+        \end{tabular}&  \begin{tabular}{c}
+             3 measurements\\
+               \vdots \\
+              3 measurements
+        \end{tabular}\\
+         \begin{tabular}{cc}
+             (2) BA & Ind 5\\
+            &\vdots\\
+             & Ind 8
+        \end{tabular} & \begin{tabular}{c}
+                3 measurements\\
+               \vdots \\
+              3 measurements
+        \end{tabular}&  \begin{tabular}{c}
+              3 measurements\\
+               \vdots \\
+              3 measurements
+        \end{tabular}\\
+        \hline
+    \end{tabular}
+    \caption{Structure of the crossover design in cows}
+    \label{tablavacas}
+\end{table}
+
+\end{frame}
+\backgroundimageonslide{}
+
+\backgroundimageonslide{}
+\begin{frame}[fragile]{Crossover design in arterial pressure }
+\cite[pg 204]{ken15} described a crossover experiment with three treatments to control arterial pressure: treatment A is a placebo, and treatments B and C are 20 and 40 mg doses of a test drug. Each one of them was applied to two individuals lasting six weeks each and the measurement was taken in the middle of each period. Due to ethical reasons, there  was no washout period between the treatments.
+\begin{table}[ht]
+     \centering    \captionsetup{justification=centering,margin=2cm}
+     \scriptsize
+    \captionsetup{justification=centering,margin=2cm}
+   \begin{tabular}{c|c|c|c|}
+        Sequence & Period 1 & Period 2 & Period 3\\
+        \hline
+        \begin{tabular}{cc}
+            (1) ABC & Ind 1\\
+             & Ind 2
+        \end{tabular} & \begin{tabular}{c}
+               10 \\
+              10 
+        \end{tabular}&  \begin{tabular}{c}
+              10 \\
+              10 
+        \end{tabular}&  \begin{tabular}{c}
+              10 \\
+             10 
+        \end{tabular}\\
+        \vdots & \vdots &\vdots &\vdots \\
+         \begin{tabular}{cc}
+            (6) CBA & Ind 11\\
+             & Ind 12
+        \end{tabular} & \begin{tabular}{c}
+               10 \\
+              10 
+        \end{tabular}&  \begin{tabular}{c}
+              10 \\
+              10 
+        \end{tabular}&  \begin{tabular}{c}
+              10 \\
+             10 
+        \end{tabular}\\
+        \hline
+    \end{tabular}
+    \caption{Structure of the blood pressure crossover design}
+    \label{table100}
+\end{table}
+10 consecutive measurements of diastolic arterial pressure were taken: -30, -15, 15, 30, 45, 60, 75, 90, 120 and 240 minutes after the administration of the treatment
+\end{frame}
+\backgroundimageonslide{}
+\begin{frame}[fragile]{Arterial data}
+\vfill % Vertical centering
+\begin{figure}
+\includegraphics[width=.99\textwidth,height=.75\textheight,keepaspectratio]{img/Tension.eps}
+\caption{Mean arterial pressure of the patients in the blood pressure experiment}
+\end{figure}
+\end{frame}
+
+\section{Crossover designs}
+\begin{frame}[fragile]{Crossover design }
+A crossover design has the following components \citep{pat51}: 
+\begin{block}{Components}
+\begin{enumerate}
+    \item  \textit{Sequences}: which are each one of the distinct treatment combinations to be sequentially and randomly applied to the experimental units.
+    \item \textit{Treatments}: randomly applied to each experimental unit within each sequence.
+    \item \textit{Periods}: the time intervals in which the treatments that make up a sequence are applied, usually, each period is the same for all sequences and, consequently, the number of periods is equal to the number of elements of each sequence.
+    \item \textit{Experimental unit}: the subjects or elements that receive the treatments, the total number of experimental units in the study is denoted by  $n$.
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Carryover effects }
+\begin{block}{Carryover effects}
+ Persistency of the effect of a treatment over those that will be applied later, i.e., the treatment is applied in a given period, but its effect still affects the response in later periods when other treatments are applied. When the effect persists after one period, it is known as first order carryover effect, and when it persists after two periods, it is called a second order carry-over effect and so on \citep{vegas2016crossover}.
+\end{block}
+\begin{block}{Types}
+\begin{enumerate}
+    \item  \textbf{Simple carry-over}: where the residual effect of treatment affects equally each of the treatments that are preceded by it, and 
+    \item \textbf{Complex carry-over}: where the residual effect of the treatment affects each of the other treatments differently.
+\end{enumerate}
+\end{block}
+\end{frame}
+\begin{frame}[fragile]{Background}
+\vfill
+\begin{enumerate}
+    \item In \cite{curtin2017meta} and \cite{li2018power},  generalized linear models were used for crossover designs for two periods and two sequences of two treatments where the experimental unit was observed once in each period.
+    \item \cite{josephy2015within}, \cite{hao2015explicit}, \cite{lui2015test},  \cite{grayling2018blinded}, \cite{madeyski2018effect} and \cite{kitchenham2018corrections} used mixed models for crossover designs with a normal response and a single observation per period, including additively carry-over effects in the model. 
+    \item \cite{diaz2013random} and \cite{for15} normal mixed models are used to study crossover designs with repeated measures and without including carry-over effects.
+    \item  Generalized estimating equations (GEE) were used by \cite{jankar2020optimal} to estimate model parameters in crossover experiments. 
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}[fragile]{Outline}
+ \begin{block}{Problems}
+     \begin{itemize}
+         \item There is no adequate methodology to perform a deviance analysis table with carryover effects.
+         \item It is necessary to build an inference that performs well in scenarios of a few experimental units.
+         \item The usual correlation structures are very restrictive if the number of observations per period is large.
+         \item Assuming that the carry-over effects are constant over time is very naive.
+     \end{itemize}
+ \end{block}    
+ \begin{block}{Solutions}
+     \begin{enumerate}
+         \item  A Deviance Analysis methodology was constructed.
+         \item A new correlation structure using the Kronecker product was developed.
+         \item A semiparametric GEE model was developed to estimate the temporal and carry-over effects.
+         %% Buscar sinonimos
+     \end{enumerate}
+ \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Notation}
+ In a crossover design with $S$ sequences of length (the number of elements comprising each sequence)  $P$, $Y_{ijk}$ is defined as the  $k$th response of the $i$th experimental unit at $j$th period. Let $n_{ij}$ be the number of observations of the $i$th experimental unit during the  $j$th period. Then, vector $\pmb{Y}_{ij}$ is defined as: 
+ \begin{equation}\nonumber
+  \pmb{Y}_{ij}=\left(Y_{ij1}, \ldots, Y_{ijn_{ij}} \right)^T
+ \end{equation}
+Also, vector $\pmb{Y}_{i}$ is defined as:
+ \begin{equation}\nonumber
+\pmb{Y}_{i}= \left(\pmb{Y}_{i1}, \ldots, \pmb{Y}_{iP}\right)^T
+ \end{equation}
+which has dimension $\sum_{j=1}^P n_{ij}$, where $P$ is the number of periods.
+\begin{align*}
+    i&=1, \ldots, n \\
+    j&=1,\ldots, P\\ 
+    k&=1, \ldots, n_{ij} \\ 
+    L&=\max_{ij}\{n_{ij}\} 
+\end{align*}\nonumber
+    
+\end{frame}
+
+\section{Generalized estimating equations}
+\begin{frame}[fragile]{Why using GEE?}
+\begin{enumerate}
+    \item  Assuming that  $Y_{ijk}$ has a distribution in the exponential family,  generalized linear mixed models (GLMM) or generalized estimating equations (GEE) can be used.
+    \item While the GLMM explicitly models within-subject correlation using random effects, the GEE implicitly explains such correlations using sandwich variance estimates \citep{liang1986longitudinal}.
+    \item The GEE estimators yield a more solid inference about the fixed effects than the GLMM that depends on the distributional assumptions about the random effects. \citep{zhang2012new}.
+\end{enumerate}
+\begin{block}{GEE}    
+Since the main goal of a crossover experiment is to obtain a robust inference about treatment effects, GEE models are more suitable than GLMM models.
+\end{block}
+   \end{frame}
+
+\begin{frame}[fragile]{Notation}
+\vfill
+ \begin{block}{Model}
+     \begin{equation}\nonumber
+      E(Y_{ijk})=\mu_{ijk} \qquad
+     g(\mu_{ijk})=\pmb{x}^T_{ijk}\pmb{\beta} =\eta_{ijk}
+ \end{equation}
+ \begin{equation}\nonumber
+      \eta_{ijk}=\mu +\text{Period} + \text{Treatment} +\text{1st order carryover}
+ \end{equation} 
+\begin{equation}\nonumber
+      \eta_{ijk}= \mu +\gamma_j + \tau_{d[i,j]}+ \theta_{d[i,j-1]}+\cdots+\theta_{d[i,j-P+1]} 
+\end{equation}
+
+ \end{block}
+ where:
+\begin{itemize}
+    \item $g(\cdot)$ is the link function.
+    \item $\pmb{x}_{ijk}$ is the vector of the design matrix corresponding to $k$th response from the $i$th experimental unit at the  $j$th period.
+    \item $\pmb{\beta}$ is the vectors of fixed effects.
+    \item $\tau_{d[i,j]}$ is the effect of treatment and   $\theta_{d[i,j-u]}$  is the carry-over effect of order $u$
+\end{itemize}
+
+\end{frame}
+ \begin{frame}[fragile]{GEE}
+ Because observations of the same experimental unit are correlated, parameter estimation is carried out using GEE \citep{liang1986longitudinal}.
+ \begin{block}{Estimating equation for $\pmb{\beta}$}
+     \begin{equation}\nonumber
+        \pmb{U}(\pmb{\beta})=\left[ \left\{\sum_{i=1}^{n_i} \pmb{x}_{mi}^T \pmb{D}\left( \frac{\partial \pmb{\mu}_i}{\partial\eta}\right) [\pmb{V}(\pmb{\mu}_i)]^{-1}\left(\frac{\pmb{y}_{i}- \pmb{\mu}_i}{\phi} \right) \right\}_{m=1, \ldots, q} \right]_{q\times 1} 
+     \end{equation}
+ \end{block}
+ where:
+ \begin{itemize}
+     \item $\pmb{\mu}_i=(\mu_{i11}, \ldots, \mu_{iPn_{iP}})^T$.
+     \item $\pmb{y}_{i}=(y_{i11}, \ldots, y_{iPn_{iP}})^T$.
+     \item $\pmb{x}_{mi}$ is the $m$th column of the design matrix of the ith experimental unit.
+     \item $\phi$ is the dispersion parameter.    
+     \item $n_i=\sum_{j=1}^P n_{ij}$ is the total number of observations of the $i$th experimental unit.
+ \end{itemize}
+\end{frame}
+ \begin{frame}[fragile]{Variance component}
+ \begin{block}{$\pmb{V}(\pmb{\mu}_i)$ }
+     \begin{equation}\nonumber
+        \pmb{V}(\pmb{\mu}_i)=\left[\pmb{D}(V(\mu_{ijk})^{\frac{1}{2}}) \pmb{R}(\pmb{\pmb{ \alpha}}) \pmb{D}({V}(\mu_{ijk})^{\frac{1}{2}})\right]_{P \times P} 
+     \end{equation}
+ \end{block}
+in the case that $Y_{ijk}$ is binary, $V(\mu_{ijk})=\mu_{ijk}(1-\mu_{ijk})$ and $\pmb{D}(V(\mu_{ijk}))$ would be of the form:
+\begin{equation}\nonumber
+    \pmb{D}(V(\mu_{ijk}))=\begin{pmatrix}
+     \mu_{i11}(1-\mu_{i11}) &  0 & \cdots & 0\\
+     0 & \mu_{i12}(1- \mu_{i12}) & \cdots & 0 \\
+     0 & 0 & \cdots & 0 \\
+      \vdots & \vdots & \ddots & \vdots\\
+     0&0& \cdots  &  \mu_{iPL}(1- \mu_{iPL})
+    \end{pmatrix}_{PL \times PL}
+\end{equation} 
+\end{frame}
+
+\begin{frame}[fragile]{Correlation structure}
+$R(\pmb{ \alpha})$ is the correlation matrix related to the covariance matrix $\pmb{\Sigma}_{i}=Var(\pmb{Y}_{i})$ as follows:
+ \begin{block}{Correlation }
+     \begin{equation}\nonumber
+        \left( \pmb{\Sigma}_{i}\right)_{PL \times PL}= \left( \pmb{D}(Var(Y_{ijk})^{\frac{1}{2}}) \pmb{R}(\pmb{\alpha}) \pmb{D}(Var(Y_{ijk})^{\frac{1}{2}})\right)_{PL \times PL}.
+     \end{equation}
+ \end{block} 
+It is assumed that the correlation has a structure to more parsimoniously estimate $\pmb{ \alpha}$. For example:
+\begin{equation}\nonumber
+     \pmb{R}(\pmb{\alpha}) = \begin{pmatrix}
+     1 & \alpha & \cdots& \alpha\\
+     \alpha& 1 & \cdots & \alpha\\
+     \vdots& \vdots & \ddots & \vdots\\
+     \alpha& \alpha& \cdots & 1
+    \end{pmatrix}_{PL\times PL} \;      \pmb{R}(\pmb{\alpha}) = \begin{pmatrix}
+     1 & \alpha & \cdots& \alpha^{PL-1}\\
+     \alpha& 1 & \cdots & \alpha^{PL-2}\\
+     \vdots& \vdots & \ddots & \vdots\\
+     \alpha^{PL-1}& \alpha^{PL-2}& \cdots & 1
+    \end{pmatrix}_{PL\times PL}
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile]{Usual GEE}
+ \begin{block}{Estimating equation for $\pmb{\beta}$}
+     \begin{equation}\nonumber
+        \pmb{U}_1(\pmb{\beta})=\left[ \left\{\sum_{i=1}^{n_i} \pmb{x}_{mi}^T \pmb{D}\left( \frac{\partial \pmb{\mu}_i}{\partial\eta}\right) [\pmb{V}(\pmb{\mu}_i)]^{-1}\left(\frac{\pmb{y}_{i}- \pmb{\mu}_i}{\phi} \right) \right\}_{m=1, \ldots, q} \right]_{q\times 1} 
+     \end{equation}
+ \end{block}
+ \begin{block}{Estimating equation for $\pmb{\alpha}$}
+     \begin{equation}\nonumber
+        \pmb{U}_2(\pmb{ \alpha})=\sum_{i=1}^S \sum_{k=1}^{n_i}\left(\frac{\partial \pmb{\varepsilon}_{ik}}{\partial \pmb{ \alpha}} \right)^t \pmb{H}_{ik}^{-1} \left(\pmb{W}_{ik} - \pmb{\varepsilon}_{ik} \right)
+     \end{equation}
+ \end{block}
+ where $\pmb{H}_{ik}=\pmb{D}(V(r_{ijk}))_{q\times q}$ is a diagonal matrix, $\pmb{\varepsilon}_{ik}=E(\pmb{W}_{ik})_{q\times 1}$ and 
+$\pmb{W}_{ik}= (r_{i1k}r_{i2k},$ $r_{i1k}r_{i3k},\ldots,r_{i(T-1)k}r_{iTk})^t_{q\times 1}$, with $r_{ijk}$ is the  $ijk$-th Pearson residual, and  $q={T \choose 2}$.
+\end{frame}
+\begin{frame}[fragile]{Model selection}
+ The $QIC$ is defined as:
+ \begin{block}{$QIC$}
+     \begin{equation}\nonumber
+       QIC=-2QL(\hat{\mu};\pmb{I})+2trace(\pmb{\hat{\Omega}}^{-1}_I\pmb{\hat{V}_R})
+     \end{equation}
+ \end{block}
+where:
+\begin{itemize}
+    \item $\hat{\mu}_{ijk}=\hat{\eta}_{ijk}=g^{-1}(\pmb{x}_{ijk}\hat{\beta})$ is the estimated expected value of observation $Y_{ijk}$  under the model assuming the correlation matrix $R$.
+    \item  $\hat{\Omega}_I$ is the estimated covariance matrix of $\pmb{\beta}$ under independence.
+    \item $\hat{V}_R$ is the covariance matrix of  $\pmb{\beta}$ under the model with correlation matrix   $R(\pmb{ \alpha})$.
+\end{itemize}
+\begin{block}{Use}
+    After fitting several models with the same formula, but with different correlation structures, the model with the lowest $QIC$ is selected because it presents the best balance between goodness-of-fit and complexity.
+\end{block}
+\end{frame}
+\section{Deviance Analysis}
+
+\begin{frame}[fragile]{First Result}
+ \begin{block}{Theorem 1}
+Let $\hat{\pmb{ \beta}}$ be the solution of the GEE and $\pmb{\beta}= (\pmb{\beta}_1^t, \pmb{ \beta}_2^t)^t$. Under the null hypothesis $H_0:\,\pmb{\beta}_1=\pmb{\beta}_{10}$, the test statistic, $T_w$, defined as:
+\begin{equation}\nonumber
+T_w=N (\hat{ \pmb{ \beta}}_1- \pmb{ \beta}_{10})^t V_{\hat{ \pmb{ \beta}}_1}^{-1} (\hat{ \pmb{ \beta}}_1-\pmb{ \beta}_{10})
+\end{equation}
+under $H_0$ and under some regularity conditions, follows an asymptotic distribution  $T_w\sim F_{T_W} $ with $F_{T_W}$ defined as:
+\begin{equation}\nonumber
+P(T_W\leq w)=F_{T_W}(w)=\left(\prod_{i=1}^p b_i \right)\sum_{j=0}^\infty \left( a_j \int_0^w \frac{y^{\frac{1}{2}+j-1}e^{-\frac{y}{2c_1}}}{(2c_1)^{\frac{1}{2}+j}\Gamma(\frac{1}{2}+j)} dy \right)
+\end{equation}
+ \end{block} 
+\end{frame}
+
+
+\begin{frame}[fragile]{Deviance analysis}
+where $c_i$ as the $i$-th eigenvalue of the matrix  $\pmb{Q}=\pmb{Q}_0^{-1}\pmb{Q}_1$.   $\pmb{Q}_0$ and $\pmb{Q}_1$ are, respectively,
+\begin{align*}
+\pmb{Q}_0=&\frac{1}{n}\sum_{i=1}^S\sum_{k=1}^{n_i} \tilde{\pmb{D}}_{ik} \pmb{V}(\pmb{\mu}_i)^{-1} \pmb{D}_{ik} \\
+\pmb{Q}_1=&\frac{1}{n}\sum_{i=1}^S\sum_{k=1}^{n_i}  \tilde{\pmb{D}}_{ik} \pmb{V}(\pmb{\mu}_i)^{-1}Cov(\pmb{Y}_{ik}) \pmb{V}(\pmb{\mu}_i)^{-1} \pmb{D}_{ik}\\
+\pmb{Cov}(\pmb{Y}_{ik}) =& \pmb{D}\left(  \pmb{\mu}_i \right)^{\frac{1}{2}} \left(\frac{1}{n}\sum_{i=1}^S \sum_{i=1}^{n_i} \pmb{D}\left(  \pmb{\mu}_i \right)^{-\frac{1}{2}} \pmb{S}_{ik} \pmb{S}_{ik}^t  \pmb{D}\left(  \pmb{\mu}_i \right)^{-\frac{1}{2}} \right) \pmb{D}\left(  \pmb{\mu}_i \right)^{\frac{1}{2}}\\
+b_i =& \sqrt{ \frac{c_1}{c_i}}\\
+A(c_i, r)=&\left[ \prod_{k=0}^{r-1}\left(\frac{1}{2}+k \right)\left(1-\frac{c_1}{c_r} \right)^{r}\right] \left(r! \right)^{-1}
+\end{align*}
+\end{frame}
+\begin{frame}[fragile]{Sketch of proof}
+\begin{enumerate}
+    \item By Theorem 2 of \cite{liang1986longitudinal} it is known that  $\hat{\pmb{\beta}}$ converges in probability to $\pmb{\beta}$, furthermore:
+\begin{equation}\nonumber
+\sqrt{n} (\hat{\pmb{\beta}}-\pmb{\beta}) \stackrel{D}{\rightarrow} N(\pmb{0}, Var(\hat{\pmb{\beta}}))
+\end{equation} 
+\item A robust and consistent estimator for the variance of  $\hat{\pmb{\beta}}$ \citep{panv} is given by:
+\begin{align}
+\widehat{Var}(\hat{\pmb{\beta}})=&\left(\sum_{i=1}^n \pmb{D}_{i}^t\pmb{V}(\pmb{\mu}_i)^{-1}\pmb{D}_{i} \right)^{-1} 
+\left(\sum_{k=1}^n \pmb{D}_{i}^t \pmb{V}(\pmb{\mu}_i)^{-1} \widehat{Cov}(\pmb{y}_{i}) \pmb{V}(\pmb{\mu}_i)^{-1}\pmb{D}_{i} \right)\nonumber\\ &\left(\sum_{k=1}^n \pmb{D}_{i}^t \pmb{V}(\pmb{\mu}_i)^{-1}\pmb{D}_{i} \right)\nonumber\\
+&= \pmb{A}^{-1}\pmb{B}\pmb{A}\nonumber
+\end{align}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Sketch of proof}
+\begin{itemize}
+    \item[3.] For the Result 1 of \cite{rk90}, it is obtained that the $T_w$ statistic:
+\begin{equation}
+T_w =n (\hat{\pmb{\beta}}_1- \pmb{\beta}_{10})^t V_{\hat{\pmb{ \beta}}_1}^{-1} (\hat{\pmb{\beta}}_1- \pmb{\beta}_{10}) \stackrel{n\rightarrow \infty}{\sim} \sum_{j=1}^p c_j \chi_j^2 \nonumber    
+\end{equation}
+\item[4.] Then, the distribution of $W=\sum_{j=1}^p c_j \chi_j^2$ is found based on \cite{raro} as follows:
+\begin{align}
+F_W(w)&=P(W\leq w)=\left(\prod_{i=1}^p b_i \right)\sum_{j=0}^\infty \left( a_j \int_0^w g_j(y)dy \right)\nonumber\\
+&=\left(\prod_{i=1}^p b_i \right)\sum_{j=0}^\infty \left( a_j \int_0^w \frac{y^{\frac{1}{2}+j-1}e^{-\frac{y}{2c_1}}}{(2c_1)^{\frac{1}{2}+j}{ \Gamma}(\frac{1}{2}+j)} dy \right)\nonumber \square
+\end{align}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Simulation study}
+\begin{table}[!h]
+\centering {
+\begin{tabular}{cccc}
+\hline
+Sequence& First Period & Second Period & Third Period\\
+\hline
+1 & A &B &A\\
+2 & B&A&B\\
+ \hline
+\end{tabular}
+\caption{Switch back crossover design}}
+\end{table} 
+\begin{block}{Simulation}
+\begin{itemize}
+\item $Y_{ijk}\sim Poisson(\mu_{ijk})$; $i=1,\ldots,n$; $n \in\{5,10,20,50\}$
+\item $ln(\mu_{ijk}) = \mu +\tau + \text{Period effect} + \text{Carryover effect}$
+\item $\tau = \tau_B- \tau_A$, and $\tau \in\{-2, -1.9, -1.8, \ldots, 1.8, 1.9,2\}$
+\item Period effect $\sim U(-1,1)$ and carry-over effect $\sim U(-1,1)$. 
+\item  The percentage of times the null hypothesis $H_0: \; \tau=0$ was rejected was calculated with two test statistics: 
+\begin{enumerate}
+    \item  The usual normal asymptotic
+    \item The test statistic $T_{w}$ proposed in this work
+\end{enumerate}
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]{Simulation study}
+\vfill % Vertical centering
+\begin{figure}
+\includegraphics[width=.99\textwidth,height=.75\textheight,keepaspectratio]{img/Tw_Z.eps}
+\caption{Power of the test statistic for different values of the treatment effect $\tau$ under $H_0;\; \tau=0$. The number of replications was: a) $5$, b) $10$, c) $20$, and d) $50$. In each subplot, the power was calculated in two ways, i) $T_w$: with the test statistic proposed in this work and ii) $Normal$: with the asymptotic usual result.}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Applications}
+\begin{table}[ht]
+    \centering
+   \captionsetup{justification=centering,margin=2cm}
+   \begin{tabular}{|c|c|c|}\hline
+   Matrix $R(\alpha)$ & $QIC$ arterial& $QIC$ cows\\
+   \hline
+   $\pmb{I}_{PL}$ & 46086& 20.21 \\
+   \hline
+    $AR(1)_{PL}$ & 44923 & 20.46\\
+    \hline
+    $Exch_{PL}$ & \textcolor{red}{44158} & \textcolor{red}{20.11} \\
+   \hline
+   $R_{PL}$ & 100107 & 25.22\\
+   \hline
+    \end{tabular}
+    \caption{Correlation matrices and the corresponding $QIC$ values}
+    \label{tabla2}
+\end{table}
+\begin{columns}
+\begin{column}{.45\textwidth}
+\liketitle{Deviance table for Dairy cattle}
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}
+  \hline
+ Source & $T_w$ & $P(>T_w)$ \\ 
+  \hline
+ Period &  32.686 & $<$0.001 \\ 
+  Treatment & 16.839 & $<$0.001 \\ 
+  Carry\_over & 8.984 & 0.003 \\ 
+  Time & 2.049 & 0.152 \\ 
+  Time$^2$ &  1.317 & 0.251 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\end{column}
+\begin{column}{.45\textwidth}
+\liketitle{And for arterial data}
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}
+  \hline
+ Source & $T_w$ & $P(>T_w)$ \\ 
+  \hline
+ Period &  3.140 & 0.118 \\ 
+  Treatment & 14.196 & $<$0.001 \\ 
+  Carry\_over & 3.450 & 0.154 \\ 
+   Time & 0.057 & 0.811 \\ 
+  Time$^2$ &  0.437 & 0.508 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]{Estimated values for each parameter of the model}
+\begin{columns}
+\begin{column}{.45\textwidth}
+\liketitle{Parameters in Dairy cattle}
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}
+  \hline
+ Parameter & Estimate & Std.err  \\ 
+  \hline
+(Intercept) & 0.32507 & 0.09132 \\ 
+  Periodo2 & 0.34236 & 0.05988 \\ 
+  Treat\_paper & -0.23583 & 0.05747 \\ 
+  Carry\_paper & -0.33917 & 0.11316 \\ 
+  Time & -0.00819 & 0.00572 \\ 
+  Time$^2$ & 0.00010 & 0.00009 \\
+   \hline
+\end{tabular}
+\end{table}
+\begin{align*}
+    \hat{\alpha} &= 0.563(0.239)\\
+    \hat{\phi} &=  0.0101(0.00344)
+\end{align*} 
+\end{column}
+\begin{column}{.45\textwidth}
+\liketitle{Parameters in arterial data}
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|c|c|}
+  \hline
+ Parameter & Estimate & Std.err  \\ 
+  \hline
+(Intercept) & 107.74144 & 3.19128 \\ 
+  Period2 & 2.06035 & 1.31895 \\ 
+  Period3 & 0.93535 & 1.12253 \\ 
+  TreatmentB & 1.55805 & 1.78015 \\ 
+  TreatmentC & -6.26840 & 1.66384 \\ 
+  Carry\_B & -2.12586 & 1.78717 \\ 
+  Carry\_C & -3.10519 & 2.17855 \\ 
+  Time & -0.00585 & 0.02441 \\ 
+  Time$^2$ & 0.00006 & 0.00009 \\  
+   \hline
+\end{tabular}
+\end{table}
+\begin{align*}
+    \hat{\alpha} &= 0.499(0.112)\\
+    \hat{\phi} &=  136(23.1)
+\end{align*}    
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Exchangeable correlation matrix}
+\vfill % Vertical centering
+\begin{figure}
+\includegraphics[width=1\textwidth,height=1\textheight,keepaspectratio]{img/Corr1.eps}
+\caption{Estimated correlation matrix for cow data.}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Exchangeable correlation matrix}
+\vfill % Vertical centering
+\begin{figure}
+\includegraphics[width=.75\textwidth,height=.75\textheight,keepaspectratio]{img/RR_30x30.eps}
+\caption{Estimated correlation matrix for cow data.}
+\end{figure}
+When we fit the correlation matrix for blood pressure, we have a 30 by 30 matrix. Either it has many parameters (Unstructured =$\frac{30\times 29}{2} -30 = 405$ parameters) or it is very simple (Autoregressive or Interchangeable = 1 parameter)
+\end{frame}
+
+\section{Kronecker correlation structure}
+\begin{frame}[fragile]{New correlation structure}
+We propose a correlation structure of the form:
+ \begin{block}{Correlation }
+\begin{equation}\nonumber
+    \pmb{R}(\pmb{\alpha})=\pmb{\Psi}\otimes\pmb{R}_1(\pmb{\alpha}_1)
+\end{equation}
+ \end{block} 
+ where $\pmb{R}_1(\pmb{\alpha}_1)$  is the within-period correlation matrix, $\pmb{\Psi}$ is the between-period correlation matrix, and $\otimes$ represents the Kronecker product \citep{harville}. If $P=3$ y $L=10$, an example of $\pmb{R}(\pmb{\alpha})$ would be:
+\begin{equation}\nonumber
+    \pmb{R}_1(\pmb{\alpha}_1) = \begin{pmatrix}
+     1 & \alpha_1 & \alpha_1&\ldots & \alpha_1\\
+     \alpha_1 & 1 & \alpha_1 &\ldots & \alpha_1\\
+     \alpha_1 & \alpha_1 & 1 &\ldots & \alpha_1\\
+     \vdots & \vdots & \vdots & \ddots & \vdots\\
+     \alpha_1 & \alpha_1 & \ldots &\alpha_1 & 1
+    \end{pmatrix}_{10\times 10}, \; \pmb{\Psi}=\begin{pmatrix}
+     1 & \psi_{12} & \psi_{13}\\
+     \psi_{12} & 1  & \psi_{23}\\
+     \psi_{13} &\psi_{23} & 1
+    \end{pmatrix}_{3\times 3}
+\end{equation}
+\end{frame}
+\begin{frame}[fragile]{Kronecker GEE}
+ \begin{block}{Estimating equation for $\pmb{\beta}$}
+     \begin{equation}\nonumber
+        \pmb{U}_1(\pmb{\beta})=\left[ \left\{\sum_{i=1}^{n_i} \pmb{x}_{mi}^T \pmb{D}\left( \frac{\partial \pmb{\mu}_i}{\partial\eta}\right) [\pmb{V}(\pmb{\mu}_i)]^{-1}\left(\frac{\pmb{y}_{i}- \pmb{\mu}_i}{\phi} \right) \right\}_{m=1, \ldots, q} \right]_{q\times 1} 
+     \end{equation}
+ \end{block}
+ \begin{block}{Estimating equation for $\pmb{\alpha}_1$}
+     \begin{equation}\nonumber
+        \pmb{U}_2(\pmb{ \alpha}_1)=\sum_{i=1}^n \left(\frac{\partial \pmb{\varepsilon}_{i}}{\partial \pmb{ \alpha}_1} \right)^T \pmb{H}_{i}^{-1} \left(\pmb{W}_{i} - \pmb{\varepsilon}_{i} \right)
+     \end{equation}
+ \end{block}
+ \end{frame}
+
+ \begin{frame}[fragile]{Estimating equation for $\pmb{\Psi}$}
+ \begin{block}{ $\pmb{\Psi}=\left(\psi_{jj'}\right)_{P\times P}$}
+ \begin{equation}\nonumber
+\hat{\psi}_{jj'}=\frac{1}{n} \sum_{i=1}^n tr\left(\pmb{R}_1(\pmb{\hat{\alpha}}_1)^{-1}(\pmb{r}_{(j)i}-\bar{\pmb{r}}_{(j)})(\pmb{r}_{(j')i}-\bar{\pmb{r}}_{(j')})^T\right)
+\end{equation}
+ \end{block}
+ where:
+ \begin{itemize}
+     \item $\pmb{r}_{(j)i}$ is the vector of Pearson residuals for the $i$th experimental unit at the $j$th  period.
+     \item $\bar{\pmb{r}}_{(j)}$ is the average (over i),  $j\neq j'$, with $j= 1, \ldots, P$.
+ \end{itemize}
+\begin{block}{Steps}
+\begin{enumerate}
+    \item  $\pmb{R}(\pmb{\alpha}_1)$ is estimated with the residuals grouped by experimental unit with Equation $U_2$
+    \item With the residuals grouped by period and the experimental unit, the $\pmb{\Psi}$ matrix is estimated with $\hat{\psi}_{jj'}$, but discounting the correlation already captured by $\pmb{R}(\pmb{\alpha}_1)$.    
+\end{enumerate}
+\end{block} 
+ \end{frame}
+
+\begin{frame}[fragile]{Second result}
+\vfill
+ \begin{block}{Theorem 2}
+The estimator of $\pmb{R}(\pmb{\alpha})$ given by $\pmb{\hat{\Psi}}\otimes\pmb{R}_1(\pmb{\hat{\alpha}}_1)$ is asymptotically unbiased and consistent. 
+ \end{block}
+ 
+\end{frame}
+
+\begin{frame}[fragile]{Sketch of proof}
+\begin{enumerate}
+    \item Define the theoretical Pearson residuals of response of the $k$th of the $i$th experimental unit at the $j$th period as:
+\begin{equation}\nonumber
+    R_{ijk}=\frac{Y_{ijk}-\mu_{ijk}}{{\phi}\sqrt{V(\mu_{ijk})})}
+\end{equation}
+\item Adapting the results of \cite{cox1968general} and \cite{cordeiro2004Pearson} it is true that:
+\begin{equation}\nonumber
+    R_{ijk}\xrightarrow[n\to \infty]{d} N(0,1)
+\end{equation}
+\item If the matrix  $\pmb{R}=(\pmb{r}_1,\ldots, \pmb{r}_n)_{P\times nL}$ with $\pmb{r}_i$ of residuals of the $i$th individual is defined as:
+\begin{equation}\nonumber
+      \pmb{r}_i=\begin{pmatrix}
+    r_{i11}& r_{i21}& \cdots& r_{i1L}\\
+    r_{i21}& r_{i22}& \cdots &r_{i2L}\\
+    \vdots& \vdots& \ddots& \vdots\\
+    r_{iP1}& r_{i2P}& \cdots &r_{iPL}\\
+    \end{pmatrix}
+    \end{equation}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Sketch of proof}
+\begin{itemize}
+    \item[4.] If the matrix $\pmb{\Gamma}$ is defined as:
+{\scriptsize
+    \begin{equation}\nonumber
+    \pmb{\Gamma}^T=\begin{pmatrix}
+     \frac{\pmb{1}}{\sqrt{n}} &\vdots &      \pmb{G}
+    \end{pmatrix}^T=\begin{pmatrix}
+    \frac{1}{\sqrt{n}} & \frac{1}{\sqrt{n}}& \frac{1}{\sqrt{n}}& \frac{1}{\sqrt{n}} & \cdots&\frac{1}{\sqrt{n}}\\
+    \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}& 0& 0 &\cdots& 0\\
+    \frac{1}{\sqrt{6}} & \frac{1}{\sqrt{6}}& -\frac{2}{\sqrt{6}}& 0 & \cdots&0\\
+    \frac{1}{\sqrt{12}} & \frac{1}{\sqrt{12}}& \frac{1}{\sqrt{12}}& -\frac{3}{\sqrt{12}} & \cdots&0\\
+    \vdots & \vdots& \vdots& \vdots & \ddots&\vdots\\
+    \frac{1}{\sqrt{(n(n-1))}} & \frac{1}{\sqrt{n(n-1)}}& \frac{1}{\sqrt{n(n-1)}}& \frac{1}{\sqrt{n(n-1)}} & \cdots&-\frac{n-1}{\sqrt{n(n-1)}}\\
+    \end{pmatrix}
+\end{equation}}
+\item[5.] Adapting the results of \citep{srivastava2008models}: 
+\begin{equation}\nonumber
+\pmb{R}(\pmb{\Gamma}\otimes \pmb{I}_L)=\begin{pmatrix}
+\sqrt{n}\bar{\pmb{r}} &\vdots & \pmb{R}(\pmb{G}\otimes \pmb{I}_L)
+\end{pmatrix} 
+\end{equation}
+\begin{equation}\nonumber
+    \pmb{R}\left(\pmb{I}_n\otimes\pmb{ \Psi}^{-1} \right)\pmb{R}^T=n\bar{\pmb{r}}\otimes \pmb{ \Psi}^{-1} \pmb{R}+\pmb{Z}(\pmb{G}^T\otimes\pmb{I}_L )\pmb{Z}^T
+\end{equation}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Sketch of proof}
+\begin{itemize}
+    \item[6.] By properties of $R_{ijk}$ and the central limit theorem, we get:
+    \begin{align}\nonumber
+    E(\pmb{Z}_i) =\pmb{0}_{P\times L} \, \; \text{and }
+    Var(Vec(\pmb{Z}_i))=\pmb{ \Psi} \otimes \pmb{R}_1(\pmb{\alpha}_1))
+\end{align}
+\item[7.]
+\begin{equation}\nonumber
+    E(\pmb{z}_{(j)1}, \pmb{z}^T_{(j)1})=\Psi_{jj}\pmb{R}_1(\pmb{\alpha}_1) \qquad E(\pmb{Z}_1, \pmb{Z}^T_1)=(trace(\pmb{\Psi}))\pmb{R}_1(\pmb{\alpha}_1)\nonumber
+\end{equation}
+\item[8.] Therefore, since $\pmb{\Psi}_{jj}=1$, $\forall j=1,\ldots, P$, $trace(\pmb{\Psi})=1$ we get:
+\begin{equation}\nonumber
+   E\left( \pmb{R}_1(\pmb{\alpha}_1)^{\frac{1}{2}}\pmb{z}_{(j')k} \pmb{z}^T_{(j)k} \pmb{R}_1(\pmb{\alpha}_1)^{\frac{1}{2}}\right)=\pmb{\Psi}_{jj'}\pmb{I}_P, \qquad \forall k=1, \ldots, n-1
+\end{equation}
+\item[9.] Futhermore, 
+\begin{equation}\nonumber
+    Cov[\pmb{R}_1(\pmb{\alpha}_1)^{\frac{1}{2}} \pmb{z}_{(k)j} \pmb{z}^T_{(i)j} \pmb{R}_1(\pmb{\alpha}_1)^{\frac{1}{2}}, \pmb{R}_1(\pmb{\alpha}_1)^{\frac{1}{2}} \pmb{z}_{(k)j'} \pmb{z}^T_{(i)j'} \pmb{R}_1(\pmb{\alpha}_1)^{\frac{1}{2}} ]=\pmb{0}   
+\end{equation}
+\end{itemize}
+$\square$
+\end{frame}
+
+\begin{frame}[fragile]{Simulation study}
+\begin{block}{Simulation}
+\begin{itemize}
+\item Switch back crossover design: ABA, BAB
+\item $Y_{ijk}\sim Binomial(p_{ijk})$; $i=1,\ldots,n$; $n \in\{5,10,100\}$
+\item $ln\left(\frac{p_{ijk}}{1-p_{ijk}} \right) = \mu +\tau + \text{Period effect} + \text{Carryover effect}$
+\item $\tau = \tau_B- \tau_A$, and $\tau \in\{-2, -1.9, -1.8, \ldots, 1.8, 1.9,2\}$
+\item Period effect $\sim U(-1,1)$ and carry-over effect $\sim U(-1,1)$.
+\item \begin{align*}
+    \pmb{\Psi} = \begin{pmatrix}
+     1 & \psi_{12} & \psi_{13}\\
+     \psi_{21} & 1 & \psi_{23}\\
+     \psi_{13} & \psi_{23} & 1
+    \end{pmatrix}, \qquad \psi_{ij} \sim U(-1,1) \text{ and } det(\pmb{\Psi})>0
+\end{align*}
+\item $\pmb{R}_1(\pmb{\alpha_1})$, one of two structures was selected: exchangeable and autoregressive.
+\item  Six models were fitted with the same linear predictor, but different correlation matrices 
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Simulation study}
+\vfill % Vertical centering
+\begin{figure}
+\includegraphics[width=.99\textwidth,height=.75\textheight,keepaspectratio]{img/RMSE_AR_1.eps}
+\caption{RMSE for each value of the treatment effect. The average over all simulations where the correlation matrix was autoregressive and Kronecker product with $\pmb{\Psi}$ is shown. Each subplot represents the number of individuals per sequence.}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]{Simulation study}
+\vfill % Vertical centering
+\begin{figure}
+\includegraphics[width=.99\textwidth,height=.75\textheight,keepaspectratio]{img/RMSE_Ar1_SF1.eps}
+ \caption{RMSE for each value of the treatment effect. The average over all simulations where the correlation matrix was autoregressive and Kronecker product with $\pmb{\Psi}=\pmb{I}_3$ is shown. Each subplot represents the number of individuals per sequence.}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]{Correlation matrices for examples}
+\begin{table}[ht]
+    \centering
+   \captionsetup{justification=centering,margin=2cm}
+   \begin{tabular}{|l|c|c|}\hline
+   Matriz $R(\alpha)$ & $QIC$ arterial& $QIC$ cows\\
+   \hline
+   $\pmb{I}_{PL}$ & 46086& 20.21 \\
+   \hline
+   $\pmb{I}_{P}\otimes AR(1)_{L}$ & 44166& 18.06\\
+   \hline
+   $\pmb{I}_{P}\otimes Exch_{L}$ & 45059 &17.98 \\
+   \hline
+    $AR(1)_{PL}$ & 44923 & 20.46\\
+    \hline
+    $Exch_{PL}$ &  44158 & 20.11 \\
+   \hline
+   $\pmb{\Psi}\otimes AR(1)_{L}$ & 43400 & \textcolor{red}{14.68}  \\
+   \hline
+   $\pmb{\Psi}\otimes Exch_{L}$ & \textcolor{red}{43393} & 15.06\\
+   \hline
+    \end{tabular}
+    \caption{Correlation matrices and the corresponding $QIC$ values}
+    \label{tabla2}
+\end{table}
+\begin{block}{$\pmb{\Psi}=\pmb{I}_{P}$}
+    When it is assumed that $\pmb{\Psi}=\pmb{I}_{P}$, we are assuming that the observations of the same individual are independent between periods.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Correlation matrices}
+
+\begin{block}{For the Dairy cattle}
+\begin{align*}
+    \hat{\pmb{\Psi}}=\begin{pmatrix}
+ 1.0000 & 0.3650 \\ 
+ 0.3650 & 1.0000 \\ 
+        \end{pmatrix}, \,
+   \pmb{\hat{R}}_1(\pmb{\alpha}) & \begin{pmatrix}
+1.0000 & 0.3362 & 0.3362^2 \\ 
+0.3362 & 1.0000 & 0.3362 \\ 
+0.3362^2 &0.3362 & 1.0000 \\
+        \end{pmatrix}
+\end{align*}   
+\end{block}
+\begin{block}{For the Arterial data}
+\scriptsize
+\begin{align*}
+    \hat{\pmb{\Psi}}=\begin{pmatrix}
+1.0000 & 0.0537 & 0.4486 \\ 
+ 0.0537 & 1.0000 & 0.3756 \\ 
+0.4486 & 0.3756 & 1.0000 \\ 
+        \end{pmatrix} ,\,
+   \pmb{\hat{R}}_1(\pmb{\alpha}) =\begin{pmatrix}
+ 1.0000 & 0.4958 & 0.4958 & \cdots& 0.4958 \\ 
+  0.4958 & 1.0000 & 0.4958 &\cdots & 0.4958 \\ 
+ \vdots & \vdots & \vdots & \ddots & \vdots \\ 
+  0.4958 & 0.4958 & 0.4958 & \cdots& 1.0000 \\
+        \end{pmatrix}
+\end{align*}
+\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]{Estimated parameters}
+
+\begin{block}{For the Dairy cattle}
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|cccc|}
+  \hline
+  Parameter &  Estimate  & Robust SE & Robust $z$ & $p$-value\\ 
+  \hline
+ Intercept &1.9911 & 0.4579 & 18.9045 &$<$0.001  \\
+ Base & 0.3707 & 0.1719 & 4.6515 & 0.0310\\  
+ Time & -0.0086 & 0.0068 & 1.6093 & 0.2046\\
+ Period 2 &  0.2517 & 0.0565 & 19.8628  & $<$0.001 \\  
+  Treatment A &-0.1438 & 0.0494 & 8.4638 & 0.0036\\ 
+ Carry-over A &   -4.2480 & 1.4128 & -3.0069 & 0.0026\\ 
+ Time$^2$ & 0.0001 & 0.0001 & 1.0223 & 0.3120  \\ 
+   \hline
+\end{tabular}
+\caption{Estimates obtained by GEE for dairy cattle data }
+\label{tabla33}
+\end{table}
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Estimated parameters}
+
+\begin{block}{For the Arterial data}
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|cccc|}
+  \hline
+  Parameter &  Estimate  & Robust SE & Robust $z$ & $p$-value\\ 
+  \hline
+ Intercept & 105.1764 & 3.4255 & 30.7037& $<$0.001  \\  
+ Base & 9.4286 & 2.2744 & 4.1455&$<$0.001\\  
+ Time &0.0961 & 0.0364 & 2.6385 & 0.0042 \\
+ Period 2 & 5.0793 & 3.5378 & -1.4357 & 0.0755\\  
+ Period 3 &11.4009 & 7.4704 & -1.5261 & 0.0635 \\ 
+ Treatment B &-1.1014 & 1.8655 & -0.5904 & 0.2775 \\ 
+ Treatment C &  -10.9991 & 3.2589 & -3.3751 & 0.0004 \\ 
+ Carry-over B &  -4.5981 & 5.4023 & 0.8511 & 0.1973\\ 
+ Carry-over C & -11.5899 & 5.6351 & 2.0567 & 0.0199 \\ 
+ Time$^2$ & -0.0003 & 0.0001 & -2.3884 & 0.0085\\ 
+   \hline
+\end{tabular}
+\caption{Estimates obtained by GEE for arterial pressure data }
+\label{tabla3}
+\end{table}
+\end{block}
+\alert{The carryover effects are assumed constant over time}
+\end{frame}
+
+\backgroundimageonslide{}
+\backgroundimageonslide{}
+\section{Semiparametric modelling}
+\begin{frame}[fragile]{Semiparametric GEE}
+We propose a semiparametric model with B-splines for the time and carry-over effects as follows:
+ \begin{block}{Correlation }
+\begin{align*}
+     E(Y_{ijk})&=\mu_{ijk}, \qquad Var(Y_{ijk})=\phi V(\mu_{ijk})\nonumber \\
+     g(\mu_{ijk})&=\pmb{x}_{ijk}^T\pmb{\beta} + f(\pmb{Z}_{ijk})+ \sum_{c=1}^C f_c(\pmb{Z}_{ijk})\\
+     \pmb{V}(\pmb{\mu}_i)&=\left[\pmb{D}(V(\mu_{ijk})^{\frac{1}{2}}) \pmb{R}(\pmb{\pmb{ \alpha}}) \pmb{D}({V}(\mu_{ijk})^{\frac{1}{2}})\right]_{ L\times L}
+\end{align*}
+ \end{block} 
+ where $\pmb{Z}_{ijk}$ is the time at which the $k$-th observation of the $i$-th experimental unit was measured in the $j$-th period.  $f$  is a function describing the time’s effect period, $f_c$ is a function describing the previous treatment carry-over effect on the current period, with $f_c(\pmb{Z}_{i1k})=0$.
+\end{frame}
+
+
+\begin{frame}[fragile]{Carry-overs}
+For example in the blood pressure data set described in Table \ref{table100},  $\pmb{Z}_{i11}=-30, \; \pmb{Z}_{i12}=-15, \ldots, \pmb{Z}_{i1\,10}=240$, that is, the minutes of measurement within each period
+\begin{block}{Simple carry-over}
+     $C=2$, that is, $f_1$  is the carry-over effect of A, $f_2$  is the carry-over effect of B. 
+\end{block}
+\begin{block}{Complex carry-over}
+     $C=6$, that is, $f_1$  is the carry-over effect of A on B, $f_2$  is the carry-over effect of A on C,  $f_3$ is the carry-over effect of B on A,  $f_4$ is the carry-over effect of B on C,  $f_5$ is the carry-over effect of C on A and  $f_6$ is the carry-over effect of C on B
+\end{block}
+\begin{block}{Advantages}
+The usual GEE modelling does not allow modelling complex carry-over effects, but this methodology does allow modelling them.
+\end{block}
+\end{frame}
+\begin{frame}[fragile]{GEE splines}
+Let $\{s_1(t), \ldots, s_{m}(t)\}$ be a basis splines, then  the  $f$ and $f_c$ functions can be approximated through the following equations \citep{yu2012spline}, respectively,
+\begin{align*}
+    \hat{f}(t)= \sum_{b=1}^m \hat{\alpha}_{1b}s_b(t),  \,
+    \hat{f}_c(t)= \sum_{b=1}^m \hat{\alpha}_{cb}s_b(t), \forall c=1, \ldots,C
+\end{align*}
+the following generalized estimation equations are proposed for $\alpha_{1}=\{\alpha_{11},\ldots, \alpha_{1m}\}$, $ \alpha_c=\{\alpha_{c1},\ldots, \alpha_{cm}\}$,  $\pmb{\beta}$ y $\pmb{R}(\pmb{\alpha})$:
+\begin{block}{For the time effect}
+\scriptsize
+     \begin{equation}\nonumber
+        U_1(\pmb{\alpha_1}, t|\pmb{\beta}, \pmb{\alpha}_2, \pmb{\alpha})=\sum_{i=1}^n \left\{ diag\left(\frac{\partial \mu_{ijk}}{\partial \pmb{\alpha}_1}\right)\right\}_i \frac {\pmb{V}^{-1}_{1i}}{\phi} \left(\pmb{y}_i-\pmb{\mu}_i\left[\pmb{X}_i \pmb{\beta},\sum_{b=1}^m \alpha_{1b}s_b(t)  ,\hat{f}_c(\pmb{Z}_{i}) \right]\right) 
+     \end{equation}
+ \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{GEE splines}
+
+\begin{block}{For the carry-over effect}
+\scriptsize
+     \begin{equation}\nonumber
+       U_2(\pmb{\alpha_c}, t|\pmb{\beta}, \pmb{\alpha}_1, \pmb{\alpha})=\sum_{i=1}^n \left\{ diag\left(\frac{\partial \mu_{ijk}}{\partial \pmb{\alpha}_2}\right)\right\}_i\frac {\pmb{V}^{-1}_{2i}}{\phi} \left(\pmb{y}_i-\pmb{\mu}_i\left(\pmb{X}_i \pmb{\beta},\sum_{b=1}^m \alpha_{2b}s_b(t)  ,\hat{f}(\pmb{Z}_{1i}) \right)\right)
+     \end{equation}
+ \end{block}
+ \begin{block}{For $\pmb{\beta}$ and correlation matrix}
+     \begin{equation}\nonumber \scriptsize
+      U_3(\pmb{\beta}|\pmb{\alpha}_1, \pmb{\alpha}_2, \pmb{\alpha})=\sum_{i=1}^n \left\{  diag\left(\frac{\partial \mu_{ijk}}{\partial \pmb{\beta}}\right)\right\}_i\frac {\pmb{V}^{-1}_{3i}}{\phi} \left(\pmb{y}_i-\pmb{\mu}_i\left[\pmb{X}_i \pmb{\beta},\hat{f}(\pmb{Z}_{i}) ,\hat{f}_c(\pmb{Z}_{i}) \right]\right)
+     \end{equation}
+     \begin{equation}\nonumber
+       U_4(\pmb{ \alpha}|\pmb{\beta}, \pmb{\alpha}_1, \pmb{\alpha}_2)=\sum_{i=1}^S \sum_{k=1}^{n_i}\left(\frac{\partial \pmb{\varepsilon}_{ik}}{\partial \pmb{ \alpha}} \right)^T \pmb{F}_{ik}^{-1} \left(\pmb{W}_{ik} - \pmb{\varepsilon}_{ik} \right)
+     \end{equation}
+ \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Steps of estimation extending the Fisher Scoring}
+\small
+\begin{enumerate}
+    \item Set initial values  $\pmb{\alpha}_{2}^{(0)}$, $\pmb{\beta}^{(0)}$ and $\pmb{\alpha}^{(0)}$
+    \item Find the value $\pmb{\alpha}_{1}^{(1)}$ that solves the equation
+    \[U_1(\pmb{\alpha_1}^{(1)}, t|\pmb{\beta}^{(0)}, \pmb{\alpha}_2^{(0)}, \pmb{\alpha}^{(0)})=0\]  
+ \item Find the value $\pmb{\alpha}_{2}^{(1)}$ that solves the equation
+ \[U_2(\pmb{\alpha_2}^{(1)}, t|\pmb{\beta}^{(0)}, \pmb{\alpha}_1^{(1)}, \pmb{\alpha}^{(0)})=0\]  
+ \item Find the value $\pmb{\beta}^{(1)}$ that solves the equation
+ \[U_3(\pmb{\beta}^{(1)}|\pmb{\alpha}_1^{(1)}, \pmb{\alpha}_2^{(1)}, \pmb{\alpha}^{(0)})=0\]  
+  \item Find the value $\pmb{\alpha}^{(1)}$ that solves the equation
+ \[U_4(\pmb{\alpha}^{(1)}|\pmb{\beta}^{(1)},\pmb{\alpha}_1^{(1)}, \pmb{\alpha}_2^{(1)}, \pmb{\alpha}^{(0)})=0\]
+ \item Repeat steps (2) to (5) until convergence.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Estimate for $\pmb{\beta}$}
+If solving the equation $U_3$ with the Fisher scoring algorithm, in the  $m$-th step, the estimator of $\pmb{\beta}$ is given by:
+\begin{align}
+ \pmb{\beta}^{(m+1)}&=\pmb{\beta}^{(m)}- \left\{ \sum_{i=1}^n \pmb{X}_i^T \pmb{W}_i^{(m)} \pmb{X}_i \right\}^{-1} \left\{\sum_{i=1}^n\pmb{X}_i^T \pmb{W}_i^{(m)} \left(\pmb{N}_i^{(m)} \right)^{-1}  \pmb{u}_i^{(m)}  \right\} \nonumber
+ \end{align}
+\begin{block}{$\hat{\pmb{\beta}}$ is like a weighted least squares estimator}
+   \begin{equation}\nonumber
+    \pmb{\beta}^{(m+1)}=\left\{ \sum_{i=1}^n \pmb{X}_i^T \pmb{W}_i^{(m)} \pmb{X}_i \right\}^{-1} \left\{\sum_{i=1}^n\pmb{X}_i^T \pmb{W}_i^{(m)}  \pmb{z}_i^{(m)}  \right\} 
+\end{equation}
+\end{block}
+where
+ \begin{align*}
+     \pmb{z}^{(m)}_i&=\pmb{X}_i\pmb{\beta}^{(m)}-\pmb{N}_i^{-1(m)}\pmb{u}_i^{(m)} 
+\end{align*}
+\end{frame}
+\begin{frame}[fragile]{Estimate for $\pmb{\beta}$}
+where
+\begin{align*}
+\pmb{W}_i^{(m)}&=\left\{  diag\left(\frac{\partial \mu_{ijk}^{(m)}}{\partial \pmb{\beta}^{(m)}}\right)\right\}_i\pmb{V}^{-1}_{3i} \left\{  diag\left(\frac{\partial \mu_{ijk}^{(m)}}{\partial \pmb{\beta}^{(m)}}\right)\right\}_i ^{-1} \\
+\pmb{u}_i^{(m)}&=\left(\pmb{y}_i-\pmb{\mu}_i^{(m)}\left[\pmb{X}_i \pmb{\beta}^{(m)},\hat{f}(\pmb{Z}_{i}^{(m)} ,\hat{f}_c(\pmb{Z}_{i}^{(m)}) \right]\right)\\
+\pmb{N}_i^{(m)}&=\left\{  diag\left(\frac{\partial \mu_{ijk}^{(m)}}{\partial \pmb{\beta}^{(m)}}\right)\right\}_i\\
+ \pmb{A}&=\sum_{i=1}^n  \pmb{N}_i \pmb{V}^{-1}_{3i}\pmb{N}_i^T \\
+   \pmb{B}&=\sum_{i=1}^n  \pmb{N}_i \pmb{V}^{-1}_{3i}\left(\pmb{y}_i-\pmb{\hat{\mu}}_i\right)\left(\pmb{y}_i-\pmb{\hat{\mu}}_i\right)^T \pmb{V}^{-1}_{3i} \pmb{N}_i^T
+\end{align*}
+\end{frame}
+
+\begin{frame}[fragile]{Third result}
+ \begin{block}{Theorem 3}
+Under the assumption that the $r$-th  derivative of $f$ and $f_c$ is bounded for some $r\geq 2$ and that the number of knots $m=m_n\rightarrow \infty$, but $\frac{m}{n}\rightarrow 0$ then $\hat{\pmb{\beta}}-\pmb{\beta} \xrightarrow{n\rightarrow\infty}\pmb{0}$. Also, if $m=O\left( n^{\frac{1}{(2^r+1)}}\right)$ then:
+\begin{align}
+   & \frac{1}{n}\sum_{i=1}^n \sum_{j=1}^{n_i} \left\{\sum_{b=1}^m \hat{\alpha}_{1b}s_b(\pmb{Z}_{ijk})- f(\pmb{Z}_{ijk})\right\}^2 = O\left(n^{-\frac{2r}{(2r+1)}}\right) \nonumber\\
+   & \frac{1}{n}\sum_{i=1}^n \sum_{j=1}^{n_i} \left\{\sum_{b=1}^m \hat{\alpha}_{cb}s_b(\pmb{Z}_{ijk})- f_c(\pmb{Z}_{ijk})\right\}^2 = O\left(n^{-\frac{2r}{(2r+1)}}\right)\nonumber\\
+  &  \sqrt{n}(\hat{\pmb{\beta}}-\pmb{\beta}) \rightarrow N(0, \pmb{A}^{-1}\pmb{B}\pmb{A}^{-1})\nonumber
+\end{align}
+ \end{block} 
+\end{frame}
+
+\begin{frame}[fragile]{Sketch of proof}
+\begin{enumerate}
+    \item We assume that there exists a random variables, $\delta_{ijk}$, with $E(\delta_{ijk})=0$ and $Var(\delta_{ijk})\leq\infty$ and continuous functions $g_1, \ldots, g_m$  such that:
+\begin{equation}
+    x_{ijkl}=g_l(\pmb{Z}_{ijk})+ \delta_{ijkl} \nonumber
+\end{equation}
+\item Since $Y_{ijk}$ belongs to  the exponential family and by \cite{liang1986longitudinal}, and \cite{lehmann2006theory}, then:
+\begin{align}
+         &E(U_1(\pmb{\epsilon}_i, t))=0 \, \forall t\in \mathbb{R}\nonumber\\
+         &0 < E\left(U_1(\pmb{\epsilon}_i, t) U_1(\pmb{\epsilon}_i, t)^T\right) < \infty \nonumber\\
+         &E(U_2(\pmb{\epsilon}_i, t))=0, \qquad 0< E\left(U_2(\pmb{\epsilon}_i, t)U_2(\pmb{\epsilon}_i, t)^T\right) <\infty, \; \forall t\in \mathbb{R}\nonumber\\
+        &E(U_3(\pmb{\epsilon}_i, t))=0, \qquad 0< E\left(U_3(\pmb{\epsilon}_i, t)U_3(\pmb{\epsilon}_i, t)^T\right) <\infty, \; \forall t\in \mathbb{R}\nonumber\\
+        &E(U_4(\pmb{\epsilon}_i))=0, \qquad 0< E\left(U_4(\pmb{\epsilon}_i)U_4(\pmb{\epsilon}_i)^T\right) <\infty \nonumber
+\end{align}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Sketch of proof}
+\begin{itemize}
+    \item[3.] when $s\to 0 $, the following properties hold, respectively:
+\begin{align}
+    \sup_{ijk}\left| E(U_1(\pmb{\epsilon}_{ijk}+s, t))-b_{1ijk}s\right|&=O(s^2), \; \forall t\in \mathbb{R},\nonumber \\
+     \sup_{ijk}\left| E(U_2(\pmb{\epsilon}_{ijk}+s, t))-b_{2ijk}s\right|&=O(s^2), \; \forall t\in \mathbb{R},\nonumber \\
+     \sup_{ijk}\left| E(U_3(\pmb{\epsilon}_{ijk}+s))-b_{3ijk}s\right|&=O(s^2)\nonumber,
+\end{align}
+\item[4.] When $s\to 0$, there exist constants $c>0$ and,  $C<\infty$ such that:
+\begin{align}
+    & \sup_{ijk}\left\{ E(U_1(\pmb{\epsilon}_{ijk}+s, t)-U_1(\pmb{\epsilon}_{ijk}, t))^2\right\} \leq C|s|, \; \forall t\in \mathbb{R}\nonumber\\
+     &\sup_{ijk}\left\{ E(U_2(\pmb{\epsilon}_{ijk}+s, t)-U_2(\pmb{\epsilon}_{ijk}, t))^2\right\} \leq C|s|, \; \forall t\in \mathbb{R}\nonumber\\
+     &\sup_{ijk}\left\{ E(U_3(\pmb{\epsilon}_{ijk}+s)-U_1(\pmb{\epsilon}_{ijk}))^2\right\} \leq C|s|\nonumber
+\end{align}
+\item[4.] And using Theorem 1 and Theorem 2 of \cite{he2002estimation}, the theorem are obtained. $\square$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Simulation study}
+\begin{block}{Simulation}
+\begin{itemize}
+\item Switch back crossover design: ABA, BAB
+\item $Y_{ijk}\sim Poisson(\mu_{ijk})$; $i=1,\ldots,n$; $n \in\{3,5,10,15, \ldots,100\}$
+\item $ln(\mu_{ijk})=\mu +\tau+\text{Period effect}+ \text{Time effect}+ \text{Carryover effect}$
+\item $\tau = \tau_B- \tau_A$, and $\tau \in\{-2, -1.9, -1.8, \ldots, 1.8, 1.9,2\}$
+\item Period effect = 3, and $L=15$
+\item Time effect = $c_1 cos(t_{jk})$
+\item Carryover effect = $c_2 sen(t_{jk})\delta_{jk}$
+\item  $ c_1 \sim N(0,1)$, $c_2 \sim N(0,1)$
+\item  Three models were adjusted for each scenario:
+\begin{enumerate}
+    \item  A model with semiparametric GEE denoted by GEE-S
+    \item A GEE model where the effect of time is linear which is denoted by GEE-1
+    \item A GEE model with quadratic time effect which is denoted by GEE-2
+\end{enumerate}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Simulation study}
+\begin{figure}[ht]
+\centering % centering figure
+\includegraphics[width=8cm]{img/RMSE_beta2.eps}
+\caption{RMSE for the estimate of $\beta_1=0.5$ in each of the models}
+\label{Kap3beta1RMSE}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Arterial data}
+\begin{table}[ht]
+    \centering
+   \captionsetup{justification=centering,margin=2cm}
+   \begin{tabular}{|l|c|c|}\hline
+   Matriz $R(\alpha)$ & $QIC$ GEE& $QIC$ Semiparametric GEE\\
+   \hline
+    $\pmb{I}_{PL}$ & 46086 &42646  \\
+   \hline
+    $AR(1)_{PL}$ &44923 & \textcolor{red}{42364} \\
+    \hline
+    $Exch_{PL}$ & 44158 & 43213 \\
+   \hline
+   $R_{PL}$ &100107  & 47246\\
+   \hline
+    \end{tabular}
+    \caption{Correlation matrices and the corresponding $QIC$ values}
+    \label{tabla2}
+\end{table}
+
+
+\begin{block}{Dairy cattle}
+   In the case of cow data, with only 3 observations per period, it is impossible to fit the non-parametric model. In simulation exercises, it was found that at least 5 observations are needed per period.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Semiparametric effects (Simple carry-over)}
+\vfill % Vertical centering
+\begin{figure}
+\includegraphics[width=1\textwidth,height=.75\textheight,keepaspectratio]{img/Combined_sisto1.eps}
+ \caption{a) Changes of blood systolic pressure, b) First order carry-over effect of the treatment A, c) First order carry-over effect of the treatment B, and d) Residuals normal probability plot. All figures present 95\% confidence intervals}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Semiparametric effects (Simplex carry-over)}
+\vfill
+\begin{block}{Parametric estimation}
+\begin{table}[ht]
+ \centering    \captionsetup{justification=centering,margin=2cm}
+\begin{tabular}{|l|c|c|c|c|}
+  \hline
+ Parameter & Estimate & Std.err & Wald & Pr($>|W|$) \\ 
+  \hline
+Intercept & 107.2944 & 3.3474 & 1027.4000 & 0.0000 \\ 
+  Base & 3.8505 & 1.3484 & 8.1542 & 0.0043 \\ 
+  Period 2 & -1.0462 & 3.4939 & 0.0897 & 0.7646 \\ 
+  Period 3 & -1.8525 & 3.6337 & 0.2599 & 0.6102 \\ 
+  Treatment B & 3.6068 & 2.9630 & 1.4818 & 0.2235 \\ 
+  Treatment C & -5.8752 & 2.6404 & 1.1331 & 0.0261 \\ 
+   \hline
+\end{tabular}
+\caption{Analysis of blood systolic pressure data using GEE-Splines}
+\end{table}    
+\end{block}
+\end{frame}
+\section{Conclusions}
+\begin{frame}[fragile]{Conclusions}
+\vfill
+    \begin{enumerate}
+\item Using GEE, unbiased estimates of important design effects are obtained, regardless of the presence or absence of carryover effects, in addition to obtaining a deviance analysis table for design analysis.
+       \item The family of correlation structures built using the Kronecker product allows greater flexibility in the correlation structure and helps to better analyze crossover designs.
+       \item The semiparametric methodology provides an estimate of the effects over time, and reduces the bias of the resulting estimators. It also allows making asymptotic inferences and better modelling temporary carryover behaviors that would be intractable in parametric scenarios.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Future Research}
+\vfill
+    \begin{enumerate}
+\item  Check the theoretical and practical performance of the combination of the Kronecker structure with the semiparametric modelling (In progress).
+\item Build a semi-parametric model that allows you to estimate complex carryover effects (In progress).
+\item Propose a methodology to deal with missing data, either due to random missing data or non-ignorable dropout.
+\item Implement a Bayesian approach to work out carryover effects and possible treatment interactions over time.
+
+\end{enumerate}
+\end{frame}
+
+
+\section*{Bibliography}
+\begin{frame}[allowframebreaks]{Bibliography}
+  \bibliography{references}
+\end{frame}
+
+\section{Events and Papers}
+\begin{frame}[fragile]{Accepted and Published Papers}
+\vfill
+\begin{block}{Papers}
+\begin{enumerate}
+    \item Deviance Analysis:  \citep{cruz2023gee} Cruz Gutierrez NA, Melo OO \& Lopez LA. Analysis of crossover experiments with count data in the presence of carry-over effects. \textit{Statistica Neerlandica}. 2023;0(0). \url{https://doi:10.1111/stan.12295}
+\item Kronecker Correlation:    \citep{cruz2023correlation} Cruz, N.A., Melo, O.O. \& Martinez, C.A. A correlation structure for the analysis of Gaussian and non-Gaussian responses in crossover experimental designs with repeated measures. \textit{Statistical Papers} (2023) 32(5), 1033-1050. \url{https://doi.org/10.1007/s00362-022-01391-z}
+\item Semiparametric GEE:    \citep{cruz2023semiparametric} Cruz Gutierrez NA, Melo OO \& Martinez CA. Semiparametric generalized estimating equations for repeated measurements in crossover designs. \textit{Statistical Methods in Medical Research}. 2023;0(0). \url{https://doi:10.1177/09622802231158736}
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+% \begin{frame}[fragile]{Accepted and Published Papers}
+
+% \vfill % Vertical centering
+% \begin{figure}
+% \includegraphics[width=.99\textwidth,height=.85\textheight,keepaspectratio]{img/Papers.png}
+% \end{figure}
+% \end{frame}
+\begin{frame}[fragile]{R package}
+\vfill % Vertical centering
+\begin{figure}
+\includegraphics[width=.99\textwidth,height=.75\textheight,keepaspectratio]{img/CrossCarry.PNG}
+\caption{\url{https://cran.r-project.org/web/packages/CrossCarry/index.html}, published in 11-04-2023}
+\end{figure}
+\end{frame}
+\backgroundimageonslide{}
+
+
+
+\begin{frame}[fragile]{Events}
+\vfill
+\begin{enumerate}
+    \item \textbf{31 SIMPOSIO INTERNACIONAL DE ESTADÍSTICA}: Modelamiento semiparametrico de efectos carryover en diseños crossover con medidas repetidas, Manizales, Colombia, 29 de Agosto a 2 de Septiembre de 2022.
+    
+\item \textbf{JORNADA AVANCES EN MÉTODOS ESTADISTICOS}: Una estructura de correlación de Kronecker para el análisis de respuestas en diseños experimentales crossover con GEE, 16 y 17 de febrero de 2023.
+\item \textbf{XIX Conferencia Española de Biometría (CEB) y  VIII Encuentro Iberoamericano de Biometría (EIB)}:   Semi-parametric generalized estimating equations for repeated measurements in crossover designs,  27 al 30 de Junio de 2023, Vigo, Galicia, España.
+\end{enumerate}
+
+\end{frame}
+\begin{frame}{The end}
+\vfill % Vertical centering
+\begin{center}
+\alert{\large Thank you all:}\\
+{\LARGE Advisors, reviewers, and assistants}\\
+{\tiny Nelson Alirio Cruz}
+\end{center}
+\end{frame}
+
+\end{document}

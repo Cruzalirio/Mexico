@@ -1,9 +1,9 @@
 # Bloque 4. Dependencia temporal y modelos mixtos
 
-<br>
-Los modelos mixtos permiten combinar efectos fijos, que describen asociaciones promedio para la población, y efectos aleatorios, que representan diferencias entre animales, granjas u otras unidades agrupadas. Esta estructura resulta especialmente apropiada cuando cada animal aporta varias observaciones y los animales se encuentran agrupados dentro de explotaciones.
+<br> Los modelos mixtos permiten combinar efectos fijos, que describen asociaciones promedio para la población, y efectos aleatorios, que representan diferencias entre animales, granjas u otras unidades agrupadas. Esta estructura resulta especialmente apropiada cuando cada animal aporta varias observaciones y los animales se encuentran agrupados dentro de explotaciones.
 
 <br>
+
 ```{r}
 library(readxl)
 library(tidyverse)
@@ -91,9 +91,9 @@ En una base longitudinal, cada animal aparece en varias filas porque se observa 
 
 Los animales de una misma granja también comparten alimentación, instalaciones, clima local, prácticas de manejo y condiciones sanitarias. Por tanto, la base presenta al menos tres niveles:
 
-1. Mediciones realizadas en diferentes semanas.
-2. Mediciones agrupadas dentro de animales.
-3. Animales agrupados dentro de granjas.
+1.  Mediciones realizadas en diferentes semanas.
+2.  Mediciones agrupadas dentro de animales.
+3.  Animales agrupados dentro de granjas.
 
 <br>
 
@@ -270,13 +270,11 @@ La dispersión de los promedios individuales constituye una primera evidencia de
 
 El modelo mixto más sencillo para el peso no contiene variables explicativas y únicamente incorpora un intercepto general y un intercepto aleatorio para cada animal:
 
-\[
-\text{Peso}_{ij} = \beta_0 + b_{0j} + \varepsilon_{ij}
-\]
+\[ \text{Peso}*{ij} =* \beta*0 + b*{0j} + \varepsilon{ij} \]
 
 <br>
 
-En esta expresión, \(\beta_0\) es el peso promedio de la población, \(b_{0j}\) representa la desviación particular del animal \(j\) respecto al promedio y \(\varepsilon_{ij}\) es la desviación de la medición \(i\) respecto al nivel esperado para ese animal.
+En esta expresión, (\beta*0) es el peso promedio de la población, (b*{0j}) representa la desviación particular del animal (j) respecto al promedio y (\varepsilon\_{ij}) es la desviación de la medición (i) respecto al nivel esperado para ese animal.
 
 <br>
 
@@ -320,11 +318,7 @@ La varianza del intercepto aleatorio describe cuánto difieren los niveles medio
 
 La correlación intraclase, o ICC, cuantifica qué proporción de la variabilidad total del peso se atribuye a diferencias entre animales. En un modelo con un único intercepto aleatorio se calcula como:
 
-\[
-ICC_{animal} =
-\frac{\sigma^2_{animal}}
-{\sigma^2_{animal} + \sigma^2_{residual}}
-\]
+\[ ICC\_{animal} = \frac{\sigma^2_{animal}} {\sigma\^2\_{animal} + \sigma\^2\_{residual}} \]
 
 <br>
 
@@ -367,13 +361,11 @@ Además de las diferencias individuales, puede existir variabilidad entre granja
 
 Si `animal_id` es único en toda la base, podemos utilizar dos términos separados:
 
-\[
-\text{Peso}_{ijk} = \beta_0 + u_{0k} + b_{0jk} + \varepsilon_{ijk}
-\]
+\[ \text{Peso}*{ijk} =* \beta*0 + u*{0k} + b{0jk} + \varepsilon\_{ijk} \]
 
 <br>
 
-Aquí, \(u_{0k}\) representa la desviación de la granja \(k\) y \(b_{0jk}\) representa la desviación del animal \(j\) respecto a su granja.
+Aquí, (u\_{0k}) representa la desviación de la granja (k) y (b\_{0jk}) representa la desviación del animal (j) respecto a su granja.
 
 <br>
 
@@ -645,8 +637,8 @@ Las estimaciones puntuales pueden ser parecidas, pero los errores estándar y lo
 
 En un modelo mixto podemos distinguir dos coeficientes de determinación:
 
-- El \(R^2\) marginal representa la variabilidad descrita por los efectos fijos.
-- El \(R^2\) condicional representa la variabilidad descrita conjuntamente por los efectos fijos y aleatorios.
+- El (R\^2) marginal representa la variabilidad descrita por los efectos fijos.
+- El (R\^2) condicional representa la variabilidad descrita conjuntamente por los efectos fijos y aleatorios.
 
 <br>
 
@@ -656,7 +648,7 @@ performance::r2_nakagawa(modelo_lmm)
 
 <br>
 
-Una diferencia grande entre el \(R^2\) marginal y el condicional indica que las diferencias entre granjas y animales explican una parte importante de la variabilidad del peso.
+Una diferencia grande entre el (R\^2) marginal y el condicional indica que las diferencias entre granjas y animales explican una parte importante de la variabilidad del peso.
 
 <br>
 
@@ -907,16 +899,16 @@ Un resultado singular no implica necesariamente que el código sea incorrecto. P
 
 <br>
 
-1. ¿Cuántas mediciones aporta en promedio cada animal?
-2. ¿Cada animal pertenece a una única granja?
-3. ¿Las trayectorias individuales muestran diferencias de nivel entre animales?
-4. ¿Qué representa el intercepto aleatorio de animal?
-5. ¿Qué representa el intercepto aleatorio de granja?
-6. ¿Qué proporción de la variabilidad se atribuye a diferencias entre animales?
-7. ¿Qué proporción se atribuye a las granjas?
-8. ¿Cómo se interpreta el coeficiente de la semana en el modelo mixto?
-9. ¿Cambian los errores estándar respecto a la regresión convencional?
-10. ¿Cuál es la diferencia entre el \(R^2\) marginal y el condicional?
+1.  ¿Cuántas mediciones aporta en promedio cada animal?
+2.  ¿Cada animal pertenece a una única granja?
+3.  ¿Las trayectorias individuales muestran diferencias de nivel entre animales?
+4.  ¿Qué representa el intercepto aleatorio de animal?
+5.  ¿Qué representa el intercepto aleatorio de granja?
+6.  ¿Qué proporción de la variabilidad se atribuye a diferencias entre animales?
+7.  ¿Qué proporción se atribuye a las granjas?
+8.  ¿Cómo se interpreta el coeficiente de la semana en el modelo mixto?
+9.  ¿Cambian los errores estándar respecto a la regresión convencional?
+10. ¿Cuál es la diferencia entre el (R\^2) marginal y el condicional?
 11. ¿En qué se diferencian una predicción poblacional y una predicción condicional?
 12. ¿El modelo presenta un ajuste singular?
 
@@ -944,26 +936,19 @@ Un modelo lineal generalizado mixto, o GLMM, amplía esta estructura para respue
 
 Un GLMM combina tres elementos:
 
-1. Una distribución para la respuesta, como binomial o Poisson.
-2. Una función de enlace que relaciona la media con los predictores.
-3. Efectos aleatorios para representar la agrupación y las mediciones repetidas.
+1.  Una distribución para la respuesta, como binomial o Poisson.
+2.  Una función de enlace que relaciona la media con los predictores.
+3.  Efectos aleatorios para representar la agrupación y las mediciones repetidas.
 
 <br>
 
 Para una respuesta binaria utilizaremos una distribución binomial y un enlace logit. El modelo se expresa como:
 
-\[
-\log\left(
-\frac{p_{ijk}}{1-p_{ijk}}
-\right)
-=
-\beta_0 + \beta_1X_{1ijk} + \cdots +
-u_k+b_{jk}
-\]
+\[ \log\left( \frac{p_{ijk}}{1-p_{ijk}} \right) = \beta*0 +* \beta*1X*{1ijk} + \cdots + u_k+b{jk} \]
 
 <br>
 
-La cantidad \(p_{ijk}\) es la probabilidad de que la observación presente el resultado de interés. El término \(p/(1-p)\) corresponde a las odds, y su logaritmo es el logit.
+La cantidad (p\_{ijk}) es la probabilidad de que la observación presente el resultado de interés. El término (p/(1-p)) corresponde a las odds, y su logaritmo es el logit.
 
 <br>
 
@@ -1212,9 +1197,7 @@ El optimizador `bobyqa` y el aumento de `maxfun` pueden ayudar en modelos que re
 
 En una regresión logística, los coeficientes están expresados en log-odds. Al exponenciarlos obtenemos odds ratios:
 
-\[
-OR = \exp(\beta)
-\]
+\[ OR = \exp(\beta) \]
 
 <br>
 
@@ -1436,13 +1419,9 @@ La curva muestra cómo cambia la probabilidad predicha con el consumo para un an
 
 La probabilidad y las odds están relacionadas, pero no son equivalentes:
 
-\[
-Odds = \frac{p}{1-p}
-\]
+\[ Odds = \frac{p}{1-p} \]
 
-\[
-p = \frac{Odds}{1+Odds}
-\]
+\[ p = \frac{Odds}{1+Odds} \]
 
 <br>
 
@@ -1517,7 +1496,7 @@ performance::r2_nakagawa(modelo_glmm)
 
 <br>
 
-El \(R^2\) marginal resume la contribución de los efectos fijos. El \(R^2\) condicional incorpora también la variabilidad asociada con animales y granjas. En un GLMM estas medidas son aproximaciones y no deben interpretarse exactamente como el \(R^2\) de una regresión lineal convencional.
+El (R\^2) marginal resume la contribución de los efectos fijos. El (R\^2) condicional incorpora también la variabilidad asociada con animales y granjas. En un GLMM estas medidas son aproximaciones y no deben interpretarse exactamente como el (R\^2) de una regresión lineal convencional.
 
 <br>
 
@@ -1638,15 +1617,15 @@ El modelo supone además que el cambio temporal es lineal en la escala logit y q
 
 Para comunicar un modelo logístico mixto conviene indicar:
 
-1. Cómo se definió el resultado binario y cuál es el evento codificado como 1.
-2. Qué distribución y función de enlace se utilizaron.
-3. Cuáles fueron los efectos fijos incluidos.
-4. Qué unidades se representaron mediante efectos aleatorios.
-5. Cuáles son las categorías de referencia.
-6. Los odds ratios y sus intervalos de confianza.
-7. Probabilidades predichas para escenarios interpretables.
-8. Los componentes de varianza y la importancia de la agrupación.
-9. Los resultados de convergencia y singularidad.
+1.  Cómo se definió el resultado binario y cuál es el evento codificado como 1.
+2.  Qué distribución y función de enlace se utilizaron.
+3.  Cuáles fueron los efectos fijos incluidos.
+4.  Qué unidades se representaron mediante efectos aleatorios.
+5.  Cuáles son las categorías de referencia.
+6.  Los odds ratios y sus intervalos de confianza.
+7.  Probabilidades predichas para escenarios interpretables.
+8.  Los componentes de varianza y la importancia de la agrupación.
+9.  Los resultados de convergencia y singularidad.
 10. Las limitaciones de convertir una respuesta ordinal en binaria.
 
 <br>
@@ -1675,15 +1654,15 @@ tabla_final_glmm
 
 <br>
 
-1. ¿Por qué un modelo lineal mixto no es adecuado para una respuesta 0/1?
-2. ¿Qué criterio se utilizó para construir `salud_alta_bin`?
-3. ¿Qué proporción de las mediciones presenta salud alta?
-4. ¿Cuál es el evento modelado por `glmer()`?
-5. ¿Qué representa el enlace logit?
-6. ¿Cómo se interpreta el OR del consumo?
-7. ¿Cómo se interpreta un OR asociado con una categoría de raza?
-8. ¿Cuál es la categoría de referencia para sexo y raza?
-9. ¿Qué diferencia existe entre odds y probabilidad?
+1.  ¿Por qué un modelo lineal mixto no es adecuado para una respuesta 0/1?
+2.  ¿Qué criterio se utilizó para construir `salud_alta_bin`?
+3.  ¿Qué proporción de las mediciones presenta salud alta?
+4.  ¿Cuál es el evento modelado por `glmer()`?
+5.  ¿Qué representa el enlace logit?
+6.  ¿Cómo se interpreta el OR del consumo?
+7.  ¿Cómo se interpreta un OR asociado con una categoría de raza?
+8.  ¿Cuál es la categoría de referencia para sexo y raza?
+9.  ¿Qué diferencia existe entre odds y probabilidad?
 10. ¿Por qué un OR de 2 no significa que la probabilidad se duplique necesariamente?
 11. ¿Qué representan los interceptos aleatorios de animal y granja?
 12. ¿Cambian los resultados respecto a la regresión logística convencional?
