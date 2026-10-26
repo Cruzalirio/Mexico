@@ -23,7 +23,27 @@ library(xgboost)
 library(nnet)
 library(factoextra)
 library(patchwork)
-
+library(knitr)
 
 pak::pak("bgreenwell/vip@main") 
 library(vip)
+
+setwd("~/2026/Mexico/Mexico")
+
+
+dir.create("R", showWarnings = FALSE)
+
+archivos <- list.files(
+  pattern = "\\.qmd$",
+  full.names = TRUE, recursive = TRUE,
+)
+
+for (f in archivos) {
+  salida <- file.path(
+    "R",
+    sub("\\.qmd$", ".R", basename(f))
+  )
+  
+  purl(f, output = salida)
+}
+

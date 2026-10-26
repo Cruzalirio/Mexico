@@ -12,14 +12,13 @@ library(naniar)
 getwd()
 
 # Nombre del archivo Excel.
-archivo <- "datos/base_borregos_espaciotemporal_Hidalgo.xlsx"
+archivo <- "../datos/base_borregos_espaciotemporal_Hidalgo.xlsx"
 
 # Consultar las hojas disponibles.
 excel_sheets(archivo)
 
 # Importar la tabla longitudinal.
 datos <- read_excel(archivo, sheet = "datos_long")
-
 # Examinar el tamaño de la tabla.
 dim(datos)
 

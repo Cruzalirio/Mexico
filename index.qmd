@@ -31,7 +31,7 @@ Introducción a los diseños *crossover*, los períodos de lavado, los efectos *
 
 **Espacio:** Sala D3-Magna (Aula Magna), Unidad de Posgrado.
 
-[Abrir presentación](presentation/CrossCarry.pdf)
+[Abrir presentación](presentation/CrossCarryReveals.html)
 :::
 ::::
 
