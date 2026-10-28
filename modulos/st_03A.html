@@ -116,6 +116,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -787,9 +816,9 @@ $ salud_alta      &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0,
 <h2 data-number="5.4" class="anchored" data-anchor-id="modelo-nulo-con-intercepto-aleatorio-de-animal"><span class="header-section-number">5.4</span> Modelo nulo con intercepto aleatorio de animal</h2>
 <p><br></p>
 <p>El modelo mixto más sencillo para el peso no contiene variables explicativas y únicamente incorpora un intercepto general y un intercepto aleatorio para cada animal:</p>
-<p>[ <em>{ij} =</em> + b*{0j} + ]</p>
+<p><span class="math display">\[\text{Peso}_{ij} = \beta_0 + b_{0j} + \varepsilon{ij}\]</span></p>
 <p><br></p>
-<p>En esta expresión, () es el peso promedio de la población, (b*{0j}) representa la desviación particular del animal (j) respecto al promedio y (_{ij}) es la desviación de la medición (i) respecto al nivel esperado para ese animal.</p>
+<p>En esta expresión, <span class="math inline">\(\beta*0\)</span> es el peso promedio de la población, <span class="math inline">\(b_{0j}\)</span> representa la desviación particular del animal <span class="math inline">\(j\)</span> respecto al promedio y <span class="math inline">\(\varepsilon_{ij}\)</span> es la desviación de la medición <span class="math inline">\(i\)</span> respecto al nivel esperado para ese animal.</p>
 <p><br></p>
 <div class="cell">
 <details class="code-fold">
@@ -855,7 +884,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <h2 data-number="5.5" class="anchored" data-anchor-id="correlación-intraclase-del-animal"><span class="header-section-number">5.5</span> Correlación intraclase del animal</h2>
 <p><br></p>
 <p>La correlación intraclase, o ICC, cuantifica qué proporción de la variabilidad total del peso se atribuye a diferencias entre animales. En un modelo con un único intercepto aleatorio se calcula como:</p>
-<p>[ ICC_{animal} = {^2_{animal} + ^2_{residual}} ]</p>
+<p><span class="math display">\[ICC_{animal} = \frac{\sigma^2_{animal}} {\sigma^2_{animal} + \sigma^2_{residual}}\]</span></p>
 <p><br></p>
 <div class="cell">
 <details class="code-fold">
@@ -900,9 +929,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>Además de las diferencias individuales, puede existir variabilidad entre granjas. Ajustaremos un modelo nulo con interceptos aleatorios para granja y animal.</p>
 <p><br></p>
 <p>Si <code>animal_id</code> es único en toda la base, podemos utilizar dos términos separados:</p>
-<p>[ <em>{ijk} =</em> + u*{0k} + b{0jk} + _{ijk} ]</p>
+<p><span class="math display">\[\text{Peso}*{ijk} =* \beta_0 + u_{0k} + b_{0jk} + \varepsilon_{ijk}\]</span></p>
 <p><br></p>
-<p>Aquí, (u_{0k}) representa la desviación de la granja (k) y (b_{0jk}) representa la desviación del animal (j) respecto a su granja.</p>
+<p>Aquí, <span class="math inline">\(u_{0k}\)</span> representa la desviación de la granja <span class="math inline">\(k\)</span> y <span class="math inline">\(b_{0jk}\)</span> representa la desviación del animal <span class="math inline">\(j\)</span> respecto a su granja.</p>
 <p><br></p>
 <div class="cell">
 <details class="code-fold">
@@ -1318,8 +1347,8 @@ tiempo_c     0.001  0.238 -0.003 -0.001 -0.001  0.001 -0.002 -0.001</code></pre>
 <p><br></p>
 <p>En un modelo mixto podemos distinguir dos coeficientes de determinación:</p>
 <ul>
-<li>El (R^2) marginal representa la variabilidad descrita por los efectos fijos.</li>
-<li>El (R^2) condicional representa la variabilidad descrita conjuntamente por los efectos fijos y aleatorios.</li>
+<li>El <span class="math inline">\(R^2\)</span> marginal representa la variabilidad descrita por los efectos fijos.</li>
+<li>El <span class="math inline">\(R^2\)</span> condicional representa la variabilidad descrita conjuntamente por los efectos fijos y aleatorios.</li>
 </ul>
 <p><br></p>
 <div class="cell">
@@ -1335,7 +1364,7 @@ tiempo_c     0.001  0.238 -0.003 -0.001 -0.001  0.001 -0.002 -0.001</code></pre>
 </div>
 </div>
 <p><br></p>
-<p>Una diferencia grande entre el (R^2) marginal y el condicional indica que las diferencias entre granjas y animales explican una parte importante de la variabilidad del peso.</p>
+<p>Una diferencia grande entre el <span class="math inline">\(R^2\)</span> marginal y el condicional indica que las diferencias entre granjas y animales explican una parte importante de la variabilidad del peso.</p>
 <p><br></p>
 </section>
 <section id="interceptos-estimados-para-animales-y-granjas" class="level2" data-number="5.12">
@@ -1590,14 +1619,12 @@ G01.A006   -2.257810</code></pre>
 <span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>(</span>
 <span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"firebrick"</span>,</span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.9</span></span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Gráfico Q-Q de los residuos del modelo mixto"</span>,</span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Cuantiles teóricos"</span>,</span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Cuantiles observados"</span></span>
-<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.9</span>)   <span class="sc">+</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Gráfico Q-Q de los residuos del modelo mixto"</span>,</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Cuantiles teóricos"</span>,</span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Cuantiles observados"</span>)   <span class="sc">+</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1652,7 +1679,7 @@ G01.A006   -2.257810</code></pre>
 <li>¿Qué proporción se atribuye a las granjas?</li>
 <li>¿Cómo se interpreta el coeficiente de la semana en el modelo mixto?</li>
 <li>¿Cambian los errores estándar respecto a la regresión convencional?</li>
-<li>¿Cuál es la diferencia entre el (R^2) marginal y el condicional?</li>
+<li>¿Cuál es la diferencia entre el <span class="math inline">\(R^2\)</span> marginal y el condicional?</li>
 <li>¿En qué se diferencian una predicción poblacional y una predicción condicional?</li>
 <li>¿El modelo presenta un ajuste singular?</li>
 </ol>
@@ -1681,9 +1708,9 @@ G01.A006   -2.257810</code></pre>
 </ol>
 <p><br></p>
 <p>Para una respuesta binaria utilizaremos una distribución binomial y un enlace logit. El modelo se expresa como:</p>
-<p>[ ( ) = +* 1X*{1ijk} + + u_k+b{jk} ]</p>
+<p><span class="math display">\[\log\left( \frac{p_{ijk}}{1-p_{ijk}} \right) = \beta_0 +\beta_1 X_{1ijk} + \cdots + u_k+b_{jk} \]</span></p>
 <p><br></p>
-<p>La cantidad (p_{ijk}) es la probabilidad de que la observación presente el resultado de interés. El término (p/(1-p)) corresponde a las odds, y su logaritmo es el logit.</p>
+<p>La cantidad <span class="math inline">\(p_{ijk}\)</span> es la probabilidad de que la observación presente el resultado de interés. El término <span class="math inline">\(p/(1-p)\)</span> corresponde a las odds, y su logaritmo es el logit.</p>
 <p><br></p>
 </section>
 <section id="construcción-de-una-respuesta-binaria" class="level2" data-number="6.2">
@@ -1705,46 +1732,44 @@ G01.A006   -2.257810</code></pre>
 <span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>    consumo_kg_dia,</span>
 <span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>    edad_inicio_meses,</span>
 <span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>    sexo,</span>
-<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>    raza</span>
-<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_num =</span> <span class="fu">as.numeric</span>(</span>
-<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.character</span>(salud_score_0_4)</span>
-<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_alta_bin =</span> <span class="fu">case_when</span>(</span>
-<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(salud_num) <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>      salud_num <span class="sc">&gt;=</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>      salud_num <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">0</span></span>
-<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(</span>
-<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a>    animal_id,</span>
-<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a>    granja_id,</span>
-<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a>    tiempo,</span>
-<span id="cb58-26"><a href="#cb58-26" aria-hidden="true" tabindex="-1"></a>    salud_alta_bin,</span>
-<span id="cb58-27"><a href="#cb58-27" aria-hidden="true" tabindex="-1"></a>    consumo_kg_dia,</span>
-<span id="cb58-28"><a href="#cb58-28" aria-hidden="true" tabindex="-1"></a>    edad_inicio_meses,</span>
-<span id="cb58-29"><a href="#cb58-29" aria-hidden="true" tabindex="-1"></a>    sexo,</span>
-<span id="cb58-30"><a href="#cb58-30" aria-hidden="true" tabindex="-1"></a>    raza</span>
-<span id="cb58-31"><a href="#cb58-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb58-32"><a href="#cb58-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb58-33"><a href="#cb58-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">animal_id =</span> <span class="fu">droplevels</span>(<span class="fu">as.factor</span>(animal_id)),</span>
-<span id="cb58-34"><a href="#cb58-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">granja_id =</span> <span class="fu">droplevels</span>(<span class="fu">as.factor</span>(granja_id)),</span>
-<span id="cb58-35"><a href="#cb58-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">sexo =</span> <span class="fu">droplevels</span>(<span class="fu">as.factor</span>(sexo)),</span>
-<span id="cb58-36"><a href="#cb58-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">raza =</span> <span class="fu">droplevels</span>(<span class="fu">as.factor</span>(raza)),</span>
-<span id="cb58-37"><a href="#cb58-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">animal_granja =</span> <span class="fu">interaction</span>(</span>
-<span id="cb58-38"><a href="#cb58-38" aria-hidden="true" tabindex="-1"></a>      granja_id,</span>
-<span id="cb58-39"><a href="#cb58-39" aria-hidden="true" tabindex="-1"></a>      animal_id,</span>
-<span id="cb58-40"><a href="#cb58-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">drop =</span> <span class="cn">TRUE</span></span>
-<span id="cb58-41"><a href="#cb58-41" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb58-42"><a href="#cb58-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">tiempo_c =</span> tiempo <span class="sc">-</span> <span class="fu">mean</span>(tiempo),</span>
-<span id="cb58-43"><a href="#cb58-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">consumo_c =</span> consumo_kg_dia <span class="sc">-</span> <span class="fu">mean</span>(consumo_kg_dia),</span>
-<span id="cb58-44"><a href="#cb58-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">edad_inicio_c =</span> edad_inicio_meses <span class="sc">-</span></span>
-<span id="cb58-45"><a href="#cb58-45" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mean</span>(edad_inicio_meses)</span>
-<span id="cb58-46"><a href="#cb58-46" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb58-47"><a href="#cb58-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-48"><a href="#cb58-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar la codificación.</span></span>
-<span id="cb58-49"><a href="#cb58-49" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(datos_glmm, salud_score_0_4, salud_alta_bin)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>    raza)   <span class="sc">|&gt;</span></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_num =</span> <span class="fu">as.numeric</span>(</span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.character</span>(salud_score_0_4)</span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">salud_alta_bin =</span> <span class="fu">case_when</span>(</span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(salud_num) <span class="sc">~</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>      salud_num <span class="sc">&gt;=</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>      salud_num <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>    ))   <span class="sc">|&gt;</span></span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(</span>
+<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>    animal_id,</span>
+<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a>    granja_id,</span>
+<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a>    tiempo,</span>
+<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a>    salud_alta_bin,</span>
+<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a>    consumo_kg_dia,</span>
+<span id="cb58-26"><a href="#cb58-26" aria-hidden="true" tabindex="-1"></a>    edad_inicio_meses,</span>
+<span id="cb58-27"><a href="#cb58-27" aria-hidden="true" tabindex="-1"></a>    sexo,</span>
+<span id="cb58-28"><a href="#cb58-28" aria-hidden="true" tabindex="-1"></a>    raza</span>
+<span id="cb58-29"><a href="#cb58-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb58-30"><a href="#cb58-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb58-31"><a href="#cb58-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">animal_id =</span> <span class="fu">droplevels</span>(<span class="fu">as.factor</span>(animal_id)),</span>
+<span id="cb58-32"><a href="#cb58-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">granja_id =</span> <span class="fu">droplevels</span>(<span class="fu">as.factor</span>(granja_id)),</span>
+<span id="cb58-33"><a href="#cb58-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">sexo =</span> <span class="fu">droplevels</span>(<span class="fu">as.factor</span>(sexo)),</span>
+<span id="cb58-34"><a href="#cb58-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">raza =</span> <span class="fu">droplevels</span>(<span class="fu">as.factor</span>(raza)),</span>
+<span id="cb58-35"><a href="#cb58-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">animal_granja =</span> <span class="fu">interaction</span>(</span>
+<span id="cb58-36"><a href="#cb58-36" aria-hidden="true" tabindex="-1"></a>      granja_id,</span>
+<span id="cb58-37"><a href="#cb58-37" aria-hidden="true" tabindex="-1"></a>      animal_id,</span>
+<span id="cb58-38"><a href="#cb58-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">drop =</span> <span class="cn">TRUE</span></span>
+<span id="cb58-39"><a href="#cb58-39" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb58-40"><a href="#cb58-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">tiempo_c =</span> tiempo <span class="sc">-</span> <span class="fu">mean</span>(tiempo),</span>
+<span id="cb58-41"><a href="#cb58-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">consumo_c =</span> consumo_kg_dia <span class="sc">-</span> <span class="fu">mean</span>(consumo_kg_dia),</span>
+<span id="cb58-42"><a href="#cb58-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">edad_inicio_c =</span> edad_inicio_meses <span class="sc">-</span></span>
+<span id="cb58-43"><a href="#cb58-43" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mean</span>(edad_inicio_meses)</span>
+<span id="cb58-44"><a href="#cb58-44" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb58-45"><a href="#cb58-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-46"><a href="#cb58-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprobar la codificación.</span></span>
+<span id="cb58-47"><a href="#cb58-47" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(datos_glmm, salud_score_0_4, salud_alta_bin)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
@@ -2034,7 +2059,7 @@ tiempo_c     0.075  0.195 -0.068 -0.015 -0.032  0.025 -0.053 -0.016</code></pre>
 <h2 data-number="6.6" class="anchored" data-anchor-id="efectos-fijos-y-odds-ratios"><span class="header-section-number">6.6</span> Efectos fijos y odds ratios</h2>
 <p><br></p>
 <p>En una regresión logística, los coeficientes están expresados en log-odds. Al exponenciarlos obtenemos odds ratios:</p>
-<p>[ OR = () ]</p>
+<p><span class="math display">\[OR = \exp(\beta)\]</span></p>
 <p><br></p>
 <p>Un odds ratio mayor que 1 indica que las odds del resultado aumentan. Un valor menor que 1 indica que disminuyen. Un valor igual a 1 indica ausencia de cambio en las odds.</p>
 <p><br></p>
@@ -2304,8 +2329,8 @@ tiempo_c     0.075  0.195 -0.068 -0.015 -0.032  0.025 -0.053 -0.016</code></pre>
 <h2 data-number="6.10" class="anchored" data-anchor-id="diferencia-entre-odds-y-probabilidad"><span class="header-section-number">6.10</span> Diferencia entre odds y probabilidad</h2>
 <p><br></p>
 <p>La probabilidad y las odds están relacionadas, pero no son equivalentes:</p>
-<p>[ Odds = ]</p>
-<p>[ p = ]</p>
+<p><span class="math display">\[Odds = \frac{p}{1-p}\]</span></p>
+<p><span class="math display">\[p = \frac{Odds}{1+Odds}\]</span></p>
 <p><br></p>
 <div class="cell">
 <details class="code-fold">
@@ -2414,7 +2439,7 @@ tiempo_c     0.075  0.195 -0.068 -0.015 -0.032  0.025 -0.053 -0.016</code></pre>
 </div>
 </div>
 <p><br></p>
-<p>El (R^2) marginal resume la contribución de los efectos fijos. El (R^2) condicional incorpora también la variabilidad asociada con animales y granjas. En un GLMM estas medidas son aproximaciones y no deben interpretarse exactamente como el (R^2) de una regresión lineal convencional.</p>
+<p>El <span class="math inline">\(R^2\)</span> marginal resume la contribución de los efectos fijos. El <span class="math inline">\(R^2\)</span> condicional incorpora también la variabilidad asociada con animales y granjas. En un GLMM estas medidas son aproximaciones y no deben interpretarse exactamente como el <span class="math inline">\(R^2\)</span> de una regresión lineal convencional.</p>
 <p><br></p>
 </section>
 <section id="comprobación-de-convergencia-y-singularidad" class="level2" data-number="6.13">
