@@ -209,9 +209,46 @@ Si usamos filas individuales, el mismo animal aparecerá muchas veces. Una divis
 
 <br>
 
+
+
+## Un mapa para orientar la elección del método
+
+Una vez definida la pregunta, podemos utilizar un mapa de decisión para
+identificar qué familias de métodos podrían resultar apropiadas.
+
+El siguiente diagrama de
+[scikit-learn](https://scikit-learn.org/stable/machine_learning_map.html)
+organiza los métodos considerando preguntas como:
+
+- ¿Existe una variable de respuesta conocida?
+- ¿Queremos predecir una categoría o una cantidad?
+- ¿Queremos descubrir grupos o reducir la dimensión?
+- ¿Cuántas observaciones tenemos?
+- ¿Qué tipo de predictores estamos utilizando?
+
+El mapa debe entenderse como una orientación inicial y no como una regla
+automática para seleccionar el mejor modelo. La elección final también
+dependerá de la estructura longitudinal de los datos, la unidad de análisis,
+la validación utilizada, la interpretabilidad y el objetivo científico.
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+#| fig-align: center
+#| fig-cap: "Mapa orientativo para la elección de estimadores. Fuente: scikit-learn."
+
+knitr::include_graphics(
+  "https://scikit-learn.org/stable/_downloads/b82bf6cd7438a351f19fac60fbc0d927/ml_map.svg"
+)
+```
+
+Lectura del mapa. En nuestros ejemplos, predecir peso_kg conduce a un problema de regresión; predecir salud_alta_ml conduce a clasificación; y buscar perfiles de granjas sin una respuesta conocida conduce a clustering.
+
+
 ## Conjunto de entrenamiento y conjunto de prueba
 
 <br>
+  
 
 El conjunto de entrenamiento se utiliza para estimar el modelo. El conjunto de prueba se reserva para evaluar su comportamiento en casos que no participaron en el ajuste.
 
