@@ -378,6 +378,293 @@ glimpse(entrenamiento_procesado)
 
 <br>
 
+Las recetas de `tidymodels` permiten definir una secuencia ordenada de
+transformaciones para preparar los datos antes de ajustar un modelo. Estas
+transformaciones se estiman exclusivamente con el conjunto de entrenamiento
+y después se aplican, sin volver a estimarlas, a los conjuntos de validación
+o prueba.
+
+La hoja de referencia
+[*Machine learning with tidymodels*](https://opensource.posit.co/resources/cheatsheets/ml-tidymodels/)
+presenta los principales paquetes de `tidymodels` y su función dentro del
+flujo de aprendizaje automático: partición, preprocesamiento, modelado,
+ajuste de hiperparámetros y evaluación. El paquete `recipes` corresponde a
+la etapa de preprocesamiento.
+
+En una receta se especifican tres elementos:
+
+1. La **variable de respuesta** que queremos predecir.
+2. Los **predictores** que utilizará el modelo.
+3. Los **pasos de preprocesamiento**, representados mediante funciones que
+   comienzan con `step_`.
+
+```{r}
+receta_intro <- recipe(
+  peso_kg ~
+    consumo_kg_dia + edad_inicio_meses +
+    sexo + raza + tiempo +
+    temperatura_C + humedad_pct,
+  data = entrenamiento
+) |>
+  step_unknown(all_nominal_predictors()) |>
+  step_novel(all_nominal_predictors()) |>
+  step_dummy(all_nominal_predictors()) |>
+  step_zv(all_predictors()) |>
+  step_normalize(all_numeric_predictors())
+
+receta_intro
+```
+
+### Definición de la receta
+
+```r
+recipe(
+  peso_kg ~
+    consumo_kg_dia + edad_inicio_meses +
+    sexo + raza + tiempo +
+    temperatura_C + humedad_pct,
+  data = entrenamiento
+)
+```
+
+La fórmula establece que:
+
+- `peso_kg` es la **variable de respuesta**;
+- las variables situadas a la derecha de `~` son los **predictores**;
+- `data = entrenamiento` define el conjunto utilizado para reconocer los
+  nombres, tipos y niveles iniciales de las variables.
+
+En este momento no se ajusta ningún modelo y tampoco se ejecutan todavía las
+transformaciones.
+
+### `step_unknown()`: valores categóricos faltantes
+
+```r
+step_unknown(all_nominal_predictors())
+```
+
+Esta operación reemplaza los valores faltantes de los predictores
+categóricos por un nivel explícito, generalmente denominado `"unknown"`.
+
+Por ejemplo, si falta la raza de un animal:
+
+```text
+raza = NA
+```
+
+la receta puede convertirla en:
+
+```text
+raza = "unknown"
+```
+
+Esto evita que la observación sea eliminada únicamente porque falta el valor
+de una variable categórica.
+
+El selector `all_nominal_predictors()` indica que el paso debe aplicarse a
+todos los predictores nominales, es decir, variables categóricas como `sexo`
+y `raza`. No se aplica a la respuesta ni a los predictores numéricos.
+
+### `step_novel()`: categorías nuevas
+
+```r
+step_novel(all_nominal_predictors())
+```
+
+Esta operación permite manejar categorías que no estaban presentes durante
+el entrenamiento, pero que aparecen posteriormente en validación, prueba o
+predicción.
+
+Por ejemplo, si en el conjunto de entrenamiento aparecen las razas:
+
+```text
+Dorper, Suffolk y Pelibuey
+```
+
+pero en el conjunto de prueba aparece:
+
+```text
+Katahdin
+```
+
+la categoría `"Katahdin"` será tratada como un nivel nuevo, generalmente
+denominado `"new"`.
+
+Esto es diferente de `step_unknown()`:
+
+- `step_unknown()` trata valores ausentes.
+- `step_novel()` trata valores existentes cuya categoría no fue observada
+  durante el entrenamiento.
+
+### `step_dummy()`: variables indicadoras
+
+```r
+step_dummy(all_nominal_predictors())
+```
+
+Muchos algoritmos requieren predictores numéricos. Este paso convierte las
+variables categóricas en variables indicadoras o *dummy*.
+
+Por ejemplo, una variable `sexo` con los niveles:
+
+```text
+Hembra
+Macho
+```
+
+puede convertirse en una variable como:
+
+```text
+sexo_Macho
+```
+
+que toma los valores:
+
+```text
+0 = Hembra
+1 = Macho
+```
+
+Si una variable tiene más de dos categorías, se crearán varias columnas
+indicadoras. De forma predeterminada, uno de los niveles se utiliza como
+categoría de referencia y no genera su propia columna.
+
+Este paso debe ejecutarse después de `step_unknown()` y `step_novel()`, para
+que los niveles desconocidos y nuevos también puedan representarse
+numéricamente.
+
+### `step_zv()`: predictores sin variabilidad
+
+```r
+step_zv(all_predictors())
+```
+
+`zv` significa *zero variance*. Este paso elimina predictores que presentan
+un único valor en todo el conjunto de entrenamiento.
+
+Por ejemplo, si todos los animales del conjunto de entrenamiento pertenecen
+a la misma categoría:
+
+```text
+sistema_produccion = "Intensivo"
+```
+
+esa variable no permitiría diferenciar observaciones y no aportaría
+información predictiva.
+
+El selector `all_predictors()` indica que el procedimiento se aplica a todos
+los predictores, pero no a `peso_kg`.
+
+Este paso también puede eliminar columnas indicadoras generadas por
+`step_dummy()` si alguna de ellas resulta constante en el conjunto de
+entrenamiento.
+
+### `step_normalize()`: estandarización
+
+```r
+step_normalize(all_numeric_predictors())
+```
+
+Esta operación estandariza los predictores numéricos restando su media y
+dividiéndolos por su desviación estándar:
+
+\[
+z = \frac{x-\bar{x}}{s}
+\]
+
+Después de la transformación, cada predictor numérico tendrá
+aproximadamente:
+
+- media igual a cero;
+- desviación estándar igual a uno.
+
+Esto evita que variables medidas en escalas grandes, como `humedad_pct`,
+dominen sobre variables con escalas menores, como `consumo_kg_dia`.
+
+La normalización suele ser especialmente importante en métodos basados en
+distancias o penalizaciones, como vecinos más cercanos, máquinas de vectores
+de soporte y regresión regularizada. En cambio, los árboles de decisión y
+los bosques aleatorios normalmente no la requieren.
+
+El selector `all_numeric_predictors()` aplica la transformación únicamente
+a los predictores numéricos. La variable de respuesta `peso_kg` no se
+normaliza.
+
+### Orden de las transformaciones
+
+El orden de los pasos es importante:
+
+1. Identificar los datos categóricos faltantes con `step_unknown()`.
+2. Preparar la recepción de categorías nuevas con `step_novel()`.
+3. Convertir las categorías en columnas numéricas con `step_dummy()`.
+4. Eliminar columnas constantes con `step_zv()`.
+5. Estandarizar los predictores numéricos con `step_normalize()`.
+
+En términos conceptuales, la receta realiza la siguiente transformación:
+
+```text
+Datos originales
+      ↓
+Categorías faltantes identificadas
+      ↓
+Categorías nuevas controladas
+      ↓
+Variables categóricas convertidas en indicadores
+      ↓
+Columnas sin variabilidad eliminadas
+      ↓
+Predictores numéricos estandarizados
+      ↓
+Datos preparados para el modelo
+```
+
+### Estimación y aplicación de la receta
+
+Definir una receta no ejecuta inmediatamente sus operaciones. La función
+`prep()` estima, utilizando únicamente el conjunto de entrenamiento, los
+elementos necesarios para aplicar cada transformación.
+
+```{r}
+receta_preparada <- prep(
+  receta_intro,
+  training = entrenamiento
+)
+```
+
+Entre otros elementos, `prep()` aprende:
+
+- los niveles existentes de `sexo` y `raza`;
+- las columnas indicadoras que deben crearse;
+- qué predictores tienen varianza cero;
+- la media de cada predictor numérico;
+- la desviación estándar de cada predictor numérico.
+
+Posteriormente, `bake()` aplica las transformaciones aprendidas:
+
+```{r}
+entrenamiento_procesado <- bake(
+  receta_preparada,
+  new_data = NULL
+)
+
+prueba_procesada <- bake(
+  receta_preparada,
+  new_data = prueba
+)
+
+glimpse(entrenamiento_procesado)
+```
+
+Cuando `new_data = NULL`, `bake()` devuelve el conjunto de entrenamiento
+procesado. Cuando se proporciona `new_data = prueba`, aplica a la prueba las
+transformaciones previamente estimadas.
+
+Es importante que las medias, desviaciones estándar, niveles categóricos y
+demás parámetros se calculen exclusivamente con `entrenamiento`. Si se
+estimaran utilizando también `prueba`, se produciría una fuga de
+información.
+
+
 ## Validación cruzada agrupada
 
 <br>
@@ -403,6 +690,241 @@ folds_animales
 La validación agrupada permite seleccionar métodos o parámetros sin utilizar el conjunto de prueba. La prueba se consulta una sola vez al finalizar el proceso.
 
 <br>
+
+Una única división entre entrenamiento y prueba produce una sola estimación
+del desempeño. Esa estimación puede depender de qué animales quedaron
+aleatoriamente en cada conjunto. Si repitiéramos la partición, podríamos
+obtener un valor diferente de RMSE, MAE, exactitud o sensibilidad.
+
+La [guía de validación cruzada de scikit-learn](https://scikit-learn.org/stable/modules/cross_validation.html)
+explica cómo utilizar múltiples particiones del conjunto de entrenamiento
+para obtener una evaluación más estable y seleccionar modelos sin consultar
+repetidamente el conjunto de prueba. 
+
+### Entrenamiento, validación y prueba
+
+Los tres conjuntos cumplen funciones diferentes:
+
+- **Entrenamiento:** se utiliza para estimar los parámetros del modelo.
+- **Validación:** se utiliza para comparar modelos, recetas o valores de
+  hiperparámetros.
+- **Prueba:** se reserva para realizar una evaluación final del modelo
+  seleccionado.
+
+Si utilizáramos repetidamente la prueba para escoger el mejor modelo,
+terminaríamos adaptando nuestras decisiones a ese conjunto. En ese caso,
+la prueba dejaría de representar una evaluación independiente de la
+capacidad de generalización.
+
+La validación cruzada evita conservar un único conjunto fijo de validación.
+En su lugar, divide el conjunto de entrenamiento en varios subconjuntos
+denominados **pliegues** o *folds*.
+
+### Validación cruzada con cinco pliegues
+
+En una validación cruzada de cinco pliegues:
+
+1. El conjunto de entrenamiento se divide en cinco grupos.
+2. En cada iteración, cuatro grupos se utilizan para ajustar el modelo.
+3. El grupo restante se utiliza para validarlo.
+4. El procedimiento se repite cinco veces.
+5. Cada grupo actúa como conjunto de validación exactamente una vez.
+6. Las métricas obtenidas se resumen mediante su media y su variabilidad.
+
+```text
+Iteración 1: [Validación] [Entrenamiento] [Entrenamiento] [Entrenamiento] [Entrenamiento]
+Iteración 2: [Entrenamiento] [Validación] [Entrenamiento] [Entrenamiento] [Entrenamiento]
+Iteración 3: [Entrenamiento] [Entrenamiento] [Validación] [Entrenamiento] [Entrenamiento]
+Iteración 4: [Entrenamiento] [Entrenamiento] [Entrenamiento] [Validación] [Entrenamiento]
+Iteración 5: [Entrenamiento] [Entrenamiento] [Entrenamiento] [Entrenamiento] [Validación]
+```
+
+En cada iteración se ajusta un modelo nuevo. Por tanto, una validación
+cruzada de cinco pliegues implica, como mínimo, ajustar el modelo cinco
+veces. Si se comparan varios modelos o valores de hiperparámetros, el número
+de ajustes aumenta.
+
+### ¿Por qué debe agruparse por animal?
+
+En esta base cada animal tiene múltiples mediciones realizadas en diferentes
+semanas. Estas mediciones no son independientes: las observaciones de un
+mismo animal comparten características biológicas, genéticas, productivas y
+ambientales.
+
+Si dividiéramos aleatoriamente las filas, podría ocurrir lo siguiente:
+
+```text
+Animal 105, semana 20 → entrenamiento
+Animal 105, semana 40 → entrenamiento
+Animal 105, semana 60 → validación
+```
+
+El modelo ya habría recibido información del animal 105 antes de evaluarlo.
+La validación mediría parcialmente la capacidad de reconocer animales
+conocidos, en lugar de la capacidad de predecir resultados para animales
+nuevos. Esto produciría una estimación excesivamente optimista del
+desempeño.
+
+Para evitarlo, utilizamos una validación cruzada agrupada:
+
+```{r}
+set.seed(2026)
+
+folds_animales <- group_vfold_cv(
+  entrenamiento,
+  group = animal_id,
+  v = 5
+)
+
+folds_animales
+```
+
+Los argumentos indican:
+
+- `entrenamiento`: conjunto sobre el cual se realizará la validación cruzada;
+- `group = animal_id`: todas las mediciones del mismo animal deben permanecer
+  juntas;
+- `v = 5`: se construirán cinco pliegues;
+- `set.seed(2026)`: permite reproducir la asignación de los animales a los
+  pliegues.
+
+La unidad que se distribuye entre los pliegues es el **animal**, no cada
+medición individual. Por tanto, un animal puede pertenecer al conjunto de
+análisis o al conjunto de evaluación de una iteración, pero nunca a ambos
+simultáneamente.
+
+### Estructura de los pliegues
+
+Cada fila de `folds_animales` representa una iteración de la validación
+cruzada:
+
+```{r}
+folds_animales
+```
+
+En la terminología de `rsample`:
+
+- **Analysis:** observaciones utilizadas para ajustar el modelo.
+- **Assessment:** observaciones utilizadas para evaluar el modelo en ese
+  pliegue.
+
+Podemos examinar el primer pliegue:
+
+```{r}
+primer_fold <- folds_animales$splits[[1]]
+
+datos_analysis <- analysis(primer_fold)
+datos_assessment <- assessment(primer_fold)
+
+datos_analysis |>
+  summarise(
+    mediciones = n(),
+    animales = n_distinct(animal_id)
+  )
+
+datos_assessment |>
+  summarise(
+    mediciones = n(),
+    animales = n_distinct(animal_id)
+  )
+```
+
+También podemos comprobar que ningún animal aparece en ambos subconjuntos:
+
+```{r}
+intersect(
+  unique(datos_analysis$animal_id),
+  unique(datos_assessment$animal_id)
+)
+```
+
+El resultado esperado es:
+
+```text
+factor(0)
+```
+
+o un vector vacío, lo que confirma que no hay animales compartidos.
+
+### ¿Para qué utilizaremos estos pliegues?
+
+Los pliegues permiten comparar, por ejemplo:
+
+- diferentes algoritmos predictivos;
+- distintas recetas de preprocesamiento;
+- diferentes conjuntos de predictores;
+- valores de hiperparámetros;
+- modelos con distinta complejidad.
+
+Para cada alternativa se calculan las métricas en los cinco conjuntos de
+evaluación. En regresión podríamos comparar RMSE, MAE y \(R^2\). En
+clasificación podríamos comparar exactitud, sensibilidad, especificidad,
+precisión o puntuación F1.
+
+No solo interesa el desempeño promedio. También debemos examinar su
+variabilidad entre pliegues:
+
+- una media favorable con poca variabilidad indica resultados relativamente
+  estables;
+- una media favorable con mucha variabilidad indica que el desempeño depende
+  considerablemente de los animales incluidos en cada pliegue.
+
+### Preprocesamiento dentro de cada pliegue
+
+La receta también debe estimarse nuevamente dentro de cada pliegue. En cada
+iteración, las medias, desviaciones estándar, categorías y columnas
+indicadoras se aprenden únicamente con los datos de `analysis` y después se
+aplican a `assessment`.
+
+El procedimiento correcto es:
+
+```text
+Pliegue
+   ↓
+Estimar la receta con analysis
+   ↓
+Transformar analysis y assessment
+   ↓
+Ajustar el modelo con analysis
+   ↓
+Predecir assessment
+   ↓
+Calcular las métricas
+```
+
+Si la receta se preparara una sola vez utilizando todo `entrenamiento` antes
+de crear o evaluar los pliegues, la información de las observaciones de
+`assessment` podría intervenir en el preprocesamiento. Eso constituiría una
+fuga de información. La documentación de scikit-learn también señala que
+transformaciones como la estandarización y la selección de variables deben
+aprenderse con los datos utilizados para entrenar y aplicarse después a las
+observaciones reservadas. 
+
+En `tidymodels`, la forma más segura de conservar este comportamiento
+consiste en reunir la receta y el modelo dentro de un `workflow`. Durante el
+remuestreo, la receta se estima nuevamente en cada pliegue.
+
+### Papel final del conjunto de prueba
+
+La validación cruzada se utiliza para tomar decisiones dentro de
+`entrenamiento`. Una vez seleccionado el método, se vuelve a ajustar usando
+todo el conjunto de entrenamiento y se evalúa una sola vez en `prueba`.
+
+```text
+Datos completos
+├── Entrenamiento
+│   ├── Validación cruzada agrupada
+│   ├── Comparación de modelos
+│   └── Selección de hiperparámetros
+│
+└── Prueba
+    └── Evaluación final del modelo seleccionado
+```
+
+El conjunto de prueba no se utiliza para elegir el modelo, modificar la
+receta o ajustar hiperparámetros. Su función consiste en proporcionar una
+estimación final de cómo se comportaría el procedimiento completo al
+enfrentarse a animales nuevos.
 
 ## Aplicaciones según la escala de predicción
 
