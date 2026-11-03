@@ -430,8 +430,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#un-mapa-para-orientar-la-elección-del-método" id="toc-un-mapa-para-orientar-la-elección-del-método" class="nav-link" data-scroll-target="#un-mapa-para-orientar-la-elección-del-método"><span class="header-section-number">8.5</span> Un mapa para orientar la elección del método</a></li>
   <li><a href="#conjunto-de-entrenamiento-y-conjunto-de-prueba" id="toc-conjunto-de-entrenamiento-y-conjunto-de-prueba" class="nav-link" data-scroll-target="#conjunto-de-entrenamiento-y-conjunto-de-prueba"><span class="header-section-number">8.6</span> Conjunto de entrenamiento y conjunto de prueba</a></li>
   <li><a href="#predictores-respuesta-y-fuga-de-información" id="toc-predictores-respuesta-y-fuga-de-información" class="nav-link" data-scroll-target="#predictores-respuesta-y-fuga-de-información"><span class="header-section-number">8.7</span> Predictores, respuesta y fuga de información</a></li>
-  <li><a href="#preprocesamiento-mediante-recetas" id="toc-preprocesamiento-mediante-recetas" class="nav-link" data-scroll-target="#preprocesamiento-mediante-recetas"><span class="header-section-number">8.8</span> Preprocesamiento mediante recetas</a></li>
-  <li><a href="#validación-cruzada-agrupada" id="toc-validación-cruzada-agrupada" class="nav-link" data-scroll-target="#validación-cruzada-agrupada"><span class="header-section-number">8.9</span> Validación cruzada agrupada</a></li>
+  <li><a href="#preprocesamiento-mediante-recetas" id="toc-preprocesamiento-mediante-recetas" class="nav-link" data-scroll-target="#preprocesamiento-mediante-recetas"><span class="header-section-number">8.8</span> Preprocesamiento mediante recetas</a>
+  <ul class="collapse">
+  <li><a href="#definición-de-la-receta" id="toc-definición-de-la-receta" class="nav-link" data-scroll-target="#definición-de-la-receta"><span class="header-section-number">8.8.1</span> Definición de la receta</a></li>
+  <li><a href="#step_unknown-valores-categóricos-faltantes" id="toc-step_unknown-valores-categóricos-faltantes" class="nav-link" data-scroll-target="#step_unknown-valores-categóricos-faltantes"><span class="header-section-number">8.8.2</span> <code>step_unknown()</code>: valores categóricos faltantes</a></li>
+  <li><a href="#step_novel-categorías-nuevas" id="toc-step_novel-categorías-nuevas" class="nav-link" data-scroll-target="#step_novel-categorías-nuevas"><span class="header-section-number">8.8.3</span> <code>step_novel()</code>: categorías nuevas</a></li>
+  <li><a href="#step_dummy-variables-indicadoras" id="toc-step_dummy-variables-indicadoras" class="nav-link" data-scroll-target="#step_dummy-variables-indicadoras"><span class="header-section-number">8.8.4</span> <code>step_dummy()</code>: variables indicadoras</a></li>
+  <li><a href="#step_zv-predictores-sin-variabilidad" id="toc-step_zv-predictores-sin-variabilidad" class="nav-link" data-scroll-target="#step_zv-predictores-sin-variabilidad"><span class="header-section-number">8.8.5</span> <code>step_zv()</code>: predictores sin variabilidad</a></li>
+  <li><a href="#step_normalize-estandarización" id="toc-step_normalize-estandarización" class="nav-link" data-scroll-target="#step_normalize-estandarización"><span class="header-section-number">8.8.6</span> <code>step_normalize()</code>: estandarización</a></li>
+  <li><a href="#orden-de-las-transformaciones" id="toc-orden-de-las-transformaciones" class="nav-link" data-scroll-target="#orden-de-las-transformaciones"><span class="header-section-number">8.8.7</span> Orden de las transformaciones</a></li>
+  <li><a href="#estimación-y-aplicación-de-la-receta" id="toc-estimación-y-aplicación-de-la-receta" class="nav-link" data-scroll-target="#estimación-y-aplicación-de-la-receta"><span class="header-section-number">8.8.8</span> Estimación y aplicación de la receta</a></li>
+  </ul></li>
+  <li><a href="#validación-cruzada-agrupada" id="toc-validación-cruzada-agrupada" class="nav-link" data-scroll-target="#validación-cruzada-agrupada"><span class="header-section-number">8.9</span> Validación cruzada agrupada</a>
+  <ul class="collapse">
+  <li><a href="#entrenamiento-validación-y-prueba" id="toc-entrenamiento-validación-y-prueba" class="nav-link" data-scroll-target="#entrenamiento-validación-y-prueba"><span class="header-section-number">8.9.1</span> Entrenamiento, validación y prueba</a></li>
+  <li><a href="#validación-cruzada-con-cinco-pliegues" id="toc-validación-cruzada-con-cinco-pliegues" class="nav-link" data-scroll-target="#validación-cruzada-con-cinco-pliegues"><span class="header-section-number">8.9.2</span> Validación cruzada con cinco pliegues</a></li>
+  <li><a href="#por-qué-debe-agruparse-por-animal" id="toc-por-qué-debe-agruparse-por-animal" class="nav-link" data-scroll-target="#por-qué-debe-agruparse-por-animal"><span class="header-section-number">8.9.3</span> ¿Por qué debe agruparse por animal?</a></li>
+  <li><a href="#estructura-de-los-pliegues" id="toc-estructura-de-los-pliegues" class="nav-link" data-scroll-target="#estructura-de-los-pliegues"><span class="header-section-number">8.9.4</span> Estructura de los pliegues</a></li>
+  <li><a href="#para-qué-utilizaremos-estos-pliegues" id="toc-para-qué-utilizaremos-estos-pliegues" class="nav-link" data-scroll-target="#para-qué-utilizaremos-estos-pliegues"><span class="header-section-number">8.9.5</span> ¿Para qué utilizaremos estos pliegues?</a></li>
+  <li><a href="#preprocesamiento-dentro-de-cada-pliegue" id="toc-preprocesamiento-dentro-de-cada-pliegue" class="nav-link" data-scroll-target="#preprocesamiento-dentro-de-cada-pliegue"><span class="header-section-number">8.9.6</span> Preprocesamiento dentro de cada pliegue</a></li>
+  <li><a href="#papel-final-del-conjunto-de-prueba" id="toc-papel-final-del-conjunto-de-prueba" class="nav-link" data-scroll-target="#papel-final-del-conjunto-de-prueba"><span class="header-section-number">8.9.7</span> Papel final del conjunto de prueba</a></li>
+  </ul></li>
   <li><a href="#aplicaciones-según-la-escala-de-predicción" id="toc-aplicaciones-según-la-escala-de-predicción" class="nav-link" data-scroll-target="#aplicaciones-según-la-escala-de-predicción"><span class="header-section-number">8.10</span> Aplicaciones según la escala de predicción</a></li>
   <li><a href="#línea-base-predictiva" id="toc-línea-base-predictiva" class="nav-link" data-scroll-target="#línea-base-predictiva"><span class="header-section-number">8.11</span> Línea base predictiva</a></li>
   <li><a href="#actividad-de-interpretación" id="toc-actividad-de-interpretación" class="nav-link" data-scroll-target="#actividad-de-interpretación"><span class="header-section-number">8.12</span> Actividad de interpretación</a></li>
@@ -965,6 +984,195 @@ $ raza_Raza_E       &lt;dbl&gt; -0.4324721, -0.4324721, -0.4324721, -0.4324721, 
 </div>
 </div>
 <p><br></p>
+<p>Las recetas de <code>tidymodels</code> permiten definir una secuencia ordenada de transformaciones para preparar los datos antes de ajustar un modelo. Estas transformaciones se estiman exclusivamente con el conjunto de entrenamiento y después se aplican, sin volver a estimarlas, a los conjuntos de validación o prueba.</p>
+<p>La hoja de referencia <a href="https://opensource.posit.co/resources/cheatsheets/ml-tidymodels/"><em>Machine learning with tidymodels</em></a> presenta los principales paquetes de <code>tidymodels</code> y su función dentro del flujo de aprendizaje automático: partición, preprocesamiento, modelado, ajuste de hiperparámetros y evaluación. El paquete <code>recipes</code> corresponde a la etapa de preprocesamiento.</p>
+<p>En una receta se especifican tres elementos:</p>
+<ol type="1">
+<li>La <strong>variable de respuesta</strong> que queremos predecir.</li>
+<li>Los <strong>predictores</strong> que utilizará el modelo.</li>
+<li>Los <strong>pasos de preprocesamiento</strong>, representados mediante funciones que comienzan con <code>step_</code>.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>receta_intro <span class="ot">&lt;-</span> <span class="fu">recipe</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  peso_kg <span class="sc">~</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    consumo_kg_dia <span class="sc">+</span> edad_inicio_meses <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    sexo <span class="sc">+</span> raza <span class="sc">+</span> tiempo <span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    temperatura_C <span class="sc">+</span> humedad_pct,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> entrenamiento</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_unknown</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_novel</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>receta_intro</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="definición-de-la-receta" class="level3" data-number="8.8.1">
+<h3 data-number="8.8.1" class="anchored" data-anchor-id="definición-de-la-receta"><span class="header-section-number">8.8.1</span> Definición de la receta</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">recipe</span>(</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  peso_kg <span class="sc">~</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    consumo_kg_dia <span class="sc">+</span> edad_inicio_meses <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    sexo <span class="sc">+</span> raza <span class="sc">+</span> tiempo <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    temperatura_C <span class="sc">+</span> humedad_pct,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> entrenamiento</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La fórmula establece que:</p>
+<ul>
+<li><code>peso_kg</code> es la <strong>variable de respuesta</strong>;</li>
+<li>las variables situadas a la derecha de <code>~</code> son los <strong>predictores</strong>;</li>
+<li><code>data = entrenamiento</code> define el conjunto utilizado para reconocer los nombres, tipos y niveles iniciales de las variables.</li>
+</ul>
+<p>En este momento no se ajusta ningún modelo y tampoco se ejecutan todavía las transformaciones.</p>
+</section>
+<section id="step_unknown-valores-categóricos-faltantes" class="level3" data-number="8.8.2">
+<h3 data-number="8.8.2" class="anchored" data-anchor-id="step_unknown-valores-categóricos-faltantes"><span class="header-section-number">8.8.2</span> <code>step_unknown()</code>: valores categóricos faltantes</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">step_unknown</span>(<span class="fu">all_nominal_predictors</span>())</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esta operación reemplaza los valores faltantes de los predictores categóricos por un nivel explícito, generalmente denominado <code>"unknown"</code>.</p>
+<p>Por ejemplo, si falta la raza de un animal:</p>
+<pre class="text"><code>raza = NA</code></pre>
+<p>la receta puede convertirla en:</p>
+<pre class="text"><code>raza = "unknown"</code></pre>
+<p>Esto evita que la observación sea eliminada únicamente porque falta el valor de una variable categórica.</p>
+<p>El selector <code>all_nominal_predictors()</code> indica que el paso debe aplicarse a todos los predictores nominales, es decir, variables categóricas como <code>sexo</code> y <code>raza</code>. No se aplica a la respuesta ni a los predictores numéricos.</p>
+</section>
+<section id="step_novel-categorías-nuevas" class="level3" data-number="8.8.3">
+<h3 data-number="8.8.3" class="anchored" data-anchor-id="step_novel-categorías-nuevas"><span class="header-section-number">8.8.3</span> <code>step_novel()</code>: categorías nuevas</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">step_novel</span>(<span class="fu">all_nominal_predictors</span>())</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esta operación permite manejar categorías que no estaban presentes durante el entrenamiento, pero que aparecen posteriormente en validación, prueba o predicción.</p>
+<p>Por ejemplo, si en el conjunto de entrenamiento aparecen las razas:</p>
+<pre class="text"><code>Dorper, Suffolk y Pelibuey</code></pre>
+<p>pero en el conjunto de prueba aparece:</p>
+<pre class="text"><code>Katahdin</code></pre>
+<p>la categoría <code>"Katahdin"</code> será tratada como un nivel nuevo, generalmente denominado <code>"new"</code>.</p>
+<p>Esto es diferente de <code>step_unknown()</code>:</p>
+<ul>
+<li><code>step_unknown()</code> trata valores ausentes.</li>
+<li><code>step_novel()</code> trata valores existentes cuya categoría no fue observada durante el entrenamiento.</li>
+</ul>
+</section>
+<section id="step_dummy-variables-indicadoras" class="level3" data-number="8.8.4">
+<h3 data-number="8.8.4" class="anchored" data-anchor-id="step_dummy-variables-indicadoras"><span class="header-section-number">8.8.4</span> <code>step_dummy()</code>: variables indicadoras</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>())</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Muchos algoritmos requieren predictores numéricos. Este paso convierte las variables categóricas en variables indicadoras o <em>dummy</em>.</p>
+<p>Por ejemplo, una variable <code>sexo</code> con los niveles:</p>
+<pre class="text"><code>Hembra
+Macho</code></pre>
+<p>puede convertirse en una variable como:</p>
+<pre class="text"><code>sexo_Macho</code></pre>
+<p>que toma los valores:</p>
+<pre class="text"><code>0 = Hembra
+1 = Macho</code></pre>
+<p>Si una variable tiene más de dos categorías, se crearán varias columnas indicadoras. De forma predeterminada, uno de los niveles se utiliza como categoría de referencia y no genera su propia columna.</p>
+<p>Este paso debe ejecutarse después de <code>step_unknown()</code> y <code>step_novel()</code>, para que los niveles desconocidos y nuevos también puedan representarse numéricamente.</p>
+</section>
+<section id="step_zv-predictores-sin-variabilidad" class="level3" data-number="8.8.5">
+<h3 data-number="8.8.5" class="anchored" data-anchor-id="step_zv-predictores-sin-variabilidad"><span class="header-section-number">8.8.5</span> <code>step_zv()</code>: predictores sin variabilidad</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">step_zv</span>(<span class="fu">all_predictors</span>())</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>zv</code> significa <em>zero variance</em>. Este paso elimina predictores que presentan un único valor en todo el conjunto de entrenamiento.</p>
+<p>Por ejemplo, si todos los animales del conjunto de entrenamiento pertenecen a la misma categoría:</p>
+<pre class="text"><code>sistema_produccion = "Intensivo"</code></pre>
+<p>esa variable no permitiría diferenciar observaciones y no aportaría información predictiva.</p>
+<p>El selector <code>all_predictors()</code> indica que el procedimiento se aplica a todos los predictores, pero no a <code>peso_kg</code>.</p>
+<p>Este paso también puede eliminar columnas indicadoras generadas por <code>step_dummy()</code> si alguna de ellas resulta constante en el conjunto de entrenamiento.</p>
+</section>
+<section id="step_normalize-estandarización" class="level3" data-number="8.8.6">
+<h3 data-number="8.8.6" class="anchored" data-anchor-id="step_normalize-estandarización"><span class="header-section-number">8.8.6</span> <code>step_normalize()</code>: estandarización</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esta operación estandariza los predictores numéricos restando su media y dividiéndolos por su desviación estándar:</p>
+<p>[ z = ]</p>
+<p>Después de la transformación, cada predictor numérico tendrá aproximadamente:</p>
+<ul>
+<li>media igual a cero;</li>
+<li>desviación estándar igual a uno.</li>
+</ul>
+<p>Esto evita que variables medidas en escalas grandes, como <code>humedad_pct</code>, dominen sobre variables con escalas menores, como <code>consumo_kg_dia</code>.</p>
+<p>La normalización suele ser especialmente importante en métodos basados en distancias o penalizaciones, como vecinos más cercanos, máquinas de vectores de soporte y regresión regularizada. En cambio, los árboles de decisión y los bosques aleatorios normalmente no la requieren.</p>
+<p>El selector <code>all_numeric_predictors()</code> aplica la transformación únicamente a los predictores numéricos. La variable de respuesta <code>peso_kg</code> no se normaliza.</p>
+</section>
+<section id="orden-de-las-transformaciones" class="level3" data-number="8.8.7">
+<h3 data-number="8.8.7" class="anchored" data-anchor-id="orden-de-las-transformaciones"><span class="header-section-number">8.8.7</span> Orden de las transformaciones</h3>
+<p>El orden de los pasos es importante:</p>
+<ol type="1">
+<li>Identificar los datos categóricos faltantes con <code>step_unknown()</code>.</li>
+<li>Preparar la recepción de categorías nuevas con <code>step_novel()</code>.</li>
+<li>Convertir las categorías en columnas numéricas con <code>step_dummy()</code>.</li>
+<li>Eliminar columnas constantes con <code>step_zv()</code>.</li>
+<li>Estandarizar los predictores numéricos con <code>step_normalize()</code>.</li>
+</ol>
+<p>En términos conceptuales, la receta realiza la siguiente transformación:</p>
+<pre class="text"><code>Datos originales
+      ↓
+Categorías faltantes identificadas
+      ↓
+Categorías nuevas controladas
+      ↓
+Variables categóricas convertidas en indicadores
+      ↓
+Columnas sin variabilidad eliminadas
+      ↓
+Predictores numéricos estandarizados
+      ↓
+Datos preparados para el modelo</code></pre>
+</section>
+<section id="estimación-y-aplicación-de-la-receta" class="level3" data-number="8.8.8">
+<h3 data-number="8.8.8" class="anchored" data-anchor-id="estimación-y-aplicación-de-la-receta"><span class="header-section-number">8.8.8</span> Estimación y aplicación de la receta</h3>
+<p>Definir una receta no ejecuta inmediatamente sus operaciones. La función <code>prep()</code> estima, utilizando únicamente el conjunto de entrenamiento, los elementos necesarios para aplicar cada transformación.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>receta_preparada <span class="ot">&lt;-</span> <span class="fu">prep</span>(</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  receta_intro,</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">training =</span> entrenamiento</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Entre otros elementos, <code>prep()</code> aprende:</p>
+<ul>
+<li>los niveles existentes de <code>sexo</code> y <code>raza</code>;</li>
+<li>las columnas indicadoras que deben crearse;</li>
+<li>qué predictores tienen varianza cero;</li>
+<li>la media de cada predictor numérico;</li>
+<li>la desviación estándar de cada predictor numérico.</li>
+</ul>
+<p>Posteriormente, <code>bake()</code> aplica las transformaciones aprendidas:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>entrenamiento_procesado <span class="ot">&lt;-</span> <span class="fu">bake</span>(</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  receta_preparada,</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">new_data =</span> <span class="cn">NULL</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>prueba_procesada <span class="ot">&lt;-</span> <span class="fu">bake</span>(</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  receta_preparada,</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">new_data =</span> prueba</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(entrenamiento_procesado)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 38,771
+Columns: 11
+$ consumo_kg_dia    &lt;dbl&gt; -0.8128868, 0.6544510, -0.0255780, 0.9333181, 0.9275…
+$ edad_inicio_meses &lt;dbl&gt; 0.4552672, 0.4552672, 0.4552672, 0.4552672, 0.455267…
+$ tiempo            &lt;dbl&gt; -1.7152089, -1.6805734, -1.6459380, -1.6113025, -1.5…
+$ temperatura_C     &lt;dbl&gt; -0.57584762, 0.60041306, 0.57716894, 0.59984858, 0.0…
+$ humedad_pct       &lt;dbl&gt; 0.04422076, 0.66462898, 0.52599992, -0.77432499, 0.5…
+$ peso_kg           &lt;dbl&gt; 37.05724, 37.34766, 37.48476, 37.69459, 38.01026, 38…
+$ sexo_Macho        &lt;dbl&gt; 1.034873, 1.034873, 1.034873, 1.034873, 1.034873, 1.…
+$ raza_Raza_B       &lt;dbl&gt; 1.987996, 1.987996, 1.987996, 1.987996, 1.987996, 1.…
+$ raza_Raza_C       &lt;dbl&gt; -0.5274598, -0.5274598, -0.5274598, -0.5274598, -0.5…
+$ raza_Raza_D       &lt;dbl&gt; -0.5397065, -0.5397065, -0.5397065, -0.5397065, -0.5…
+$ raza_Raza_E       &lt;dbl&gt; -0.4324721, -0.4324721, -0.4324721, -0.4324721, -0.4…</code></pre>
+</div>
+</div>
+<p>Cuando <code>new_data = NULL</code>, <code>bake()</code> devuelve el conjunto de entrenamiento procesado. Cuando se proporciona <code>new_data = prueba</code>, aplica a la prueba las transformaciones previamente estimadas.</p>
+<p>Es importante que las medias, desviaciones estándar, niveles categóricos y demás parámetros se calculen exclusivamente con <code>entrenamiento</code>. Si se estimaran utilizando también <code>prueba</code>, se produciría una fuga de información.</p>
+</section>
 </section>
 <section id="validación-cruzada-agrupada" class="level2" data-number="8.9">
 <h2 data-number="8.9" class="anchored" data-anchor-id="validación-cruzada-agrupada"><span class="header-section-number">8.9</span> Validación cruzada agrupada</h2>
@@ -974,15 +1182,15 @@ $ raza_Raza_E       &lt;dbl&gt; -0.4324721, -0.4324721, -0.4324721, -0.4324721, 
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>folds_animales <span class="ot">&lt;-</span> <span class="fu">group_vfold_cv</span>(</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  entrenamiento,</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> animal_id,</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">v =</span> <span class="dv">5</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>folds_animales</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>folds_animales <span class="ot">&lt;-</span> <span class="fu">group_vfold_cv</span>(</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  entrenamiento,</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> animal_id,</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">v =</span> <span class="dv">5</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>folds_animales</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># Group 5-fold cross-validation 
@@ -999,6 +1207,207 @@ $ raza_Raza_E       &lt;dbl&gt; -0.4324721, -0.4324721, -0.4324721, -0.4324721, 
 <p><br></p>
 <p>La validación agrupada permite seleccionar métodos o parámetros sin utilizar el conjunto de prueba. La prueba se consulta una sola vez al finalizar el proceso.</p>
 <p><br></p>
+<p>Una única división entre entrenamiento y prueba produce una sola estimación del desempeño. Esa estimación puede depender de qué animales quedaron aleatoriamente en cada conjunto. Si repitiéramos la partición, podríamos obtener un valor diferente de RMSE, MAE, exactitud o sensibilidad.</p>
+<p>La <a href="https://scikit-learn.org/stable/modules/cross_validation.html">guía de validación cruzada de scikit-learn</a> explica cómo utilizar múltiples particiones del conjunto de entrenamiento para obtener una evaluación más estable y seleccionar modelos sin consultar repetidamente el conjunto de prueba.</p>
+<section id="entrenamiento-validación-y-prueba" class="level3" data-number="8.9.1">
+<h3 data-number="8.9.1" class="anchored" data-anchor-id="entrenamiento-validación-y-prueba"><span class="header-section-number">8.9.1</span> Entrenamiento, validación y prueba</h3>
+<p>Los tres conjuntos cumplen funciones diferentes:</p>
+<ul>
+<li><strong>Entrenamiento:</strong> se utiliza para estimar los parámetros del modelo.</li>
+<li><strong>Validación:</strong> se utiliza para comparar modelos, recetas o valores de hiperparámetros.</li>
+<li><strong>Prueba:</strong> se reserva para realizar una evaluación final del modelo seleccionado.</li>
+</ul>
+<p>Si utilizáramos repetidamente la prueba para escoger el mejor modelo, terminaríamos adaptando nuestras decisiones a ese conjunto. En ese caso, la prueba dejaría de representar una evaluación independiente de la capacidad de generalización.</p>
+<p>La validación cruzada evita conservar un único conjunto fijo de validación. En su lugar, divide el conjunto de entrenamiento en varios subconjuntos denominados <strong>pliegues</strong> o <em>folds</em>.</p>
+</section>
+<section id="validación-cruzada-con-cinco-pliegues" class="level3" data-number="8.9.2">
+<h3 data-number="8.9.2" class="anchored" data-anchor-id="validación-cruzada-con-cinco-pliegues"><span class="header-section-number">8.9.2</span> Validación cruzada con cinco pliegues</h3>
+<p>En una validación cruzada de cinco pliegues:</p>
+<ol type="1">
+<li>El conjunto de entrenamiento se divide en cinco grupos.</li>
+<li>En cada iteración, cuatro grupos se utilizan para ajustar el modelo.</li>
+<li>El grupo restante se utiliza para validarlo.</li>
+<li>El procedimiento se repite cinco veces.</li>
+<li>Cada grupo actúa como conjunto de validación exactamente una vez.</li>
+<li>Las métricas obtenidas se resumen mediante su media y su variabilidad.</li>
+</ol>
+<pre class="text"><code>Iteración 1: [Validación] [Entrenamiento] [Entrenamiento] [Entrenamiento] [Entrenamiento]
+Iteración 2: [Entrenamiento] [Validación] [Entrenamiento] [Entrenamiento] [Entrenamiento]
+Iteración 3: [Entrenamiento] [Entrenamiento] [Validación] [Entrenamiento] [Entrenamiento]
+Iteración 4: [Entrenamiento] [Entrenamiento] [Entrenamiento] [Validación] [Entrenamiento]
+Iteración 5: [Entrenamiento] [Entrenamiento] [Entrenamiento] [Entrenamiento] [Validación]</code></pre>
+<p>En cada iteración se ajusta un modelo nuevo. Por tanto, una validación cruzada de cinco pliegues implica, como mínimo, ajustar el modelo cinco veces. Si se comparan varios modelos o valores de hiperparámetros, el número de ajustes aumenta.</p>
+</section>
+<section id="por-qué-debe-agruparse-por-animal" class="level3" data-number="8.9.3">
+<h3 data-number="8.9.3" class="anchored" data-anchor-id="por-qué-debe-agruparse-por-animal"><span class="header-section-number">8.9.3</span> ¿Por qué debe agruparse por animal?</h3>
+<p>En esta base cada animal tiene múltiples mediciones realizadas en diferentes semanas. Estas mediciones no son independientes: las observaciones de un mismo animal comparten características biológicas, genéticas, productivas y ambientales.</p>
+<p>Si dividiéramos aleatoriamente las filas, podría ocurrir lo siguiente:</p>
+<pre class="text"><code>Animal 105, semana 20 → entrenamiento
+Animal 105, semana 40 → entrenamiento
+Animal 105, semana 60 → validación</code></pre>
+<p>El modelo ya habría recibido información del animal 105 antes de evaluarlo. La validación mediría parcialmente la capacidad de reconocer animales conocidos, en lugar de la capacidad de predecir resultados para animales nuevos. Esto produciría una estimación excesivamente optimista del desempeño.</p>
+<p>Para evitarlo, utilizamos una validación cruzada agrupada:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>folds_animales <span class="ot">&lt;-</span> <span class="fu">group_vfold_cv</span>(</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  entrenamiento,</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> animal_id,</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">v =</span> <span class="dv">5</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>folds_animales</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># Group 5-fold cross-validation 
+# A tibble: 5 × 2
+  splits               id       
+  &lt;list&gt;               &lt;chr&gt;    
+1 &lt;split [30997/7774]&gt; Resample1
+2 &lt;split [31022/7749]&gt; Resample2
+3 &lt;split [31028/7743]&gt; Resample3
+4 &lt;split [31026/7745]&gt; Resample4
+5 &lt;split [31011/7760]&gt; Resample5</code></pre>
+</div>
+</div>
+<p>Los argumentos indican:</p>
+<ul>
+<li><code>entrenamiento</code>: conjunto sobre el cual se realizará la validación cruzada;</li>
+<li><code>group = animal_id</code>: todas las mediciones del mismo animal deben permanecer juntas;</li>
+<li><code>v = 5</code>: se construirán cinco pliegues;</li>
+<li><code>set.seed(2026)</code>: permite reproducir la asignación de los animales a los pliegues.</li>
+</ul>
+<p>La unidad que se distribuye entre los pliegues es el <strong>animal</strong>, no cada medición individual. Por tanto, un animal puede pertenecer al conjunto de análisis o al conjunto de evaluación de una iteración, pero nunca a ambos simultáneamente.</p>
+</section>
+<section id="estructura-de-los-pliegues" class="level3" data-number="8.9.4">
+<h3 data-number="8.9.4" class="anchored" data-anchor-id="estructura-de-los-pliegues"><span class="header-section-number">8.9.4</span> Estructura de los pliegues</h3>
+<p>Cada fila de <code>folds_animales</code> representa una iteración de la validación cruzada:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>folds_animales</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># Group 5-fold cross-validation 
+# A tibble: 5 × 2
+  splits               id       
+  &lt;list&gt;               &lt;chr&gt;    
+1 &lt;split [30997/7774]&gt; Resample1
+2 &lt;split [31022/7749]&gt; Resample2
+3 &lt;split [31028/7743]&gt; Resample3
+4 &lt;split [31026/7745]&gt; Resample4
+5 &lt;split [31011/7760]&gt; Resample5</code></pre>
+</div>
+</div>
+<p>En la terminología de <code>rsample</code>:</p>
+<ul>
+<li><strong>Analysis:</strong> observaciones utilizadas para ajustar el modelo.</li>
+<li><strong>Assessment:</strong> observaciones utilizadas para evaluar el modelo en ese pliegue.</li>
+</ul>
+<p>Podemos examinar el primer pliegue:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>primer_fold <span class="ot">&lt;-</span> folds_animales<span class="sc">$</span>splits[[<span class="dv">1</span>]]</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>datos_analysis <span class="ot">&lt;-</span> <span class="fu">analysis</span>(primer_fold)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>datos_assessment <span class="ot">&lt;-</span> <span class="fu">assessment</span>(primer_fold)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>datos_analysis <span class="sc">|&gt;</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mediciones =</span> <span class="fu">n</span>(),</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">animales =</span> <span class="fu">n_distinct</span>(animal_id)</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  mediciones animales
+       &lt;int&gt;    &lt;int&gt;
+1      30997      320</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>datos_assessment <span class="sc">|&gt;</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mediciones =</span> <span class="fu">n</span>(),</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">animales =</span> <span class="fu">n_distinct</span>(animal_id)</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  mediciones animales
+       &lt;int&gt;    &lt;int&gt;
+1       7774       80</code></pre>
+</div>
+</div>
+<p>También podemos comprobar que ningún animal aparece en ambos subconjuntos:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>(datos_analysis<span class="sc">$</span>animal_id),</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>(datos_assessment<span class="sc">$</span>animal_id)</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>factor()
+500 Levels: A001 A002 A003 A004 A005 A006 A007 A008 A009 A010 A011 A012 ... A500</code></pre>
+</div>
+</div>
+<p>El resultado esperado es:</p>
+<pre class="text"><code>factor(0)</code></pre>
+<p>o un vector vacío, lo que confirma que no hay animales compartidos.</p>
+</section>
+<section id="para-qué-utilizaremos-estos-pliegues" class="level3" data-number="8.9.5">
+<h3 data-number="8.9.5" class="anchored" data-anchor-id="para-qué-utilizaremos-estos-pliegues"><span class="header-section-number">8.9.5</span> ¿Para qué utilizaremos estos pliegues?</h3>
+<p>Los pliegues permiten comparar, por ejemplo:</p>
+<ul>
+<li>diferentes algoritmos predictivos;</li>
+<li>distintas recetas de preprocesamiento;</li>
+<li>diferentes conjuntos de predictores;</li>
+<li>valores de hiperparámetros;</li>
+<li>modelos con distinta complejidad.</li>
+</ul>
+<p>Para cada alternativa se calculan las métricas en los cinco conjuntos de evaluación. En regresión podríamos comparar RMSE, MAE y (R^2). En clasificación podríamos comparar exactitud, sensibilidad, especificidad, precisión o puntuación F1.</p>
+<p>No solo interesa el desempeño promedio. También debemos examinar su variabilidad entre pliegues:</p>
+<ul>
+<li>una media favorable con poca variabilidad indica resultados relativamente estables;</li>
+<li>una media favorable con mucha variabilidad indica que el desempeño depende considerablemente de los animales incluidos en cada pliegue.</li>
+</ul>
+</section>
+<section id="preprocesamiento-dentro-de-cada-pliegue" class="level3" data-number="8.9.6">
+<h3 data-number="8.9.6" class="anchored" data-anchor-id="preprocesamiento-dentro-de-cada-pliegue"><span class="header-section-number">8.9.6</span> Preprocesamiento dentro de cada pliegue</h3>
+<p>La receta también debe estimarse nuevamente dentro de cada pliegue. En cada iteración, las medias, desviaciones estándar, categorías y columnas indicadoras se aprenden únicamente con los datos de <code>analysis</code> y después se aplican a <code>assessment</code>.</p>
+<p>El procedimiento correcto es:</p>
+<pre class="text"><code>Pliegue
+   ↓
+Estimar la receta con analysis
+   ↓
+Transformar analysis y assessment
+   ↓
+Ajustar el modelo con analysis
+   ↓
+Predecir assessment
+   ↓
+Calcular las métricas</code></pre>
+<p>Si la receta se preparara una sola vez utilizando todo <code>entrenamiento</code> antes de crear o evaluar los pliegues, la información de las observaciones de <code>assessment</code> podría intervenir en el preprocesamiento. Eso constituiría una fuga de información. La documentación de scikit-learn también señala que transformaciones como la estandarización y la selección de variables deben aprenderse con los datos utilizados para entrenar y aplicarse después a las observaciones reservadas.</p>
+<p>En <code>tidymodels</code>, la forma más segura de conservar este comportamiento consiste en reunir la receta y el modelo dentro de un <code>workflow</code>. Durante el remuestreo, la receta se estima nuevamente en cada pliegue.</p>
+</section>
+<section id="papel-final-del-conjunto-de-prueba" class="level3" data-number="8.9.7">
+<h3 data-number="8.9.7" class="anchored" data-anchor-id="papel-final-del-conjunto-de-prueba"><span class="header-section-number">8.9.7</span> Papel final del conjunto de prueba</h3>
+<p>La validación cruzada se utiliza para tomar decisiones dentro de <code>entrenamiento</code>. Una vez seleccionado el método, se vuelve a ajustar usando todo el conjunto de entrenamiento y se evalúa una sola vez en <code>prueba</code>.</p>
+<pre class="text"><code>Datos completos
+├── Entrenamiento
+│   ├── Validación cruzada agrupada
+│   ├── Comparación de modelos
+│   └── Selección de hiperparámetros
+│
+└── Prueba
+    └── Evaluación final del modelo seleccionado</code></pre>
+<p>El conjunto de prueba no se utiliza para elegir el modelo, modificar la receta o ajustar hiperparámetros. Su función consiste en proporcionar una estimación final de cómo se comportaría el procedimiento completo al enfrentarse a animales nuevos.</p>
+</section>
 </section>
 <section id="aplicaciones-según-la-escala-de-predicción" class="level2" data-number="8.10">
 <h2 data-number="8.10" class="anchored" data-anchor-id="aplicaciones-según-la-escala-de-predicción"><span class="header-section-number">8.10</span> Aplicaciones según la escala de predicción</h2>
@@ -1006,16 +1415,16 @@ $ raza_Raza_E       &lt;dbl&gt; -0.4324721, -0.4324721, -0.4324721, -0.4324721, 
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>preguntas_ml <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>pregunta, <span class="sc">~</span>respuesta, <span class="sc">~</span>unidad, <span class="sc">~</span>tipo,</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Predecir peso semanal"</span>, <span class="st">"peso_kg"</span>, <span class="st">"medición"</span>, <span class="st">"Regresión"</span>,</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Predecir salud alta"</span>, <span class="st">"salud_alta_ml"</span>, <span class="st">"medición"</span>, <span class="st">"Clasificación"</span>,</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Predecir producción de lana"</span>, <span class="st">"produccion_lana_kg"</span>, <span class="st">"animal"</span>, <span class="st">"Regresión"</span>,</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Predecir muchas visitas"</span>, <span class="st">"visitas_altas"</span>, <span class="st">"animal"</span>, <span class="st">"Clasificación"</span>,</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Agrupar granjas productivas"</span>, <span class="st">"Sin respuesta"</span>, <span class="st">"granja"</span>, <span class="st">"Clustering"</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>preguntas_ml</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>preguntas_ml <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>pregunta, <span class="sc">~</span>respuesta, <span class="sc">~</span>unidad, <span class="sc">~</span>tipo,</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Predecir peso semanal"</span>, <span class="st">"peso_kg"</span>, <span class="st">"medición"</span>, <span class="st">"Regresión"</span>,</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Predecir salud alta"</span>, <span class="st">"salud_alta_ml"</span>, <span class="st">"medición"</span>, <span class="st">"Clasificación"</span>,</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Predecir producción de lana"</span>, <span class="st">"produccion_lana_kg"</span>, <span class="st">"animal"</span>, <span class="st">"Regresión"</span>,</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Predecir muchas visitas"</span>, <span class="st">"visitas_altas"</span>, <span class="st">"animal"</span>, <span class="st">"Clasificación"</span>,</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Agrupar granjas productivas"</span>, <span class="st">"Sin respuesta"</span>, <span class="st">"granja"</span>, <span class="st">"Clustering"</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>preguntas_ml</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
@@ -1038,22 +1447,22 @@ $ raza_Raza_E       &lt;dbl&gt; -0.4324721, -0.4324721, -0.4324721, -0.4324721, 
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>media_entrenamiento <span class="ot">&lt;-</span> <span class="fu">mean</span>(</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  entrenamiento<span class="sc">$</span>peso_kg,</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>prediccion_base <span class="ot">&lt;-</span> prueba <span class="sc">|&gt;</span></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    peso_kg,</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.pred =</span> media_entrenamiento</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="fu">metric_set</span>(rmse, mae, rsq)(</span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  prediccion_base,</span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">truth =</span> peso_kg,</span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimate =</span> .pred</span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>media_entrenamiento <span class="ot">&lt;-</span> <span class="fu">mean</span>(</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  entrenamiento<span class="sc">$</span>peso_kg,</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>prediccion_base <span class="ot">&lt;-</span> prueba <span class="sc">|&gt;</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>    peso_kg,</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.pred =</span> media_entrenamiento</span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a><span class="fu">metric_set</span>(rmse, mae, rsq)(</span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a>  prediccion_base,</span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">truth =</span> peso_kg,</span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimate =</span> .pred</span>
+<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
